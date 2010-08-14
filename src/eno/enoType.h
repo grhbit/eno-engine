@@ -7,7 +7,7 @@
  *
  */
 
-
+#pragma once
 #include "enoConfig.h"
 
 
@@ -38,6 +38,10 @@ ENO_NAMESPACE_BEGIN
 	typedef long long s64;
 
 	typedef double f64;
+
+	//In case template, decide type!
+
+	typedef f32 ftype;
 
 ENO_NAMESPACE_END
 

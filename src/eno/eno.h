@@ -7,4 +7,5 @@
  *
  */
 
+#pragma once
 #include "enoConfig.h"
