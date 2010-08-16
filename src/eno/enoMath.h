@@ -7,8 +7,8 @@
  *
  */
 
+#include <cmath>
 #include "enoType.h"
-
 
 ENO_NAMESPACE_BEGIN
 

@@ -8,7 +8,7 @@
  */
 
 #pragma once
-#include "enoType.h"
+#include "enoMath.h"
 #include "vector3.h"
 
 ENO_NAMESPACE_BEGIN
@@ -37,7 +37,7 @@ ENO_NAMESPACE_BEGIN
 		ENO_CLASS_TYPE_BEGIN
 
 			template<typename _Ty>
-			class matrix4x4 : public struct_type::Matrix4x4<_Ty> {
+			class matrix4x4_template : public struct_type::Matrix4x4<_Ty> {
 			public:
 				#define m11 m[0][0]
 				#define m12 m[0][1]
@@ -63,8 +63,8 @@ ENO_NAMESPACE_BEGIN
 					INIT_FILL
 				};
 			public:
-				explicit matrix4x4( _Ty* src ) { memcpy(this->M, src, sizeof(this->M));}
-				explicit matrix4x4( _Ty _11, _Ty _12, _Ty _13, _Ty _14,
+				explicit matrix4x4_template( _Ty* src ) { memcpy(this->M, src, sizeof(this->M));}
+				explicit matrix4x4_template( _Ty _11, _Ty _12, _Ty _13, _Ty _14,
 								    _Ty _21, _Ty _22, _Ty _23, _Ty _24,
 								    _Ty _31, _Ty _32, _Ty _33, _Ty _34,
 								    _Ty _41, _Ty _42, _Ty _43, _Ty _44 )
@@ -75,7 +75,7 @@ ENO_NAMESPACE_BEGIN
 					this->m41 = _41;	this->m42 = _42;	this->m43 = _43;	this->m44 = _44;
 				}
 				
-				explicit matrix4x4( const matrix4x4& rhs )
+				explicit matrix4x4_template( const matrix4x4_template & rhs )
 				{
 					this->m11 = rhs.m11;	this->m12 = rhs.m12;	this->m13 = rhs.m13;	this->m14 = rhs.m14;
 					this->m21 = rhs.m21;	this->m22 = rhs.m22;	this->m23 = rhs.m23;	this->m24 = rhs.m24;
@@ -83,39 +83,84 @@ ENO_NAMESPACE_BEGIN
 					this->m41 = rhs.m41;	this->m42 = rhs.m42;	this->m43 = rhs.m43;	this->m44 = rhs.m44;					
 				}
 
-				explicit matrix4x4( InitializeFlag initFlag = INIT_IDENTITY, _Ty fillValue = 0 );
+				explicit matrix4x4_template( InitializeFlag initFlag = INIT_IDENTITY, _Ty fillValue = 0 );
 				
 				void identity( void ) { Identity( *this ); }
 				
+				bool isIdentity( void ) { return IsIdentity( *this ); }
+				
 				void fill( _Ty fillValue ) { Fill( *this, fillValue ); }
 				
-				void scale( _Ty x, _Ty y, _Ty z ) { scale(vector3<_Ty>(x, y, z)); }
+				void scale( _Ty x, _Ty y, _Ty z ) { scale(vector3_template<_Ty>(x, y, z)); }
 				
-				void scale( const vector3<_Ty> & vec ) { }
+				void scale( const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template::MakeScale(*this, vec3);
+				}
 				
-				void rotate( _Ty x, _Ty y, _Ty z ) { rotate(vector3<_Ty>(x, y, z)); }
+				void rotate( _Ty x, _Ty y, _Ty z ) { rotate(vector3_template<_Ty>(x, y, z)); }
 				
-				void rotate( const vector3<_Ty> & vec ) { }
+				void rotate( const vector3_template<_Ty> & vec3 )
+				{
+				}
 				
-				void translate( _Ty x, _Ty y, _Ty z ) { translate(vector3<_Ty>(x, y, z)); }
+				void translate( _Ty x, _Ty y, _Ty z ) { translate(vector3_template<_Ty>(x, y, z)); }
 				
-				void translate( const vector3<_Ty> & vec ) { }
+				void translate( const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template::MakeTranslate(*this, vec3);
+				}
 				
-				void makeScale( _Ty x, _Ty y, _Ty z ) { makeScale(vector3<_Ty>(x, y, z)); }
+				void makeScale( _Ty x, _Ty y, _Ty z ) { makeScale(vector3_template<_Ty>(x, y, z)); }
 				
-				void makeScale( const vector3<_Ty> & vec ) { }
+				void makeScale( const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template::MakeScale(*this, vec3);
+				}
 				
-				void makeRotate( _Ty x, _Ty y, _Ty z ) { makeRotate(vector3<_Ty>(x, y, z)); }
+				void makeRotate( ftype x, ftype y, ftype z ) { makeRotate(vector3_template<ftype>(x, y, z)); }
 				
-				void makeRotate( const vector3<_Ty> & vec ) { }
+				void makeRotate( const vector3_template<ftype> & vec3 )
+				{
+					matrix4x4_template::MakeRotate(*this, vec3);
+				}
 				
-				void makeTranslate( _Ty x, _Ty y, _Ty z ) { makeTranslate(vector3<_Ty>(x, y, z)); }
+				void makeRotateX( ftype value )
+				{
+					matrix4x4_template::MakeRotateX(*this, value);
+				}
 				
-				void makeTranslate( const vector3<_Ty> & vec ) { }
+				void makeRotateY( ftype value )
+				{
+					matrix4x4_template::MakeRotateY(*this, value);
+				}
+				
+				void makeRotateZ( ftype value )
+				{
+					matrix4x4_template::MakeRotateZ(*this, value);
+				}
+				
+				void makeTranslate( _Ty x, _Ty y, _Ty z ) { makeTranslate(vector3_template<_Ty>(x, y, z)); }
+				
+				void makeTranslate( const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template::MakeTranslate(*this, vec3);
+				}
+				
+				_Ty determinant( void )
+				{
+					return matrix4x4_template::Determinant(*this);
+				}
+				
+				void reverse( void )
+				{
+					*this = matrix4x4_template::Reverse(*this);
+				}
 				
 			//public static
+			public:
 				
-				static void Identity( matrix4x4 & mat )
+				static void Identity( matrix4x4_template & mat )
 				{
 					mat.m11 = 1;	mat.m12 = 0;	mat.m13 = 0;	mat.m14 = 0;
 					mat.m21 = 0;	mat.m22 = 1;	mat.m23 = 0;	mat.m24 = 0;
@@ -123,25 +168,111 @@ ENO_NAMESPACE_BEGIN
 					mat.m41 = 0;	mat.m42 = 0;	mat.m43 = 0;	mat.m44 = 1;
 				}
 				
-				static matrix4x4 Identity( void )
+				static matrix4x4_template Identity( void )
 				{
-					matrix4x4 tmp;
-					Identity( tmp );
+					matrix4x4_template tmp;
+					matrix4x4_template::Identity( tmp );
 					return tmp;
 				}
 				
-				static void Fill( matrix4x4 & mat, _Ty fillValue ) { memset( mat.M, fillValue ); }
-				
-				static matrix4x4 Fill( _Ty fillValue )
+				static bool IsIdentity( const matrix4x4_template & mat )
 				{
-					matrix4x4 tmp;
-					Fill( tmp, fillValue );
+					return	mat.m11 == 1 && mat.m12 == 0 && mat.m13 == 0 && mat.m14 == 0 &&
+							mat.m21 == 0 && mat.m22 == 1 && mat.m23 == 0 && mat.m24 == 0 &&
+							mat.m31 == 0 && mat.m32 == 0 && mat.m33 == 1 && mat.m34 == 0 &&
+							mat.m41 == 0 && mat.m42 == 0 && mat.m43 == 0 && mat.m44 == 1;
+				}
+				
+				static void Fill( matrix4x4_template & mat, _Ty fillValue ) { memset( mat.M, fillValue, sizeof(_Ty)*16 ); }
+				
+				static matrix4x4_template Fill( _Ty fillValue )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::Fill( tmp, fillValue );
 					return tmp;
 				}
+				
+				static void MakeScale( matrix4x4_template & mat, const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template::Identity(mat);
+					mat.m11 = vec3.x;
+					mat.m22 = vec3.y;
+					mat.m33 = vec3.z;
+				}
+				
+				static matrix4x4_template MakeScale( const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeScale(tmp, vec3);
+					return tmp;
+				}
+				
+				static void MakeRotateX( matrix4x4_template & mat, ftype value )
+				{
+					matrix4x4_template::Identity(mat);
+					mat.m22 = cos(value);
+					mat.m33 = mat.m22;
+					
+					mat.m32 = sin(value);
+					mat.m23 = -mat.m32;
+				}
+								
+				static matrix4x4_template MakeRotateX( ftype value )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeRotateX(tmp, value);
+					return tmp;
+				}
+				
+				static void MakeRotateY( matrix4x4_template & mat, ftype value )
+				{
+					matrix4x4_template::Identity(mat);
+					mat.m11 = cos(value);
+					mat.m33 = mat.m11;
+					
+					mat.m13 = sin(value);
+					mat.m31 = -mat.m13;
+				}
+				
+				static matrix4x4_template MakeRotateY( ftype value )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeRotateY(tmp, value);
+					return tmp;
+				}
+				
+				static void MakeRotateZ( matrix4x4_template & mat, ftype value )
+				{
+					matrix4x4_template::Identity(mat);
+					mat.m11 = cos(value);
+					mat.m22 = mat.m11;
+					
+					mat.m12 = sin(value);
+					mat.m21 = -mat.m12;
+				}
+				
+				static void MakeTranslate( matrix4x4_template & mat, const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template::Identity(mat);
+					mat.m41 = vec3.x;
+					mat.m42 = vec3.y;
+					mat.m43 = vec3.z;
+				}
+				
+				static matrix4x4_template MakeTranslate( const vector3_template<_Ty> & vec3 )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeTranslate(tmp, vec3);
+					return tmp;
+				}
+				
+				static _Ty Determinant( const matrix4x4_template & mat );
+				
+				static matrix4x4_template Reverse( const matrix4x4_template & mat );
 			};
 
 			template<typename _Ty>
-			matrix4x4<_Ty>::matrix4x4( InitializeFlag initFlag, _Ty fillValue )
+			matrix4x4_template<_Ty>::matrix4x4_template( InitializeFlag initFlag, _Ty fillValue )
 			{
 				switch (initFlag) {
 					case INIT_IDENTITY:
@@ -159,9 +290,230 @@ ENO_NAMESPACE_BEGIN
 				}
 			}
 
-			typedef matrix4x4<ftype> matrix4;
+			template<typename _Ty>
+			_Ty matrix4x4_template<_Ty>::Determinant( const matrix4x4_template & mat )
+			{
+				return	mat.m11*mat.m22*mat.m33*mat.m44-
+						mat.m11*mat.m22*mat.m34*mat.m43-
+						mat.m11*mat.m32*mat.m23*mat.m44+
+						mat.m11*mat.m32*mat.m24*mat.m43+
+						mat.m11*mat.m42*mat.m23*mat.m34-
+						mat.m11*mat.m42*mat.m24*mat.m33-
+						mat.m21*mat.m12*mat.m33*mat.m44+
+						mat.m21*mat.m12*mat.m34*mat.m43+
+						mat.m21*mat.m32*mat.m13*mat.m44-
+						mat.m21*mat.m32*mat.m14*mat.m43-
+						mat.m21*mat.m42*mat.m13*mat.m34+
+						mat.m21*mat.m42*mat.m14*mat.m33+
+						mat.m31*mat.m12*mat.m23*mat.m44-
+						mat.m31*mat.m12*mat.m24*mat.m43-
+						mat.m31*mat.m22*mat.m13*mat.m44+
+						mat.m31*mat.m22*mat.m14*mat.m43+
+						mat.m31*mat.m42*mat.m13*mat.m24-
+						mat.m31*mat.m42*mat.m14*mat.m23-
+						mat.m41*mat.m12*mat.m23*mat.m34+
+						mat.m41*mat.m12*mat.m24*mat.m33+
+						mat.m41*mat.m22*mat.m13*mat.m34-
+						mat.m41*mat.m22*mat.m14*mat.m33-
+						mat.m41*mat.m32*mat.m13*mat.m24+
+						mat.m41*mat.m32*mat.m14*mat.m23;
+			}
+
+			template<typename _Ty>
+			matrix4x4_template<_Ty> matrix4x4_template<_Ty>::Reverse( const matrix4x4_template & mat )
+			{	
+				matrix4x4_template ret;
+				matrix4x4_template::Identity(ret);
+
+				_Ty Det = matrix4x4_template::Determinant(mat);
+								
+				_Ty Inv = static_cast<_Ty>(1.0f)/Det;
+				
+				ret.m11= Inv * ( mat.m22*mat.m33 - mat.m23*mat.m32 );
+				ret.m12=-Inv * ( mat.m12*mat.m33 - mat.m13*mat.m32 );
+				ret.m13= Inv * ( mat.m12*mat.m23 - mat.m13*mat.m22 );
+				ret.m14= 0.0;
+				
+				ret.m21=-Inv * ( mat.m21*mat.m33 - mat.m23*mat.m31 );
+				ret.m22= Inv * ( mat.m11*mat.m33 - mat.m13*mat.m31 );
+				ret.m23=-Inv * ( mat.m11*mat.m23 - mat.m13*mat.m21 );
+				ret.m24= 0.0;
+				
+				ret.m31= Inv * ( mat.m21*mat.m32 - mat.m22*mat.m31 );
+				ret.m32=-Inv * ( mat.m11*mat.m32 - mat.m12*mat.m31 );
+				ret.m33= Inv * ( mat.m11*mat.m22 - mat.m12*mat.m21 );
+				ret.m34= 0.0;
+				
+				ret.m41=-(mat.m41*ret.m11+mat.m42*ret.m21+mat.m43*ret.m31);
+				ret.m42=-(mat.m41*ret.m12+mat.m42*ret.m22+mat.m43*ret.m32);
+				ret.m43=-(mat.m41*ret.m13+mat.m42*ret.m23+mat.m43*ret.m33);
+				ret.m44= 1.0;
+			}
+
+typedef matrix4x4_template<ftype> matrix4x4;
 
 		ENO_CLASS_TYPE_END
+
+		ENO_FUNCTION_BEGIN
+
+		template<typename _Ty>
+			void multMatrix( class_type::matrix4x4_template<_Ty>& out, 
+							const class_type::matrix4x4_template<_Ty>& a, 
+							const class_type::matrix4x4_template<_Ty>& b )
+			{
+				out = class_type::matrix4x4_template<_Ty>(
+					  b.m11*a.m11+b.m12*a.m21+b.m13*a.m31+b.m14*a.m41,
+					  b.m11*a.m12+b.m12*a.m22+b.m13*a.m32+b.m14*a.m42,
+					  b.m11*a.m13+b.m12*a.m23+b.m13*a.m33+b.m14*a.m43,
+					  b.m11*a.m14+b.m12*a.m24+b.m13*a.m34+b.m14*a.m44,
+					  b.m21*a.m11+b.m22*a.m21+b.m23*a.m31+b.m24*a.m41,
+					  b.m21*a.m12+b.m22*a.m22+b.m23*a.m32+b.m24*a.m42,
+					  b.m21*a.m13+b.m22*a.m23+b.m23*a.m33+b.m24*a.m43,
+					  b.m21*a.m14+b.m22*a.m24+b.m23*a.m34+b.m24*a.m44,
+					  b.m31*a.m11+b.m32*a.m21+b.m33*a.m31+b.m34*a.m41,
+					  b.m31*a.m12+b.m32*a.m22+b.m33*a.m32+b.m34*a.m42,
+					  b.m31*a.m13+b.m32*a.m23+b.m33*a.m33+b.m34*a.m43,
+					  b.m31*a.m14+b.m32*a.m24+b.m33*a.m34+b.m34*a.m44,
+					  b.m41*a.m11+b.m42*a.m21+b.m43*a.m31+b.m44*a.m41,
+					  b.m41*a.m12+b.m42*a.m22+b.m43*a.m32+b.m44*a.m42,
+					  b.m41*a.m13+b.m42*a.m23+b.m43*a.m33+b.m44*a.m43,
+					  b.m41*a.m14+b.m42*a.m24+b.m43*a.m34+b.m44*a.m44 );
+			}
+
+
+			template<typename _Ty>
+			struct matrixUtil {
+				static void (* multiply)( class_type::matrix4x4_template<_Ty>&, 
+										 const class_type::matrix4x4_template<_Ty>&, 
+										 const class_type::matrix4x4_template<_Ty>& );
+			};
+
+			template<typename _Ty>
+			void (* matrixUtil<_Ty>::multiply)( class_type::matrix4x4_template<_Ty>& out, 
+											   const class_type::matrix4x4_template<_Ty>& first, 
+											   const class_type::matrix4x4_template<_Ty>& second ) = multMatrix;
+
+			template<typename _Ty>
+			void multiplyMatrixSSE( class_type::matrix4x4_template<_Ty>& out, 
+								   const class_type::matrix4x4_template<_Ty>& a, 
+								   const class_type::matrix4x4_template<_Ty>& b )
+			{
+				_Ty * dst = out.M;
+				_Ty * lhs = a.M;
+				_Ty * rhs = b.M;			
+				
+				__asm
+				{
+					mov eax dst
+					mov ebx lhs
+					mov ecx rhs
+					
+					movaps xmm0 xmmword ptr [ebx]
+					movaps xmm1 xmmword ptr [ebx + 0x10]
+					movaps xmm2 xmmword ptr [ebx + 0x20]
+					movaps xmm3 xmmword ptr [ebx + 0x30]
+					
+					movaps xmm7 xmmmword ptr [ecx]
+					movaps xmm6 xmm7
+					movaps xmm5 xmm7
+					movaps xmm4 xmm7
+					
+					shufps xmm7 xmm7 0x0
+					shufps xmm6 xmm7 0x55
+					shufps xmm5 xmm7 0xaa
+					shufps xmm4 xmm7 0xff
+					
+					mulps xmm7 xmm0
+					mulps xmm6 xmm1
+					mulps xmm5 xmm2
+					mulps xmm4 xmm3
+					
+					addps xmm6 xmm7
+					addps xmm4 xmm5
+					addps xmm4 xmm6
+					
+					movaps xmmword ptr [eax] xmm4
+					
+					
+					movaps xmm7 xmmmword ptr [ecx + 0x10]
+					movaps xmm6 xmm7
+					movaps xmm5 xmm7
+					movaps xmm4 xmm7
+					
+					shufps xmm7 xmm7 0x0
+					shufps xmm6 xmm7 0x55
+					shufps xmm5 xmm7 0xaa
+					shufps xmm4 xmm7 0xff
+					
+					mulps xmm7 xmm0
+					mulps xmm6 xmm1
+					mulps xmm5 xmm2
+					mulps xmm4 xmm3
+					
+					addps xmm6 xmm7
+					addps xmm4 xmm5
+					addps xmm4 xmm6
+					
+					movaps xmmword ptr [eax + 0x10] xmm4
+	
+					
+					movaps xmm7 xmmmword ptr [ecx + 0x20]
+					movaps xmm6 xmm7
+					movaps xmm5 xmm7
+					movaps xmm4 xmm7
+					
+					shufps xmm7 xmm7 0x0
+					shufps xmm6 xmm7 0x55
+					shufps xmm5 xmm7 0xaa
+					shufps xmm4 xmm7 0xff
+					
+					mulps xmm7 xmm0
+					mulps xmm6 xmm1
+					mulps xmm5 xmm2
+					mulps xmm4 xmm3
+					
+					addps xmm6 xmm7
+					addps xmm4 xmm5
+					addps xmm4 xmm6
+					
+					movaps xmmword ptr [eax + 0x20] xmm4
+	
+					
+					movaps xmm7 xmmmword ptr [ecx + 0x30]
+					movaps xmm6 xmm7
+					movaps xmm5 xmm7
+					movaps xmm4 xmm7
+					
+					shufps xmm7 xmm7 0x0
+					shufps xmm6 xmm7 0x55
+					shufps xmm5 xmm7 0xaa
+					shufps xmm4 xmm7 0xff
+					
+					mulps xmm7 xmm0
+					mulps xmm6 xmm1
+					mulps xmm5 xmm2
+					mulps xmm4 xmm3
+					
+					addps xmm6 xmm7
+					addps xmm4 xmm5
+					addps xmm4 xmm6
+					
+					movaps xmmword ptr [eax + 0x30] xmm4
+				}
+			}
+
+			template<typename _Ty>
+			void multMatrixSSE( class_type::matrix4x4_template<_Ty>& out, 
+							const class_type::matrix4x4_template<_Ty>& a, 
+							const class_type::matrix4x4_template<_Ty>& b )
+			{				
+				if (sizeof(_Ty) != 4)
+					return;
+				
+				multiplyMatrixSSE(out, a, b);
+			}
+
+ENO_FUNCTION_END
 	ENO_CORE_NAMESPACE_END
 ENO_NAMESPACE_END
 

@@ -8,6 +8,7 @@
  */
 
 #include "enoType.h"
+#include "matrix4.h"
 #include <iostream>
 using namespace std;
 
@@ -48,8 +49,11 @@ bool enotypeTest()
 
 int main( int argv, char** argc )
 {
+	__asm__ int 3;
 	if(enotypeTest() == false)
 		cout<<"enoTypeTest Failed."<<endl;
+	
+	eno::core::class_type::matrix4x4_template<eno::ftype> fMat;
 	
 	return 0;
 }
