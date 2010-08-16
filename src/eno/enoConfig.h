@@ -10,11 +10,12 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 2
+#define ENO_REVISION = 3
 
-#define ENO_VERSION "0.0.2"
+#define ENO_VERSION "0.0.3"
 
 #include <stdio.h>
+#include <memory>	//memset, memcpy ...
 
 #define ENO_NAMESPACE_BEGIN	namespace eno {
 #define ENO_NAMESPACE_END	}

@@ -11,7 +11,6 @@
 		256AC3DA0F4B6AC300CF3369 /* enoAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* enoAppDelegate.mm */; };
 		53CC3A9A121630F600B2D092 /* eno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A91121630F600B2D092 /* eno.cpp */; };
 		53CC3A9B121630F600B2D092 /* enoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A94121630F600B2D092 /* enoMath.cpp */; };
-		53CC3A9C121630F600B2D092 /* matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A97121630F600B2D092 /* matrix4.cpp */; };
 		53CC3A9D121630F600B2D092 /* testmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A99121630F600B2D092 /* testmain.cpp */; };
 		53D31FD0121675C900A3C16E /* vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D31FCF121675C900A3C16E /* vector3.cpp */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -28,14 +27,13 @@
 		256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eno_Prefix.pch; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		537D186212197F52002B41EA /* matrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = matrix4x4.h; path = ../eno/matrix4x4.h; sourceTree = SOURCE_ROOT; };
 		53CC3A91121630F600B2D092 /* eno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eno.cpp; path = ../eno/eno.cpp; sourceTree = SOURCE_ROOT; };
 		53CC3A92121630F600B2D092 /* eno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eno.h; path = ../eno/eno.h; sourceTree = SOURCE_ROOT; };
 		53CC3A93121630F600B2D092 /* enoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoConfig.h; path = ../eno/enoConfig.h; sourceTree = SOURCE_ROOT; };
 		53CC3A94121630F600B2D092 /* enoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoMath.cpp; path = ../eno/enoMath.cpp; sourceTree = SOURCE_ROOT; };
 		53CC3A95121630F600B2D092 /* enoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoMath.h; path = ../eno/enoMath.h; sourceTree = SOURCE_ROOT; };
 		53CC3A96121630F600B2D092 /* enoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoType.h; path = ../eno/enoType.h; sourceTree = SOURCE_ROOT; };
-		53CC3A97121630F600B2D092 /* matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = matrix4.cpp; path = ../eno/matrix4.cpp; sourceTree = SOURCE_ROOT; };
-		53CC3A98121630F600B2D092 /* matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = matrix4.h; path = ../eno/matrix4.h; sourceTree = SOURCE_ROOT; };
 		53CC3A99121630F600B2D092 /* testmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testmain.cpp; path = ../eno/testmain.cpp; sourceTree = SOURCE_ROOT; };
 		53D31FCE121675C900A3C16E /* vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector3.h; path = ../vector3.h; sourceTree = SOURCE_ROOT; };
 		53D31FCF121675C900A3C16E /* vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector3.cpp; path = ../vector3.cpp; sourceTree = SOURCE_ROOT; };
@@ -105,14 +103,13 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				537D186212197F52002B41EA /* matrix4x4.h */,
 				53CC3A91121630F600B2D092 /* eno.cpp */,
 				53CC3A92121630F600B2D092 /* eno.h */,
 				53CC3A93121630F600B2D092 /* enoConfig.h */,
 				53CC3A94121630F600B2D092 /* enoMath.cpp */,
 				53CC3A95121630F600B2D092 /* enoMath.h */,
 				53CC3A96121630F600B2D092 /* enoType.h */,
-				53CC3A97121630F600B2D092 /* matrix4.cpp */,
-				53CC3A98121630F600B2D092 /* matrix4.h */,
 				53CC3A99121630F600B2D092 /* testmain.cpp */,
 				256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */,
 				53D31FCE121675C900A3C16E /* vector3.h */,
@@ -198,7 +195,6 @@
 				256AC3DA0F4B6AC300CF3369 /* enoAppDelegate.mm in Sources */,
 				53CC3A9A121630F600B2D092 /* eno.cpp in Sources */,
 				53CC3A9B121630F600B2D092 /* enoMath.cpp in Sources */,
-				53CC3A9C121630F600B2D092 /* matrix4.cpp in Sources */,
 				53CC3A9D121630F600B2D092 /* testmain.cpp in Sources */,
 				53D31FD0121675C900A3C16E /* vector3.cpp in Sources */,
 			);

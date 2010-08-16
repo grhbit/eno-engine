@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -273,6 +275,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>7</integer>
+									<integer>4</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -307,14 +311,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>matrix4.h</string>
+								<string>enoConfig.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -322,29 +324,29 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>matrix4.h</string>
+										<string>enoConfig.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>537D181912197316002B41EA</string>
+										<string>537D185B12197D9D002B41EA</string>
 										<key>history</key>
 										<array>
 											<string>5336DD4A1214DFEF001B221B</string>
 											<string>5336DD4B1214DFEF001B221B</string>
 											<string>53CC3AC6121639C600B2D092</string>
-											<string>53D320161216831200A3C16E</string>
 											<string>53D320171216831200A3C16E</string>
 											<string>53D320191216831200A3C16E</string>
 											<string>53E9510C12194DAF008D1E23</string>
 											<string>537D1785121963B2002B41EA</string>
-											<string>537D1786121963B2002B41EA</string>
 											<string>537D1789121963B2002B41EA</string>
 											<string>537D178A121963B2002B41EA</string>
 											<string>537D178B121963B2002B41EA</string>
 											<string>537D17DB12196D07002B41EA</string>
 											<string>537D17FB12196F26002B41EA</string>
 											<string>537D17FC12196F26002B41EA</string>
-											<string>537D17DA12196D07002B41EA</string>
+											<string>537D185912197D9D002B41EA</string>
+											<string>537D185A12197D9D002B41EA</string>
+											<string>537D184412197CA4002B41EA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -584,7 +586,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>string.h</string>
+								<string>matrix4.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
