@@ -8,9 +8,34 @@
  */
 
 #include "enoType.h"
-#include "matrix4.h"
+#include "matrix4x4.h"
 #include <iostream>
 using namespace std;
+
+
+using namespace eno;
+using namespace core;
+
+bool enotypeTest();
+
+int main( int argv, char** argc )
+{
+	if(enotypeTest() == false)
+		cout<<"enoTypeTest Failed."<<endl;
+	
+	matrix4x4_template<f32> mat;
+	
+	matrix4x4_template<f32> sca;
+
+	mat.scale(3,3,3);
+	sca.scale(2,2,2);
+	
+	matrixUtil<f32>::multiply = multMatrixSSE;
+	
+	mat.multiply(sca);
+	
+	return 0;
+}
 
 
 bool enotypeTest()
@@ -45,16 +70,3 @@ bool enotypeTest()
 	
 	return true;
 }
-
-
-int main( int argv, char** argc )
-{
-	__asm__ int 3;
-	if(enotypeTest() == false)
-		cout<<"enoTypeTest Failed."<<endl;
-	
-	eno::core::class_type::matrix4x4_template<eno::ftype> fMat;
-	
-	return 0;
-}
-

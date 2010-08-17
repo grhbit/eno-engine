@@ -10,12 +10,18 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 3
+#define ENO_REVISION = 4
 
-#define ENO_VERSION "0.0.3"
+#define ENO_VERSION "0.0.4"
 
 #include <stdio.h>
-#include <memory>	//memset, memcpy ...
+
+#ifdef _MCS_VER
+#define ENO_ALIGNED_16 __declspec(aligned(16))
+#else
+#define ENO_ALIGNED_16 __attribute__ ((aligned(16)))
+#endif
+
 
 #define ENO_NAMESPACE_BEGIN	namespace eno {
 #define ENO_NAMESPACE_END	}

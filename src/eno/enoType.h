@@ -41,7 +41,7 @@ ENO_NAMESPACE_BEGIN
 
 	//In case template, decide type!
 
-	typedef f32 ftype;
+	typedef f32 ftype;	//recommend type : f32
 
 ENO_NAMESPACE_END
 
