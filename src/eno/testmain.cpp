@@ -26,9 +26,12 @@ int main( int argv, char** argc )
 	matrix4x4_template<f32> mat;
 	
 	matrix4x4_template<f32> sca;
-
-	mat.scale(3,3,3);
-	sca.scale(2,2,2);
+	
+	mat.multiplyLocal(matrix4x4_template<f32>::MakeRotateZ(3.0f));
+	mat.multiplyLocal(matrix4x4_template<f32>::MakeRotateY(2.0f));
+	mat.multiplyLocal(matrix4x4_template<f32>::MakeRotateX(1.0f));
+	
+	sca.makeRotate(vector3_template<f32>(1.0f, 2.0f, 3.0f));
 	
 	matrixUtil<f32>::multiply = multMatrixSSE;
 	

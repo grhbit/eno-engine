@@ -20,6 +20,9 @@ ENO_ALIGNED_16	//__declspec(aligned(16)) struct Matrix4x4
 #endif
 			struct Matrix4x4 {
 			public:
+				typedef _Ty element_type;
+				typedef _Ty*pointer;
+				
 				union {
 					struct {
 						_Ty _11, _12, _13, _14;
@@ -133,6 +136,9 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				
 				inline matrix4x4_template& rotate( const vector3_template<_Ty> & vec3 )
 				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeRotate(tmp, vec3);
+					matrix4x4_template::Multiply(*this, *this, tmp);
 					return *this;
 				}
 				
@@ -269,6 +275,37 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					matrix4x4_template::MakeScale(tmp, vec3);
 					return tmp;
 				}
+
+				//Z * Y * X
+				inline static void MakeRotate( matrix4x4_template & mat, const vector3_template<ftype> & vec3 )
+				{
+					ftype xCos = cos(vec3.x);
+					ftype xSin = sin(vec3.x);
+					ftype yCos = cos(vec3.y);
+					ftype ySin = sin(vec3.y);
+					ftype zCos = cos(vec3.z);
+					ftype zSin = sin(vec3.z);
+					
+					mat.m11 = yCos * zCos;
+					mat.m12 = (xCos * zSin) + (xSin * ySin * zCos);	//m13 ySin * zCos
+					mat.m13 = -(xSin * zSin) + (xCos * ySin * zCos);
+					mat.m14 = 0;
+					
+					mat.m21 = -(yCos * zSin);
+					mat.m22 = (xCos * zCos) - (xSin * ySin * zSin);
+					mat.m23 = -(xSin * zCos) - (xCos * ySin * zSin);
+					mat.m24 = 0;
+					
+					mat.m31 = -ySin;
+					mat.m32 = xSin * yCos;
+					mat.m33 = xCos * yCos;
+					mat.m34 = 0;
+					
+					mat.m41 = 0;
+					mat.m42 = 0;
+					mat.m43 = 0;
+					mat.m44 = 1;
+				}
 				
 				inline static void MakeRotateX( matrix4x4_template & mat, ftype value )
 				{
@@ -303,7 +340,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					matrix4x4_template::MakeRotateY(tmp, value);
 					return tmp;
 				}
-				
+								
 				inline static void MakeRotateZ( matrix4x4_template & mat, ftype value )
 				{
 					matrix4x4_template::Identity(mat);
@@ -312,6 +349,13 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					
 					mat.m12 = sin(value);
 					mat.m21 = -mat.m12;
+				}
+				
+				inline static matrix4x4_template MakeRotateZ( ftype value )
+				{
+					matrix4x4_template tmp(INIT_NOTHING);
+					matrix4x4_template::MakeRotateY(tmp, value);
+					return tmp;
 				}
 				
 				inline static void MakeTranslate( matrix4x4_template & mat, const vector3_template<_Ty> & vec3 )
