@@ -1,0 +1,31 @@
+syntax: glob
+.hgignore
+*.orig
+*.swp
+*.app
+*.dat
+*.hmap
+*.dep
+*.LinkFileList
+*.pbxbtree
+*.header
+*.pbxsymbols
+*/strings.pbxstrings/control
+*/build/
+*/Debug
+*/Release
+*.o
+*.lib
+*.dll
+*.exe
+.DS_Store
+Thumbs.db
+*.log
+*.opensdf
+*.tlog
+*.ilk
+*.pdb
+*.sdf
+*/ipch
+
+syntax: regexp
