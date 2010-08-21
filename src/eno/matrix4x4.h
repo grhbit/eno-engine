@@ -99,8 +99,8 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				_Ty&	operator () ( u8 row, u8 col )		{ return this->m[row][col]; }
 				_Ty		operator () ( u8 row, u8 col ) const{ return this->m[row][col]; }
 
-				operator _Ty* ()		{ return &M[0]; }
-				operator const _Ty* () const { return const_cast<const _Ty*>(&M[0]); }
+				operator _Ty* ()		{ return &this->M[0]; }
+				operator const _Ty* () const { return const_cast<const _Ty*>(&this->M[0]); }
 				
 				inline matrix4x4_template & operator *= ( const matrix4x4_template & rhs )
 				{
