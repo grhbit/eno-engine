@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  vector3.cpp
  *  eno
  *
@@ -7,5 +7,5 @@
  *
  */
 
-#include "vector3.h"
+#include "vector3d.h"
 

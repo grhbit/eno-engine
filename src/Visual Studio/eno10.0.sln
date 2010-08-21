@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eno10.0", "eno10.0.vcxproj", "{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}.Debug|Win32.Build.0 = Debug|Win32
+		{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}.Release|Win32.ActiveCfg = Release|Win32
+		{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  testmain.cpp
  *  eno
  *
@@ -6,6 +6,8 @@
  *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
  *
  */
+
+#pragma warning(disable: 4819)
 
 #include "enoType.h"
 #include "matrix4x4.h"
@@ -17,25 +19,15 @@ using namespace eno;
 using namespace core;
 
 bool enotypeTest();
+bool enoMatrixMathTest();
 
 int main( int argv, char** argc )
 {
 	if(enotypeTest() == false)
 		cout<<"enoTypeTest Failed."<<endl;
-	
-	matrix4x4_template<f32> mat;
-	
-	matrix4x4_template<f32> sca;
-	
-	mat.multiplyLocal(matrix4x4_template<f32>::MakeRotateZ(3.0f));
-	mat.multiplyLocal(matrix4x4_template<f32>::MakeRotateY(2.0f));
-	mat.multiplyLocal(matrix4x4_template<f32>::MakeRotateX(1.0f));
-	
-	sca.makeRotate(vector3_template<f32>(1.0f, 2.0f, 3.0f));
-	
-	matrixUtil<f32>::multiply = multMatrixSSE;
-	
-	mat.multiply(sca);
+
+	if(enoMatrixMathTest() == false)
+		cout<<"enoMatrixMathTest Failed."<<endl;
 	
 	return 0;
 }
@@ -71,5 +63,21 @@ bool enotypeTest()
 		return false;
 	}
 	
+	return true;
+}
+
+bool enoMatrixMathTest()
+{
+	matrix4x4 mat, lm, rm;
+
+	mat.makeRotate(1.2f,1.3f,1.4f);
+	mat.identity();
+
+	mat.rotateZ(1.4f);
+	mat.rotateY(1.3f);
+	mat.rotateX(1.2f);
+
+	mat.makeRotateYawPitchRoll(1.2f,1.3f,1.4f);
+
 	return true;
 }

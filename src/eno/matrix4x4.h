@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  matrix4.h
  *  eno
  *
@@ -9,16 +9,17 @@
 
 #pragma once
 #include "enoMath.h"
-#include "vector3.h"
+#include "vector3d.h"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
 		ENO_STRUCT_TYPE_BEGIN
 			template<typename _Ty>
-#ifdef _MCS_VER
-ENO_ALIGNED_16	//__declspec(aligned(16)) struct Matrix4x4
+			struct
+#ifdef ENO_COMPILED_FROM_VISUAL_STUDIO
+ENO_ALIGNED_16	//__declspec(align(16)) struct Matrix4x4
 #endif
-			struct Matrix4x4 {
+			Matrix4x4 {
 			public:
 				typedef _Ty element_type;
 				typedef _Ty*pointer;
@@ -37,7 +38,7 @@ ENO_ALIGNED_16	//__declspec(aligned(16)) struct Matrix4x4
 					u8 buffer[sizeof(_Ty) * 16];
 				};
 			} 
-#ifdef __GNUC__ 
+#ifdef ENO_COMPILED_FROM_GNUC
 ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 #endif
 ;
@@ -94,11 +95,70 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				}
 
 				inline matrix4x4_template( InitializeFlag initFlag = INIT_IDENTITY, _Ty fillValue = 0 );
+
+				_Ty&	operator () ( u8 row, u8 col )		{ return this->m[row][col]; }
+				_Ty		operator () ( u8 row, u8 col ) const{ return this->m[row][col]; }
+
+				operator _Ty* ()		{ return &M[0]; }
+				operator const _Ty* () const { return const_cast<const _Ty*>(&M[0]); }
 				
+				inline matrix4x4_template & operator *= ( const matrix4x4_template & rhs )
+				{
+					return matrix4x4_template::multiply(rhs);
+				}
+
+				inline matrix4x4_template & operator += ( const matrix4x4_template & rhs )
+				{
+					return matrix4x4_template::add(rhs);
+				}
+
+				inline matrix4x4_template & operator -= ( const matrix4x4_template & rhs )
+				{
+					return matrix4x4_template::subtract(rhs);
+				}
+
+				inline matrix4x4_template & operator += ( _Ty value )
+				{
+					return matrix4x4_template::add(value);
+				}
+
+				inline matrix4x4_template & operator -= ( _Ty value )
+				{
+					return matrix4x4_template::subtract(value);
+				}
+
+				inline matrix4x4_template & operator *= ( _Ty value );
+
+				inline matrix4x4_template & operator /= ( _Ty value );
+
 				inline matrix4x4_template& identity( void ) { Identity( *this ); return *this; }
-				
+
 				inline bool isIdentity( void ) { return IsIdentity( *this ); }
-				
+
+				inline matrix4x4_template& add( const matrix4x4_template & rhs )
+				{
+					matrix4x4_template::Add(*this, *this, rhs);
+					return *this;
+				}
+
+				inline matrix4x4_template& add( const _Ty value )
+				{
+					matrix4x4_template::Add(*this, *this, value);
+					return *this;
+				}
+
+				inline matrix4x4_template& subtract( const matrix4x4_template & rhs )
+				{
+					matrix4x4_template::Subtract(*this, *this, rhs );
+					return *this;
+				}
+
+				inline matrix4x4_template& subtract( const _Ty value )
+				{
+					matrix4x4_template::Subtract(*this, *this, value);
+					return *this;
+				}
+
 				inline matrix4x4_template& fill( _Ty fillValue ) { Fill( *this, fillValue ); return *this; }
 				
 				inline matrix4x4_template& multiply( const matrix4x4_template& mat )
@@ -121,48 +181,72 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				
 				inline matrix4x4_template& scale( _Ty x, _Ty y, _Ty z )
 				{
-					return scale(vector3_template<_Ty>(x, y, z));
+					return scale(vector3d_template<_Ty>(x, y, z));
 				}
 				
-				inline matrix4x4_template& scale( const vector3_template<_Ty> & vec3 )
+				inline matrix4x4_template& scale( const vector3d_template<_Ty> & vec3 )
 				{
-					matrix4x4_template tmp;
+					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeScale(tmp, vec3);
 					matrix4x4_template::Multiply(*this, *this, tmp);
 					return *this;
 				}
 				
-				inline matrix4x4_template& rotate( _Ty x, _Ty y, _Ty z ) { return rotate(vector3_template<_Ty>(x, y, z)); }
+				inline matrix4x4_template& rotate( _Ty x, _Ty y, _Ty z ) { return rotate(vector3d_template<_Ty>(x, y, z)); }
 				
-				inline matrix4x4_template& rotate( const vector3_template<_Ty> & vec3 )
+				inline matrix4x4_template& rotate( const vector3d_template<_Ty> & vec3 )
 				{
-					matrix4x4_template tmp;
+					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeRotate(tmp, vec3);
 					matrix4x4_template::Multiply(*this, *this, tmp);
 					return *this;
 				}
-				
-				inline matrix4x4_template& translate( _Ty x, _Ty y, _Ty z ) { return translate(vector3_template<_Ty>(x, y, z)); }
-				
-				inline matrix4x4_template& translate( const vector3_template<_Ty> & vec3 )
+
+				inline matrix4x4_template& rotateX( _Ty x )
 				{
-					matrix4x4_template tmp;
-					matrix4x4_template::MakeTranslate(*this, vec3);
+					matrix4x4_template tmp(INIT_NOTHING);
+					matrix4x4_template::MakeRotateX(tmp, x);
+					matrix4x4_template::Multiply(*this, *this, tmp);
+					return *this;
+				}
+
+				inline matrix4x4_template& rotateY( _Ty y )
+				{
+					matrix4x4_template tmp(INIT_NOTHING);
+					matrix4x4_template::MakeRotateY(tmp, y);
+					matrix4x4_template::Multiply(*this, *this, tmp);
+					return *this;
+				}
+
+				inline matrix4x4_template& rotateZ( _Ty z )
+				{
+					matrix4x4_template tmp(INIT_NOTHING);
+					matrix4x4_template::MakeRotateZ(tmp, z);
 					matrix4x4_template::Multiply(*this, *this, tmp);
 					return *this;
 				}
 				
-				inline matrix4x4_template& makeScale( _Ty x, _Ty y, _Ty z ) { return makeScale(vector3_template<_Ty>(x, y, z)); }
+				inline matrix4x4_template& translate( _Ty x, _Ty y, _Ty z ) { return translate(vector3d_template<_Ty>(x, y, z)); }
 				
-				inline matrix4x4_template& makeScale( const vector3_template<_Ty> & vec3 )
+				inline matrix4x4_template& translate( const vector3d_template<_Ty> & vec3 )
+				{
+					matrix4x4_template tmp(INIT_NOTHING);
+					matrix4x4_template::MakeTranslate(tmp, vec3);
+					matrix4x4_template::Multiply(*this, *this, tmp);
+					return *this;
+				}
+				
+				inline matrix4x4_template& makeScale( _Ty x, _Ty y, _Ty z ) { return makeScale(vector3d_template<_Ty>(x, y, z)); }
+				
+				inline matrix4x4_template& makeScale( const vector3d_template<_Ty> & vec3 )
 				{
 					matrix4x4_template::MakeScale(*this, vec3);
 					return *this;
 				}
 				
-				inline matrix4x4_template& makeRotate( ftype x, ftype y, ftype z ) { return makeRotate(vector3_template<ftype>(x, y, z)); }
+				inline matrix4x4_template& makeRotate( ftype x, ftype y, ftype z ) { return makeRotate(vector3d_template<ftype>(x, y, z)); }
 				
-				inline matrix4x4_template& makeRotate( const vector3_template<ftype> & vec3 )
+				inline matrix4x4_template& makeRotate( const vector3d_template<ftype> & vec3 )
 				{
 					matrix4x4_template::MakeRotate(*this, vec3);
 					return *this;
@@ -185,10 +269,21 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					matrix4x4_template::MakeRotateZ(*this, value);
 					return *this;
 				}
+
+				inline matrix4x4_template& makeRotateYawPitchRoll( ftype yaw, ftype pitch, ftype roll )
+				{
+					return makeRotateYawPitchRoll(vector3d_template<ftype>(pitch, yaw, roll));
+				}
+
+				inline matrix4x4_template& makeRotateYawPitchRoll( const vector3d_template<ftype> & vec3 )
+				{
+					matrix4x4_template::MakeRotateYawPitchRoll(*this, vec3);
+					return *this;
+				}
 				
-				inline matrix4x4_template& makeTranslate( _Ty x, _Ty y, _Ty z ) { return makeTranslate(vector3_template<_Ty>(x, y, z)); }
+				inline matrix4x4_template& makeTranslate( _Ty x, _Ty y, _Ty z ) { return makeTranslate(vector3d_template<_Ty>(x, y, z)); }
 				
-				inline matrix4x4_template& makeTranslate( const vector3_template<_Ty> & vec3 )
+				inline matrix4x4_template& makeTranslate( const vector3d_template<_Ty> & vec3 )
 				{
 					matrix4x4_template::MakeTranslate(*this, vec3);
 					return *this;
@@ -242,6 +337,66 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 							mat.m31 == 0 && mat.m32 == 0 && mat.m33 == 1 && mat.m34 == 0 &&
 							mat.m41 == 0 && mat.m42 == 0 && mat.m43 == 0 && mat.m44 == 1;
 				}
+
+				inline static void Add( matrix4x4_template & mat, const matrix4x4_template & lhs, const matrix4x4_template & rhs )
+				{
+					mat = matrix4x4_template(	lhs.m11 + rhs.m11, lhs.m12 + rhs.m12, lhs.m13 + rhs.m13, lhs.m14 + rhs.m14,
+												lhs.m21 + rhs.m21, lhs.m22 + rhs.m22, lhs.m23 + rhs.m23, lhs.m24 + rhs.m24,
+												lhs.m31 + rhs.m31, lhs.m32 + rhs.m32, lhs.m33 + rhs.m33, lhs.m34 + rhs.m34,
+												lhs.m41 + rhs.m41, lhs.m42 + rhs.m42, lhs.m43 + rhs.m43, lhs.m44 + rhs.m44 );
+				}
+
+				inline static matrix4x4_template Add( const matrix4x4_template & lhs, const matrix4x4_template & rhs )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::Add(tmp, lhs, rhs);
+					return tmp;
+				}
+
+				inline static void Add( matrix4x4_template & mat, const matrix4x4_template & lhs, _Ty value )
+				{
+					mat = matrix4x4_template(	lhs.m11 + value, lhs.m12 + value, lhs.m13 + value, lhs.m14 + value,
+												lhs.m21 + value, lhs.m22 + value, lhs.m23 + value, lhs.m24 + value,
+												lhs.m31 + value, lhs.m32 + value, lhs.m33 + value, lhs.m34 + value,
+												lhs.m41 + value, lhs.m42 + value, lhs.m43 + value, lhs.m44 + value );
+				}
+
+				inline static matrix4x4_template Add( const matrix4x4_template & mat, _Ty value )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::Add(tmp, mat, value);
+					return tmp;
+				}
+
+				inline static void Subtract( matrix4x4_template & mat, const matrix4x4_template & lhs, const matrix4x4_template & rhs )
+				{
+					mat = matrix4x4_template(	lhs.m11 - rhs.m11, lhs.m12 - rhs.m12, lhs.m13 - rhs.m13, lhs.m14 - rhs.m14,
+												lhs.m21 - rhs.m21, lhs.m22 - rhs.m22, lhs.m23 - rhs.m23, lhs.m24 - rhs.m24,
+												lhs.m31 - rhs.m31, lhs.m32 - rhs.m32, lhs.m33 - rhs.m33, lhs.m34 - rhs.m34,
+												lhs.m41 - rhs.m41, lhs.m42 - rhs.m42, lhs.m43 - rhs.m43, lhs.m44 - rhs.m44 );
+				}
+
+				inline static matrix4x4_template Subtract( const matrix4x4_template & lhs, const matrix4x4_template & rhs )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::Subtract(tmp, lhs, rhs);
+					return tmp;
+				}
+
+				inline static void Subtract( matrix4x4_template & mat, const matrix4x4_template & lhs, _Ty value )
+				{
+					mat = matrix4x4_template(	lhs.m11 - value, lhs.m12 - value, lhs.m13 - value, lhs.m14 - value,
+												lhs.m21 - value, lhs.m22 - value, lhs.m23 - value, lhs.m24 - value,
+												lhs.m31 - value, lhs.m32 - value, lhs.m33 - value, lhs.m34 - value,
+												lhs.m41 - value, lhs.m42 - value, lhs.m43 - value, lhs.m44 - value );
+				}
+
+				inline static matrix4x4_template Subtract( const matrix4x4_template & mat, _Ty value )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::Subtract(tmp, mat, value);
+					return tmp;
+				}
 				
 				inline static void Fill( matrix4x4_template & mat, _Ty fillValue ) { for(u8 u = 0; u < 16; u++) mat.M[u] = fillValue; }
 				
@@ -261,7 +416,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					return tmp;
 				}
 				
-				inline static void MakeScale( matrix4x4_template & mat, const vector3_template<_Ty> & vec3 )
+				inline static void MakeScale( matrix4x4_template & mat, const vector3d_template<_Ty> & vec3 )
 				{
 					matrix4x4_template::Identity(mat);
 					mat.m11 = vec3.x;
@@ -269,7 +424,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					mat.m33 = vec3.z;
 				}
 				
-				inline static matrix4x4_template MakeScale( const vector3_template<_Ty> & vec3 )
+				inline static matrix4x4_template MakeScale( const vector3d_template<_Ty> & vec3 )
 				{
 					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeScale(tmp, vec3);
@@ -277,27 +432,27 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				}
 
 				//Z * Y * X
-				inline static void MakeRotate( matrix4x4_template & mat, const vector3_template<ftype> & vec3 )
+				inline static void MakeRotate( matrix4x4_template & mat, const vector3d_template<ftype> & vec3 )
 				{
-					ftype xCos = cos(vec3.x);
-					ftype xSin = sin(vec3.x);
-					ftype yCos = cos(vec3.y);
-					ftype ySin = sin(vec3.y);
-					ftype zCos = cos(vec3.z);
-					ftype zSin = sin(vec3.z);
+					const ftype xCos = cos(vec3.x);
+					const ftype xSin = sin(vec3.x);
+					const ftype yCos = cos(vec3.y);
+					const ftype ySin = sin(vec3.y);
+					const ftype zCos = cos(vec3.z);
+					const ftype zSin = sin(vec3.z);
 					
 					mat.m11 = yCos * zCos;
 					mat.m12 = (xCos * zSin) + (xSin * ySin * zCos);	//m13 ySin * zCos
-					mat.m13 = -(xSin * zSin) + (xCos * ySin * zCos);
+					mat.m13 = (xSin * zSin) - (xCos * ySin * zCos);
 					mat.m14 = 0;
 					
 					mat.m21 = -(yCos * zSin);
 					mat.m22 = (xCos * zCos) - (xSin * ySin * zSin);
-					mat.m23 = -(xSin * zCos) - (xCos * ySin * zSin);
+					mat.m23 = (xSin * zCos) + (xCos * ySin * zSin);
 					mat.m24 = 0;
 					
-					mat.m31 = -ySin;
-					mat.m32 = xSin * yCos;
+					mat.m31 = ySin;
+					mat.m32 = -(xSin * yCos);
 					mat.m33 = xCos * yCos;
 					mat.m34 = 0;
 					
@@ -306,6 +461,13 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					mat.m43 = 0;
 					mat.m44 = 1;
 				}
+
+				inline static matrix4x4_template MakeRotate( const vector3d_template<ftype> & vec3 )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeRotate(tmp, vec3);
+					return tmp;
+				}
 				
 				inline static void MakeRotateX( matrix4x4_template & mat, ftype value )
 				{
@@ -313,8 +475,8 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					mat.m22 = cos(value);
 					mat.m33 = mat.m22;
 					
-					mat.m32 = sin(value);
-					mat.m23 = -mat.m32;
+					mat.m23 = sin(value);
+					mat.m32 = -mat.m23;
 				}
 
 				inline static matrix4x4_template MakeRotateX( ftype value )
@@ -330,8 +492,8 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					mat.m11 = cos(value);
 					mat.m33 = mat.m11;
 					
-					mat.m13 = sin(value);
-					mat.m31 = -mat.m13;
+					mat.m31 = sin(value);
+					mat.m13 = -mat.m31;
 				}
 				
 				inline static matrix4x4_template MakeRotateY( ftype value )
@@ -354,11 +516,41 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				inline static matrix4x4_template MakeRotateZ( ftype value )
 				{
 					matrix4x4_template tmp(INIT_NOTHING);
-					matrix4x4_template::MakeRotateY(tmp, value);
+					matrix4x4_template::MakeRotateZ(tmp, value);
 					return tmp;
 				}
+
+				inline static void MakeRotateYawPitchRoll( matrix4x4_template & mat, const vector3d_template<ftype> & vec3 )
+				{
+					const ftype yCos = cos(vec3.y);
+					const ftype ySin = sin(vec3.y);
+					const ftype xCos = cos(vec3.x);
+					const ftype xSin = sin(vec3.x);
+					const ftype zCos = cos(vec3.z);
+					const ftype zSin = sin(vec3.z);
+
+					mat.m11 = (yCos * zCos) + (ySin * xSin * zSin);
+					mat.m12 = (xCos * zSin);
+					mat.m13 = -(ySin * zCos) + (xSin * yCos * zSin);
+					mat.m14 = 0;
+
+					mat.m21 = -(yCos * zSin) + (ySin * xSin * zCos);
+					mat.m22 = xCos * zCos;
+					mat.m23 = (ySin * zSin) + (xSin * yCos * zCos);
+					mat.m24 = 0;
+
+					mat.m31 = (xCos * ySin);
+					mat.m32 = -xSin;
+					mat.m33 = xCos * yCos;
+					mat.m34 = 0;
+
+					mat.m41 = 0;
+					mat.m42 = 0;
+					mat.m43 = 0;
+					mat.m44 = 1;
+				}
 				
-				inline static void MakeTranslate( matrix4x4_template & mat, const vector3_template<_Ty> & vec3 )
+				inline static void MakeTranslate( matrix4x4_template & mat, const vector3d_template<_Ty> & vec3 )
 				{
 					matrix4x4_template::Identity(mat);
 					mat.m41 = vec3.x;
@@ -366,11 +558,21 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					mat.m43 = vec3.z;
 				}
 				
-				inline static matrix4x4_template MakeTranslate( const vector3_template<_Ty> & vec3 )
+				inline static matrix4x4_template MakeTranslate( const vector3d_template<_Ty> & vec3 )
 				{
 					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeTranslate(tmp, vec3);
 					return tmp;
+				}
+
+				inline static vector3d_template<_Ty> TakeTranslation( const matrix4x4_template & mat )
+				{
+					return vector3d_template<_Ty>( mat.m41, mat.m42, mat.m43 );
+				}
+
+				inline static void TakeTranslation( vector3d_template<_Ty> & vec3, const matrix4x4_template & mat )
+				{
+					vec3 = TakeTranslation(mat);
 				}
 				
 				inline static _Ty Determinant( const matrix4x4_template & mat );
@@ -409,30 +611,17 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 			template<typename _Ty>
 			_Ty matrix4x4_template<_Ty>::Determinant( const matrix4x4_template & mat )
 			{
-				return	mat.m11*mat.m22*mat.m33*mat.m44-
-						mat.m11*mat.m22*mat.m34*mat.m43-
-						mat.m11*mat.m32*mat.m23*mat.m44+
-						mat.m11*mat.m32*mat.m24*mat.m43+
-						mat.m11*mat.m42*mat.m23*mat.m34-
-						mat.m11*mat.m42*mat.m24*mat.m33-
-						mat.m21*mat.m12*mat.m33*mat.m44+
-						mat.m21*mat.m12*mat.m34*mat.m43+
-						mat.m21*mat.m32*mat.m13*mat.m44-
-						mat.m21*mat.m32*mat.m14*mat.m43-
-						mat.m21*mat.m42*mat.m13*mat.m34+
-						mat.m21*mat.m42*mat.m14*mat.m33+
-						mat.m31*mat.m12*mat.m23*mat.m44-
-						mat.m31*mat.m12*mat.m24*mat.m43-
-						mat.m31*mat.m22*mat.m13*mat.m44+
-						mat.m31*mat.m22*mat.m14*mat.m43+
-						mat.m31*mat.m42*mat.m13*mat.m24-
-						mat.m31*mat.m42*mat.m14*mat.m23-
-						mat.m41*mat.m12*mat.m23*mat.m34+
-						mat.m41*mat.m12*mat.m24*mat.m33+
-						mat.m41*mat.m22*mat.m13*mat.m34-
-						mat.m41*mat.m22*mat.m14*mat.m33-
-						mat.m41*mat.m32*mat.m13*mat.m24+
-						mat.m41*mat.m32*mat.m14*mat.m23;
+				return (
+						(mat.m11*mat.m22*mat.m33)+
+						(mat.m12*mat.m23*mat.m31)+
+						(mat.m13*mat.m21*mat.m32)
+						)
+						-
+						(
+						(mat.m13*mat.m22*mat.m31)+
+						(mat.m11*mat.m23*mat.m32)+
+						(mat.m12*mat.m21*mat.m33)
+						);
 			}
 
 			template<typename _Ty>
@@ -440,9 +629,15 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 			{
 				matrix4x4_template tmp(INIT_NOTHING);
 				
-				_Ty Det = matrix4x4_template::Determinant(mat);								
-				_Ty Inv = static_cast<_Ty>(1.0f)/Det;
-				
+				_Ty Det = matrix4x4_template::Determinant(mat);
+
+				_Ty Inv = static_cast<_Ty>(0.0f);
+				if( Det < static_cast<_Ty>(0.0f))
+					return;
+				else if(Det == static_cast<_Ty>(0.0f))
+					Inv = 1.0f;
+				else Inv = static_cast<_Ty>(1.0f)/Det;
+
 				tmp.m11= Inv * ( mat.m22*mat.m33 - mat.m23*mat.m32 );
 				tmp.m12=-Inv * ( mat.m12*mat.m33 - mat.m13*mat.m32 );
 				tmp.m13= Inv * ( mat.m12*mat.m23 - mat.m13*mat.m22 );
@@ -477,7 +672,8 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				out = tmp;
 			}
 
-			typedef matrix4x4_template<ftype> matrix4;
+			typedef matrix4x4_template<ftype> matrix4x4;
+			typedef matrix4x4_template<f32> matrix4x4_f32;
 
 		ENO_CLASS_TYPE_END
 
@@ -536,7 +732,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				f32 * dst = out.M;
 				f32 * lhs = const_cast<f32*>(a.M);
 				f32 * rhs = const_cast<f32*>(b.M);
-
+#if defined (ENO_COMPILED_FROM_GNUC)
 				asm __volatile__(
 								 "movaps (%%ecx)  ,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
 								 "movaps 10(%%ecx),	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
@@ -625,11 +821,108 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 								 "addps	%%xmm5,	%%xmm7\n\t"			// xmm7 += xmm5
 								 "addps	%%xmm6,	%%xmm7\n\t"			// xmm7 += xmm6
 								 
-								 "movaps %%xmm7, 0x30(%%eax)"		// eax = xmm7 */
+								 "movaps %%xmm7, 0x30(%%eax)"		// eax = xmm7
 								 :
 								 : "a"(dst), "c"(lhs), "d"(rhs)
 								 : "memory"
 								 );
+#elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
+				__asm
+				{
+					mov		eax,	dst		// dst
+					mov		ecx,	lhs		// src1
+					mov		edx,	rhs		// src2
+
+					movaps	xmm0,	xmmword ptr [ecx]		// xmm0 = src1[00, 01, 02, 03]
+					movaps	xmm1,	xmmword ptr [ecx + 0x10]	// xmm1 = src1[04, 05, 06, 07]
+					movaps	xmm2,	xmmword ptr [ecx + 0x20]	// xmm2 = src1[08, 09, 10, 11]
+					movaps	xmm3,	xmmword ptr [ecx + 0x30]	// xmm3 = src1[12, 13, 14, 15]
+
+					movss	xmm7,	dword ptr [edx]		// xmm7 = src2[00, xx, xx, xx]
+					movss	xmm4,	dword ptr [edx + 0x4]	// xmm4 = src2[01, xx, xx, xx]
+					movss	xmm5,	dword ptr [edx + 0x8]	// xmm5 = src2[02, xx, xx, xx]
+					movss	xmm6,	dword ptr [edx + 0xc]		// xmm6 = src2[03, xx, xx, xx]
+
+					shufps	xmm7,	xmm7, 0x0		// xmm7 = src2[00, 00, 00, 00]
+					shufps	xmm4,	xmm4, 0x0		// xmm4 = src2[01, 01, 01, 01]
+					shufps	xmm5,	xmm5, 0x0		// xmm5 = src2[02, 02, 02, 02]
+					shufps	xmm6,	xmm6, 0x0		// xmm6 = src2[03, 03, 03, 03]
+
+					mulps	xmm7,	xmm0			// xmm7 *= xmm0
+					mulps	xmm4,	xmm1			// xmm4 *= xmm1
+					mulps	xmm5,	xmm2			// xmm5 *= xmm2
+					mulps	xmm6,	xmm3			// xmm6 *= xmm3
+
+					addps	xmm7,	xmm4			// xmm7 += xmm4
+					addps	xmm7,	xmm5			// xmm7 += xmm5
+					addps	xmm7,	xmm6			// xmm7 += xmm6
+
+					movaps	xmmword ptr [eax], xmm7		// eax = xmm7
+
+					movss	xmm7,	dword ptr [edx + 0x10]	// xmm7 = src2[04, xx, xx, xx]
+					movss	xmm4,	dword ptr [edx + 0x14]	// xmm4 = src2[05, xx, xx, xx]
+					movss	xmm5,	dword ptr [edx + 0x18]	// xmm5 = src2[06, xx, xx, xx]
+					movss	xmm6,	dword ptr [edx + 0x1c]	// xmm6 = src2[07, xx, xx, xx]
+
+					shufps	xmm7,	xmm7, 0x0		// xmm7 = src2[04, 04, 04, 04]
+					shufps	xmm4,	xmm4, 0x0		// xmm4 = src2[05, 05, 05, 05]
+					shufps	xmm5,	xmm5, 0x0		// xmm5 = src2[06, 06, 06, 06]
+					shufps	xmm6,	xmm6, 0x0		// xmm6 = src2[07, 07, 07, 07]
+
+					mulps	xmm7,	xmm0			// xmm7 *= xmm0
+					mulps	xmm4,	xmm1			// xmm4 *= xmm1
+					mulps	xmm5,	xmm2			// xmm5 *= xmm2
+					mulps	xmm6,	xmm3			// xmm6 *= xmm3
+
+					addps	xmm7,	xmm4			// xmm7 += xmm4
+					addps	xmm7,	xmm5			// xmm7 += xmm5
+					addps	xmm7,	xmm6			// xmm7 += xmm6
+
+					movaps	xmmword ptr [eax + 0x10], xmm7	// eax = xmm7
+
+					movss	xmm7,	dword ptr [edx + 0x20]	// xmm7 = src2[08, xx, xx, xx]
+					movss	xmm4,	dword ptr [edx + 0x24]	// xmm4 = src2[09, xx, xx, xx]
+					movss	xmm5,	dword ptr [edx + 0x28]	// xmm5 = src2[10, xx, xx, xx]
+					movss	xmm6,	dword ptr [edx + 0x2c]	// xmm6 = src2[11, xx, xx, xx]
+
+					shufps	xmm7,	xmm7, 0x0		// xmm7 = src2[08, 08, 08, 08]
+					shufps	xmm4,	xmm4, 0x0		// xmm4 = src2[09, 09, 09, 09]
+					shufps	xmm5,	xmm5, 0x0		// xmm5 = src2[10, 10, 10, 10]
+					shufps	xmm6,	xmm6, 0x0		// xmm6 = src2[11, 11, 11, 11]
+
+					mulps	xmm7,	xmm0			// xmm7 *= xmm0
+					mulps	xmm4,	xmm1			// xmm4 *= xmm1
+					mulps	xmm5,	xmm2			// xmm5 *= xmm2
+					mulps	xmm6,	xmm3			// xmm6 *= xmm3
+
+					addps	xmm7,	xmm4			// xmm7 += xmm4
+					addps	xmm7,	xmm5			// xmm7 += xmm5
+					addps	xmm7,	xmm6			// xmm7 += xmm6
+
+					movaps	xmmword ptr [eax + 0x20], xmm7	// eax = xmm7
+
+					movss	xmm7,	dword ptr [edx + 0x30]	// xmm7 = src2[12, xx, xx, xx]
+					movss	xmm4,	dword ptr [edx + 0x34]	// xmm4 = src2[13, xx, xx, xx]
+					movss	xmm5,	dword ptr [edx + 0x38]	// xmm5 = src2[14, xx, xx, xx]
+					movss	xmm6,	dword ptr [edx + 0x3c]	// xmm6 = src2[15, xx, xx, xx]
+
+					shufps	xmm7,	xmm7, 0x0		// xmm7 = src2[12, 12, 12, 12]
+					shufps	xmm4,	xmm4, 0x0		// xmm4 = src2[13, 13, 13, 13]
+					shufps	xmm5,	xmm5, 0x0		// xmm5 = src2[14, 14, 14, 14]
+					shufps	xmm6,	xmm6, 0x0		// xmm6 = src2[15, 15, 15, 15]
+
+					mulps	xmm7,	xmm0			// xmm7 *= xmm0
+					mulps	xmm4,	xmm1			// xmm4 *= xmm1
+					mulps	xmm5,	xmm2			// xmm5 *= xmm2
+					mulps	xmm6,	xmm3			// xmm6 *= xmm3
+
+					addps	xmm7,	xmm4			// xmm7 += xmm4
+					addps	xmm7,	xmm5			// xmm7 += xmm5
+					addps	xmm7,	xmm6			// xmm7 += xmm6
+
+					movaps	xmmword ptr [eax + 0x30], xmm7	// eax = xmm7
+				}
+#endif
 			}
 
 			template<typename _Ty>

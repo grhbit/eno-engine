@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  enoConfig.h
  *  eno
  *
@@ -10,18 +10,29 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 4
+#define ENO_REVISION = 5
 
-#define ENO_VERSION "0.0.4"
+#define ENO_VERSION "0.0.5"
 
 #include <stdio.h>
 
-#ifdef _MCS_VER
-#define ENO_ALIGNED_16 __declspec(aligned(16))
-#else
-#define ENO_ALIGNED_16 __attribute__ ((aligned(16)))
+#if defined (_MSC_VER)
+#define ENO_COMPILED_FROM_VISUAL_STUDIO
+
+#elif defined (__GNUC__)
+#define ENO_COMPILED_FROM_GNUC
+
+#elif defined (__TURBOC__)
+#elif defined (__BORLANDC__)
+#elif defined (__WATCOMC__)
+#elif defined (__IBMCPP__)
 #endif
 
+#ifdef ENO_COMPILED_FROM_VISUAL_STUDIO
+#define ENO_ALIGNED_16 __declspec(align(16))
+#else if ENO_COMPILED_FROM_GNUC
+#define ENO_ALIGNED_16 __attribute__ ((aligned(16)))
+#endif
 
 #define ENO_NAMESPACE_BEGIN	namespace eno {
 #define ENO_NAMESPACE_END	}
