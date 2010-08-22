@@ -236,6 +236,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -279,7 +281,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>23</integer>
+									<integer>7</integer>
+									<integer>4</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -313,8 +317,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -332,7 +334,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>53D0CC6312204D1B00232031</string>
+										<string>53D0CCA61220EC7B00232031</string>
 										<key>history</key>
 										<array>
 											<string>5336DD4B1214DFEF001B221B</string>
@@ -342,14 +344,19 @@
 											<string>537D18CC121985BA002B41EA</string>
 											<string>537D2046121A6047002B41EA</string>
 											<string>537D207A121A9384002B41EA</string>
-											<string>53F1734F121C220700A7763A</string>
 											<string>53F17350121C220700A7763A</string>
 											<string>53F17351121C220700A7763A</string>
 											<string>53F17353121C220700A7763A</string>
-											<string>53F17354121C220700A7763A</string>
-											<string>53F17355121C220700A7763A</string>
-											<string>53D0CC6112204D1B00232031</string>
-											<string>53D0CC6212204D1B00232031</string>
+											<string>53D0CC9C1220EC7B00232031</string>
+											<string>53D0CC9D1220EC7B00232031</string>
+											<string>53D0CC9E1220EC7B00232031</string>
+											<string>53D0CC9F1220EC7B00232031</string>
+											<string>53D0CCA01220EC7B00232031</string>
+											<string>53D0CCA11220EC7B00232031</string>
+											<string>53D0CCA21220EC7B00232031</string>
+											<string>53D0CCA31220EC7B00232031</string>
+											<string>53D0CCA41220EC7B00232031</string>
+											<string>53D0CCA51220EC7B00232031</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

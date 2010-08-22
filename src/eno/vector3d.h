@@ -31,7 +31,7 @@ ENO_ALIGNED_16
 					
 					_Ty v[3];
 
-					u8 buffer[sizeof(_Ty) * 12];
+					u8 buffer[sizeof(_Ty) * 3];
 				};
 			}
 #ifdef ENO_COMPILED_FROM_GNUC
