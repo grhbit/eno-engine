@@ -27,12 +27,12 @@ ENO_ALIGNED_16
 	
 				union {
 					struct {
-						_Ty x, y, z;
+						_Ty x, y;
 					};
 		
-					_Ty v[3];
+					_Ty v[2];
 		
-					u8 buffer[sizeof(_Ty) * 12];
+					u8 buffer[sizeof(_Ty) * 8];
 				};
 			}
 #ifdef ENO_COMPILED_FROM_GNUC
