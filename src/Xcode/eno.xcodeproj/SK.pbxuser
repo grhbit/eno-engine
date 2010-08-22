@@ -265,9 +265,9 @@
 	};
 	537D186212197F52002B41EA /* matrix4x4.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 12676}}";
-			sepNavSelRange = "{2756, 0}";
-			sepNavVisRange = "{1847, 2086}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 12741}}";
+			sepNavSelRange = "{2887, 0}";
+			sepNavVisRange = "{478, 1290}";
 			sepNavWindowFrame = "{{15, 4}, {750, 874}}";
 		};
 	};
@@ -376,9 +376,9 @@
 	};
 	53CC3A93121630F600B2D092 /* enoConfig.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 898}}";
-			sepNavSelRange = "{395, 0}";
-			sepNavVisRange = "{191, 1304}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 1041}}";
+			sepNavSelRange = "{1169, 0}";
+			sepNavVisRange = "{386, 1395}";
 		};
 	};
 	53CC3A94121630F600B2D092 /* enoMath.cpp */ = {
@@ -412,9 +412,9 @@
 	};
 	53D0CC4D12204CE700232031 /* vector3d.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171, 768}}";
-			sepNavSelRange = "{348, 0}";
-			sepNavVisRange = "{0, 1085}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 794}}";
+			sepNavSelRange = "{535, 0}";
+			sepNavVisRange = "{25, 1173}";
 		};
 	};
 	53D0CC5812204D1800232031 /* XCBuildMessageTextBookmark */ = {
@@ -464,6 +464,28 @@
 		rType = 0;
 		vrLen = 2086;
 		vrLoc = 1847;
+	};
+	53D0CC701220DFCA00232031 /* vector4d.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 768}}";
+			sepNavSelRange = "{1080, 0}";
+			sepNavVisRange = "{26, 1165}";
+		};
+	};
+	53D0CC711220DFCA00232031 /* vector4d.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {691, 746}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 158}";
+			sepNavWindowFrame = "{{15, 4}, {750, 874}}";
+		};
+	};
+	53D0CC801220E14700232031 /* vector2d.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 768}}";
+			sepNavSelRange = "{239, 0}";
+			sepNavVisRange = "{18, 1090}";
+		};
 	};
 	53D31FCE121675C900A3C16E /* vector3.h */ = {
 		isa = PBXFileReference;
