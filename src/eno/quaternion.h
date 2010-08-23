@@ -49,6 +49,10 @@ ENO_ALIGNED_16
 				explicit quaternion_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
 				quaternion_template( _Ty _x, _Ty _y, _Ty _z, _Ty _w ) { this->x = _x; this->y = _y; this->z = _z; this->w = _w; }
 				quaternion_template( const quaternion_template& quat ) { this->x = quat.x; this->y = quat.y; this->z = quat.z; this->w = quat.w; }
+				
+				
+			//public static
+			public:
 			};
 
 			typedef quaternion_template<ftype> quaternion;

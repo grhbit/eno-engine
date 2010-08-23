@@ -127,9 +127,15 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					return matrix4x4_template::subtract(value);
 				}
 
-				inline matrix4x4_template & operator *= ( _Ty value );
+				inline matrix4x4_template & operator *= ( _Ty value )
+				{
+					return matrix4x4_template::multiply( value );
+				}
 
-				inline matrix4x4_template & operator /= ( _Ty value );
+				inline matrix4x4_template & operator /= ( _Ty value )
+				{
+					return matrix4x4_template::multiply( 1.0 / value );
+				}
 
 				inline matrix4x4_template& identity( void ) { Identity( *this ); return *this; }
 
@@ -156,6 +162,12 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				inline matrix4x4_template& subtract( const _Ty value )
 				{
 					matrix4x4_template::Subtract(*this, *this, value);
+					return *this;
+				}
+				
+				inline matrix4x4_template& multiply( const _Ty value )
+				{
+					matrix4x4_template::Multiply(*this, *this, value);
 					return *this;
 				}
 
@@ -396,6 +408,14 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					matrix4x4_template tmp;
 					matrix4x4_template::Subtract(tmp, mat, value);
 					return tmp;
+				}
+				
+				inline static matrix4x4_template Multiply( matrix4x4_template & mat, const matrix4x4_template & lhs, const _Ty value )
+				{
+					mat = matrix4x4_template(	lhs.m11 * value, lhs.m12 * value, lhs.m13 * value, lhs.m14 * value,
+												lhs.m21 * value, lhs.m22 * value, lhs.m23 * value, lhs.m24 * value,
+												lhs.m31 * value, lhs.m32 * value, lhs.m33 * value, lhs.m34 * value,
+												lhs.m41 * value, lhs.m42 * value, lhs.m43 * value, lhs.m44 * value );					
 				}
 				
 				inline static void Fill( matrix4x4_template & mat, _Ty fillValue ) { for(u8 u = 0; u < 16; u++) mat.M[u] = fillValue; }
@@ -703,18 +723,40 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					  b.m41*a.m14+b.m42*a.m24+b.m43*a.m34+b.m44*a.m44 );
 			}
 
+			template<typename _Ty>
+			inline void addMatrix( class_type::matrix4x4_template<_Ty>& out,
+								  const class_type::matrix4x4_template<_Ty>& a,
+								  const class_type::matrix4x4_template<_Ty>& b )
+			{
+				out = class_type::matrix4x4_template<_Ty>(
+					a.m11+b.m11, a.m12+b.m12, a.m13+b.m13, a.m14+b.m14,
+					a.m21+b.m21, a.m22+b.m22, a.m23+b.m23, a.m24+b.m24,
+					a.m31+b.m31, a.m32+b.m32, a.m33+b.m33, a.m34+b.m34,
+					a.m41+b.m41, a.m42+b.m42, a.m43+b.m43, a.m44+b.m44
+				);
+			}
+
 
 			template<typename _Ty>
 			struct matrixUtil {
 				static void (* multiply)( class_type::matrix4x4_template<_Ty>&, 
 										 const class_type::matrix4x4_template<_Ty>&, 
 										 const class_type::matrix4x4_template<_Ty>& );
+				
+				static void (* add)( class_type::matrix4x4_template<_Ty>&,
+									const class_type::matrix4x4_template<_Ty>&,
+									const class_type::matrix4x4_template<_Ty>& );
 			};
 
 			template<typename _Ty>
 			void (* matrixUtil<_Ty>::multiply)( class_type::matrix4x4_template<_Ty>& out, 
 											   const class_type::matrix4x4_template<_Ty>& first, 
 											   const class_type::matrix4x4_template<_Ty>& second ) = multMatrix;
+
+			template<typename _Ty>
+			void (* matrixUtil<_Ty>::add)( class_type::matrix4x4_template<_Ty>& out,
+										  const class_type::matrix4x4_template<_Ty>& first,
+										  const class_type::matrix4x4_template<_Ty>& second ) = addMatrix;
 
 			template<typename _Ty>
 			inline void multiplyMatrixSSE( class_type::matrix4x4_template<_Ty>& out,
@@ -932,6 +974,83 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 			{
 				multiplyMatrixSSE(out, a, b);
 			}
+
+			template<typename _Ty>
+			inline void addMatrixSSE( class_type::matrix4x4_template<_Ty>& out,
+									 const class_type::matrix4x4_template<_Ty>& a,
+									 const class_type::matrix4x4_template<_Ty>& b )
+			{
+				addMatrix(out, a, b);
+			}
+
+			template<>
+			inline void addMatrixSSE( class_type::matrix4x4_template<f32>& out,
+									 const class_type::matrix4x4_template<f32>& a,
+									 const class_type::matrix4x4_template<f32>& b )
+			{
+				f32 * dst = out.M;
+				f32 * lhs = const_cast<f32*>(a.M);
+				f32 * rhs = const_cast<f32*>(b.M);
+				
+#if defined (ENO_COMPILED_FROM_GNUC)
+				
+				asm __volatile__ (
+								  "movaps (%%ecx)	,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
+								  "movaps 10(%%ecx)	,	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
+								  "movaps 20(%%ecx)	,	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
+								  "movaps 30(%%ecx) ,	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+
+								  "movaps (%%edx)	,	%%xmm4\n\t"	// xmm4 = src2[00, 01, 02, 03]
+								  "movaps 10(%%edx)	,	%%xmm5\n\t"	// xmm5 = src2[04, 05, 06, 07]
+								  "movaps 20(%%edx)	,	%%xmm6\n\t"	// xmm6 = src2[08, 09, 10, 11]
+								  "movaps 30(%%edx)	,	%%xmm7\n\t"	// xmm7 = src2[12, 13, 14, 15]
+
+								  "addps %%xmm0		,	%%xmm4\n\t"	// xmm4 += xmm0
+								  "addps %%xmm1		,	%%xmm5\n\t"	// xmm5 += xmm1
+								  "addps %%xmm2		,	%%xmm6\n\t"	// xmm6 += xmm2
+								  "addps %%xmm3		,	%%xmm7\n\t"	// xmm7 += xmm3
+								  
+								  "movaps %%xmm4	,	(%%eax)\n\t"	// eax = xmm4
+								  "movaps %%xmm5	,	10(%%eax)\n\t"	// eax = xmm5
+								  "movaps %%xmm6	,	20(%%eax)\n\t"	// eax = xmm6
+								  "movaps %%xmm7	,	30(%%eax)\n\t"	// eax = xmm7
+								  :
+								  :"a"(dst), "c"(lhs), "d"(rhs)
+								  :"memory");
+				
+#elif defiend (ENO_COMPILED_FROM_VISUAL_STUDIO)
+				
+				__asm
+				{
+					mov		eax,	dst
+					mov		ecx,	lhs
+					mov		edx,	rhs
+					
+					movaps	xmm0,	xmmword ptr [ecx]		 // xmm0 = src1[00, 01, 02, 03]
+					movaps	xmm1,	xmmword ptr [ecx + 0x10] // xmm1 = src1[04, 05, 06, 07]
+					movaps	xmm2,	xmmword ptr [ecx + 0x20] // xmm2 = src1[08, 09, 10, 11]
+					movaps	xmm3,	xmmword ptr [ecx + 0x30] // xmm3 = src1[12, 13, 14, 15]
+
+					movaps	xmm4,	xmmword ptr [edx]		 // xmm4 = src2[00, 01, 02, 03]
+					movaps	xmm5,	xmmword ptr [edx + 0x10] // xmm5 = src2[04, 05, 06, 07]
+					movaps	xmm6,	xmmword ptr [edx + 0x20] // xmm6 = src2[08, 09, 10, 11]
+					movaps	xmm7,	xmmword ptr [edx + 0x30] // xmm7 = src2[12, 13, 14, 15]
+					
+					addps	xmm4,	xmm0 // xmm4 += xmm0
+					addps	xmm5,	xmm1 // xmm5 += xmm1
+					addps	xmm6,	xmm2 // xmm6 += xmm2
+					addps	xmm7,	xmm3 // xmm7 += xmm3
+					
+					movaps	xmmword ptr [eax],			xmm4 // eax = xmm4
+					movaps	xmmword ptr [eax + 0x10],	xmm5 // eax = xmm5
+					movaps	xmmword ptr [eax + 0x20],	xmm6 // eax = xmm6
+					movaps	xmmword ptr [eax + 0x30],	xmm7 // eax = xmm7
+				}
+				
+#endif
+				
+			}
+
 
 		ENO_FUNCTION_END
 
