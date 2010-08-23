@@ -8,6 +8,16 @@
  */
 
 #pragma warning(disable: 4819)
+#include "enoConfig.h"
+
+#ifdef ENO_WINDOWS_PLATFORM
+#include <Windows.h>
+#include <gl/gl.h>
+#include <gl/glu.h>
+#include "glut.h"
+
+#pragma comment(lib, "glut32d.lib")
+#endif
 
 #include "enoType.h"
 #include "matrix4x4.h"
@@ -49,7 +59,7 @@ GLuint createTexture()
 	GLuint tex = 0;
 	u8* data;
 	
-	int width, height;
+	u32 width, height;
 	
 	width = 256;
 	height = 256;
@@ -57,9 +67,9 @@ GLuint createTexture()
 	data= new u8[width*height*3];
 	
 	for (u32 i = 0; i<(width*height*3) ; i+=3) {
-		data[i];
-		data[i+1];
-		data[i+2];
+		data[i] = 0;
+		data[i+1] = 0;
+		data[i+2] = 0;
 	}
 	
 	glGenTextures(1, &tex);

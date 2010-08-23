@@ -10,15 +10,15 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 7
+#define ENO_REVISION = 8
 
-#define ENO_VERSION "0.0.7"
+#define ENO_VERSION "0.0.8"
 
 #include <stdio.h>
 
 #if defined (WIN32) | defined (_WIN32) | defined (WIN64) | defined (_WIN64)
-#define ENO_WINDOW_PLATFORM
-#define ENO_WINDOW_DRIVER
+#define ENO_WINDOWS_PLATFORM
+#define ENO_WINDOWS_DRIVER
 #endif
 
 #if defined (__APPLE__) | defined (MACOSX)
@@ -53,11 +53,10 @@
 #define ENO_ALIGNED_16 __attribute__ ((aligned(16)))
 #endif
 
-#ifdef interface
-#undef interface
+#ifndef interface
+#define interface struct
 #endif
 
-#define interface struct
 
 #define ENO_NAMESPACE_BEGIN	namespace eno {
 #define ENO_NAMESPACE_END	}

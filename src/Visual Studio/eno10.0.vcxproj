@@ -78,20 +78,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\eno\CDisplayNull.cpp" />
+    <ClCompile Include="..\eno\CDisplayOpenGL.cpp" />
     <ClCompile Include="..\eno\eno.cpp" />
     <ClCompile Include="..\eno\enoMath.cpp" />
+    <ClCompile Include="..\eno\IDisplay.cpp" />
+    <ClCompile Include="..\eno\quaternion.cpp" />
     <ClCompile Include="..\eno\testmain.cpp" />
+    <ClCompile Include="..\eno\vector2d.cpp" />
     <ClCompile Include="..\eno\vector3d.cpp">
       <FileType>CppCode</FileType>
     </ClCompile>
+    <ClCompile Include="..\eno\vector4d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\eno\CDisplayNull.h" />
+    <ClInclude Include="..\eno\CDisplayOpenGL.h" />
     <ClInclude Include="..\eno\eno.h" />
     <ClInclude Include="..\eno\enoConfig.h" />
     <ClInclude Include="..\eno\enoMath.h" />
     <ClInclude Include="..\eno\enoType.h" />
+    <ClInclude Include="..\eno\IDisplay.h" />
     <ClInclude Include="..\eno\matrix4x4.h" />
+    <ClInclude Include="..\eno\quaternion.h" />
+    <ClInclude Include="..\eno\vector2d.h" />
     <ClInclude Include="..\eno\vector3d.h" />
+    <ClInclude Include="..\eno\vector4d.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

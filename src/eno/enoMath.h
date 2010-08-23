@@ -49,55 +49,52 @@ ENO_NAMESPACE_BEGIN
 
 	ENO_FUNCTION_BEGIN
 
-		inline bool equal( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
+		inline bool equal_s32( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
 		{
 			return ((lhs - error_range) <= rhs) && ((lhs + error_range) >= rhs);
 		}
 
-		inline bool equal( const f32& lhs, const f32& rhs, const f32 error_range = ERROR_RANGE_F32 )
+		inline bool equal_f32( const f32& lhs, const f32& rhs, const f32 error_range = ERROR_RANGE_F32 )
 		{
 			return ((lhs - error_range) <= rhs) && ((lhs + error_range) >= rhs);
 		}
 
-		inline bool equal( const f64& lhs, const f64& rhs, const f64 error_range = ERROR_RANGE_F64 )
+		inline bool equal_f64( const f64& lhs, const f64& rhs, const f64 error_range = ERROR_RANGE_F64 )
 		{
 			return ((lhs - error_range) <= rhs) && ((lhs + error_range) >= rhs);
 		}
 
-		inline s32 min( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
+		inline s32 min_s32( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
 		{
-			return equal(lhs, rhs, error_range)? lhs: (lhs<rhs)? lhs:rhs;
+			return equal_s32(lhs, rhs, error_range)? lhs: (lhs<rhs)? lhs:rhs;
 		}
 
-		inline f32 min( const f32& lhs, const f32& rhs, const f32 error_range = ERROR_RANGE_F32 )
+		inline f32 min_f32( const f32& lhs, const f32& rhs, const f32 error_range = ERROR_RANGE_F32 )
 		{
-			return equal(lhs, rhs, error_range)? lhs: (lhs<rhs)? lhs:rhs;
+			return equal_f32(lhs, rhs, error_range)? lhs: (lhs<rhs)? lhs:rhs;
 		}
 
-		inline f64 min( const f64& lhs, const f64& rhs, const f64 error_range = ERROR_RANGE_F64 )
+		inline f64 min_f32( const f64& lhs, const f64& rhs, const f64 error_range = ERROR_RANGE_F64 )
 		{
-			return equal(lhs, rhs, error_range)? lhs: (lhs<rhs)? lhs:rhs;
+			return equal_f64(lhs, rhs, error_range)? lhs: (lhs<rhs)? lhs:rhs;
 		}
 
-		inline s32 max( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
+		inline s32 max_s32( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
 		{
-			return equal(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
+			return equal_s32(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
 		}
 
-		inline f32 max( const f32& lhs, const f32& rhs, const f32 error_range = ERROR_RANGE_F32 )
+		inline f32 max_f32( const f32& lhs, const f32& rhs, const f32 error_range = ERROR_RANGE_F32 )
 		{
-			return equal(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
+			return equal_f32(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
 		}
 
-		inline f64 max( const f64& lhs, const f64& rhs, const f64 error_range = ERROR_RANGE_F64 )
+		inline f64 max_f64( const f64& lhs, const f64& rhs, const f64 error_range = ERROR_RANGE_F64 )
 		{
-			return equal(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
+			return equal_f64(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
 		}
 
 	ENO_FUNCTION_END
-
-#define MAX(a, b, c) eno::max(eno::max(a, b), c)
-#define MIN(a, b, c) eno::min(eno::min(a, b), c)
 
 ENO_NAMESPACE_END
 

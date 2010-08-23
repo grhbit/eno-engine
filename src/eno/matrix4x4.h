@@ -1018,7 +1018,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 								  :"a"(dst), "c"(lhs), "d"(rhs)
 								  :"memory");
 				
-#elif defiend (ENO_COMPILED_FROM_VISUAL_STUDIO)
+#elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 				
 				__asm
 				{
