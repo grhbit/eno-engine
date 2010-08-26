@@ -193,6 +193,16 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					return matrix4x4_template::Multiply(*this, -1);
 				}
 
+				inline bool operator == ( const matrix4x4_template & rhs ) const
+				{
+					return Equals(*this, rhs);
+				}
+
+				inline bool operator != ( const matrix4x4_template & rhs ) const
+				{
+					return !Equals(*this, rhs);
+				}
+
 				inline matrix4x4_template& identity( void ) { Identity( *this ); return *this; }
 
 				inline bool isIdentity( void ) { return IsIdentity( *this ); }
@@ -587,7 +597,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 
 				inline static matrix4x4_template MakeRotate( const vector3d_template<ftype> & vec3 )
 				{
-					matrix4x4_template tmp;
+					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeRotate(tmp, vec3);
 					return tmp;
 				}
@@ -708,7 +718,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 
 				inline static matrix4x4_template MakeRotateAxis( const vector3d_template<ftype> & vec3, const _Ty value )
 				{
-					matrix4x4_template tmp;
+					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeRotateAxis( tmp, vec3, value );
 					return tmp;
 				}
@@ -745,7 +755,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 
 				inline static matrix4x4_template MakeRotateQuaternion( const quaternion_template<_Ty> & quat )
 				{
-					matrix4x4_template tmp;
+					matrix4x4_template tmp(INIT_NOTHING);
 					matrix4x4_template::MakeRotateQuaternion(tmp, quat);
 					return tmp;
 				}

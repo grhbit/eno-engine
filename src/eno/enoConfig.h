@@ -10,9 +10,9 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 10
+#define ENO_REVISION = 11
 
-#define ENO_VERSION "0.0.10"
+#define ENO_VERSION "0.0.11"
 
 #include <stdio.h>
 
