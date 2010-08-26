@@ -94,6 +94,28 @@ ENO_NAMESPACE_BEGIN
 			return equal_f64(lhs, rhs, error_range)? lhs: (lhs>rhs)? lhs:rhs;
 		}
 
+		template<typename _Ty>
+		inline _Ty scale( const _Ty& value, const _Ty& lls, const _Ty& lrs, const _Ty& rls, const _Ty& rrs )
+		{
+			return ((value - lls) * (rrs - rls) / (lrs - lls) + rls);
+		}
+
+#if !defined(min)
+		template<typename _Ty>
+		inline _Ty& min( const _Ty& lhs, const _Ty& rhs )
+		{
+			return (lhs < rhs)? lhs : rhs;
+		}
+#endif
+
+#if !defined(max)
+		template<typename _Ty>
+		inline _Ty& max( const _Ty& lhs, const _Ty& rhs )
+		{
+			return (lhs > rhs)? lhs : rhs;
+		}
+#endif
+
 	ENO_FUNCTION_END
 
 ENO_NAMESPACE_END

@@ -29,6 +29,7 @@ using namespace core;
 
 bool enotypeTest();
 bool enoMatrixMathTest();
+bool enoVectorMathTest();
 
 #ifdef ENO_MACOSX_PLATFORM
 #include <OpenGL/OpenGL.h>
@@ -93,25 +94,29 @@ GLuint createTexture()
 
 int main( int argc, char** argv )
 {
-	glutInit(&argc, argv);
-	glutInitWindowSize(800, 600);
-	glutInitDisplayMode(GLUT_DOUBLE);
-
-	int win = glutCreateWindow(argv[0]);
-	glutDisplayFunc(displayfunc);
-	glClearColor(0, 0, 0, 0);
-	texture = createTexture();
-	glutMainLoop();
-	
-	glDeleteTextures(1, &texture);
-	
-	glutDestroyWindow(win);
+//  	glutInit(&argc, argv);
+//  	glutInitWindowSize(800, 600);
+//  	glutInitDisplayMode(GLUT_DOUBLE);
+//  
+//  	int win = glutCreateWindow(argv[0]);
+//  	glutDisplayFunc(displayfunc);
+//  	glClearColor(0, 0, 0, 0);
+//  	texture = createTexture();
+//  	glutMainLoop();
+//  	
+//  	glDeleteTextures(1, &texture);
+//  	
+//  	glutDestroyWindow(win);
 	{
 		if(enotypeTest() == false)
 			cout<<"enoTypeTest Failed."<<endl;
 
 		if(enoMatrixMathTest() == false)
 			cout<<"enoMatrixMathTest Failed."<<endl;
+
+		if(enoVectorMathTest() == false)
+			cout<<"enoVectorMathTest Failed."<<endl;
+		
 	}
 	return 0;
 }
@@ -150,18 +155,28 @@ bool enotypeTest()
 	return true;
 }
 
+#include <d3d9.h>
+#include <d3dx9.h>
+#pragma  comment(lib, "d3dx9d.lib")
+#include "vector3d.h"
+
 bool enoMatrixMathTest()
 {
-	matrix4x4 mat, lm, rm;
+	return true;
+}
 
-	mat.makeRotate(1.2f,1.3f,1.4f);
-	mat.identity();
+bool enoVectorMathTest()
+{
+	D3DXVECTOR3 vec, lhs, rhs;
 
-	mat.rotateZ(1.4f);
-	mat.rotateY(1.3f);
-	mat.rotateX(1.2f);
+	lhs = D3DXVECTOR3(2.0f, 1.0f, 3.0f);
+	rhs = D3DXVECTOR3(1.0f, 1.0f, 10.0f);
 
-	mat.makeRotateYawPitchRoll(1.2f,1.3f,1.4f);
+	for (float t = 0.0f; t < 100.0f; t++)
+	{
+		D3DXVec3Scale(&vec, &lhs, t);
+	}
+	
 
 	return true;
 }

@@ -9,9 +9,20 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Include">
+      <UniqueIdentifier>{9150fb4f-174d-4dcd-992a-57f0d63f59e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{9c561895-aad1-4201-a37b-f6ace00d5892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\core">
+      <UniqueIdentifier>{a2be11f7-34c0-4f7a-ba36-803102aa8979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\core">
+      <UniqueIdentifier>{40c26adb-f02c-4c0c-a388-2e24f8566b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\display">
+      <UniqueIdentifier>{0e85a7ac-d228-439d-8764-38b235b90fe2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -47,24 +58,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\eno\eno.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoConfig.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoMath.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoType.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\matrix4x4.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\vector3d.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\eno\CDisplayNull.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -74,14 +67,32 @@
     <ClInclude Include="..\eno\IDisplay.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\quaternion.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="..\eno\eno.h">
+      <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\vector2d.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="..\eno\enoConfig.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoType.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoMath.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\matrix4x4.h">
+      <Filter>Include\core</Filter>
     </ClInclude>
     <ClInclude Include="..\eno\vector4d.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\quaternion.h">
+      <Filter>Include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector2d.h">
+      <Filter>Include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector3d.h">
+      <Filter>Include\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

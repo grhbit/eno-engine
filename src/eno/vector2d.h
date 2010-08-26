@@ -49,6 +49,33 @@ ENO_ALIGNED_16
 				explicit vector2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
 				vector2d_template( _Ty _x, _Ty _y ) { this->x = _x; this->y = _y; }
 				vector2d_template( const vector2d_template& vec ) { this->x = vec.x; this->y = vec.y; }
+
+				inline vector2d_template& add( const vector2d_template& rhs )
+				{
+					return *this;
+				}
+
+				inline vector2d_template& add( const vector2d_template& lhs, const vector2d_template& rhs )
+				{
+					return *this
+				}
+
+			//public static
+			public:
+
+				static inline void Add( vector2d_template& vec2, const vector2d_template& lhs, const vector2d_template& rhs )
+				{
+					vec2.x = lhs.x + rhs.x;
+					vec2.y = lhs.y + rhs.y;
+					vec2.z = lhs.z + rhs.z;
+				}
+
+				static inline vector2d_template Add( const vector2d_template& lhs, const vector2d_template& rhs )
+				{
+					vector2d_template tmp;
+					vector2d_template::Add(tmp, lhs, rhs);
+					return tmp;
+				}
 			};
 
 			typedef vector2d_template<ftype> vector2d;

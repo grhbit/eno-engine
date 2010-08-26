@@ -8,7 +8,6 @@
  */
 
 #pragma once
-#include "enoType.h"
 #include "IDisplay.h"
 
 ENO_NAMESPACE_BEGIN
