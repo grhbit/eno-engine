@@ -49,6 +49,12 @@ ENO_NAMESPACE_BEGIN
 
 	ENO_FUNCTION_BEGIN
 
+		template<typename _Ty>
+		inline bool equals( const _Ty& lhs, const _Ty& rhs, const _Ty error_range = 0 )
+		{
+			return ((lhs - error_range) <= rhs) && ((lhs + error_range) >= rhs);
+		}
+
 		inline bool equal_s32( const s32& lhs, const s32& rhs, const s32 error_range = ERROR_RANGE_S32 )
 		{
 			return ((lhs - error_range) <= rhs) && ((lhs + error_range) >= rhs);

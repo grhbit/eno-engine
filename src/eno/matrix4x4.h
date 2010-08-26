@@ -10,6 +10,8 @@
 #pragma once
 #include "enoMath.h"
 #include "vector3d.h"
+#include "vector4d.h"
+#include "quaternion.h"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
@@ -46,6 +48,15 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 		ENO_STRUCT_TYPE_END
 
 		ENO_CLASS_TYPE_BEGIN
+
+			template<typename _Ty>
+			class vector3d_template;
+
+			template<typename _Ty>
+			class vector4d_template;
+
+			template<typename _Ty>
+			class quaternion_template;
 
 			template<typename _Ty>
 			class matrix4x4_template : public struct_type::Matrix4x4<_Ty> {
@@ -424,7 +435,12 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					matrix4x4_template::Transpose( *this, *this );
 					return *this;
 				}
-				
+
+				inline bool equals( const matrix4x4_template& rhs, const _Ty error_range = 0.00001f )
+				{
+					return matrix4x4_template::Equals(  rhs, error_range );
+				}
+
 			//public static
 			public:
 				
@@ -549,7 +565,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					const ftype zSin = sin(vec3.z);
 					
 					mat.m11 = yCos * zCos;
-					mat.m12 = (xCos * zSin) + (xSin * ySin * zCos);	//m13 ySin * zCos
+					mat.m12 = (xCos * zSin) + (xSin * ySin * zCos);
 					mat.m13 = (xSin * zSin) - (xCos * ySin * zCos);
 					mat.m14 = 0;
 					
@@ -696,6 +712,43 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					matrix4x4_template::MakeRotateAxis( tmp, vec3, value );
 					return tmp;
 				}
+
+				inline static void MakeRotateQuaternion( matrix4x4_template & mat, const quaternion_template<_Ty> & quat )
+				{
+					_Ty xx = quat.x * quat.x;
+					_Ty yy = quat.y * quat.y;
+					_Ty zz = quat.z * quat.z;
+					_Ty xy = quat.x * quat.y;
+					_Ty xz = quat.x * quat.z;
+					_Ty xw = quat.x * quat.w;
+					_Ty yz = quat.y * quat.z;
+					_Ty yw = quat.y * quat.w;
+					_Ty zw = quat.z * quat.w;
+
+					mat.m11 = 1 - (2 * (yy + zz));
+					mat.m12 = (2 * xy) + (2 * zw);
+					mat.m13 = (2 * xz) - (2 * yw);
+					mat.m14 = 0;
+
+					mat.m21 = (2 * xy) - (2 * zw);
+					mat.m22 = 1 - (2 * (xx + zz));
+					mat.m23 = (2 * yz) + (2 * xw);
+					mat.m24 = 0;
+
+					mat.m31 = (2 * xz) + (2 * yw);
+					mat.m32 = (2 * yz) - (2 * xw);
+					mat.m33 = 1 - (2 * (xx + yy));
+					mat.m34 = 0;
+
+					mat.m41 = 0; mat.m42 = 0; mat.m43 = 0; mat.m44 = 1;
+				}
+
+				inline static matrix4x4_template MakeRotateQuaternion( const quaternion_template<_Ty> & quat )
+				{
+					matrix4x4_template tmp;
+					matrix4x4_template::MakeRotateQuaternion(tmp, quat);
+					return tmp;
+				}
 				
 				inline static void MakeTranslate( matrix4x4_template & mat, const vector3d_template<_Ty> & vec3 )
 				{
@@ -714,9 +767,16 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 
 				inline static vector3d_template<_Ty> TakeScale( const matrix4x4_template & mat )
 				{
-					vector3d_template<_Ty> vX(mat.m11, mat.m21, mat.m31);
-					vector3d_template<_Ty> vY(mat.m11, mat.m21, mat.m31);
-					vector3d_template<_Ty> vZ(mat.m11, mat.m21, mat.m31);
+					if ((mat.m12 == 0) && (mat.m13 == 0) && 
+						(mat.m21 == 0) && (mat.m23 == 0) &&
+						(mat.m31 == 0) && (mat.m32 == 0)) {
+						return vector3d_template<_Ty>(mat.m11, mat.m22, mat.m33);
+					}
+					
+					return vector3d_template<_Ty>( 
+						sqrt((mat.m11 * mat.m11) + (mat.m12 * mat.m12) + (mat.m13 * mat.m13)),
+						sqrt((mat.m21 * mat.m21) + (mat.m22 * mat.m22) + (mat.m23 * mat.m23)),
+						sqrt((mat.m31 * mat.m31) + (mat.m32 * mat.m32) + (mat.m33 * mat.m33)) );
 				}
 
 				inline static void TakeScale( vector3d_template<_Ty> & vec3, const matrix4x4_template & mat )
@@ -724,14 +784,23 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					vec3 = TakeScale(mat);
 				}
 
-				inline static vector3d_template<_Ty> TakeTranslation( const matrix4x4_template & mat )
+				inline static quaternion_template<_Ty> TakeRotate( const matrix4x4_template & mat )
+				{
+				}
+
+				inline static void TakeRotate( quaternion_template<_Ty> & quat, const matrix4x4_template & mat )
+				{
+					quat = TakeRotate(mat);
+				}
+
+				inline static vector3d_template<_Ty> TakeTranslate( const matrix4x4_template & mat )
 				{
 					return vector3d_template<_Ty>( mat.m41, mat.m42, mat.m43 );
 				}
 
-				inline static void TakeTranslation( vector3d_template<_Ty> & vec3, const matrix4x4_template & mat )
+				inline static void TakeTranslate( vector3d_template<_Ty> & vec3, const matrix4x4_template & mat )
 				{
-					vec3 = TakeTranslation(mat);
+					vec3 = TakeTranslate(mat);
 				}
 				
 				inline static _Ty Determinant( const matrix4x4_template & mat );
@@ -746,6 +815,15 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				}
 				
 				inline static void Transpose( matrix4x4_template & out, const matrix4x4_template & mat );
+
+				inline static bool Equals( matrix4x4_template & lhs, matrix4x4_template & rhs, _Ty error_range = 0 )
+				{
+					for ( u8 i = 0; i < 16; i++ )
+						if (equals(lhs.M[i], rhs.M[i], error_range))
+							return false;
+
+					return true;
+				}
 			};
 
 			template<typename _Ty>

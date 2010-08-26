@@ -52,12 +52,26 @@ ENO_ALIGNED_16
 
 				inline vector2d_template& add( const vector2d_template& rhs )
 				{
+					vector2d_template::Add(*this, *this, rhs);
 					return *this;
 				}
 
 				inline vector2d_template& add( const vector2d_template& lhs, const vector2d_template& rhs )
 				{
+					vector2d_template::Add(*this, lhs, rhs);
 					return *this
+				}
+
+				inline vector2d_template& subtract( const vector2d_template& rhs )
+				{
+					vector2d_template::Subtract(*this, *this, rhs);
+					return *this;
+				}
+
+				inline vector2d_template& subtract( const vector2d_template& lhs, const vector2d_template& rhs )
+				{
+					vector2d_template::Subtract(*this, lhs, rhs);
+					return *this;
 				}
 
 			//public static
@@ -74,6 +88,20 @@ ENO_ALIGNED_16
 				{
 					vector2d_template tmp;
 					vector2d_template::Add(tmp, lhs, rhs);
+					return tmp;
+				}
+
+				static inline void Subtract( vector2d_template& vec2, const vector2d_template& lhs, const vector2d_template& rhs )
+				{
+					vec2.x = lhs.x - rhs.x;
+					vec2.y = lhs.y - rhs.y;
+					vec2.z = lhs.z - rhs.z;
+				}
+
+				static inline vector2d_template Subtract( const vector2d_template& lhs, const vector2d_template& rhs )
+				{
+					vector2d_template tmp;
+					vector2d_template::Subtract(tmp, lhs, rhs);
 					return tmp;
 				}
 			};

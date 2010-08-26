@@ -10,6 +10,7 @@
 #pragma once
 #include "enoMath.h"
 #include "vector4d.h"
+#include "matrix4x4.h"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
@@ -187,9 +188,9 @@ ENO_ALIGNED_16
 					return *this;
 				}
 
-				inline _Ty dot( void )
+				inline _Ty dot( const vector3d_template& rhs )
 				{
-					return vector3d_template::Dot(*this);
+					return vector3d_template::Dot(*this, rhs);
 				}
 
 				inline _Ty length( void )
@@ -238,6 +239,16 @@ ENO_ALIGNED_16
 					return *this;
 				}
 
+				inline vector3d_template& normalize()
+				{
+					vector3d_template::Normalize(*this, *this);
+				}
+
+				inline vector3d_template& normalize( const vector3d_template& vec3 )
+				{
+					vector3d_template::Normalize(*this, vec3);
+				}
+
 				inline vector3d_template& scale( _Ty value )
 				{
 					vector3d_template::Scale(*this, *this, value);
@@ -264,6 +275,47 @@ ENO_ALIGNED_16
 				{
 					vector3d_template tmp;
 					vector3d_template::Add(tmp, lhs, rhs);
+					return tmp;
+				}
+
+				static inline void BaryCentric( vector3d_template& vec3, 
+					const vector3d_template& v1, const vector3d_template& v2, const vector3d_template& v3, _Ty f, _Ty g )
+				{
+					vec3 = v1 + f * (v2 - v1) + g * (v3 - v1);
+				}
+
+				static inline vector3d_template BaryCentric( const vector3d_template& v1, const vector3d_template& v2, 
+					const vector3d_template& v3, _Ty f, _Ty g )
+				{
+					vector3d_template tmp;
+					vector3d_template::BaryCentric(tmp, v1, v2, v3, f, g);
+					return tmp;
+				}
+
+				static inline void CatmullRom( vector3d_template& vec3,
+					const vector3d_template& v1, const vector3d_template& v2, const vector3d_template& v3,
+					const vector3d_template& v4, _Ty s )
+				{
+					static matrix4x4_template fac(	0,	 1,	  0,   0,
+												 -0.5,	 0,	0.5,   0,
+													1,-2.5,	  2,-0.5,
+												 -0.5, 1.5,-1.5, 0.5 );
+
+					vector4d_template sV( 1, s, s*s, s*s*s );
+
+					matrix4x4 rhs(	v1.x, v1.y, v1.z, v1.w,
+									v2.x, v2.y, v2.z, v2.w,
+									v3.x, v3.y, v3.z, v3.w,
+									v4.x, v4.y, v4.z, v4.w );
+					
+					// out = sV*fac*rhs
+				}
+
+				static inline vector3d_template CatmullRom( const vector3d_template& v1, const vector3d_template& v2, const vector3d_template& v3,
+											const vector3d_template& v4, _Ty s )
+				{
+					vector3d_template tmp;
+					vector3d_template::CatmullRom(tmp, v1, v2, v3, v4, s);
 					return tmp;
 				}
 
@@ -295,9 +347,9 @@ ENO_ALIGNED_16
 					return tmp;
 				}
 
-				static inline _Ty Dot( const vector3d_template& vec3 )
+				static inline _Ty Dot( const vector3d_template& vec3, const vector3d_template& rhs )
 				{
-					return (vec3.x * vec3.y* vec3.z);
+					return (vec3.x * rhs.x) + (vec3.y * rhs.y) + (vec3.z * rhs.z);
 				}
 
 				static inline _Ty Length( const vector3d_template& vec3 )
@@ -329,7 +381,7 @@ ENO_ALIGNED_16
 					vec.z = min(lhs.z, rhs.z);
 				}
 
-				static vector3d_template Minimize( const vector3d_template& lhs, const vector3d_template& rhs )
+				static inline vector3d_template Minimize( const vector3d_template& lhs, const vector3d_template& rhs )
 				{
 					vector3d_template tmp;
 					vector3d_template::Minimize(tmp, lhs, rhs);
@@ -343,10 +395,27 @@ ENO_ALIGNED_16
 					vec.z = max(lhs.z, rhs.z);
 				}
 
-				static vector3d_template Maximize( const vector3d_template& lhs, const vector3d_template& rhs )
+				static inline vector3d_template Maximize( const vector3d_template& lhs, const vector3d_template& rhs )
 				{
 					vector3d_template tmp;
 					vector3d_template::Maximize(tmp, lhs, rhs);
+					return tmp;
+				}
+
+				static inline void Normalize( vector3d_template& vec3, const vector3d_template& rhs )
+				{
+					_Ty leng = rhs.lengthSq();
+
+					if (leng != 0)
+						leng = sqrt(leng);
+
+					vec3 *= leng;
+				}
+
+				static inline vector3d_template Normalize( const vector3d_template& vec3 )
+				{
+					vector3d_template tmp;
+					vector3d_template::Normalize(tmp, vec3);
 					return tmp;
 				}
 

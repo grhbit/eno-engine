@@ -159,6 +159,7 @@ bool enotypeTest()
 #include <d3dx9.h>
 #pragma  comment(lib, "d3dx9d.lib")
 #include "vector3d.h"
+#include "vector4d.h"
 
 bool enoMatrixMathTest()
 {
@@ -167,16 +168,28 @@ bool enoMatrixMathTest()
 
 bool enoVectorMathTest()
 {
-	D3DXVECTOR3 vec, lhs, rhs;
+// 	D3DXVECTOR4 vec, lhs, mhs, rhs;
+// 	vector4d Vec;
+// 	vector4d Lhs( 2.0f, 1.0f, 3.0f, 1.0f );
+// 	vector4d Mhs( 1.0f, 3.0f, 2.0f, 1.0f );
+// 	vector4d Rhs( 1.0f, 3.0f, 10.0f, 1.0f );
+// 
+// 	lhs = D3DXVECTOR4(2.0f, 1.0f, 3.0f, 1.0f);
+// 	mhs = D3DXVECTOR4(1.0f, 3.0f, 2.0f, 1.0f);
+// 	rhs = D3DXVECTOR4(1.0f, 3.0f, 10.0f, 1.0f);
+// 
+// 	D3DXVec4Cross(&vec, &lhs, &mhs, &rhs);
+// 	Vec.cross(Lhs, Mhs, Rhs);
 
-	lhs = D3DXVECTOR3(2.0f, 1.0f, 3.0f);
-	rhs = D3DXVECTOR3(1.0f, 1.0f, 10.0f);
+	D3DXMATRIX Mat;
+	D3DXQUATERNION Quat(1,4,2,1);
 
-	for (float t = 0.0f; t < 100.0f; t++)
-	{
-		D3DXVec3Scale(&vec, &lhs, t);
-	}
-	
+	quaternion_template<ftype> quat(1,4,2,1);
+
+	matrix4x4 mat;
+
+	matrix4x4::MakeRotateQuaternion(mat, quat);
+	D3DXMatrixRotationQuaternion(&Mat, &Quat);
 
 	return true;
 }
