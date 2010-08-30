@@ -71,7 +71,7 @@
     <ClCompile Include="..\eno\Texture.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\eno\Texture_BMP.cpp">
+    <ClCompile Include="..\eno\TextureLoader_BMP.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,7 +127,10 @@
     <ClInclude Include="..\eno\Texture.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\Texture_BMP.h">
+    <ClInclude Include="..\eno\ITextureLoader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\TextureLoader_BMP.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,9 +18,13 @@ ENO_NAMESPACE_BEGIN
 			{
 			public:
 			
-				ITexture(void) { }
+				ITexture( void ) { }
 			
-				virtual ~ITexture(void) { }
+				virtual ~ITexture( void ) { }
+
+				virtual u8* lock( void ) = 0;
+
+				virtual void unlock( void ) = 0;
 			
 			};
 

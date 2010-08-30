@@ -20,6 +20,13 @@ ENO_NAMESPACE_BEGIN
 			public:
 				CTexture(void);
 				virtual ~CTexture(void);
+
+				/* virtual */ u8* lock( void ) { return this->data; }
+
+				/* virtual */ void unlock( void ) { /* nothing */ }
+
+			private:
+				u8* data;
 			};
 			
 		ENO_CLASS_TYPE_END

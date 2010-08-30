@@ -10,9 +10,9 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 11
+#define ENO_REVISION = 12
 
-#define ENO_VERSION "0.0.11"
+#define ENO_VERSION "0.0.12"
 
 #include <stdio.h>
 
@@ -64,6 +64,12 @@
 #define ENO_CORE_NAMESPACE_END		}
 #define ENO_DISPLAY_NAMESPACE_BEGIN namespace display {
 #define ENO_DISPLAY_NAMESPACE_END	}
+#define ENO_OS_NAMESPACE_BEGIN		namespace os {
+#define ENO_OS_NAMESPACE_END		}
+#define ENO_IO_NAMESPACE_BEGIN		namespace io {
+#define ENO_IO_NAMESPACE_END		}
+#define ENO_GUI_NAMESPACE_BEGIN		namespace gui {
+#define ENO_GUI_NAMESPACE_END		}
 
 #define ENO_CLASS_TYPE_BEGIN	namespace class_type {
 #define ENO_CLASS_TYPE_END		}

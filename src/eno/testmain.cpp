@@ -49,12 +49,12 @@ void Destroy( void* )
 	SPRITE->Release();
 }
 
-#include "Texture_BMP.h"
+#include "TextureLoader_BMP.h"
 
 int main( int argc, char** argv )
 {
-	display::CTexture_BMP bmp;
-	bmp.load("test.bmp", 0);
+//	display::CTexture_BMP bmp;
+//	bmp.load("test.bmp", 0);
 
 	DXUTInit();
 	DXUTCreateWindow();
