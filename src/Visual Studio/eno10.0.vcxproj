@@ -86,10 +86,12 @@
     <ClCompile Include="..\eno\eno.cpp" />
     <ClCompile Include="..\eno\enoMath.cpp" />
     <ClCompile Include="..\eno\IDisplay.cpp" />
+    <ClCompile Include="..\eno\IReferenceCounter.cpp" />
     <ClCompile Include="..\eno\quaternion.cpp" />
     <ClCompile Include="..\eno\testmain.cpp" />
     <ClCompile Include="..\eno\Texture.cpp" />
     <ClCompile Include="..\eno\TextureLoader_BMP.cpp" />
+    <ClCompile Include="..\eno\TextureManager.cpp" />
     <ClCompile Include="..\eno\vector2d.cpp" />
     <ClCompile Include="..\eno\vector3d.cpp">
       <FileType>CppCode</FileType>
@@ -104,15 +106,18 @@
     <ClInclude Include="..\eno\Core\DXUTmisc.h" />
     <ClInclude Include="..\eno\eno.h" />
     <ClInclude Include="..\eno\enoConfig.h" />
+    <ClInclude Include="..\eno\enoDisplayType.h" />
     <ClInclude Include="..\eno\enoMath.h" />
     <ClInclude Include="..\eno\enoType.h" />
     <ClInclude Include="..\eno\IDisplay.h" />
+    <ClInclude Include="..\eno\IReferenceCounter.h" />
     <ClInclude Include="..\eno\ITexture.h" />
     <ClInclude Include="..\eno\ITextureLoader.h" />
     <ClInclude Include="..\eno\matrix4x4.h" />
     <ClInclude Include="..\eno\quaternion.h" />
     <ClInclude Include="..\eno\Texture.h" />
     <ClInclude Include="..\eno\TextureLoader_BMP.h" />
+    <ClInclude Include="..\eno\TextureManager.h" />
     <ClInclude Include="..\eno\vector2d.h" />
     <ClInclude Include="..\eno\vector3d.h" />
     <ClInclude Include="..\eno\vector4d.h" />

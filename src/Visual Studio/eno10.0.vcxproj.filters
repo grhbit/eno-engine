@@ -27,6 +27,9 @@
     <Filter Include="DXUT">
       <UniqueIdentifier>{fd9993f9-820c-4808-a495-6ab1299f007a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\display">
+      <UniqueIdentifier>{3c9417ae-37c1-473a-9f1d-d5457cbc1e54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\eno\eno.cpp">
@@ -72,6 +75,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\eno\TextureLoader_BMP.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\TextureManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\IReferenceCounter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,6 +141,15 @@
     </ClInclude>
     <ClInclude Include="..\eno\TextureLoader_BMP.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\TextureManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\IReferenceCounter.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoDisplayType.h">
+      <Filter>Include\display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

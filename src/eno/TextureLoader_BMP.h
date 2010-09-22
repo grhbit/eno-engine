@@ -9,8 +9,10 @@ ENO_NAMESPACE_BEGIN
 				public interface_type::ITextureLoader
 			{
 			public:
-				CTextureLoader_BMP(void);
-				~CTextureLoader_BMP(void);
+				CTextureLoader_BMP(void) { }
+				/* virtual */ ~CTextureLoader_BMP(void) { }
+
+				/* virtual */ ITexture* load( const EString& path, ITexture** );
 			};
 
 		ENO_CLASS_TYPE_END

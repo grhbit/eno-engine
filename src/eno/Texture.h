@@ -18,15 +18,29 @@ ENO_NAMESPACE_BEGIN
 				: public interface_type::ITexture
 			{
 			public:
-				CTexture(void);
-				virtual ~CTexture(void);
+				CTexture(void) { this->data = 0; }
+				/* virtual */ ~CTexture(void) { if (this->data) delete [](this->data); }
+
+				/* virtual */ void init(u32 width, u32 height, bool bUsedResourceManagement = true, u8* data = 0) { this->width = width; this->height = height; }
 
 				/* virtual */ u8* lock( void ) { return this->data; }
 
 				/* virtual */ void unlock( void ) { /* nothing */ }
 
+				/* virtual */ void bind( u8* buf ) { data = buf; }
+
+				/* virtual */ u32 getWidth() const { return width; }
+
+				/* virtual */ u32 getHeight() const { return height; }
+
+				/* virtual */ void setWidth( u32 w ) { width = w; }
+
+				/* virtual */ void setHeight( u32 h ) { height = h; }
+
 			private:
 				u8* data;
+
+				u32 width, height;
 			};
 			
 		ENO_CLASS_TYPE_END

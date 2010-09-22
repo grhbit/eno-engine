@@ -1,0 +1,24 @@
+#pragma once
+#include "enoType.h"
+
+ENO_NAMESPACE_BEGIN
+	ENO_DISPLAY_NAMESPACE_BEGIN
+		ENO_ENUM_TYPE_BEGIN
+
+			enum EColorFMT {
+//				CLR_B1,
+//				CLR_P4,
+//				CLR_P8,
+				CLR_RGB5_15,
+				CLR_R5G6B5_16,
+				CLR_RGB8_24,
+				CLR_RGBA8_32,
+				CLR_RGBA16_64,
+				CLR_RGBA32F_128,
+			};
+
+		ENO_ENUM_TYPE_END
+	ENO_DISPLAY_NAMESPACE_END
+ENO_NAMESPACE_END
+
+//  [9/10/2010 6:52:35 Ultimate]

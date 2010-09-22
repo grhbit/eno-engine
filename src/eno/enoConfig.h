@@ -10,9 +10,9 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 12
+#define ENO_REVISION = 13
 
-#define ENO_VERSION "0.0.12"
+#define ENO_VERSION "0.0.13"
 
 #include <stdio.h>
 
@@ -57,6 +57,9 @@
 #define interface struct
 #endif
 
+#ifndef nullptr
+#define nullptr 0
+#endif
 
 #define ENO_NAMESPACE_BEGIN	namespace eno {
 #define ENO_NAMESPACE_END	}

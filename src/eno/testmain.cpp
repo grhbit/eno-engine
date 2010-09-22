@@ -20,12 +20,14 @@
 #include "matrix4x4.h"
 #include <iostream>
 
+#ifdef ENO_WINDOWS_PLATFORM
 #include <d3d9.h>
 #include <d3dx9.h>
 #include "Core/DXUT.h"
 #pragma  comment(lib, "d3dx9d.lib")
 #pragma  comment(lib, "dxerr.lib")
 #pragma comment(lib, "comctl32.lib")
+#endif
 
 using namespace std;
 
@@ -41,6 +43,7 @@ bool enoVectorMathTest();
 #include <GLUT/GLUT.h>
 #endif
 
+#ifdef ENO_WINDOWS_PLATFORM
 LPD3DXSPRITE SPRITE;
 LPDIRECT3DTEXTURE9 TEX;
 
@@ -49,22 +52,87 @@ void Destroy( void* )
 	SPRITE->Release();
 }
 
+void CALLBACK render(IDirect3DDevice9* device, f64, f32, void*)
+{
+	if (SUCCEEDED(device->BeginScene()))
+	{
+//		D3DXMATRIX mat;
+//		D3DXMatrixScaling(&mat, 1, -1, 1);
+
+//		SPRITE->SetTransform(&mat);
+	if(SUCCEEDED(SPRITE->Begin(D3DXSPRITE_ALPHABLEND)))
+	{
+		SPRITE->Draw(TEX,0,0,&D3DXVECTOR3(0, 0, 0), D3DCOLOR_XRGB(255,255,255));
+	
+		SPRITE->End();
+	
+	}
+
+	device->EndScene();
+	}
+}
+#endif
+
+
 #include "TextureLoader_BMP.h"
+#include "ITexture.h"
+
+#ifdef ENO_WINDOWS_PLATFORM
+void CALLBACK Lost(void*)
+{
+	SPRITE->OnLostDevice();
+}
+
+void CALLBACK Reset(IDirect3DDevice9* , const D3DSURFACE_DESC*, void*)
+{
+	SPRITE->OnResetDevice();
+}
+#endif
 
 int main( int argc, char** argv )
 {
 //	display::CTexture_BMP bmp;
 //	bmp.load("test.bmp", 0);
 
+#ifdef ENO_WINDOWS_PLATFORM
 	DXUTInit();
+	DXUTSetCallbackD3D9FrameRender(render);
 	DXUTCreateWindow();
-	DXUTCreateDevice();
+	DXUTCreateDevice(true, 1024, 1024);
 
 	IDirect3DDevice9* D9 = DXUTGetD3D9Device();
 	D3DXCreateSprite(D9,&SPRITE);
+#endif
+	display::ITextureLoader* loader = new display::CTextureLoader_BMP;
 
+	display::ITexture* tex = loader->load("test.bmp", 0);
+
+#ifdef ENO_WINDOWS_PLATFORM
+	D3DXCreateTexture(D9, tex->getWidth(), tex->getHeight(), 0, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &TEX);
+
+	D3DLOCKED_RECT d3drt;
+	TEX->LockRect(0, &d3drt, 0, 0);
+	u8* bit = reinterpret_cast<u8*>(d3drt.pBits);
+
+	memcpy(bit, tex->lock(), tex->getWidth()*tex->getHeight()*4);
+
+	TEX->UnlockRect(0);
+	tex->unlock();
+#endif
+
+	delete loader;
+
+#ifdef ENO_WINDOWS_PLATFORM
 	DXUTMainLoop();
+#endif
 
+	delete tex;
+
+#ifdef ENO_WINDOWS_PLATFORM
+	if(TEX) TEX->Release();
+
+	if (SPRITE) SPRITE->Release();	
+#endif
 	{
 		if(enotypeTest() == false)
 			cout<<"enoTypeTest Failed."<<endl;
