@@ -27,5 +27,7 @@ Thumbs.db
 *.pdb
 *.sdf
 */ipch
+*.mode1v3
+*.pbxuser
 
 syntax: regexp

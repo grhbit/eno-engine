@@ -2,7 +2,7 @@
  *  vector2d.h
  *  eno
  *
- *  Created by 권성광 on 10. 8. 22..
+ *  Created by Gwon Seong-gwang on 10. 8. 22..
  *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
  *
  */
@@ -35,6 +35,9 @@ ENO_ALIGNED_16
 					u8 buffer[sizeof(_Ty) * 2];
 				};
 			}
+
+#define Position2d Vector2d
+
 #ifdef ENO_COMPILED_FROM_GNUC
 ENO_ALIGNED_16
 #endif
@@ -46,6 +49,7 @@ ENO_ALIGNED_16
 			template<typename _Ty>
 			class vector2d_template : public struct_type::Vector2d<_Ty> {
 			public:
+				vector2d_template( void ) { }
 				explicit vector2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
 				vector2d_template( _Ty _x, _Ty _y ) { this->x = _x; this->y = _y; }
 				vector2d_template( const vector2d_template& vec ) { this->x = vec.x; this->y = vec.y; }
@@ -59,7 +63,7 @@ ENO_ALIGNED_16
 				inline vector2d_template& add( const vector2d_template& lhs, const vector2d_template& rhs )
 				{
 					vector2d_template::Add(*this, lhs, rhs);
-					return *this
+					return *this;
 				}
 
 				inline vector2d_template& subtract( const vector2d_template& rhs )
@@ -107,6 +111,9 @@ ENO_ALIGNED_16
 			};
 
 			typedef vector2d_template<ftype> vector2d;
+
+#define position2d_template vector2d_template
+#define position2d vector2d
 
 		ENO_CLASS_TYPE_END
 	ENO_CORE_NAMESPACE_END

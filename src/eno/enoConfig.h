@@ -2,7 +2,7 @@
  *  enoConfig.h
  *  eno
  *
- *  Created by 권성광 on 10. 8. 12..
+ *  Created by Gwon Seong-gwang on 10. 8. 12..
  *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
  *
  */
@@ -10,9 +10,9 @@
 
 #define ENO_MAJOR = 0
 #define ENO_MINOR = 0
-#define ENO_REVISION = 13
+#define ENO_REVISION = 15
 
-#define ENO_VERSION "0.0.13"
+#define ENO_VERSION "0.0.15"
 
 #include <stdio.h>
 

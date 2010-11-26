@@ -1,3 +1,12 @@
+/*
+ *  IReferenceCounter.h
+ *  eno
+ *
+ *  Created by Gwon Seong-gwang on 10. 9. 23..
+ *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *
+ */
+
 #pragma once
 #include "enoType.h"
 

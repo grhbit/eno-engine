@@ -10,19 +10,31 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* enoAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* enoAppDelegate.mm */; };
 		53CC3A9A121630F600B2D092 /* eno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A91121630F600B2D092 /* eno.cpp */; };
-		53CC3A9B121630F600B2D092 /* enoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A94121630F600B2D092 /* enoMath.cpp */; };
 		53CC3A9D121630F600B2D092 /* testmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A99121630F600B2D092 /* testmain.cpp */; };
-		53D0CC4E12204CE700232031 /* vector3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D0CC4C12204CE700232031 /* vector3d.cpp */; };
-		53D0CC721220DFCA00232031 /* vector4d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D0CC711220DFCA00232031 /* vector4d.cpp */; };
-		53D0CC821220E14700232031 /* vector2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D0CC811220E14700232031 /* vector2d.cpp */; };
-		53D0CC8D1220E21B00232031 /* quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D0CC8C1220E21B00232031 /* quaternion.cpp */; };
 		53D0CCB01220ED4F00232031 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D0CCAF1220ED4F00232031 /* OpenGL.framework */; };
 		53D0CCB41220ED6B00232031 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D0CCB31220ED6B00232031 /* GLUT.framework */; };
 		53D0CE6D12217BC200232031 /* CDisplayNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D0CE6B12217BC200232031 /* CDisplayNull.cpp */; };
-		53D0CE7212217CB300232031 /* IDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D0CE7112217CB300232031 /* IDisplay.cpp */; };
 		53E0FFF81222877000AC697B /* CDisplayOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53E0FFF71222877000AC697B /* CDisplayOpenGL.cpp */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		D90CB8F31299FB70004DACAA /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8C31299FB70004DACAA /* AssertException.cpp */; };
+		D90CB8F41299FB70004DACAA /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8C61299FB70004DACAA /* Checks.cpp */; };
+		D90CB8F51299FB70004DACAA /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8C91299FB70004DACAA /* CurrentTest.cpp */; };
+		D90CB8F61299FB70004DACAA /* DeferredTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8CB1299FB70004DACAA /* DeferredTestReporter.cpp */; };
+		D90CB8F71299FB70004DACAA /* DeferredTestResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8CD1299FB70004DACAA /* DeferredTestResult.cpp */; };
+		D90CB8F81299FB70004DACAA /* MemoryOutStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8D01299FB70004DACAA /* MemoryOutStream.cpp */; };
+		D90CB8F91299FB70004DACAA /* SignalTranslator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8D31299FB70004DACAA /* SignalTranslator.cpp */; };
+		D90CB8FC1299FB70004DACAA /* TimeHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8D71299FB70004DACAA /* TimeHelpers.cpp */; };
+		D90CB8FF1299FB70004DACAA /* ReportAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8DB1299FB70004DACAA /* ReportAssert.cpp */; };
+		D90CB9001299FB70004DACAA /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8DD1299FB70004DACAA /* Test.cpp */; };
+		D90CB9011299FB70004DACAA /* TestDetails.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8DF1299FB70004DACAA /* TestDetails.cpp */; };
+		D90CB9021299FB70004DACAA /* TestList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8E11299FB70004DACAA /* TestList.cpp */; };
+		D90CB9031299FB70004DACAA /* TestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8E41299FB70004DACAA /* TestReporter.cpp */; };
+		D90CB9041299FB70004DACAA /* TestReporterStdout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8E61299FB70004DACAA /* TestReporterStdout.cpp */; };
+		D90CB9051299FB70004DACAA /* TestResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8E81299FB70004DACAA /* TestResults.cpp */; };
+		D90CB9061299FB70004DACAA /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8EA1299FB70004DACAA /* TestRunner.cpp */; };
+		D90CB9071299FB70004DACAA /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8ED1299FB70004DACAA /* TimeConstraint.cpp */; };
+		D90CB9081299FB70004DACAA /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8F11299FB70004DACAA /* XmlTestReporter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,28 +51,72 @@
 		53CC3A91121630F600B2D092 /* eno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eno.cpp; path = ../eno/eno.cpp; sourceTree = SOURCE_ROOT; };
 		53CC3A92121630F600B2D092 /* eno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eno.h; path = ../eno/eno.h; sourceTree = SOURCE_ROOT; };
 		53CC3A93121630F600B2D092 /* enoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoConfig.h; path = ../eno/enoConfig.h; sourceTree = SOURCE_ROOT; };
-		53CC3A94121630F600B2D092 /* enoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoMath.cpp; path = ../eno/enoMath.cpp; sourceTree = SOURCE_ROOT; };
 		53CC3A95121630F600B2D092 /* enoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoMath.h; path = ../eno/enoMath.h; sourceTree = SOURCE_ROOT; };
 		53CC3A96121630F600B2D092 /* enoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoType.h; path = ../eno/enoType.h; sourceTree = SOURCE_ROOT; };
 		53CC3A99121630F600B2D092 /* testmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testmain.cpp; path = ../eno/testmain.cpp; sourceTree = SOURCE_ROOT; };
-		53D0CC4C12204CE700232031 /* vector3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector3d.cpp; path = ../eno/vector3d.cpp; sourceTree = SOURCE_ROOT; };
 		53D0CC4D12204CE700232031 /* vector3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector3d.h; path = ../eno/vector3d.h; sourceTree = SOURCE_ROOT; };
 		53D0CC701220DFCA00232031 /* vector4d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector4d.h; path = ../eno/vector4d.h; sourceTree = SOURCE_ROOT; };
-		53D0CC711220DFCA00232031 /* vector4d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector4d.cpp; path = ../eno/vector4d.cpp; sourceTree = SOURCE_ROOT; };
 		53D0CC801220E14700232031 /* vector2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vector2d.h; path = ../eno/vector2d.h; sourceTree = SOURCE_ROOT; };
-		53D0CC811220E14700232031 /* vector2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector2d.cpp; path = ../eno/vector2d.cpp; sourceTree = SOURCE_ROOT; };
 		53D0CC8B1220E21B00232031 /* quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = quaternion.h; path = ../eno/quaternion.h; sourceTree = SOURCE_ROOT; };
-		53D0CC8C1220E21B00232031 /* quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quaternion.cpp; path = ../eno/quaternion.cpp; sourceTree = SOURCE_ROOT; };
 		53D0CCAF1220ED4F00232031 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		53D0CCB31220ED6B00232031 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		53D0CE6B12217BC200232031 /* CDisplayNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDisplayNull.cpp; path = ../eno/CDisplayNull.cpp; sourceTree = SOURCE_ROOT; };
 		53D0CE6C12217BC200232031 /* CDisplayNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisplayNull.h; path = ../eno/CDisplayNull.h; sourceTree = SOURCE_ROOT; };
 		53D0CE7012217CB300232031 /* IDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDisplay.h; path = ../eno/IDisplay.h; sourceTree = SOURCE_ROOT; };
-		53D0CE7112217CB300232031 /* IDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IDisplay.cpp; path = ../eno/IDisplay.cpp; sourceTree = SOURCE_ROOT; };
 		53E0FFF61222877000AC697B /* CDisplayOpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisplayOpenGL.h; path = ../eno/CDisplayOpenGL.h; sourceTree = SOURCE_ROOT; };
 		53E0FFF71222877000AC697B /* CDisplayOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDisplayOpenGL.cpp; path = ../eno/CDisplayOpenGL.cpp; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* eno-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eno-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* eno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eno.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D90080EA129C92FF00E1E5D0 /* displayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = displayType.h; path = ../eno/displayType.h; sourceTree = SOURCE_ROOT; };
+		D90CB8C31299FB70004DACAA /* AssertException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AssertException.cpp; path = "../Extra/Unittest++/AssertException.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8C41299FB70004DACAA /* AssertException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssertException.h; path = "../Extra/Unittest++/AssertException.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8C51299FB70004DACAA /* CheckMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckMacros.h; path = "../Extra/Unittest++/CheckMacros.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8C61299FB70004DACAA /* Checks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Checks.cpp; path = "../Extra/Unittest++/Checks.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8C71299FB70004DACAA /* Checks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Checks.h; path = "../Extra/Unittest++/Checks.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8C81299FB70004DACAA /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = "../Extra/Unittest++/Config.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8C91299FB70004DACAA /* CurrentTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CurrentTest.cpp; path = "../Extra/Unittest++/CurrentTest.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8CA1299FB70004DACAA /* CurrentTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurrentTest.h; path = "../Extra/Unittest++/CurrentTest.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8CB1299FB70004DACAA /* DeferredTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DeferredTestReporter.cpp; path = "../Extra/Unittest++/DeferredTestReporter.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8CC1299FB70004DACAA /* DeferredTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeferredTestReporter.h; path = "../Extra/Unittest++/DeferredTestReporter.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8CD1299FB70004DACAA /* DeferredTestResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DeferredTestResult.cpp; path = "../Extra/Unittest++/DeferredTestResult.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8CE1299FB70004DACAA /* DeferredTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeferredTestResult.h; path = "../Extra/Unittest++/DeferredTestResult.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8CF1299FB70004DACAA /* ExecuteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExecuteTest.h; path = "../Extra/Unittest++/ExecuteTest.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8D01299FB70004DACAA /* MemoryOutStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryOutStream.cpp; path = "../Extra/Unittest++/MemoryOutStream.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8D11299FB70004DACAA /* MemoryOutStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemoryOutStream.h; path = "../Extra/Unittest++/MemoryOutStream.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8D31299FB70004DACAA /* SignalTranslator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalTranslator.cpp; sourceTree = "<group>"; };
+		D90CB8D51299FB70004DACAA /* SignalTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalTranslator.h; sourceTree = "<group>"; };
+		D90CB8D71299FB70004DACAA /* TimeHelpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeHelpers.cpp; sourceTree = "<group>"; };
+		D90CB8D91299FB70004DACAA /* TimeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		D90CB8DB1299FB70004DACAA /* ReportAssert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReportAssert.cpp; path = "../Extra/Unittest++/ReportAssert.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8DC1299FB70004DACAA /* ReportAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportAssert.h; path = "../Extra/Unittest++/ReportAssert.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8DD1299FB70004DACAA /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Test.cpp; path = "../Extra/Unittest++/Test.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8DE1299FB70004DACAA /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = "../Extra/Unittest++/Test.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8DF1299FB70004DACAA /* TestDetails.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDetails.cpp; path = "../Extra/Unittest++/TestDetails.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8E01299FB70004DACAA /* TestDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDetails.h; path = "../Extra/Unittest++/TestDetails.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8E11299FB70004DACAA /* TestList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestList.cpp; path = "../Extra/Unittest++/TestList.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8E21299FB70004DACAA /* TestList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestList.h; path = "../Extra/Unittest++/TestList.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8E31299FB70004DACAA /* TestMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestMacros.h; path = "../Extra/Unittest++/TestMacros.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8E41299FB70004DACAA /* TestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestReporter.cpp; path = "../Extra/Unittest++/TestReporter.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8E51299FB70004DACAA /* TestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestReporter.h; path = "../Extra/Unittest++/TestReporter.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8E61299FB70004DACAA /* TestReporterStdout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestReporterStdout.cpp; path = "../Extra/Unittest++/TestReporterStdout.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8E71299FB70004DACAA /* TestReporterStdout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestReporterStdout.h; path = "../Extra/Unittest++/TestReporterStdout.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8E81299FB70004DACAA /* TestResults.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestResults.cpp; path = "../Extra/Unittest++/TestResults.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8E91299FB70004DACAA /* TestResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestResults.h; path = "../Extra/Unittest++/TestResults.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8EA1299FB70004DACAA /* TestRunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestRunner.cpp; path = "../Extra/Unittest++/TestRunner.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8EB1299FB70004DACAA /* TestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestRunner.h; path = "../Extra/Unittest++/TestRunner.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8EC1299FB70004DACAA /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSuite.h; path = "../Extra/Unittest++/TestSuite.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8ED1299FB70004DACAA /* TimeConstraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeConstraint.cpp; path = "../Extra/Unittest++/TimeConstraint.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8EE1299FB70004DACAA /* TimeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeConstraint.h; path = "../Extra/Unittest++/TimeConstraint.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8EF1299FB70004DACAA /* TimeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeHelpers.h; path = "../Extra/Unittest++/TimeHelpers.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8F01299FB70004DACAA /* UnitTest++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UnitTest++.h"; path = "../Extra/Unittest++/UnitTest++.h"; sourceTree = SOURCE_ROOT; };
+		D90CB8F11299FB70004DACAA /* XmlTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = XmlTestReporter.cpp; path = "../Extra/Unittest++/XmlTestReporter.cpp"; sourceTree = SOURCE_ROOT; };
+		D90CB8F21299FB70004DACAA /* XmlTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlTestReporter.h; path = "../Extra/Unittest++/XmlTestReporter.h"; sourceTree = SOURCE_ROOT; };
+		D90CB944129A0015004DACAA /* IReferenceCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IReferenceCounter.h; path = ../eno/IReferenceCounter.h; sourceTree = SOURCE_ROOT; };
+		D9F019DC129AC51900CFB6E8 /* IImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IImageLoader.h; path = ../eno/IImageLoader.h; sourceTree = SOURCE_ROOT; };
+		D9F019E2129AC97200CFB6E8 /* IImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IImage.h; path = ../eno/IImage.h; sourceTree = SOURCE_ROOT; };
+		D9F019E5129ACE5200CFB6E8 /* ITexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITexture.h; path = ../eno/ITexture.h; sourceTree = SOURCE_ROOT; };
+		D9F01A11129B311E00CFB6E8 /* dimension2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dimension2d.h; path = ../eno/dimension2d.h; sourceTree = SOURCE_ROOT; };
+		D9F01A41129B6D6500CFB6E8 /* rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rectangle.h; path = ../eno/rectangle.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +171,9 @@
 		29B97314FDCFA39411CA2CEA /* eno */ = {
 			isa = PBXGroup;
 			children = (
+				D90CB86C1299FA23004DACAA /* Unittest++ */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97315FDCFA39411CA2CEA /* eno */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -124,34 +181,21 @@
 			name = eno;
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+		29B97315FDCFA39411CA2CEA /* eno */ = {
 			isa = PBXGroup;
 			children = (
-				53D0CE6B12217BC200232031 /* CDisplayNull.cpp */,
-				53D0CE6C12217BC200232031 /* CDisplayNull.h */,
-				53D0CC4C12204CE700232031 /* vector3d.cpp */,
-				53D0CC4D12204CE700232031 /* vector3d.h */,
-				537D186212197F52002B41EA /* matrix4x4.h */,
+				D98D4133129C33C3008D3697 /* core */,
+				D98D4134129C3402008D3697 /* display */,
+				D90CB944129A0015004DACAA /* IReferenceCounter.h */,
 				53CC3A91121630F600B2D092 /* eno.cpp */,
 				53CC3A92121630F600B2D092 /* eno.h */,
 				53CC3A93121630F600B2D092 /* enoConfig.h */,
-				53CC3A94121630F600B2D092 /* enoMath.cpp */,
 				53CC3A95121630F600B2D092 /* enoMath.h */,
 				53CC3A96121630F600B2D092 /* enoType.h */,
 				53CC3A99121630F600B2D092 /* testmain.cpp */,
 				256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */,
-				53D0CC701220DFCA00232031 /* vector4d.h */,
-				53D0CC711220DFCA00232031 /* vector4d.cpp */,
-				53D0CC801220E14700232031 /* vector2d.h */,
-				53D0CC811220E14700232031 /* vector2d.cpp */,
-				53D0CC8B1220E21B00232031 /* quaternion.h */,
-				53D0CC8C1220E21B00232031 /* quaternion.cpp */,
-				53D0CE7012217CB300232031 /* IDisplay.h */,
-				53D0CE7112217CB300232031 /* IDisplay.cpp */,
-				53E0FFF61222877000AC697B /* CDisplayOpenGL.h */,
-				53E0FFF71222877000AC697B /* CDisplayOpenGL.cpp */,
 			);
-			name = "Other Sources";
+			name = eno;
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -173,6 +217,95 @@
 				53D0CCB31220ED6B00232031 /* GLUT.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D90CB86C1299FA23004DACAA /* Unittest++ */ = {
+			isa = PBXGroup;
+			children = (
+				D90CB8C31299FB70004DACAA /* AssertException.cpp */,
+				D90CB8C41299FB70004DACAA /* AssertException.h */,
+				D90CB8C51299FB70004DACAA /* CheckMacros.h */,
+				D90CB8C61299FB70004DACAA /* Checks.cpp */,
+				D90CB8C71299FB70004DACAA /* Checks.h */,
+				D90CB8C81299FB70004DACAA /* Config.h */,
+				D90CB8C91299FB70004DACAA /* CurrentTest.cpp */,
+				D90CB8CA1299FB70004DACAA /* CurrentTest.h */,
+				D90CB8CB1299FB70004DACAA /* DeferredTestReporter.cpp */,
+				D90CB8CC1299FB70004DACAA /* DeferredTestReporter.h */,
+				D90CB8CD1299FB70004DACAA /* DeferredTestResult.cpp */,
+				D90CB8CE1299FB70004DACAA /* DeferredTestResult.h */,
+				D90CB8CF1299FB70004DACAA /* ExecuteTest.h */,
+				D90CB8D01299FB70004DACAA /* MemoryOutStream.cpp */,
+				D90CB8D11299FB70004DACAA /* MemoryOutStream.h */,
+				D90CB8D21299FB70004DACAA /* Posix */,
+				D90CB8DB1299FB70004DACAA /* ReportAssert.cpp */,
+				D90CB8DC1299FB70004DACAA /* ReportAssert.h */,
+				D90CB8DD1299FB70004DACAA /* Test.cpp */,
+				D90CB8DE1299FB70004DACAA /* Test.h */,
+				D90CB8DF1299FB70004DACAA /* TestDetails.cpp */,
+				D90CB8E01299FB70004DACAA /* TestDetails.h */,
+				D90CB8E11299FB70004DACAA /* TestList.cpp */,
+				D90CB8E21299FB70004DACAA /* TestList.h */,
+				D90CB8E31299FB70004DACAA /* TestMacros.h */,
+				D90CB8E41299FB70004DACAA /* TestReporter.cpp */,
+				D90CB8E51299FB70004DACAA /* TestReporter.h */,
+				D90CB8E61299FB70004DACAA /* TestReporterStdout.cpp */,
+				D90CB8E71299FB70004DACAA /* TestReporterStdout.h */,
+				D90CB8E81299FB70004DACAA /* TestResults.cpp */,
+				D90CB8E91299FB70004DACAA /* TestResults.h */,
+				D90CB8EA1299FB70004DACAA /* TestRunner.cpp */,
+				D90CB8EB1299FB70004DACAA /* TestRunner.h */,
+				D90CB8EC1299FB70004DACAA /* TestSuite.h */,
+				D90CB8ED1299FB70004DACAA /* TimeConstraint.cpp */,
+				D90CB8EE1299FB70004DACAA /* TimeConstraint.h */,
+				D90CB8EF1299FB70004DACAA /* TimeHelpers.h */,
+				D90CB8F01299FB70004DACAA /* UnitTest++.h */,
+				D90CB8F11299FB70004DACAA /* XmlTestReporter.cpp */,
+				D90CB8F21299FB70004DACAA /* XmlTestReporter.h */,
+			);
+			name = "Unittest++";
+			sourceTree = "<group>";
+		};
+		D90CB8D21299FB70004DACAA /* Posix */ = {
+			isa = PBXGroup;
+			children = (
+				D90CB8D31299FB70004DACAA /* SignalTranslator.cpp */,
+				D90CB8D51299FB70004DACAA /* SignalTranslator.h */,
+				D90CB8D71299FB70004DACAA /* TimeHelpers.cpp */,
+				D90CB8D91299FB70004DACAA /* TimeHelpers.h */,
+			);
+			name = Posix;
+			path = "../Extra/Unittest++/Posix";
+			sourceTree = SOURCE_ROOT;
+		};
+		D98D4133129C33C3008D3697 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				D9F01A41129B6D6500CFB6E8 /* rectangle.h */,
+				D9F01A11129B311E00CFB6E8 /* dimension2d.h */,
+				53D0CC701220DFCA00232031 /* vector4d.h */,
+				53D0CC801220E14700232031 /* vector2d.h */,
+				53D0CC8B1220E21B00232031 /* quaternion.h */,
+				53D0CC4D12204CE700232031 /* vector3d.h */,
+				537D186212197F52002B41EA /* matrix4x4.h */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
+		D98D4134129C3402008D3697 /* display */ = {
+			isa = PBXGroup;
+			children = (
+				53D0CE6B12217BC200232031 /* CDisplayNull.cpp */,
+				53D0CE6C12217BC200232031 /* CDisplayNull.h */,
+				53D0CE7012217CB300232031 /* IDisplay.h */,
+				53E0FFF61222877000AC697B /* CDisplayOpenGL.h */,
+				53E0FFF71222877000AC697B /* CDisplayOpenGL.cpp */,
+				D9F019DC129AC51900CFB6E8 /* IImageLoader.h */,
+				D9F019E5129ACE5200CFB6E8 /* ITexture.h */,
+				D9F019E2129AC97200CFB6E8 /* IImage.h */,
+				D90080EA129C92FF00E1E5D0 /* displayType.h */,
+			);
+			name = display;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +336,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "eno" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* eno */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,15 +372,27 @@
 			files = (
 				256AC3DA0F4B6AC300CF3369 /* enoAppDelegate.mm in Sources */,
 				53CC3A9A121630F600B2D092 /* eno.cpp in Sources */,
-				53CC3A9B121630F600B2D092 /* enoMath.cpp in Sources */,
 				53CC3A9D121630F600B2D092 /* testmain.cpp in Sources */,
-				53D0CC4E12204CE700232031 /* vector3d.cpp in Sources */,
-				53D0CC721220DFCA00232031 /* vector4d.cpp in Sources */,
-				53D0CC821220E14700232031 /* vector2d.cpp in Sources */,
-				53D0CC8D1220E21B00232031 /* quaternion.cpp in Sources */,
 				53D0CE6D12217BC200232031 /* CDisplayNull.cpp in Sources */,
-				53D0CE7212217CB300232031 /* IDisplay.cpp in Sources */,
 				53E0FFF81222877000AC697B /* CDisplayOpenGL.cpp in Sources */,
+				D90CB8F31299FB70004DACAA /* AssertException.cpp in Sources */,
+				D90CB8F41299FB70004DACAA /* Checks.cpp in Sources */,
+				D90CB8F51299FB70004DACAA /* CurrentTest.cpp in Sources */,
+				D90CB8F61299FB70004DACAA /* DeferredTestReporter.cpp in Sources */,
+				D90CB8F71299FB70004DACAA /* DeferredTestResult.cpp in Sources */,
+				D90CB8F81299FB70004DACAA /* MemoryOutStream.cpp in Sources */,
+				D90CB8F91299FB70004DACAA /* SignalTranslator.cpp in Sources */,
+				D90CB8FC1299FB70004DACAA /* TimeHelpers.cpp in Sources */,
+				D90CB8FF1299FB70004DACAA /* ReportAssert.cpp in Sources */,
+				D90CB9001299FB70004DACAA /* Test.cpp in Sources */,
+				D90CB9011299FB70004DACAA /* TestDetails.cpp in Sources */,
+				D90CB9021299FB70004DACAA /* TestList.cpp in Sources */,
+				D90CB9031299FB70004DACAA /* TestReporter.cpp in Sources */,
+				D90CB9041299FB70004DACAA /* TestReporterStdout.cpp in Sources */,
+				D90CB9051299FB70004DACAA /* TestResults.cpp in Sources */,
+				D90CB9061299FB70004DACAA /* TestRunner.cpp in Sources */,
+				D90CB9071299FB70004DACAA /* TimeConstraint.cpp in Sources */,
+				D90CB9081299FB70004DACAA /* XmlTestReporter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

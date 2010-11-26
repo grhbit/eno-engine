@@ -2,7 +2,7 @@
  *  matrix4.h
  *  eno
  *
- *  Created by 권성광 on 10. 8. 13..
+ *  Created by Gwon Seong-gwang on 10. 8. 13..
  *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
  *
  */
@@ -85,33 +85,61 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 					INIT_FILL
 				};
 			public:
-				inline explicit matrix4x4_template( _Ty* src ) { memcpy(this->M, src, sizeof(this->M));}
+				inline explicit matrix4x4_template( _Ty* src )
+				{
+					memcpy(this->M, src, sizeof(this->M));
+				}
+
 				inline matrix4x4_template(	_Ty _11, _Ty _12, _Ty _13, _Ty _14,
 										    _Ty _21, _Ty _22, _Ty _23, _Ty _24,
 										    _Ty _31, _Ty _32, _Ty _33, _Ty _34,
 										    _Ty _41, _Ty _42, _Ty _43, _Ty _44 )
 				{
-					this->m11 = _11;	this->m12 = _12;	this->m13 = _13;	this->m14 = _14;
-					this->m21 = _21;	this->m22 = _22;	this->m23 = _23;	this->m24 = _24;
-					this->m31 = _31;	this->m32 = _32;	this->m33 = _33;	this->m34 = _34;
-					this->m41 = _41;	this->m42 = _42;	this->m43 = _43;	this->m44 = _44;
+					this->m11 = _11;	this->m12 = _12;
+					this->m21 = _21;	this->m22 = _22;
+					this->m31 = _31;	this->m32 = _32;
+					this->m41 = _41;	this->m42 = _42;
+					
+					this->m13 = _13;	this->m14 = _14;
+					this->m23 = _23;	this->m24 = _24;
+					this->m33 = _33;	this->m34 = _34;
+					this->m43 = _43;	this->m44 = _44;
 				}
 				
 				inline matrix4x4_template( const matrix4x4_template & rhs )
 				{
-					this->m11 = rhs.m11;	this->m12 = rhs.m12;	this->m13 = rhs.m13;	this->m14 = rhs.m14;
-					this->m21 = rhs.m21;	this->m22 = rhs.m22;	this->m23 = rhs.m23;	this->m24 = rhs.m24;
-					this->m31 = rhs.m31;	this->m32 = rhs.m32;	this->m33 = rhs.m33;	this->m34 = rhs.m34;
-					this->m41 = rhs.m41;	this->m42 = rhs.m42;	this->m43 = rhs.m43;	this->m44 = rhs.m44;					
+					this->m11 = rhs.m11;	this->m12 = rhs.m12;
+					this->m21 = rhs.m21;	this->m22 = rhs.m22;
+					this->m31 = rhs.m31;	this->m32 = rhs.m32;
+					this->m41 = rhs.m41;	this->m42 = rhs.m42;
+					
+					this->m13 = rhs.m13;	this->m14 = rhs.m14;
+					this->m23 = rhs.m23;	this->m24 = rhs.m24;
+					this->m33 = rhs.m33;	this->m34 = rhs.m34;
+					this->m43 = rhs.m43;	this->m44 = rhs.m44;
 				}
 
 				inline matrix4x4_template( InitializeFlag initFlag = INIT_IDENTITY, _Ty fillValue = 0 );
 
-				_Ty&	operator () ( u8 row, u8 col )		{ return this->m[row][col]; }
-				_Ty		operator () ( u8 row, u8 col ) const{ return this->m[row][col]; }
+				_Ty&	operator () ( u8 row, u8 col )
+				{
+					return this->m[row][col];
+				}
+				
+				_Ty		operator () ( u8 row, u8 col ) const
+				{
+					return this->m[row][col];
+				}
 
-				operator _Ty* ()		{ return &this->M[0]; }
-				operator const _Ty* () const { return const_cast<const _Ty*>(&this->M[0]); }
+				operator _Ty* ()
+				{
+					return &this->M[0]; 
+				}
+				
+				operator const _Ty* () const
+				{
+					return const_cast<const _Ty*>(&this->M[0]);
+				}
 
 				inline matrix4x4_template operator + ( const matrix4x4_template & rhs ) const
 				{

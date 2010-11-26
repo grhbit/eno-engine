@@ -2,7 +2,7 @@
  *  vector3.h
  *  eno
  *
- *  Created by 권성광 on 10. 8. 14..
+ *  Created by Gwon Seong-gwang on 10. 8. 14..
  *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
  *
  */
@@ -45,17 +45,23 @@ ENO_ALIGNED_16
 		ENO_CLASS_TYPE_BEGIN
 
 			template<typename _Ty>
+			class vector4d_template;
+
+			template<typename _Ty>
+			class matrix4x4_template;
+
+			template<typename _Ty>
 			class vector3d_template : public struct_type::Vector3d<_Ty> {
 			public:
 				explicit vector3d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
 				vector3d_template( _Ty _x, _Ty _y, _Ty _z ) { this->x = _x; this->y = _y; this->z = _z; }
 				vector3d_template( const vector3d_template& vec ) { this->x = vec.x; this->y = vec.y; this->z = vec.z; }
 
-				_Ty& operator () ( u8 index ) { return v[index]; }
-				_Ty	operator () ( u8 index ) const { return v[index]; }
+				_Ty& operator () ( u8 index ) { return this->v[index]; }
+				_Ty	operator () ( u8 index ) const { return this->v[index]; }
 
-				operator _Ty* ()	{ return &v[0]; }
-				operator const _Ty* () const { return &v[0]; }
+				operator _Ty* ()	{ return &this->v[0]; }
+				operator const _Ty* () const { return &this->v[0]; }
 
 				inline vector3d_template operator + ( const vector3d_template& rhs )
 				{
@@ -217,7 +223,7 @@ ENO_ALIGNED_16
 
 				inline vector3d_template& minimize( const vector3d_template& rhs )
 				{
-					vector3d_template::Minimize(*this, *this, lhs);
+					vector3d_template::Minimize(*this, *this, rhs);
 					return *this;
 				}
 
@@ -296,14 +302,16 @@ ENO_ALIGNED_16
 					const vector3d_template& v1, const vector3d_template& v2, const vector3d_template& v3,
 					const vector3d_template& v4, _Ty s )
 				{
-					static matrix4x4_template fac(	0,	 1,	  0,   0,
+					static matrix4x4_template<_Ty>
+											fac(	0,	 1,	  0,   0,
 												 -0.5,	 0,	0.5,   0,
 													1,-2.5,	  2,-0.5,
 												 -0.5, 1.5,-1.5, 0.5 );
 
-					vector4d_template sV( 1, s, s*s, s*s*s );
+					vector4d_template<_Ty> sV( 1, s, s*s, s*s*s );
 
-					matrix4x4 rhs(	v1.x, v1.y, v1.z, v1.w,
+					matrix4x4_template<_Ty> rhs(	
+									v1.x, v1.y, v1.z, v1.w,
 									v2.x, v2.y, v2.z, v2.w,
 									v3.x, v3.y, v3.z, v3.w,
 									v4.x, v4.y, v4.z, v4.w );
