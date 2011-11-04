@@ -10,6 +10,79 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\eno\dimension2d.h" />
+    <ClInclude Include="..\eno\DisplayD3D9.h" />
+    <ClInclude Include="..\eno\DisplayNull.h" />
+    <ClInclude Include="..\eno\DisplayOpenGL.h" />
+    <ClInclude Include="..\eno\displayType.h" />
+    <ClInclude Include="..\eno\eno.h" />
+    <ClInclude Include="..\eno\enoConfig.h" />
+    <ClInclude Include="..\eno\enoDisplay.h" />
+    <ClInclude Include="..\eno\enoImage.h" />
+    <ClInclude Include="..\eno\enoImageLoader.h" />
+    <ClInclude Include="..\eno\enoManager.h" />
+    <ClInclude Include="..\eno\enoMath.h" />
+    <ClInclude Include="..\eno\enoReferenceCounter.h" />
+    <ClInclude Include="..\eno\enoTexture.h" />
+    <ClInclude Include="..\eno\enoType.h" />
+    <ClInclude Include="..\eno\matrix4x4.h" />
+    <ClInclude Include="..\eno\quaternion.h" />
+    <ClInclude Include="..\eno\rectangle.h" />
+    <ClInclude Include="..\eno\Texture.h" />
+    <ClInclude Include="..\eno\vector2d.h" />
+    <ClInclude Include="..\eno\vector3d.h" />
+    <ClInclude Include="..\eno\vector4d.h" />
+    <ClInclude Include="..\Extra\Unittest++\AssertException.h" />
+    <ClInclude Include="..\Extra\Unittest++\CheckMacros.h" />
+    <ClInclude Include="..\Extra\Unittest++\Checks.h" />
+    <ClInclude Include="..\Extra\Unittest++\Config.h" />
+    <ClInclude Include="..\Extra\Unittest++\CurrentTest.h" />
+    <ClInclude Include="..\Extra\Unittest++\DeferredTestReporter.h" />
+    <ClInclude Include="..\Extra\Unittest++\DeferredTestResult.h" />
+    <ClInclude Include="..\Extra\Unittest++\ExecuteTest.h" />
+    <ClInclude Include="..\Extra\Unittest++\MemoryOutStream.h" />
+    <ClInclude Include="..\Extra\Unittest++\ReportAssert.h" />
+    <ClInclude Include="..\Extra\Unittest++\Test.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestDetails.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestList.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestMacros.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestReporter.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestReporterStdout.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestResults.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestRunner.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestSuite.h" />
+    <ClInclude Include="..\Extra\Unittest++\TimeConstraint.h" />
+    <ClInclude Include="..\Extra\Unittest++\TimeHelpers.h" />
+    <ClInclude Include="..\Extra\Unittest++\UnitTest++.h" />
+    <ClInclude Include="..\Extra\Unittest++\Win32\TimeHelpers.h" />
+    <ClInclude Include="..\Extra\Unittest++\XmlTestReporter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\eno\DisplayD3D9.cpp" />
+    <ClCompile Include="..\eno\DisplayNull.cpp" />
+    <ClCompile Include="..\eno\DisplayOpenGL.cpp" />
+    <ClCompile Include="..\eno\eno.cpp" />
+    <ClCompile Include="..\eno\enoManager.cpp" />
+    <ClCompile Include="..\eno\main.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\AssertException.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\Checks.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\CurrentTest.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\DeferredTestReporter.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\DeferredTestResult.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\MemoryOutStream.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\ReportAssert.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\Test.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestDetails.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestList.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestReporter.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestReporterStdout.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestResults.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestRunner.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TimeConstraint.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\Win32\TimeHelpers.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\XmlTestReporter.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -39,19 +112,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -62,7 +135,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
@@ -77,54 +150,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\eno\CDisplayNull.cpp" />
-    <ClCompile Include="..\eno\CDisplayOpenGL.cpp" />
-    <ClCompile Include="..\eno\Core\DXUT.cpp" />
-    <ClCompile Include="..\eno\Core\DXUTenum.cpp" />
-    <ClCompile Include="..\eno\Core\DXUTmisc.cpp" />
-    <ClCompile Include="..\eno\eno.cpp" />
-    <ClCompile Include="..\eno\enoMath.cpp" />
-    <ClCompile Include="..\eno\IDisplay.cpp" />
-    <ClCompile Include="..\eno\IReferenceCounter.cpp" />
-    <ClCompile Include="..\eno\quaternion.cpp" />
-    <ClCompile Include="..\eno\testmain.cpp" />
-    <ClCompile Include="..\eno\Texture.cpp" />
-    <ClCompile Include="..\eno\TextureLoader_BMP.cpp" />
-    <ClCompile Include="..\eno\TextureManager.cpp" />
-    <ClCompile Include="..\eno\vector2d.cpp" />
-    <ClCompile Include="..\eno\vector3d.cpp">
-      <FileType>CppCode</FileType>
-    </ClCompile>
-    <ClCompile Include="..\eno\vector4d.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\eno\CDisplayNull.h" />
-    <ClInclude Include="..\eno\CDisplayOpenGL.h" />
-    <ClInclude Include="..\eno\Core\DXUT.h" />
-    <ClInclude Include="..\eno\Core\DXUTenum.h" />
-    <ClInclude Include="..\eno\Core\DXUTmisc.h" />
-    <ClInclude Include="..\eno\eno.h" />
-    <ClInclude Include="..\eno\enoConfig.h" />
-    <ClInclude Include="..\eno\enoDisplayType.h" />
-    <ClInclude Include="..\eno\enoMath.h" />
-    <ClInclude Include="..\eno\enoType.h" />
-    <ClInclude Include="..\eno\IDisplay.h" />
-    <ClInclude Include="..\eno\IReferenceCounter.h" />
-    <ClInclude Include="..\eno\ITexture.h" />
-    <ClInclude Include="..\eno\ITextureLoader.h" />
-    <ClInclude Include="..\eno\matrix4x4.h" />
-    <ClInclude Include="..\eno\quaternion.h" />
-    <ClInclude Include="..\eno\Texture.h" />
-    <ClInclude Include="..\eno\TextureLoader_BMP.h" />
-    <ClInclude Include="..\eno\TextureManager.h" />
-    <ClInclude Include="..\eno\vector2d.h" />
-    <ClInclude Include="..\eno\vector3d.h" />
-    <ClInclude Include="..\eno\vector4d.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="..\eno\Core\dpiaware.manifest" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

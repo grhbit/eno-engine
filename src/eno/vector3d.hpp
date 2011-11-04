@@ -1,25 +1,25 @@
 /*
- *  vector3.h
+ *  vector3.hpp
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 8. 14..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 
 #pragma once
-#include "enoMath.h"
-#include "vector4d.h"
-#include "matrix4x4.h"
+#include "enoMath.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
 		ENO_STRUCT_TYPE_BEGIN
 
+#pragma warning(disable : 4201)	//warning: nonstandard extension used : nameless struct/union
+
 			template<typename _Ty>
 			struct
 #ifdef ENO_COMPILED_FROM_VISUAL_STUDIO
-ENO_ALIGNED_16
+ENO_ALIGNED(16)
 #endif
 			Vector3d {
 			public:
@@ -37,15 +37,16 @@ ENO_ALIGNED_16
 				};
 			}
 #ifdef ENO_COMPILED_FROM_GNUC
-ENO_ALIGNED_16
+ENO_ALIGNED(16)
 #endif
 ;
+#pragma warning(default : 4201)
 
 		ENO_STRUCT_TYPE_END
 		ENO_CLASS_TYPE_BEGIN
 
 			template<typename _Ty>
-			class vector4d_template;
+			class vector4d_template; 
 
 			template<typename _Ty>
 			class matrix4x4_template;
@@ -447,6 +448,8 @@ ENO_ALIGNED_16
 		ENO_CLASS_TYPE_END
 	ENO_CORE_NAMESPACE_END
 ENO_NAMESPACE_END
-
+#include "vector2d.hpp"
+#include "vector4d.hpp"
+#include "matrix4x4.hpp"
 // [skop 4:24 pm Saturday. 8.14. 2010. Created.]
 

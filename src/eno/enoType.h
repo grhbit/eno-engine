@@ -3,7 +3,7 @@
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 8. 13..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 
@@ -45,11 +45,15 @@ ENO_NAMESPACE_BEGIN
 
 	//String type
 
-	typedef std::string EString;
+	typedef std::string String;
 
 	//Boolean type
 
 	typedef u32 boolean;
+
+	ENO_STRUCT_TYPE_BEGIN
+
+	ENO_STRUCT_TYPE_END
 
 ENO_NAMESPACE_END
 

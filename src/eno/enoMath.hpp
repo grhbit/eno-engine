@@ -3,7 +3,7 @@
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 8. 13..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 
@@ -123,7 +123,6 @@ ENO_NAMESPACE_BEGIN
 #endif
 
 	ENO_FUNCTION_END
-
 ENO_NAMESPACE_END
 
 // 12:22 pm. friday. 13. 8. 2010

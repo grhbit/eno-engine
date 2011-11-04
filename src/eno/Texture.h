@@ -2,25 +2,27 @@
  *  Texture.h
  *  eno
  *
- *  Created by ±Ç¼º±¤ on 10. 8. 27..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Created by Gwon Seong-gwang on 10. 8. 27..
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 
 #pragma once
-#include "ITexture.h"
+#include "enoTexture.h"
 
 ENO_NAMESPACE_BEGIN
 	ENO_DISPLAY_NAMESPACE_BEGIN
 		ENO_CLASS_TYPE_BEGIN
 			
 			class CTexture
-				: public interface_type::ITexture
+				: public interface_type::enoTexture
 			{
 			public:
 				CTexture(void) { this->data = 0; }
+				
 				/* virtual */ ~CTexture(void) { if (this->data) delete [](this->data); }
 
+			protected:
 				/* virtual */ void init(u32 width, u32 height, bool bUsedResourceManagement = true, u8* data = 0) { this->width = width; this->height = height; }
 
 				/* virtual */ u8* lock( void ) { return this->data; }

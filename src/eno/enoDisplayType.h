@@ -1,3 +1,12 @@
+/*
+ *  enoTexture.h
+ *  eno
+ *
+ *  Created by Gwon Seong-gwang on 10. 9. 10..
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
+ *
+ */
+
 #pragma once
 #include "enoType.h"
 
@@ -5,16 +14,16 @@ ENO_NAMESPACE_BEGIN
 	ENO_DISPLAY_NAMESPACE_BEGIN
 		ENO_ENUM_TYPE_BEGIN
 
-			enum EColorFMT {
-//				CLR_B1,
-//				CLR_P4,
-//				CLR_P8,
-				CLR_RGB5_15,
-				CLR_R5G6B5_16,
-				CLR_RGB8_24,
-				CLR_RGBA8_32,
-				CLR_RGBA16_64,
-				CLR_RGBA32F_128,
+			enum EColorFormat {
+				ECF_B1, //
+				ECF_P4,
+				ECF_P8,
+				ECF_RGB5,
+				ECF_R5G6B5,
+				ECF_RGB8,
+				ECF_RGBA8,
+				ECF_RGBA16,
+				ECF_RGBA32F,
 			};
 
 		ENO_ENUM_TYPE_END

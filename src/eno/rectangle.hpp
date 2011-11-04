@@ -1,9 +1,9 @@
 /*
- *  rectangle.h
+ *  rectangle.hpp
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 11. 23..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 

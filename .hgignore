@@ -27,7 +27,13 @@ Thumbs.db
 *.pdb
 *.sdf
 */ipch
+*.perspectivev3
+*.perspective
+*~.nib
+*.mode1
 *.mode1v3
 *.pbxuser
+*/xcuserdata
+*/*.xcworkspacedata
 
 syntax: regexp

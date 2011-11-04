@@ -1,25 +1,28 @@
 ﻿/*
- *  matrix4.h
+ *  matrix4.hpp
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 8. 13..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 
 #pragma once
-#include "enoMath.h"
-#include "vector3d.h"
-#include "vector4d.h"
-#include "quaternion.h"
+#include "enoMath.hpp"
+#include "vector3d.hpp"
+#include "vector4d.hpp"
+#include "quaternion.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
 		ENO_STRUCT_TYPE_BEGIN
+
+#pragma warning(disable : 4201)	//warning: nonstandard extension used : nameless struct/union
+
 			template<typename _Ty>
 			struct
 #ifdef ENO_COMPILED_FROM_VISUAL_STUDIO
-ENO_ALIGNED_16	//__declspec(align(16)) struct Matrix4x4
+ENO_ALIGNED(16)	//__declspec(align(16)) struct Matrix4x4
 #endif
 			Matrix4x4 {
 			public:
@@ -41,9 +44,10 @@ ENO_ALIGNED_16	//__declspec(align(16)) struct Matrix4x4
 				};
 			} 
 #ifdef ENO_COMPILED_FROM_GNUC
-ENO_ALIGNED_16 //}__attribute__((aligned(16)));
+ENO_ALIGNED(16) //}__attribute__((aligned(16)));
 #endif
 ;
+#pragma warning(default : 4201)
 
 		ENO_STRUCT_TYPE_END
 
@@ -714,7 +718,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				inline static matrix4x4_template MakeRotateYawPitchRoll( const vector3d_template<ftype> & vec3 )
 				{
 					matrix4x4_template tmp(INIT_NOTHING);
-					matrix4x4_template::makeRotateYawPitchRoll(tmp, vec3);
+					matrix4x4_template::MakeRotateYawPitchRoll(tmp, vec3);
 					return tmp;
 				}
 
@@ -857,7 +861,7 @@ ENO_ALIGNED_16 //}__attribute__((aligned(16)));
 				inline static bool Equals( matrix4x4_template & lhs, matrix4x4_template & rhs, _Ty error_range = 0 )
 				{
 					for ( u8 i = 0; i < 16; i++ )
-						if (equals(lhs.M[i], rhs.M[i], error_range))
+						if (eno::equals(lhs.M[i], rhs.M[i], error_range))
 							return false;
 
 					return true;

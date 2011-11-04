@@ -1,9 +1,9 @@
 /*
- *  quaternion.h
+ *  quaternion.hpp
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 8. 22..
- *  Copyright 2010 g.passcode@gmail.com. All rights reserved.
+ *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
 
@@ -15,10 +15,12 @@ ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
 		ENO_STRUCT_TYPE_BEGIN
 
+#pragma warning(disable : 4201)	//warning: nonstandard extension used : nameless struct/union
+
 			template<typename _Ty>
 			struct
 #ifdef ENO_COMPILED_FROM_VISUAL_STUDIO
-ENO_ALIGNED_16
+ENO_ALIGNED(16)
 #endif
 			Quaternion {
 			public:
@@ -36,9 +38,10 @@ ENO_ALIGNED_16
 				};
 			}
 #ifdef ENO_COMPILED_FROM_GNUC
-ENO_ALIGNED_16
+ENO_ALIGNED(16)
 #endif
 ;
+#pragma warning(default : 4201)
 
 		ENO_STRUCT_TYPE_END
 		ENO_CLASS_TYPE_BEGIN
