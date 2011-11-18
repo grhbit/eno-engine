@@ -7,15 +7,24 @@
 //
 
 #include "enoWindow.hpp"
-#include "enoDriver.h"
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN
-        ENO_STRUCT_TYPE_BEGIN
+        ENO_CLASS_TYPE_BEGIN
 
-            WindowProperty::WindowProperty(void) : winPos(0, 0), winSize(640, 480), winTitle(""), windowed(true)
-            { }
+            enoWindow::enoWindow(void)
+            {
+                loadDefault();
+            }
 
-        ENO_STRUCT_TYPE_END
+            void enoWindow::loadDefault(void)
+            {
+                position = core::position2d_template<s32>(0, 0);
+                size = core::size2d_template<s32>(800, 600);
+                title = "";
+                style = StyleDefault;
+            }
+
+        ENO_CLASS_TYPE_END
     ENO_OS_NAMESPACE_END
 ENO_NAMESPACE_END

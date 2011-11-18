@@ -8,7 +8,7 @@
  */
 
 #pragma once
-#include "enoType.h"
+#include "enoType.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_DISPLAY_NAMESPACE_BEGIN

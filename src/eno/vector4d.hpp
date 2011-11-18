@@ -9,7 +9,7 @@
 
 
 #pragma once
-#include "enoType.h"
+#include "enoType.hpp"
 #include "matrix4x4.hpp"
 
 ENO_NAMESPACE_BEGIN

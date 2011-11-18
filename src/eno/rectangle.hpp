@@ -8,7 +8,7 @@
  */
 
 #pragma once
-#include "dimension2d.h"
+#include "vector2d.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
@@ -53,7 +53,7 @@ ENO_NAMESPACE_BEGIN
 				
 				_Ty getArea( void ) const { return getWidth() * getHeight(); }
 				
-				dimension2d_template<_Ty> getDimension2d( void ) const { return dimension2d_template<_Ty>(getWidth(), getHeight()); }
+				position2d_template<_Ty> getDimension2d( void ) const { return position2d_template<_Ty>(getWidth(), getHeight()); }
 			};
 	
 		ENO_CLASS_TYPE_END

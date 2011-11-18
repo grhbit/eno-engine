@@ -7,7 +7,7 @@
  *
  */
 
-#include "enoType.h"
+#include "enoType.hpp"
 #include "enoTypeTest.h"
 
 namespace {

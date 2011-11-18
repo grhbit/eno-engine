@@ -1,5 +1,5 @@
 /*
- *  enoMath.h
+ *  enoMath.hpp
  *  eno
  *
  *  Created by Gwon Seong-gwang on 10. 8. 13..
@@ -9,7 +9,7 @@
 
 #pragma once
 #include <cmath>
-#include "enoType.h"
+#include "enoType.hpp"
 
 ENO_NAMESPACE_BEGIN
 

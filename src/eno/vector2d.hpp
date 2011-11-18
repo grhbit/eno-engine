@@ -9,7 +9,7 @@
 
 
 #pragma once
-#include "enoType.h"
+#include "enoType.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN

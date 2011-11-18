@@ -8,7 +8,7 @@
  */
 
 #pragma once
-#include "enoType.h"
+#include "enoType.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_INTERFACE_TYPE_BEGIN
@@ -41,7 +41,12 @@ ENO_NAMESPACE_BEGIN
 			: public enoReferenceCounter
 		{
 		public:
-			/* virtual */ s32 release( void ) const { if(this->enoReferenceCounter::release() == 0) delete this; return refCount(); }
+			/* virtual */ s32 release( void ) const 
+            {
+                if(this->enoReferenceCounter::release() == 0) 
+                    delete this; 
+                return refCount(); 
+            }
 		protected:
 			enoAutoPtr( void ) { }
 		};
