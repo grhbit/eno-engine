@@ -8,11 +8,12 @@
  */
 #pragma once
 
-#define ENO_MAJOR = 0
-#define ENO_MINOR = 0
-#define ENO_REVISION = 16
+extern const unsigned int eno_major;
+extern const unsigned int eno_minor;
+extern const unsigned int revision;
 
-#define ENO_VERSION "0.0.16"
+#define ENO_MAJOR eno_major
+#define ENO_MINOR eno_minor
 
 #include <iostream>
 

@@ -9,6 +9,7 @@
 
 #pragma once
 #include "size2d.hpp"
+#include "enoReferenceCounter.hpp"
 
 ENO_NAMESPACE_BEGIN
 	ENO_DISPLAY_NAMESPACE_BEGIN
@@ -16,12 +17,12 @@ ENO_NAMESPACE_BEGIN
 
 			struct displayParameter {
 			public:
-				displayParameter( void ) : windowed(true), pos(0, 0), resolution(640, 480)
+				displayParameter( void ) : windowed(false), size(0, 0), vsync(false)
 				{ }
-				
+			
 				boolean windowed;
-				core::class_type::position2d_template<u32> pos;	//if windowed is false, ignored.
-				core::class_type::size2d_template<u32> resolution;
+                core::size2d_template<s32> size;
+                boolean vsync;
 			};
 
 		ENO_STRUCT_TYPE_END

@@ -9,30 +9,44 @@
 
 #include "eno.hpp"
 #include "enoDriver.hpp"
+#include "enoApplication.hpp"
+#include "enoWindow.hpp"
 
 ENO_NAMESPACE_BEGIN
     namespace init {
         
-        InitializeError checkState(void)
+        u32 checkState(void)
         {
-            return None;
+            u32 state = None;
+            enoApplication* app = enoApplication::sharedApplication();
+            
+            if (app->getCallbackUpdate() == nullptr)
+                state |= CallbackUpdate;
+            
+            if (app->getCallbackDraw() == nullptr)
+                state |= CallbackDraw;
+            
+            return state;
         }
 
         void setCallbackDraw(void(*draw)(f32 delta))
         {
+            enoApplication::sharedApplication()->setCallbackDraw(draw);
         }
-    
+
         void setCallbackUpdate(boolean(*update)(f32 delta))
         {
+            enoApplication::sharedApplication()->setCallbackUpdate(update);
         }
-
     }
 
-    init::InitializeError run(void)
+    u32 run(void)
     {
-        init::InitializeError error = init::checkState();
+        u32 error = init::checkState();
         
         if (error == init::None) {
+            
+            enoApplication::sharedApplication()->mainLoop();
         }
         
         return error;

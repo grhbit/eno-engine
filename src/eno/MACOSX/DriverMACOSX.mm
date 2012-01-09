@@ -6,18 +6,20 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
-#import "DriverHelperMACOSX.hpp"
-#include "DriverMACOSX.hpp"
+#import "DriverMACOSX.hpp"
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN
         ENO_CLASS_TYPE_BEGIN
-
+/*
             void DriverMAXOSX::createWindow(const enoWindow& window)
             {
                 NSApplication* application = [NSApplication sharedApplication];
                 
-                AppDelegate* appdelegate = [[AppDelegate alloc] init];
+                NSRect size = NSMakeRect(0, 0, 800, 600);
+                NSString* title = [NSString stringWithCString:"eno" encoding:NSASCIIStringEncoding];
+
+                AppDelegate* appdelegate = [[AppDelegate alloc] initWithWindowProperty:size forTitle:title];
                 
                 [application setDelegate:appdelegate];
                 [application run];
@@ -29,7 +31,7 @@ ENO_NAMESPACE_BEGIN
             void DriverMAXOSX::destroyWindow(void)
             {
             }
-
+*/
         ENO_CLASS_TYPE_END
     ENO_OS_NAMESPACE_END
 ENO_NAMESPACE_END

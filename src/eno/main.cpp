@@ -10,8 +10,19 @@
 #include "Unittest++.h"
 #include "enoUnitTest.h"
 #include "eno.hpp"
+#include "enoWindow.hpp"
+#include "enoTimer.hpp"
+#include "Window_MACOSX.hpp"
+#include "enoReferenceCounter.hpp"
+#include "enoOSUtil.hpp"
+using namespace eno;
 
 int main(int, char *[])
 {
-	return UnitTest::RunAllTests();
+    os::enoWindow* window = os::enoWindow::CreateWindow();
+    while (1) {
+        
+    }
+    delete window;
+    return UnitTest::RunAllTests();
 }

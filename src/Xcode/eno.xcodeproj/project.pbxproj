@@ -11,8 +11,6 @@
 		53D0CCB01220ED4F00232031 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D0CCAF1220ED4F00232031 /* OpenGL.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		D9040C0914621B5B0028A25E /* enoWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9040C0814621B5B0028A25E /* enoWindow.cpp */; };
-		D9092AEE1464B91A00E063B9 /* DriverHelperMACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D9092AED1464B91A00E063B9 /* DriverHelperMACOSX.mm */; };
 		D90CB8F31299FB70004DACAA /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8C31299FB70004DACAA /* AssertException.cpp */; };
 		D90CB8F41299FB70004DACAA /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8C61299FB70004DACAA /* Checks.cpp */; };
 		D90CB8F51299FB70004DACAA /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8C91299FB70004DACAA /* CurrentTest.cpp */; };
@@ -31,7 +29,12 @@
 		D90CB9061299FB70004DACAA /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8EA1299FB70004DACAA /* TestRunner.cpp */; };
 		D90CB9071299FB70004DACAA /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8ED1299FB70004DACAA /* TimeConstraint.cpp */; };
 		D90CB9081299FB70004DACAA /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D90CB8F11299FB70004DACAA /* XmlTestReporter.cpp */; };
+		D926B25E1477ED79000619BA /* enoApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D926B25D1477ED79000619BA /* enoApplication.cpp */; };
 		D926E62A14769FD0004F5C53 /* enoDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D926E62914769FD0004F5C53 /* enoDriver.cpp */; };
+		D94064351493F7DE0024F681 /* OSUtil_MACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D94064341493F7DE0024F681 /* OSUtil_MACOSX.mm */; };
+		D94064371493F7DE0024F681 /* enoOSUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94064361493F7DE0024F681 /* enoOSUtil.cpp */; };
+		D941190614A4002100273551 /* enoWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D941190514A4002100273551 /* enoWindow.cpp */; };
+		D94B138F14A6118B00C1DE76 /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94B138E14A6118B00C1DE76 /* version.cpp */; };
 		D983A67114645D5700CAC4EF /* DriverMACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D983A67014645D5700CAC4EF /* DriverMACOSX.mm */; };
 		D993F7F012E83852001B4CFA /* DisplayD3D9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D993F7EF12E83852001B4CFA /* DisplayD3D9.cpp */; };
 		D993F80A12E83917001B4CFA /* DisplayOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D993F80912E83917001B4CFA /* DisplayOpenGL.cpp */; };
@@ -39,7 +42,19 @@
 		D9C630E712E6342100013457 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C630E612E6342100013457 /* main.cpp */; };
 		D9C631C612E6484200013457 /* enoTypeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C631C412E6484200013457 /* enoTypeTest.cpp */; };
 		D9F6511B12F57D41008270C7 /* ImageLoader_Bmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F6511A12F57D41008270C7 /* ImageLoader_Bmp.cpp */; };
+		D9FB4FB11486C5BB005564DD /* Window_MACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D9FB4FB01486C5BB005564DD /* Window_MACOSX.mm */; };
+		D9FBE5561478C7580032C5A9 /* enoTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9FBE5551478C7580032C5A9 /* enoTimer.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D94B138C14A610B100C1DE76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D941190814A4CF6700273551;
+			remoteInfo = version;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -56,12 +71,10 @@
 		53E0FFF61222877000AC697B /* DisplayOpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayOpenGL.h; path = ../eno/DisplayOpenGL.h; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* eno-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eno-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* eno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eno.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9040C0814621B5B0028A25E /* enoWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoWindow.cpp; path = ../eno/enoWindow.cpp; sourceTree = "<group>"; };
 		D9040C0A14621B5B0028A25E /* enoWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoWindow.hpp; path = ../eno/enoWindow.hpp; sourceTree = "<group>"; };
 		D9040C0D14621B5B0028A25E /* size2d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = size2d.hpp; path = ../eno/size2d.hpp; sourceTree = "<group>"; };
 		D9040C0F14621D020028A25E /* enoDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoDriver.hpp; path = ../eno/enoDriver.hpp; sourceTree = "<group>"; };
-		D9092AEC1464B8F900E063B9 /* DriverHelperMACOSX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DriverHelperMACOSX.hpp; path = ../eno/MACOSX/DriverHelperMACOSX.hpp; sourceTree = "<group>"; };
-		D9092AED1464B91A00E063B9 /* DriverHelperMACOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DriverHelperMACOSX.mm; path = ../eno/MACOSX/DriverHelperMACOSX.mm; sourceTree = "<group>"; };
+		D904AF4E1489CC1B00DF5EA6 /* enoRenderTarget.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoRenderTarget.hpp; path = ../eno/enoRenderTarget.hpp; sourceTree = "<group>"; };
 		D90CB8C31299FB70004DACAA /* AssertException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AssertException.cpp; path = "../Extra/Unittest++/AssertException.cpp"; sourceTree = SOURCE_ROOT; };
 		D90CB8C41299FB70004DACAA /* AssertException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssertException.h; path = "../Extra/Unittest++/AssertException.h"; sourceTree = SOURCE_ROOT; };
 		D90CB8C51299FB70004DACAA /* CheckMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckMacros.h; path = "../Extra/Unittest++/CheckMacros.h"; sourceTree = SOURCE_ROOT; };
@@ -105,7 +118,16 @@
 		D90CB8F01299FB70004DACAA /* UnitTest++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UnitTest++.h"; path = "../Extra/Unittest++/UnitTest++.h"; sourceTree = SOURCE_ROOT; };
 		D90CB8F11299FB70004DACAA /* XmlTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = XmlTestReporter.cpp; path = "../Extra/Unittest++/XmlTestReporter.cpp"; sourceTree = SOURCE_ROOT; };
 		D90CB8F21299FB70004DACAA /* XmlTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XmlTestReporter.h; path = "../Extra/Unittest++/XmlTestReporter.h"; sourceTree = SOURCE_ROOT; };
+		D926B25B1477E806000619BA /* enoApplication.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoApplication.hpp; path = ../eno/enoApplication.hpp; sourceTree = "<group>"; };
+		D926B25D1477ED79000619BA /* enoApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoApplication.cpp; path = ../eno/enoApplication.cpp; sourceTree = "<group>"; };
 		D926E62914769FD0004F5C53 /* enoDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoDriver.cpp; path = ../eno/enoDriver.cpp; sourceTree = "<group>"; };
+		D92CB7831492864E00725D57 /* enoOSUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoOSUtil.hpp; path = ../eno/enoOSUtil.hpp; sourceTree = "<group>"; };
+		D94064321493F7DE0024F681 /* OSUtil_MACOSX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = OSUtil_MACOSX.hpp; path = ../eno/OSUtil_MACOSX.hpp; sourceTree = "<group>"; };
+		D94064341493F7DE0024F681 /* OSUtil_MACOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OSUtil_MACOSX.mm; path = ../eno/OSUtil_MACOSX.mm; sourceTree = "<group>"; };
+		D94064361493F7DE0024F681 /* enoOSUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoOSUtil.cpp; path = ../eno/enoOSUtil.cpp; sourceTree = "<group>"; };
+		D941190514A4002100273551 /* enoWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoWindow.cpp; path = ../eno/enoWindow.cpp; sourceTree = "<group>"; };
+		D941A890149D25FD00B7B03A /* enoOSConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoOSConfig.hpp; path = ../eno/enoOSConfig.hpp; sourceTree = "<group>"; };
+		D94B138E14A6118B00C1DE76 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
 		D9764E0112EDEE770028EE15 /* enoDisplayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoDisplayType.h; path = ../eno/enoDisplayType.h; sourceTree = SOURCE_ROOT; };
 		D983A66E14645CF700CAC4EF /* DriverMACOSX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DriverMACOSX.hpp; path = ../eno/MACOSX/DriverMACOSX.hpp; sourceTree = "<group>"; };
 		D983A67014645D5700CAC4EF /* DriverMACOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DriverMACOSX.mm; path = ../eno/MACOSX/DriverMACOSX.mm; sourceTree = "<group>"; };
@@ -134,6 +156,10 @@
 		D9F6518512F58034008270C7 /* rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rectangle.hpp; path = ../eno/rectangle.hpp; sourceTree = SOURCE_ROOT; };
 		D9F651AA12F580D8008270C7 /* enoColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoColor.hpp; path = ../eno/enoColor.hpp; sourceTree = SOURCE_ROOT; };
 		D9F651AB12F580F0008270C7 /* enoMath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoMath.hpp; path = ../eno/enoMath.hpp; sourceTree = SOURCE_ROOT; };
+		D9FB4FAF1486C5BB005564DD /* Window_MACOSX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Window_MACOSX.hpp; path = ../eno/MACOSX/Window_MACOSX.hpp; sourceTree = "<group>"; };
+		D9FB4FB01486C5BB005564DD /* Window_MACOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Window_MACOSX.mm; path = ../eno/MACOSX/Window_MACOSX.mm; sourceTree = "<group>"; };
+		D9FBE5531478C7450032C5A9 /* enoTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoTimer.hpp; path = ../eno/enoTimer.hpp; sourceTree = "<group>"; };
+		D9FBE5551478C7580032C5A9 /* enoTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoTimer.cpp; path = ../eno/enoTimer.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +185,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53D0CCAF1220ED4F00232031 /* OpenGL.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -198,17 +225,20 @@
 		29B97315FDCFA39411CA2CEA /* eno */ = {
 			isa = PBXGroup;
 			children = (
+				D94B138E14A6118B00C1DE76 /* version.cpp */,
 				D98D4133129C33C3008D3697 /* core */,
 				D98D4134129C3402008D3697 /* display */,
 				D9C631C012E646D300013457 /* game */,
 				D993F7E012E7995A001B4CFA /* os */,
-				53CC3A91121630F600B2D092 /* eno.cpp */,
 				53CC3A92121630F600B2D092 /* eno.hpp */,
+				53CC3A91121630F600B2D092 /* eno.cpp */,
 				53CC3A93121630F600B2D092 /* enoConfig.hpp */,
 				D9F6513012F57E98008270C7 /* enoReferenceCounter.hpp */,
 				D9F651AB12F580F0008270C7 /* enoMath.hpp */,
 				53CC3A96121630F600B2D092 /* enoType.hpp */,
 				256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */,
+				D926B25B1477E806000619BA /* enoApplication.hpp */,
+				D926B25D1477ED79000619BA /* enoApplication.cpp */,
 			);
 			name = eno;
 			sourceTree = "<group>";
@@ -225,7 +255,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53D0CCAF1220ED4F00232031 /* OpenGL.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -301,6 +330,34 @@
 			path = "../Extra/Unittest++/Posix";
 			sourceTree = SOURCE_ROOT;
 		};
+		D92CB78514928B4300725D57 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D92CB78614928B5200725D57 /* macosx */,
+				D92CB7831492864E00725D57 /* enoOSUtil.hpp */,
+				D94064361493F7DE0024F681 /* enoOSUtil.cpp */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		D92CB78614928B5200725D57 /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				D94064321493F7DE0024F681 /* OSUtil_MACOSX.hpp */,
+				D94064341493F7DE0024F681 /* OSUtil_MACOSX.mm */,
+			);
+			name = macosx;
+			sourceTree = "<group>";
+		};
+		D941A88E149D25A600B7B03A /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				D9FBE5531478C7450032C5A9 /* enoTimer.hpp */,
+				D9FBE5551478C7580032C5A9 /* enoTimer.cpp */,
+			);
+			name = Timer;
+			sourceTree = "<group>";
+		};
 		D9764E2B12EE13F30028EE15 /* color */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,8 +371,6 @@
 			children = (
 				D983A66E14645CF700CAC4EF /* DriverMACOSX.hpp */,
 				D983A67014645D5700CAC4EF /* DriverMACOSX.mm */,
-				D9092AEC1464B8F900E063B9 /* DriverHelperMACOSX.hpp */,
-				D9092AED1464B91A00E063B9 /* DriverHelperMACOSX.mm */,
 			);
 			name = MACOSX;
 			sourceTree = "<group>";
@@ -344,6 +399,7 @@
 				D993F7DD12E79807001B4CFA /* Texture.h */,
 				D9F6515B12F57F12008270C7 /* enoTexture.hpp */,
 				D9764E0112EDEE770028EE15 /* enoDisplayType.h */,
+				D904AF4E1489CC1B00DF5EA6 /* enoRenderTarget.hpp */,
 			);
 			name = display;
 			sourceTree = "<group>";
@@ -351,9 +407,11 @@
 		D993F7E012E7995A001B4CFA /* os */ = {
 			isa = PBXGroup;
 			children = (
+				D92CB78514928B4300725D57 /* Util */,
 				D9040C0E14621CEA0028A25E /* Driver */,
-				D9040C0814621B5B0028A25E /* enoWindow.cpp */,
-				D9040C0A14621B5B0028A25E /* enoWindow.hpp */,
+				D9FB4FAC1486C5BB005564DD /* Window */,
+				D941A88E149D25A600B7B03A /* Timer */,
+				D941A890149D25FD00B7B03A /* enoOSConfig.hpp */,
 			);
 			name = os;
 			sourceTree = "<group>";
@@ -425,7 +483,43 @@
 			name = game;
 			sourceTree = "<group>";
 		};
+		D9FB4FAC1486C5BB005564DD /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				D9FB4FAE1486C5BB005564DD /* MAXOSX */,
+				D9040C0A14621B5B0028A25E /* enoWindow.hpp */,
+				D941190514A4002100273551 /* enoWindow.cpp */,
+			);
+			name = Window;
+			sourceTree = "<group>";
+		};
+		D9FB4FAE1486C5BB005564DD /* MAXOSX */ = {
+			isa = PBXGroup;
+			children = (
+				D9FB4FAF1486C5BB005564DD /* Window_MACOSX.hpp */,
+				D9FB4FB01486C5BB005564DD /* Window_MACOSX.mm */,
+			);
+			name = MAXOSX;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		D941190814A4CF6700273551 /* version */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = version.rb;
+			buildConfigurationList = D941190914A4CF6700273551 /* Build configuration list for PBXLegacyTarget "version" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/ruby;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = version;
+			passBuildSettingsInEnvironment = 1;
+			productName = version;
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		8D1107260486CEB800E47090 /* eno */ = {
@@ -439,6 +533,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D94B138D14A610B100C1DE76 /* PBXTargetDependency */,
 			);
 			name = eno;
 			productInstallPath = "$(HOME)/Applications";
@@ -469,6 +564,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* eno */,
+				D941190814A4CF6700273551 /* version */,
 			);
 		};
 /* End PBXProject section */
@@ -514,14 +610,27 @@
 				D993F80A12E83917001B4CFA /* DisplayOpenGL.cpp in Sources */,
 				D993F80D12E8398D001B4CFA /* DisplayNull.cpp in Sources */,
 				D9F6511B12F57D41008270C7 /* ImageLoader_Bmp.cpp in Sources */,
-				D9040C0914621B5B0028A25E /* enoWindow.cpp in Sources */,
 				D983A67114645D5700CAC4EF /* DriverMACOSX.mm in Sources */,
-				D9092AEE1464B91A00E063B9 /* DriverHelperMACOSX.mm in Sources */,
 				D926E62A14769FD0004F5C53 /* enoDriver.cpp in Sources */,
+				D926B25E1477ED79000619BA /* enoApplication.cpp in Sources */,
+				D9FBE5561478C7580032C5A9 /* enoTimer.cpp in Sources */,
+				D9FB4FB11486C5BB005564DD /* Window_MACOSX.mm in Sources */,
+				D94064351493F7DE0024F681 /* OSUtil_MACOSX.mm in Sources */,
+				D94064371493F7DE0024F681 /* enoOSUtil.cpp in Sources */,
+				D941190614A4002100273551 /* enoWindow.cpp in Sources */,
+				D94B138F14A6118B00C1DE76 /* version.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D94B138D14A610B100C1DE76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D941190814A4CF6700273551 /* version */;
+			targetProxy = D94B138C14A610B100C1DE76 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -598,6 +707,50 @@
 			};
 			name = Release;
 		};
+		D941190A14A4CF6700273551 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D941190B14A4CF6700273551 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -615,6 +768,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D941190914A4CF6700273551 /* Build configuration list for PBXLegacyTarget "version" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D941190A14A4CF6700273551 /* Debug */,
+				D941190B14A4CF6700273551 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

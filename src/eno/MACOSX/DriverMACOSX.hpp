@@ -21,8 +21,6 @@ ENO_NAMESPACE_BEGIN
                 /* virtual */ ~DriverMAXOSX(void) {}
 
             protected:
-                /* virtual */ void createWindow(const enoWindow&);
-                /* virtual */ void destroyWindow(void);
             };
 
         ENO_CLASS_TYPE_END

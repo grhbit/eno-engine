@@ -1,0 +1,46 @@
+# mercurial hg
+*.orig
+*.swp
+
+# operation system file
+.DS_Store
+.Thumbs.db
+*.exe
+*.lib
+*.dll
+
+# Visual Studio
+*.sdf
+*.pdb
+*.ilk
+*.tlog
+*.log
+*.opensdf
+*.dep
+*/Release/
+*/Debug/
+*/ipch/
+*.LinkFileList
+
+# Xcode
+*.perspective
+*.perspectivev3
+*.pbxuser
+*/*.xcworkspacedata
+*/*.xcworkspace/
+*.pbxbtree
+*.pbxsymbols
+*/strings.pbxstrings/control
+*.app
+*.o
+*/build/
+*.mode1
+*.mode1v3
+*xcodeproj/
+
+# etc
+*.header
+*.hmap
+*.dat
+*.tmp
+

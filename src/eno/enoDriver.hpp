@@ -17,11 +17,9 @@ ENO_NAMESPACE_BEGIN
             interface enoDriver
             {
             public:
-            protected:
+//            protected:
                 enoDriver(void) { }
                 virtual ~enoDriver(void) { }
-                virtual void createWindow(const enoWindow&) = 0;
-                virtual void destroyWindow(void) = 0;
             private:
                 static enoDriver* instance;
             public:

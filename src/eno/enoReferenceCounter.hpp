@@ -12,11 +12,19 @@
 
 ENO_NAMESPACE_BEGIN
 	ENO_INTERFACE_TYPE_BEGIN
+
+        interface Sealed
+        {
+        protected:
+            Sealed(void) { }
+        };
+
+#define Sealed private virtual Sealed
 		
 		interface enoReferenceCounter
 		{
 		protected:
-			enoReferenceCounter(void) { retain(); }
+			enoReferenceCounter(void):ref_count(0) { retain(); }
 
 			virtual ~enoReferenceCounter(void) { release(); }
 
@@ -25,9 +33,9 @@ ENO_NAMESPACE_BEGIN
 			enoReferenceCounter& operator = (const enoReferenceCounter& rhs) { this->ref_count = rhs.retain(); return *this; }
 
 		public:
-			virtual s32 retain( void ) const { return ref_count++; }
+			virtual s32 retain( void ) const { return ++ref_count; }
 
-			virtual s32 release( void ) const { return ref_count--; }
+			virtual s32 release( void ) const { return --ref_count; }
 
 			inline s32 refCount( void ) const { return ref_count; }
 
@@ -35,23 +43,60 @@ ENO_NAMESPACE_BEGIN
 			mutable s32 ref_count;
 		};
 
-		typedef enoReferenceCounter IReferenceCounter;
-
-		interface enoAutoPtr
-			: public enoReferenceCounter
+        template <typename _Ty>
+		interface enoAutoPtr : public enoReferenceCounter, Sealed
 		{
 		public:
-			/* virtual */ s32 release( void ) const 
+            /* virtual */ s32 release( void ) const 
             {
-                if(this->enoReferenceCounter::release() == 0) 
-                    delete this; 
-                return refCount(); 
+                std::cout<<this->enoReferenceCounter::release()<<std::endl;
+                if(this->enoReferenceCounter::refCount() == 0) 
+                {
+                    return 0;
+                }
+                return refCount();
             }
-		protected:
-			enoAutoPtr( void ) { }
+		public:
+            enoAutoPtr( boolean delayCreation )
+                :instance(nullptr)
+            {
+                if (!delayCreation) {
+                    instance = new _Ty;
+                }
+            }
+
+            ~enoAutoPtr( void ) { release(); }
+        private:
+            mutable _Ty* instance;
 		};
 
-		typedef enoAutoPtr IAutoPtr;
-		
+        template<typename _Ty>
+        class enoAutoPtr_ : public enoReferenceCounter, Sealed
+        {
+        public:
+            /* virtual */ s32 release( void ) const
+            {
+                if (this->enoReferenceCounter::refCount() == 0)
+                    return 0;
+                
+                return refCount();
+            }
+        public:
+            enoAutoPtr_( boolean delayCreation, _Ty* (*createFunction)(void), void (*destroyFunction)(void) )
+            :instance(nullptr), create(createFunction), destroy(destroyFunction)
+            {
+                if (!delayCreation) {
+                    instance = create();
+                }
+            }
+            
+            ~enoAutoPtr_( void ) { release(); }
+
+        private:
+            mutable _Ty* instance;
+            _Ty* (*create)();
+            void (*destroy)();
+        };
+
 	ENO_INTERFACE_TYPE_END
 ENO_NAMESPACE_END

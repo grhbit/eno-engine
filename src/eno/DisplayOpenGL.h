@@ -12,18 +12,18 @@
 ENO_NAMESPACE_BEGIN
 	ENO_DISPLAY_NAMESPACE_BEGIN
 		ENO_CLASS_TYPE_BEGIN
-	
+
 			class DisplayOpenGL
 				: public DisplayNull
 			{
 			public:
 				virtual ~DisplayOpenGL( void ) { }
-				
-				DisplayOpenGL( struct_type::displayParameter& param ):DisplayNull(param) { }
 
+				DisplayOpenGL( struct_type::displayParameter& param ):DisplayNull(param) { }
+//
 			protected:
 				/* virtual */ void Create( void );
-				
+
 				/* virtual */ void Destroy( void );
 			};
 
