@@ -6,7 +6,6 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
-<<<<<<< HEAD
 #pragma once
 #include "enoConfig.hpp"
 #include "enoType.hpp"
@@ -31,11 +30,3 @@ ENO_NAMESPACE_BEGIN
         ENO_CLASS_TYPE_END
     ENO_OS_NAMESPACE_END
 ENO_NAMESPACE_END
-=======
-#ifndef eno_enoTimer_hpp
-#define eno_enoTimer_hpp
-
-
-
-#endif
->>>>>>> googlecode/master

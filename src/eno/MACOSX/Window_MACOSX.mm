@@ -1,16 +1,11 @@
 //
-<<<<<<< HEAD
 //  Window_MACOSX.mm
-=======
-//  WindowMACOSX.mm
->>>>>>> googlecode/master
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 11. 30..
-//  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011??g.passcode@gmail.com . All rights reserved.
 //
 
-<<<<<<< HEAD
 #import <Cocoa/Cocoa.h>
 #import <OpenGL/OpenGL.h>
 
@@ -202,7 +197,3 @@ ENO_NAMESPACE_BEGIN
         ENO_CLASS_TYPE_END
     ENO_OS_NAMESPACE_END
 ENO_NAMESPACE_END
-
-=======
-#include <iostream>
->>>>>>> googlecode/master

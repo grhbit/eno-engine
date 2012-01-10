@@ -6,7 +6,6 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
-<<<<<<< HEAD
 #pragma once
 #include "enoType.hpp"
 #include "enoWindow.hpp"
@@ -43,11 +42,3 @@ ENO_NAMESPACE_BEGIN
 
     ENO_CLASS_TYPE_END
 ENO_NAMESPACE_END
-=======
-#ifndef eno_enoApplication_hpp
-#define eno_enoApplication_hpp
-
-
-
-#endif
->>>>>>> googlecode/master
