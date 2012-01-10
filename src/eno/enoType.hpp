@@ -49,7 +49,7 @@ ENO_NAMESPACE_BEGIN
 
 	//Boolean type
 
-	typedef u32 boolean;
+	typedef u8 boolean;
 
 	ENO_STRUCT_TYPE_BEGIN
 

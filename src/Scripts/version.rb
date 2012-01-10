@@ -27,15 +27,18 @@ def isLinux?
 	RUBY_PLATFORM.downcase.include?("linux")
 end
 
+Dir.chdir("../Scripts/")
 destfilename = "version.cpp"
 tempfilename = "version.cpp.tmp"
 time = Time.now
 major, minor, revision = 0, 0, 0
 
 if isWindows?
-	localtime = time.localtime.to_s
-else
-	localtime = `date`
+	localtime = time.localtime.to_s + "\"\n// mswin-Visual Studio\n"
+elsif isMac?
+	localtime = `date` + "\"\n// darwin-Xcode\n"
+elsif isLinux?
+	localtime = `date` + "\"\n// linux\n"
 end
 
 localtime.strip!
@@ -55,7 +58,7 @@ tempfile.write 	"// Version Info\n" +
 				"const unsigned int eno_minor = " + minor.to_s + ";\n" +
 				"const unsigned int revision = " + revision.to_s + ";\n" +
 				"const char *const date = \"" + time.gmtime.to_s + "\";\n" +
-				"//          local time = \"" + localtime.to_s + "\""
+				"//          local time = \"" + localtime.to_s
 tempfile.close
 
 File.rename(tempfilename, destfilename)
@@ -70,4 +73,5 @@ File.rename(tempfilename, destfilename)
 #!const unsigned int revision = 0
 #!const char *const date = "Sat Dec 24 13:06:15 UTC 2011"
 #!//          Local Time = "Sat Dec 24 22:06:15 KST 2011"
+#!// darwin-Xcode
 #!	-	-	-	-	-	-

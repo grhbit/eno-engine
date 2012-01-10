@@ -13,6 +13,9 @@
 ENO_NAMESPACE_BEGIN
 	ENO_INTERFACE_TYPE_BEGIN
 
+#ifdef Sealed
+#undef Sealed
+#endif
         interface Sealed
         {
         protected:
@@ -49,7 +52,6 @@ ENO_NAMESPACE_BEGIN
 		public:
             /* virtual */ s32 release( void ) const 
             {
-                std::cout<<this->enoReferenceCounter::release()<<std::endl;
                 if(this->enoReferenceCounter::refCount() == 0) 
                 {
                     return 0;

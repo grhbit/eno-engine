@@ -8,7 +8,11 @@
 
 #include "enoOSConfig.hpp"
 #include "enoOSUtil.hpp"
+#ifdef ENO_MACOSX_DRIVER
 #include "OSUtil_MACOSX.hpp"
+#else if ENO_WINDOWS_DRIVER
+#include "Windows/OSUtil_Windows.hpp"
+#endif
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN

@@ -25,29 +25,11 @@
     <Filter Include="Unittest++">
       <UniqueIdentifier>{0c5155ad-3c07-400e-b368-ab1c910bc814}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\eno\os\Windows">
+      <UniqueIdentifier>{76bb64b7-d646-45e3-949a-79254f4ce481}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\eno\dimension2d.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\matrix4x4.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\quaternion.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\rectangle.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\vector2d.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\vector3d.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\vector4d.h">
-      <Filter>Source\eno\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extra\Unittest++\Win32\TimeHelpers.h">
       <Filter>Unittest++</Filter>
     </ClInclude>
@@ -123,9 +105,6 @@
     <ClInclude Include="..\eno\DisplayOpenGL.h">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\displayType.h">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
     <ClInclude Include="..\eno\DisplayD3D9.h">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
@@ -135,35 +114,89 @@
     <ClInclude Include="..\eno\enoDisplay.h">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoTexture.h">
+    <ClInclude Include="..\eno\eno.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoConfig.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoMath.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoReferenceCounter.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoType.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoImage.hpp">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\Texture.h">
+    <ClInclude Include="..\eno\enoImageLoader.hpp">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoImage.h">
+    <ClInclude Include="..\eno\quaternion.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\rectangle.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\size2d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector2d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector3d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector4d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\matrix4x4.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoApplication.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoColor.hpp">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoImageLoader.h">
+    <ClInclude Include="..\eno\enoDisplayType.h">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoManager.h">
-      <Filter>Source\eno\game</Filter>
+    <ClInclude Include="..\eno\enoDriver.hpp">
+      <Filter>Source\eno\os</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoType.h">
-      <Filter>Source\eno</Filter>
+    <ClInclude Include="..\eno\enoOSConfig.hpp">
+      <Filter>Source\eno\os</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\eno.h">
-      <Filter>Source\eno</Filter>
+    <ClInclude Include="..\eno\enoOSUtil.hpp">
+      <Filter>Source\eno\os</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoConfig.h">
-      <Filter>Source\eno</Filter>
+    <ClInclude Include="..\eno\enoRenderTarget.hpp">
+      <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoMath.h">
-      <Filter>Source\eno</Filter>
+    <ClInclude Include="..\eno\enoTexture.hpp">
+      <Filter>Source\eno\display</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoReferenceCounter.h">
-      <Filter>Source\eno</Filter>
+    <ClInclude Include="..\eno\enoTimer.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoTypeTest.h">
+      <Filter>Source\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoUnitTest.h">
+      <Filter>Source\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoWindow.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\Windows\OSUtil_Windows.hpp">
+      <Filter>Source\eno\os\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\Windows\Window_Windows.hpp">
+      <Filter>Source\eno\os\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,11 +263,29 @@
     <ClCompile Include="..\eno\DisplayNull.cpp">
       <Filter>Source\eno\display</Filter>
     </ClCompile>
-    <ClCompile Include="..\eno\enoManager.cpp">
-      <Filter>Source\eno\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\eno\eno.cpp">
       <Filter>Source\eno</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Scripts\version.cpp">
+      <Filter>Source\eno</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoApplication.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoDriver.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoOSUtil.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoTimer.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoWindow.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\Windows\Window_Windows.cpp">
+      <Filter>Source\eno\os\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

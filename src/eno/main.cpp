@@ -12,17 +12,17 @@
 #include "eno.hpp"
 #include "enoWindow.hpp"
 #include "enoTimer.hpp"
-#include "Window_MACOSX.hpp"
-#include "enoReferenceCounter.hpp"
-#include "enoOSUtil.hpp"
 using namespace eno;
 
 int main(int, char *[])
 {
-    os::enoWindow* window = os::enoWindow::CreateWindow();
-    while (1) {
-        
+    os::enoTimer timer;
+
+    while (1)
+    {
+        std::cout<<timer.delta()<<std::endl;
     }
-    delete window;
+    
+
     return UnitTest::RunAllTests();
 }

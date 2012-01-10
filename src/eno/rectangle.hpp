@@ -14,6 +14,8 @@ ENO_NAMESPACE_BEGIN
 	ENO_CORE_NAMESPACE_BEGIN
 		ENO_STRUCT_TYPE_BEGIN
 
+#pragma warning(disable : 4201)
+
 		template<typename _Ty>
 		struct Rectangle {
 		public:

@@ -8,7 +8,11 @@
 
 #include "enoWindow.hpp"
 #include "enoOSConfig.hpp"
+#if defined (ENO_MACOSX_DRIVER)
 #include "Window_MACOSX.hpp"
+#elif defined (ENO_WINDOWS_DRIVER)
+#include "Windows/Window_Windows.hpp"
+#endif
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN

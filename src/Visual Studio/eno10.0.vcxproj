@@ -11,28 +11,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\eno\dimension2d.h" />
     <ClInclude Include="..\eno\DisplayD3D9.h" />
     <ClInclude Include="..\eno\DisplayNull.h" />
     <ClInclude Include="..\eno\DisplayOpenGL.h" />
-    <ClInclude Include="..\eno\displayType.h" />
-    <ClInclude Include="..\eno\eno.h" />
-    <ClInclude Include="..\eno\enoConfig.h" />
+    <ClInclude Include="..\eno\eno.hpp" />
+    <ClInclude Include="..\eno\enoApplication.hpp" />
+    <ClInclude Include="..\eno\enoColor.hpp" />
+    <ClInclude Include="..\eno\enoConfig.hpp" />
     <ClInclude Include="..\eno\enoDisplay.h" />
-    <ClInclude Include="..\eno\enoImage.h" />
-    <ClInclude Include="..\eno\enoImageLoader.h" />
-    <ClInclude Include="..\eno\enoManager.h" />
-    <ClInclude Include="..\eno\enoMath.h" />
-    <ClInclude Include="..\eno\enoReferenceCounter.h" />
-    <ClInclude Include="..\eno\enoTexture.h" />
-    <ClInclude Include="..\eno\enoType.h" />
-    <ClInclude Include="..\eno\matrix4x4.h" />
-    <ClInclude Include="..\eno\quaternion.h" />
-    <ClInclude Include="..\eno\rectangle.h" />
-    <ClInclude Include="..\eno\Texture.h" />
-    <ClInclude Include="..\eno\vector2d.h" />
-    <ClInclude Include="..\eno\vector3d.h" />
-    <ClInclude Include="..\eno\vector4d.h" />
+    <ClInclude Include="..\eno\enoDisplayType.h" />
+    <ClInclude Include="..\eno\enoDriver.hpp" />
+    <ClInclude Include="..\eno\enoImage.hpp" />
+    <ClInclude Include="..\eno\enoImageLoader.hpp" />
+    <ClInclude Include="..\eno\enoMath.hpp" />
+    <ClInclude Include="..\eno\enoOSConfig.hpp" />
+    <ClInclude Include="..\eno\enoOSUtil.hpp" />
+    <ClInclude Include="..\eno\enoReferenceCounter.hpp" />
+    <ClInclude Include="..\eno\enoRenderTarget.hpp" />
+    <ClInclude Include="..\eno\enoTexture.hpp" />
+    <ClInclude Include="..\eno\enoTimer.hpp" />
+    <ClInclude Include="..\eno\enoType.hpp" />
+    <ClInclude Include="..\eno\enoTypeTest.h" />
+    <ClInclude Include="..\eno\enoUnitTest.h" />
+    <ClInclude Include="..\eno\enoWindow.hpp" />
+    <ClInclude Include="..\eno\matrix4x4.hpp" />
+    <ClInclude Include="..\eno\quaternion.hpp" />
+    <ClInclude Include="..\eno\rectangle.hpp" />
+    <ClInclude Include="..\eno\size2d.hpp" />
+    <ClInclude Include="..\eno\vector2d.hpp" />
+    <ClInclude Include="..\eno\vector3d.hpp" />
+    <ClInclude Include="..\eno\vector4d.hpp" />
+    <ClInclude Include="..\eno\Windows\OSUtil_Windows.hpp" />
+    <ClInclude Include="..\eno\Windows\Window_Windows.hpp" />
     <ClInclude Include="..\Extra\Unittest++\AssertException.h" />
     <ClInclude Include="..\Extra\Unittest++\CheckMacros.h" />
     <ClInclude Include="..\Extra\Unittest++\Checks.h" />
@@ -63,8 +73,13 @@
     <ClCompile Include="..\eno\DisplayNull.cpp" />
     <ClCompile Include="..\eno\DisplayOpenGL.cpp" />
     <ClCompile Include="..\eno\eno.cpp" />
-    <ClCompile Include="..\eno\enoManager.cpp" />
+    <ClCompile Include="..\eno\enoApplication.cpp" />
+    <ClCompile Include="..\eno\enoDriver.cpp" />
+    <ClCompile Include="..\eno\enoOSUtil.cpp" />
+    <ClCompile Include="..\eno\enoTimer.cpp" />
+    <ClCompile Include="..\eno\enoWindow.cpp" />
     <ClCompile Include="..\eno\main.cpp" />
+    <ClCompile Include="..\eno\Windows\Window_Windows.cpp" />
     <ClCompile Include="..\Extra\Unittest++\AssertException.cpp" />
     <ClCompile Include="..\Extra\Unittest++\Checks.cpp" />
     <ClCompile Include="..\Extra\Unittest++\CurrentTest.cpp" />
@@ -82,6 +97,7 @@
     <ClCompile Include="..\Extra\Unittest++\TimeConstraint.cpp" />
     <ClCompile Include="..\Extra\Unittest++\Win32\TimeHelpers.cpp" />
     <ClCompile Include="..\Extra\Unittest++\XmlTestReporter.cpp" />
+    <ClCompile Include="..\Scripts\version.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}</ProjectGuid>
@@ -127,11 +143,19 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\eno;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>ruby.exe -w ..\Scripts\version.rb</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>ruby version control script</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -142,9 +166,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>NotSet</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>

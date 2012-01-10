@@ -56,7 +56,7 @@ extern const unsigned int revision;
 #define __long_aligned __attribute__((aligned((sizeof(long)))))
 #endif
 
-#ifndef interface
+#if !defined(interface)
 #define interface struct
 #endif
 

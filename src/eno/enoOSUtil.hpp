@@ -18,7 +18,7 @@ ENO_NAMESPACE_BEGIN
             {
             public:
                 void init( void );
-            private:
+            protected:
                 enoOSUtil( void );
             public:
                 static enoOSUtil* getInstance( void );

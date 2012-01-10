@@ -24,6 +24,7 @@ ENO_NAMESPACE_BEGIN
                 ftype delta(void) const;
             private:
                 u64 time;
+                static void SetupTimer(void);
             };
 
         ENO_CLASS_TYPE_END

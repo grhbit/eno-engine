@@ -7,7 +7,9 @@
 //
 
 #include "enoDriver.hpp"
+#ifdef ENO_MACOSX_DRIVER
 #include "DriverMACOSX.hpp"
+#endif
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN

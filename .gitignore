@@ -19,8 +19,11 @@
 *.dep
 */Release/
 */Debug/
-*/ipch/
 *.LinkFileList
+src/Visual Studio/Debug/
+src/Visual Studio/Release/
+src/Visual Studio/ipch/
+!*ruby*
 
 # Xcode
 *.perspective
