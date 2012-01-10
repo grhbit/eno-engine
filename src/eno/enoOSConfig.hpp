@@ -6,6 +6,7 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
+<<<<<<< HEAD
 #pragma once
 #include "enoConfig.hpp"
 
@@ -20,3 +21,11 @@
 #define Window Window_MACOSX
 
 #endif
+=======
+#ifndef eno_enoOSConfig_hpp
+#define eno_enoOSConfig_hpp
+
+
+
+#endif
+>>>>>>> googlecode/master

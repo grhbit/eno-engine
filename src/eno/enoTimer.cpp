@@ -6,6 +6,7 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
+<<<<<<< HEAD
 #include "enoTimer.hpp"
 
 #if defined (ENO_MACOSX_PLATFORM)
@@ -69,3 +70,6 @@ ENO_NAMESPACE_BEGIN
         ENO_CLASS_TYPE_END
     ENO_OS_NAMESPACE_END
 ENO_NAMESPACE_END
+=======
+#include <iostream>
+>>>>>>> googlecode/master

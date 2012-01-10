@@ -6,6 +6,7 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
+<<<<<<< HEAD
 #include "enoWindow.hpp"
 #include "enoOSConfig.hpp"
 #if defined (ENO_MACOSX_DRIVER)
@@ -26,3 +27,6 @@ ENO_NAMESPACE_BEGIN
         ENO_INTERFACE_TYPE_END
     ENO_OS_NAMESPACE_END
 ENO_NAMESPACE_END
+=======
+#include <iostream>
+>>>>>>> googlecode/master
