@@ -7,8 +7,7 @@
 //
 
 #pragma once
-#include "size2d.hpp"
-#include "rectangle.hpp"
+#include "enoApplication.hpp"
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN
@@ -18,7 +17,7 @@ ENO_NAMESPACE_BEGIN
             public:
                 virtual ~enoWindow(void) { }
             public:
-                static enoWindow* CreateWindow(void);
+                static enoWindow* BuildWindow( const enoWindowProperty& );
             };
 
         ENO_INTERFACE_TYPE_END

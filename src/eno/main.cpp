@@ -10,19 +10,19 @@
 #include "Unittest++.h"
 #include "enoUnitTest.h"
 #include "eno.hpp"
+#include "enoApplication.hpp"
 #include "enoWindow.hpp"
 #include "enoTimer.hpp"
 using namespace eno;
 
 int main(int, char *[])
 {
-    os::enoTimer timer;
+    enoWindowProperty property;
+    property.Width = 800;
+    property.Height = 600;
+    os::enoWindow* window = os::enoWindow::BuildWindow(property);
 
-    while (1)
-    {
-        std::cout<<timer.delta()<<std::endl;
-    }
-    
 
+    delete window;
     return UnitTest::RunAllTests();
 }

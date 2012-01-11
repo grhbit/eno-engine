@@ -18,7 +18,7 @@ ENO_NAMESPACE_BEGIN
             class Window_Windows : public enoWindow
             {
             public:
-                Window_Windows( void );
+                Window_Windows( const enoWindowProperty& );
                 /* virtual */ ~Window_Windows( void );
             private:
                 AppDelegate* delegate;

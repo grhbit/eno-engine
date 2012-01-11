@@ -18,9 +18,9 @@ ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN
         ENO_INTERFACE_TYPE_BEGIN
 
-            enoWindow* enoWindow::CreateWindow(void)
+            enoWindow* enoWindow::BuildWindow( const enoWindowProperty& property )
             {
-                return new Window;
+                return new Window(property);
             }
 
         ENO_INTERFACE_TYPE_END

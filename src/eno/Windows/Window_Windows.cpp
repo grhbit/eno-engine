@@ -9,6 +9,11 @@
 #include "Window_Windows.hpp"
 #include <Windows.h>
 #include <tchar.h>
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
+#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "glu32.lib")
 
 ENO_NAMESPACE_BEGIN
     ENO_OS_NAMESPACE_BEGIN
@@ -23,15 +28,20 @@ ENO_NAMESPACE_BEGIN
 
                 void initWindow( void );
                 void closeWindow( void );
+
+                void setWindowProperty( const enoWindowProperty& );
               private:
                   LPTSTR lpszClass;
                   HWND hWnd;
+                  HDC hDC;
+                  HGLRC hRC;
                   HINSTANCE hInstance;
+                  enoWindowProperty Property;
 
                   static LRESULT CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );
             };
 
-            AppDelegate::AppDelegate( void ) : lpszClass(_T("eno")), hWnd(NULL), hInstance(NULL)
+            AppDelegate::AppDelegate( void ) : lpszClass(_T("eno")), hWnd(NULL), hDC(NULL), hRC(NULL), hInstance(NULL)
             {
             }
 
@@ -54,26 +64,105 @@ ENO_NAMESPACE_BEGIN
             void AppDelegate::initWindow( void )
             {
                 hInstance = GetModuleHandle(NULL);
+
+                RECT rect = { 0, 0, Property.Width, Property.Height };
+                DWORD dwStyle = 0;
+                DWORD dwExStyle = 0;
+
                 WNDCLASS WndClass;
-                
                 ZeroMemory(&WndClass, sizeof(WNDCLASS));
-                WndClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
                 WndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
                 WndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
                 WndClass.hInstance = hInstance;
                 WndClass.lpfnWndProc = AppDelegate::WndProc;
                 WndClass.lpszClassName = lpszClass;
-                WndClass.lpszMenuName = NULL;
                 WndClass.style = CS_HREDRAW|CS_VREDRAW|CS_OWNDC;
                 RegisterClass(&WndClass);
 
-                hWnd = CreateWindow(lpszClass, lpszClass, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, (HMENU)NULL, hInstance, NULL);
-                ShowWindow(hWnd,SW_SHOW);
-                UpdateWindow(hWnd);
+                if (Property.Fullscreen)
+                {
+                    DEVMODE dmScreenSettings;
+                    ZeroMemory(&dmScreenSettings, sizeof(DEVMODE));
+
+                    dmScreenSettings.dmSize = sizeof(dmScreenSettings);
+                    dmScreenSettings.dmPelsWidth = Property.Width;
+                    dmScreenSettings.dmPelsHeight = Property.Height;
+                    dmScreenSettings.dmBitsPerPel = 32;
+                    dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PAPERWIDTH | DM_PELSHEIGHT;
+
+                    if (ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+                        Property.Fullscreen = false;
+                    else
+                    {
+                        dwExStyle = WS_EX_APPWINDOW;
+                        dwStyle = WS_POPUP;
+                        ShowCursor(FALSE);
+                    }
+                }
+                else
+                {
+                    dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+                    dwStyle = WS_OVERLAPPEDWINDOW;
+                }
+
+                AdjustWindowRectEx(&rect, dwStyle, FALSE, dwExStyle);
                 
-                /*
-                TODO : Initialize OpenGL
-                */
+
+                hWnd = CreateWindowEx(dwExStyle, lpszClass, Property.Title.c_str(),
+                    dwStyle | WS_CLIPSIBLINGS | WS_CLIPCHILDREN,
+                    0, 0,
+                    rect.right - rect.left, rect.bottom - rect.top,
+                    NULL, NULL, hInstance, NULL);
+
+                static PIXELFORMATDESCRIPTOR pfd = 
+                {
+                    sizeof(PIXELFORMATDESCRIPTOR),
+                    1,
+                    PFD_DRAW_TO_WINDOW |
+                    PFD_SUPPORT_OPENGL |
+                    PFD_DOUBLEBUFFER,
+                    PFD_TYPE_RGBA,
+                    32,
+                    0, 0, 0, 0, 0, 0,
+                    0,
+                    0,
+                    0,
+                    0, 0, 0, 0,
+                    32,
+                    0,
+                    0,
+                    PFD_MAIN_PLANE,
+                    0,
+                    0, 0, 0
+                };
+
+                GLuint PixelFormat = 0;
+                hDC = GetDC(hWnd);
+                PixelFormat = ChoosePixelFormat(hDC, &pfd);
+                SetPixelFormat(hDC, PixelFormat, &pfd);
+                hRC = wglCreateContext(hDC);
+                wglMakeCurrent(hDC, hRC);
+
+                ShowWindow(hWnd,SW_SHOW);
+                SetForegroundWindow(hWnd);
+                SetFocus(hWnd);
+                UpdateWindow(hWnd);
+
+                glViewport(0,0,Property.Width,Property.Height); 
+                glMatrixMode(GL_PROJECTION);  
+                glLoadIdentity();
+                gluPerspective(45.0f,(GLfloat)Property.Width/(GLfloat)Property.Height,0.1f,100.0f);
+                glMatrixMode(GL_MODELVIEW);
+                glLoadIdentity();         
+
+
+                glShadeModel(GL_SMOOTH);  
+                glEnable(GL_DEPTH_TEST);  
+                glDepthFunc(GL_LEQUAL);   
+                glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+                glClearColor(0.0, 0.3f, 0.5f, 0.5f);
+                glClearDepth(1.0f);
 
                 //*// Temp Code, Event Loop
                 MSG message;
@@ -89,7 +178,9 @@ ENO_NAMESPACE_BEGIN
                     }
                     else
                     {
+                        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+                        SwapBuffers(hDC);
                     }
                 }
                 //*/
@@ -97,12 +188,41 @@ ENO_NAMESPACE_BEGIN
 
             void AppDelegate::closeWindow( void )
             {
-                DestroyWindow(hWnd);
+                if (hRC != NULL)
+                {
+                    wglMakeCurrent(NULL, NULL);
+                    wglDeleteContext(hRC);
+                    hRC = NULL;
+                }
+
+                if (hDC != NULL)
+                {
+                    ReleaseDC(hWnd, hDC);
+                    hDC = NULL;
+                }
+
+                if (hWnd != NULL)
+                {
+                    DestroyWindow(hWnd);
+                    hWnd = NULL;
+                }
+
+                if (hInstance != NULL)
+                {
+                    UnregisterClass(lpszClass, hInstance);
+                    hInstance = NULL;
+                }
             }
 
-            Window_Windows::Window_Windows( void ) : delegate(nullptr)
+            void AppDelegate::setWindowProperty( const enoWindowProperty& property )
+            {
+                Property = property;
+            }
+
+            Window_Windows::Window_Windows( const enoWindowProperty& property ) : delegate(nullptr)
             {
                 delegate = new AppDelegate;
+                delegate->setWindowProperty(property);
                 delegate->initWindow();
             }
 

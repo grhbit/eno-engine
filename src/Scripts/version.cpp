@@ -3,7 +3,7 @@
 
 const unsigned int eno_major = 0;
 const unsigned int eno_minor = 0;
-const unsigned int revision = 78;
-const char *const date = "2012-01-10 09:01:20 UTC";
-//          local time = "2012-01-10 18:01:20 +0900"
+const unsigned int revision = 112;
+const char *const date = "2012-01-11 18:17:22 UTC";
+//          local time = "2012-01-12 03:17:22 +0900"
 // mswin-Visual Studio

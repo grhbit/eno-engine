@@ -8,9 +8,28 @@
 
 #pragma once
 #include "enoType.hpp"
-#include "enoWindow.hpp"
 
 ENO_NAMESPACE_BEGIN
+    ENO_STRUCT_TYPE_BEGIN
+
+        struct enoWindowProperty
+        {
+        public:
+            s16 Width;
+            s16 Height;
+
+            String Title;
+            boolean Fullscreen;
+            enoWindowProperty* Alternate;
+
+        public:
+            enoWindowProperty( void ) : 
+                Width(800), Height(600),
+                Title(""), Fullscreen(false), Alternate(nullptr) { }
+        };
+
+
+    ENO_STRUCT_TYPE_END
     ENO_CLASS_TYPE_BEGIN
 
         class enoApplication {
