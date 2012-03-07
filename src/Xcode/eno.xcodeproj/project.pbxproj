@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FF9D10314DAC10800494EBB /* enoGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D10114DAC10800494EBB /* enoGraphics.cpp */; };
 		53CC3A9A121630F600B2D092 /* eno.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53CC3A91121630F600B2D092 /* eno.cpp */; };
 		53D0CCB01220ED4F00232031 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D0CCAF1220ED4F00232031 /* OpenGL.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -34,11 +35,7 @@
 		D94064351493F7DE0024F681 /* OSUtil_MACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D94064341493F7DE0024F681 /* OSUtil_MACOSX.mm */; };
 		D94064371493F7DE0024F681 /* enoOSUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94064361493F7DE0024F681 /* enoOSUtil.cpp */; };
 		D941190614A4002100273551 /* enoWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D941190514A4002100273551 /* enoWindow.cpp */; };
-		D94B138F14A6118B00C1DE76 /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D94B138E14A6118B00C1DE76 /* version.cpp */; };
 		D983A67114645D5700CAC4EF /* DriverMACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D983A67014645D5700CAC4EF /* DriverMACOSX.mm */; };
-		D993F7F012E83852001B4CFA /* DisplayD3D9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D993F7EF12E83852001B4CFA /* DisplayD3D9.cpp */; };
-		D993F80A12E83917001B4CFA /* DisplayOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D993F80912E83917001B4CFA /* DisplayOpenGL.cpp */; };
-		D993F80D12E8398D001B4CFA /* DisplayNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D993F80B12E8398D001B4CFA /* DisplayNull.cpp */; };
 		D9C630E712E6342100013457 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C630E612E6342100013457 /* main.cpp */; };
 		D9C631C612E6484200013457 /* enoTypeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C631C412E6484200013457 /* enoTypeTest.cpp */; };
 		D9F6511B12F57D41008270C7 /* ImageLoader_Bmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9F6511A12F57D41008270C7 /* ImageLoader_Bmp.cpp */; };
@@ -63,12 +60,14 @@
 		256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eno_Prefix.pch; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3FF9D10014DABE2900494EBB /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = version.cpp; path = ../Scripts/version.cpp; sourceTree = "<group>"; };
+		3FF9D10114DAC10800494EBB /* enoGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoGraphics.cpp; path = ../eno/enoGraphics.cpp; sourceTree = "<group>"; };
+		3FF9D10214DAC10800494EBB /* enoGraphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoGraphics.hpp; path = ../eno/enoGraphics.hpp; sourceTree = "<group>"; };
 		53CC3A91121630F600B2D092 /* eno.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eno.cpp; path = ../eno/eno.cpp; sourceTree = SOURCE_ROOT; };
 		53CC3A92121630F600B2D092 /* eno.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = eno.hpp; path = ../eno/eno.hpp; sourceTree = SOURCE_ROOT; };
 		53CC3A93121630F600B2D092 /* enoConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoConfig.hpp; path = ../eno/enoConfig.hpp; sourceTree = SOURCE_ROOT; };
 		53CC3A96121630F600B2D092 /* enoType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoType.hpp; path = ../eno/enoType.hpp; sourceTree = SOURCE_ROOT; };
 		53D0CCAF1220ED4F00232031 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		53E0FFF61222877000AC697B /* DisplayOpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayOpenGL.h; path = ../eno/DisplayOpenGL.h; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* eno-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eno-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* eno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9040C0A14621B5B0028A25E /* enoWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoWindow.hpp; path = ../eno/enoWindow.hpp; sourceTree = "<group>"; };
@@ -127,17 +126,8 @@
 		D94064361493F7DE0024F681 /* enoOSUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoOSUtil.cpp; path = ../eno/enoOSUtil.cpp; sourceTree = "<group>"; };
 		D941190514A4002100273551 /* enoWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoWindow.cpp; path = ../eno/enoWindow.cpp; sourceTree = "<group>"; };
 		D941A890149D25FD00B7B03A /* enoOSConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoOSConfig.hpp; path = ../eno/enoOSConfig.hpp; sourceTree = "<group>"; };
-		D94B138E14A6118B00C1DE76 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
-		D9764E0112EDEE770028EE15 /* enoDisplayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoDisplayType.h; path = ../eno/enoDisplayType.h; sourceTree = SOURCE_ROOT; };
 		D983A66E14645CF700CAC4EF /* DriverMACOSX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DriverMACOSX.hpp; path = ../eno/MACOSX/DriverMACOSX.hpp; sourceTree = "<group>"; };
 		D983A67014645D5700CAC4EF /* DriverMACOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DriverMACOSX.mm; path = ../eno/MACOSX/DriverMACOSX.mm; sourceTree = "<group>"; };
-		D993F7DD12E79807001B4CFA /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = ../eno/Texture.h; sourceTree = SOURCE_ROOT; };
-		D993F7EE12E8380B001B4CFA /* DisplayD3D9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayD3D9.h; path = ../eno/DisplayD3D9.h; sourceTree = SOURCE_ROOT; };
-		D993F7EF12E83852001B4CFA /* DisplayD3D9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayD3D9.cpp; path = ../eno/DisplayD3D9.cpp; sourceTree = SOURCE_ROOT; };
-		D993F80912E83917001B4CFA /* DisplayOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayOpenGL.cpp; path = ../eno/DisplayOpenGL.cpp; sourceTree = SOURCE_ROOT; };
-		D993F80B12E8398D001B4CFA /* DisplayNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DisplayNull.cpp; path = ../eno/DisplayNull.cpp; sourceTree = SOURCE_ROOT; };
-		D993F80C12E8398D001B4CFA /* DisplayNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayNull.h; path = ../eno/DisplayNull.h; sourceTree = SOURCE_ROOT; };
-		D993F83C12E869E0001B4CFA /* enoDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoDisplay.h; path = ../eno/enoDisplay.h; sourceTree = SOURCE_ROOT; };
 		D9C630E612E6342100013457 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../eno/main.cpp; sourceTree = "<group>"; };
 		D9C631C412E6484200013457 /* enoTypeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoTypeTest.cpp; path = ../eno/enoTypeTest.cpp; sourceTree = SOURCE_ROOT; };
 		D9C631C512E6484200013457 /* enoTypeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enoTypeTest.h; path = ../eno/enoTypeTest.h; sourceTree = SOURCE_ROOT; };
@@ -154,7 +144,6 @@
 		D9F6517D12F57FED008270C7 /* vector2d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vector2d.hpp; path = ../eno/vector2d.hpp; sourceTree = SOURCE_ROOT; };
 		D9F6518412F58034008270C7 /* quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = quaternion.hpp; path = ../eno/quaternion.hpp; sourceTree = SOURCE_ROOT; };
 		D9F6518512F58034008270C7 /* rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rectangle.hpp; path = ../eno/rectangle.hpp; sourceTree = SOURCE_ROOT; };
-		D9F651AA12F580D8008270C7 /* enoColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoColor.hpp; path = ../eno/enoColor.hpp; sourceTree = SOURCE_ROOT; };
 		D9F651AB12F580F0008270C7 /* enoMath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoMath.hpp; path = ../eno/enoMath.hpp; sourceTree = SOURCE_ROOT; };
 		D9FB4FAF1486C5BB005564DD /* Window_MACOSX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Window_MACOSX.hpp; path = ../eno/MACOSX/Window_MACOSX.hpp; sourceTree = "<group>"; };
 		D9FB4FB01486C5BB005564DD /* Window_MACOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Window_MACOSX.mm; path = ../eno/MACOSX/Window_MACOSX.mm; sourceTree = "<group>"; };
@@ -225,7 +214,7 @@
 		29B97315FDCFA39411CA2CEA /* eno */ = {
 			isa = PBXGroup;
 			children = (
-				D94B138E14A6118B00C1DE76 /* version.cpp */,
+				3FF9D10014DABE2900494EBB /* version.cpp */,
 				D98D4133129C33C3008D3697 /* core */,
 				D98D4134129C3402008D3697 /* display */,
 				D9C631C012E646D300013457 /* game */,
@@ -361,7 +350,6 @@
 		D9764E2B12EE13F30028EE15 /* color */ = {
 			isa = PBXGroup;
 			children = (
-				D9F651AA12F580D8008270C7 /* enoColor.hpp */,
 			);
 			name = color;
 			sourceTree = "<group>";
@@ -392,13 +380,13 @@
 		D98D4134129C3402008D3697 /* display */ = {
 			isa = PBXGroup;
 			children = (
+				3FF9D10114DAC10800494EBB /* enoGraphics.cpp */,
+				3FF9D10214DAC10800494EBB /* enoGraphics.hpp */,
 				D9764E2B12EE13F30028EE15 /* color */,
 				D993F81212E839C3001B4CFA /* renderer */,
 				D993F81112E839BA001B4CFA /* Image */,
 				D993F83012E85228001B4CFA /* ImageLoader */,
-				D993F7DD12E79807001B4CFA /* Texture.h */,
 				D9F6515B12F57F12008270C7 /* enoTexture.hpp */,
-				D9764E0112EDEE770028EE15 /* enoDisplayType.h */,
 				D904AF4E1489CC1B00DF5EA6 /* enoRenderTarget.hpp */,
 			);
 			name = display;
@@ -427,13 +415,6 @@
 		D993F81212E839C3001B4CFA /* renderer */ = {
 			isa = PBXGroup;
 			children = (
-				D993F83C12E869E0001B4CFA /* enoDisplay.h */,
-				D993F7EE12E8380B001B4CFA /* DisplayD3D9.h */,
-				D993F7EF12E83852001B4CFA /* DisplayD3D9.cpp */,
-				53E0FFF61222877000AC697B /* DisplayOpenGL.h */,
-				D993F80912E83917001B4CFA /* DisplayOpenGL.cpp */,
-				D993F80C12E8398D001B4CFA /* DisplayNull.h */,
-				D993F80B12E8398D001B4CFA /* DisplayNull.cpp */,
 			);
 			name = renderer;
 			sourceTree = "<group>";
@@ -512,7 +493,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/ruby;
-			buildWorkingDirectory = "";
+			buildWorkingDirectory = ../Scripts;
 			dependencies = (
 			);
 			name = version;
@@ -606,9 +587,6 @@
 				D90CB9081299FB70004DACAA /* XmlTestReporter.cpp in Sources */,
 				D9C630E712E6342100013457 /* main.cpp in Sources */,
 				D9C631C612E6484200013457 /* enoTypeTest.cpp in Sources */,
-				D993F7F012E83852001B4CFA /* DisplayD3D9.cpp in Sources */,
-				D993F80A12E83917001B4CFA /* DisplayOpenGL.cpp in Sources */,
-				D993F80D12E8398D001B4CFA /* DisplayNull.cpp in Sources */,
 				D9F6511B12F57D41008270C7 /* ImageLoader_Bmp.cpp in Sources */,
 				D983A67114645D5700CAC4EF /* DriverMACOSX.mm in Sources */,
 				D926E62A14769FD0004F5C53 /* enoDriver.cpp in Sources */,
@@ -618,7 +596,7 @@
 				D94064351493F7DE0024F681 /* OSUtil_MACOSX.mm in Sources */,
 				D94064371493F7DE0024F681 /* enoOSUtil.cpp in Sources */,
 				D941190614A4002100273551 /* enoWindow.cpp in Sources */,
-				D94B138F14A6118B00C1DE76 /* version.cpp in Sources */,
+				3FF9D10314DAC10800494EBB /* enoGraphics.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

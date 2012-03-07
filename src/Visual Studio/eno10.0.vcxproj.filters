@@ -28,6 +28,18 @@
     <Filter Include="Source\eno\os\Windows">
       <UniqueIdentifier>{76bb64b7-d646-45e3-949a-79254f4ce481}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\eno\display\Device">
+      <UniqueIdentifier>{d6737cae-9a2e-457f-b8bc-70eeae873f8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\display\Texture">
+      <UniqueIdentifier>{9ac4ded1-3bb9-4e56-86f2-8f75c5885958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\display\ImageLoader">
+      <UniqueIdentifier>{667b93c6-31d9-4777-89bf-b899ccbc0370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\os\File">
+      <UniqueIdentifier>{f33a9050-d0ea-4f20-851d-be9e3552ce7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Extra\Unittest++\Win32\TimeHelpers.h">
@@ -102,18 +114,6 @@
     <ClInclude Include="..\Extra\Unittest++\XmlTestReporter.h">
       <Filter>Unittest++</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\DisplayOpenGL.h">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\DisplayD3D9.h">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\DisplayNull.h">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoDisplay.h">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
     <ClInclude Include="..\eno\eno.hpp">
       <Filter>Source\eno</Filter>
     </ClInclude>
@@ -130,9 +130,6 @@
       <Filter>Source\eno</Filter>
     </ClInclude>
     <ClInclude Include="..\eno\enoImage.hpp">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoImageLoader.hpp">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
     <ClInclude Include="..\eno\quaternion.hpp">
@@ -159,12 +156,6 @@
     <ClInclude Include="..\eno\enoApplication.hpp">
       <Filter>Source\eno\os</Filter>
     </ClInclude>
-    <ClInclude Include="..\eno\enoColor.hpp">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoDisplayType.h">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
     <ClInclude Include="..\eno\enoDriver.hpp">
       <Filter>Source\eno\os</Filter>
     </ClInclude>
@@ -175,9 +166,6 @@
       <Filter>Source\eno\os</Filter>
     </ClInclude>
     <ClInclude Include="..\eno\enoRenderTarget.hpp">
-      <Filter>Source\eno\display</Filter>
-    </ClInclude>
-    <ClInclude Include="..\eno\enoTexture.hpp">
       <Filter>Source\eno\display</Filter>
     </ClInclude>
     <ClInclude Include="..\eno\enoTimer.hpp">
@@ -197,6 +185,45 @@
     </ClInclude>
     <ClInclude Include="..\eno\Windows\Window_Windows.hpp">
       <Filter>Source\eno\os\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoLoger.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\colorType.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoGraphics.hpp">
+      <Filter>Source\eno\display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\GraphicsImpl.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\GraphicsImpl_OGL.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoGraphicsType.hpp">
+      <Filter>Source\eno\display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\GraphicsImpl_DX.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\D3DHelper_DX9.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoTexture.hpp">
+      <Filter>Source\eno\display\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\Texture_OGL.hpp">
+      <Filter>Source\eno\display\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoImageLoader.hpp">
+      <Filter>Source\eno\display\ImageLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\ImageLoader_BMP.hpp">
+      <Filter>Source\eno\display\ImageLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoFile.hpp">
+      <Filter>Source\eno\os\File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,15 +281,6 @@
     <ClCompile Include="..\Extra\Unittest++\XmlTestReporter.cpp">
       <Filter>Unittest++</Filter>
     </ClCompile>
-    <ClCompile Include="..\eno\DisplayOpenGL.cpp">
-      <Filter>Source\eno\display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\eno\DisplayD3D9.cpp">
-      <Filter>Source\eno\display</Filter>
-    </ClCompile>
-    <ClCompile Include="..\eno\DisplayNull.cpp">
-      <Filter>Source\eno\display</Filter>
-    </ClCompile>
     <ClCompile Include="..\eno\eno.cpp">
       <Filter>Source\eno</Filter>
     </ClCompile>
@@ -286,6 +304,33 @@
     </ClCompile>
     <ClCompile Include="..\eno\Windows\Window_Windows.cpp">
       <Filter>Source\eno\os\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoLoger.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoGraphics.cpp">
+      <Filter>Source\eno\display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\GraphicsImpl_OGL.cpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\GraphicsImpl_DX.cpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\D3DHelper_DX9.cpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\Texture_OGL.cpp">
+      <Filter>Source\eno\display\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\ImageLoader_BMP.cpp">
+      <Filter>Source\eno\display\ImageLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoFile.cpp">
+      <Filter>Source\eno\os\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoImage.cpp">
+      <Filter>Source\eno\display</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

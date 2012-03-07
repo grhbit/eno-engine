@@ -11,18 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\eno\DisplayD3D9.h" />
-    <ClInclude Include="..\eno\DisplayNull.h" />
-    <ClInclude Include="..\eno\DisplayOpenGL.h" />
+    <ClInclude Include="..\eno\colorType.hpp" />
+    <ClInclude Include="..\eno\D3DHelper_DX9.hpp" />
     <ClInclude Include="..\eno\eno.hpp" />
     <ClInclude Include="..\eno\enoApplication.hpp" />
-    <ClInclude Include="..\eno\enoColor.hpp" />
     <ClInclude Include="..\eno\enoConfig.hpp" />
-    <ClInclude Include="..\eno\enoDisplay.h" />
-    <ClInclude Include="..\eno\enoDisplayType.h" />
     <ClInclude Include="..\eno\enoDriver.hpp" />
+    <ClInclude Include="..\eno\enoFile.hpp" />
+    <ClInclude Include="..\eno\enoGraphics.hpp" />
+    <ClInclude Include="..\eno\enoGraphicsType.hpp" />
     <ClInclude Include="..\eno\enoImage.hpp" />
     <ClInclude Include="..\eno\enoImageLoader.hpp" />
+    <ClInclude Include="..\eno\enoLoger.hpp" />
     <ClInclude Include="..\eno\enoMath.hpp" />
     <ClInclude Include="..\eno\enoOSConfig.hpp" />
     <ClInclude Include="..\eno\enoOSUtil.hpp" />
@@ -34,10 +34,15 @@
     <ClInclude Include="..\eno\enoTypeTest.h" />
     <ClInclude Include="..\eno\enoUnitTest.h" />
     <ClInclude Include="..\eno\enoWindow.hpp" />
+    <ClInclude Include="..\eno\GraphicsImpl.hpp" />
+    <ClInclude Include="..\eno\GraphicsImpl_DX.hpp" />
+    <ClInclude Include="..\eno\GraphicsImpl_OGL.hpp" />
+    <ClInclude Include="..\eno\ImageLoader_BMP.hpp" />
     <ClInclude Include="..\eno\matrix4x4.hpp" />
     <ClInclude Include="..\eno\quaternion.hpp" />
     <ClInclude Include="..\eno\rectangle.hpp" />
     <ClInclude Include="..\eno\size2d.hpp" />
+    <ClInclude Include="..\eno\Texture_OGL.hpp" />
     <ClInclude Include="..\eno\vector2d.hpp" />
     <ClInclude Include="..\eno\vector3d.hpp" />
     <ClInclude Include="..\eno\vector4d.hpp" />
@@ -69,16 +74,22 @@
     <ClInclude Include="..\Extra\Unittest++\XmlTestReporter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\eno\DisplayD3D9.cpp" />
-    <ClCompile Include="..\eno\DisplayNull.cpp" />
-    <ClCompile Include="..\eno\DisplayOpenGL.cpp" />
+    <ClCompile Include="..\eno\D3DHelper_DX9.cpp" />
     <ClCompile Include="..\eno\eno.cpp" />
     <ClCompile Include="..\eno\enoApplication.cpp" />
     <ClCompile Include="..\eno\enoDriver.cpp" />
+    <ClCompile Include="..\eno\enoFile.cpp" />
+    <ClCompile Include="..\eno\enoGraphics.cpp" />
+    <ClCompile Include="..\eno\enoImage.cpp" />
+    <ClCompile Include="..\eno\enoLoger.cpp" />
     <ClCompile Include="..\eno\enoOSUtil.cpp" />
     <ClCompile Include="..\eno\enoTimer.cpp" />
     <ClCompile Include="..\eno\enoWindow.cpp" />
+    <ClCompile Include="..\eno\GraphicsImpl_DX.cpp" />
+    <ClCompile Include="..\eno\GraphicsImpl_OGL.cpp" />
+    <ClCompile Include="..\eno\ImageLoader_BMP.cpp" />
     <ClCompile Include="..\eno\main.cpp" />
+    <ClCompile Include="..\eno\Texture_OGL.cpp" />
     <ClCompile Include="..\eno\Windows\Window_Windows.cpp" />
     <ClCompile Include="..\Extra\Unittest++\AssertException.cpp" />
     <ClCompile Include="..\Extra\Unittest++\Checks.cpp" />
@@ -108,7 +119,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -128,12 +139,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(ProjectDir)..\Extra\StdString;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(ProjectDir)..\Extra\StdString;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
