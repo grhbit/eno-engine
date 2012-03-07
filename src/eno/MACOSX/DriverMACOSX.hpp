@@ -11,11 +11,11 @@
 
 #ifdef ENO_MACOSX_DRIVER
 
-ENO_NAMESPACE_BEGIN
+namespace eno {
     ENO_OS_NAMESPACE_BEGIN
-        ENO_CLASS_TYPE_BEGIN
+        
 
-            class DriverMAXOSX : public os::interface_type::enoDriver
+            class DriverMAXOSX : public os::enoDriver
             {
             public:
                 /* virtual */ ~DriverMAXOSX(void) {}
@@ -23,8 +23,8 @@ ENO_NAMESPACE_BEGIN
             protected:
             };
 
-        ENO_CLASS_TYPE_END
+        
     ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+}
 
 #endif

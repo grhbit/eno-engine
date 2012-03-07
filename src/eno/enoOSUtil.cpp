@@ -3,52 +3,47 @@
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 12. 11..
-//  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
 #include "enoOSConfig.hpp"
 #include "enoOSUtil.hpp"
-#ifdef ENO_MACOSX_DRIVER
+#if defined(ENO_MACOSX_DRIVER)
 #include "OSUtil_MACOSX.hpp"
-#else if ENO_WINDOWS_DRIVER
+#elif defined(ENO_WINDOWS_DRIVER)
 #include "Windows/OSUtil_Windows.hpp"
 #endif
 
-ENO_NAMESPACE_BEGIN
-    ENO_OS_NAMESPACE_BEGIN
-        ENO_INTERFACE_TYPE_BEGIN
-
-            void enoOSUtil::init( void )
-            {
-            }
-
-            enoOSUtil::enoOSUtil( void )
-            {
-                init();
-            }
-
-            enoOSUtil* enoOSUtil::getInstance( void )
-            {
-                if (instance == nullptr) {
-                    instance = new OSUtil;
-                }
+namespace eno {
     
-                return instance;
-            }
 
-            void enoOSUtil::release( void )
-            {
-                if (instance != nullptr) {
-                    delete instance;
-                    instance = nullptr;
-                }
-            }
+void enoOSUtil::init( void )
+{
+}
 
-            enoOSUtil* enoOSUtil::instance = nullptr;
+enoOSUtil::enoOSUtil( void )
+{
+    init();
+}
 
-        ENO_INTERFACE_TYPE_END
-        ENO_FUNCTION_BEGIN
+enoOSUtil* enoOSUtil::getInstance( void )
+{
+    if (instance == nullptr) {
+        instance = new OSUtil;
+    }
 
-        ENO_FUNCTION_END
-    ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+    return instance;
+}
+
+void enoOSUtil::release( void )
+{
+    if (instance != nullptr) {
+        delete instance;
+        instance = nullptr;
+    }
+}
+
+enoOSUtil* enoOSUtil::instance = nullptr;
+
+
+    }

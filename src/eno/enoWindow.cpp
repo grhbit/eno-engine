@@ -3,7 +3,7 @@
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 12. 23..
-//  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
 #include "enoWindow.hpp"
@@ -14,15 +14,13 @@
 #include "Windows/Window_Windows.hpp"
 #endif
 
-ENO_NAMESPACE_BEGIN
-    ENO_OS_NAMESPACE_BEGIN
-        ENO_INTERFACE_TYPE_BEGIN
+namespace eno {
+    
 
-            enoWindow* enoWindow::BuildWindow( const enoWindowProperty& property )
-            {
-                return new Window(property);
-            }
+enoWindow* enoWindow::BuildWindow( const enoWindowProperty& property )
+{
+    return new Window(property);
+}
 
-        ENO_INTERFACE_TYPE_END
-    ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+
+}

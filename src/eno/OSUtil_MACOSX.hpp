@@ -6,9 +6,16 @@
 //  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
 //
 
-#ifndef eno_OSUtil_MACOSX_hpp
-#define eno_OSUtil_MACOSX_hpp
+#pragma once
+#include "enoOSUtil.hpp"
 
+namespace eno {
+    ENO_OS_NAMESPACE_BEGIN
+    
+    class OSUtil_MACOSX : public enoOSUtil
+    {
+    public:
+    };
 
-
-#endif
+    ENO_OS_NAMESPACE_END
+}

@@ -30,8 +30,9 @@ extern const unsigned int revision;
 #define ENO_MACOSX_DRIVER
 #endif
 
-#if defined (ENO_WINDOW_DRIVER)
+#if defined (ENO_WINDOWS_DRIVER)
 #define ENO_DISPLAY_DIRECT_9
+#define ENO_DISPLAY_DIRECT_10_11
 #endif
 
 #define ENO_DISPLAY_OPENGL
@@ -49,11 +50,32 @@ extern const unsigned int revision;
 #error "NOT SUPPORT COMPILER"
 #endif
 
+#include "StdString.h"
+
+namespace eno { typedef CStdString CString; }
+
 #if defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
+// {
 #define ENO_ALIGNED(n) __declspec(align(n))
+#include <tchar.h>
+#if defined (UNICODE)
+#define ENO_UNICODE
+typedef wchar_t tchar;
+#endif
+#define ENO_CLASS_NAME _T("eno")
+// }
 #elif defined(ENO_COMPILED_FROM_GNUC)
+// {
 #define ENO_ALIGNED(n) __attribute__ ((aligned(n)))
 #define __long_aligned __attribute__((aligned((sizeof(long)))))
+#define _T(Str) L##Str
+#define ENO_UNICODE
+typedef unsigned short tchar;
+// }
+#endif
+
+#if !defined(ENO_UNICODE)
+typedef char tchar;
 #endif
 
 #if !defined(interface)
@@ -85,73 +107,5 @@ private:
 } nullptr = {};
 
 #endif
-
-#define ENO_NAMESPACE_BEGIN			namespace eno {
-#define ENO_NAMESPACE_END			}
-#define ENO_CORE_NAMESPACE_BEGIN		namespace core {
-#define ENO_CORE_NAMESPACE_END		}
-#define ENO_DISPLAY_NAMESPACE_BEGIN namespace display {
-#define ENO_DISPLAY_NAMESPACE_END	}
-#define ENO_GAME_NAMESPACE_BEGIN		namespace game {
-#define ENO_GAME_NAMESPACE_END		}
-#define ENO_OS_NAMESPACE_BEGIN		namespace os {
-#define ENO_OS_NAMESPACE_END			}
-#define ENO_IO_NAMESPACE_BEGIN		namespace io {
-#define ENO_IO_NAMESPACE_END			}
-#define ENO_GUI_NAMESPACE_BEGIN		namespace gui {
-#define ENO_GUI_NAMESPACE_END		}
-
-#define ENO_CLASS_TYPE_BEGIN		namespace class_type {
-#define ENO_CLASS_TYPE_END		}
-#define ENO_INTERFACE_TYPE_BEGIN	namespace interface_type {
-#define ENO_INTERFACE_TYPE_END	}
-#define ENO_STRUCT_TYPE_BEGIN	namespace struct_type {
-#define ENO_STRUCT_TYPE_END		}
-#define ENO_ENUM_TYPE_BEGIN		namespace enum_type {
-#define ENO_ENUM_TYPE_END		}
-#define ENO_FUNCTION_BEGIN		namespace function_type {
-#define ENO_FUNCTION_END			}
-
-
-#ifdef ENO_USING_NAMESPACE_TYPE
-#undef ENO_USING_NAMESPACE_TYPE
-#endif
-#define ENO_USING_NAMESPACE_TYPE		\
-	ENO_CLASS_TYPE_BEGIN			\
-	ENO_CLASS_TYPE_END				\
-	ENO_INTERFACE_TYPE_BEGIN		\
-	ENO_INTERFACE_TYPE_END			\
-	ENO_STRUCT_TYPE_BEGIN			\
-	ENO_STRUCT_TYPE_END				\
-	ENO_ENUM_TYPE_BEGIN				\
-	ENO_ENUM_TYPE_END				\
-	ENO_FUNCTION_BEGIN				\
-	ENO_FUNCTION_END				\
-	using namespace class_type;		\
-	using namespace interface_type; \
-	using namespace struct_type;	\
-	using namespace enum_type;		\
-	using namespace function_type;
-
-
-ENO_NAMESPACE_BEGIN
-	ENO_CORE_NAMESPACE_BEGIN
-		ENO_USING_NAMESPACE_TYPE
-	ENO_CORE_NAMESPACE_END
-
-	ENO_DISPLAY_NAMESPACE_BEGIN
-		ENO_USING_NAMESPACE_TYPE
-	ENO_DISPLAY_NAMESPACE_END
-
-	ENO_GAME_NAMESPACE_BEGIN
-		ENO_USING_NAMESPACE_TYPE
-	ENO_GAME_NAMESPACE_END
-
-    ENO_OS_NAMESPACE_BEGIN
-        ENO_USING_NAMESPACE_TYPE
-    ENO_OS_NAMESPACE_END
-
-	ENO_USING_NAMESPACE_TYPE
-ENO_NAMESPACE_END
 
 // [skop 8:47 Friday. 8.13. 2010. Created.]

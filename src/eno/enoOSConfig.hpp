@@ -3,7 +3,7 @@
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 12. 18..
-//  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
 #pragma once

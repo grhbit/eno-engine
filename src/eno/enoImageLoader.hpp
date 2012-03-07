@@ -1,27 +1,26 @@
 /*
- *  enoImageLoader.hpp
- *  eno
- *
- *  Created by Gwon Seong-gwang on 10. 11. 23..
- *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
- *
- */
+*  enoImageLoader.hpp
+*  eno
+*
+*  Created by Gwon Seong-gwang on 10. 11. 23..
+*  Copyright 2012 g.passcode@gmail.com . All rights reserved.
+*
+*/
 
 #pragma once
 #include "enoReferenceCounter.hpp"
+#include "enoImage.hpp"
 
-ENO_NAMESPACE_BEGIN
-	ENO_DISPLAY_NAMESPACE_BEGIN
-		ENO_INTERFACE_TYPE_BEGIN
+namespace eno {
 
-			interface enoImageLoader : public enoReferenceCounter
-			{
-			protected:
-				virtual ~enoImageLoader( void ) { }
-			};
+    interface enoImageLoader : public enoReferenceCounter
+    {
+    public:
+        virtual ~enoImageLoader( void ) { }
 
-typedef enoImageLoader IImageLoader;
+        virtual CString getLoaderType(void) = 0;
 
-		ENO_INTERFACE_TYPE_END
-	ENO_DISPLAY_NAMESPACE_END
-ENO_NAMESPACE_END
+        virtual enoImage* loadImage(const TextureID&) = 0;
+    };
+
+}
