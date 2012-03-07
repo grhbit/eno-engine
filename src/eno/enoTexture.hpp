@@ -1,51 +1,48 @@
 /*
- *  enoTexture.hpp
- *  eno
- *
- *  Created by Gwon Seong-gwang on 10. 8. 27..
- *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
- *
- */
+*  enoTexture.hpp
+*  eno
+*
+*  Created by Gwon Seong-gwang on 10. 8. 27..
+*  Copyright 2010 g.passcode@gmail.com . All rights reserved.
+*
+*/
 
 #pragma once
 #include "enoImage.hpp"
 
-ENO_NAMESPACE_BEGIN
-	ENO_DISPLAY_NAMESPACE_BEGIN
-		ENO_INTERFACE_TYPE_BEGIN
+namespace eno {
+    
 
-			interface enoTexture : public enoReferenceCounter
-			{
-			public:
-			
-				enoTexture( void ) { }
-			
-				virtual ~enoTexture( void ) { }
+interface enoTexture : public enoReferenceCounter
+{
+public:
 
-				void init( core::class_type::size2d size, u8* data = 0 ) { Init(size, data); }
+    enoTexture( void ) { }
 
-				u8* lock( u32 index = 0 ) { return Lock(index); }
+    virtual ~enoTexture( void ) { }
 
-				void unlock( u32 index = 0 ) { Unlock(index); }
+    void init( core::size2d size, u8* data = 0 ) { Init(size, data); }
 
-				void bind( u8* buffer, u32 index = 0 ) { Bind(buffer, index); }
-				
-				enoImage* getImage( u32 index = 0 ) const { return GetImage(index); }
-				
-			protected:
-				virtual void Init( core::class_type::size2d size, u8* data ) = 0;
-				
-				virtual u8*	Lock( u32 index ) = 0;
-				
-				virtual void Unlock( u32 index ) = 0;
-				
-				virtual void Bind( u8* buffer, u32 index ) = 0;
-				
-				virtual enoImage* GetImage( u32 index ) const = 0;
-			};
+    u8* lock( u32 index = 0 ) { return Lock(index); }
 
-		ENO_INTERFACE_TYPE_END
-	ENO_DISPLAY_NAMESPACE_END
-ENO_NAMESPACE_END
+    void unlock( u32 index = 0 ) { Unlock(index); }
 
-// 2:33
+    void bind( u8* buffer, u32 index = 0 ) { Bind(buffer, index); }
+
+    enoImage* getImage( u32 index = 0 ) const { return GetImage(index); }
+
+protected:
+    virtual void Init( core::size2d size, u8* data ) = 0;
+
+    virtual u8*	Lock( u32 index ) = 0;
+
+    virtual void Unlock( u32 index ) = 0;
+
+    virtual void Bind( u8* buffer, u32 index ) = 0;
+
+    virtual enoImage* GetImage( u32 index ) const = 0;
+};
+
+}
+
+    // 2:33

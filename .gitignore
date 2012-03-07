@@ -19,16 +19,14 @@
 *.dep
 */Release/
 */Debug/
-<<<<<<< HEAD
 *.LinkFileList
 src/Visual Studio/Debug/
 src/Visual Studio/Release/
 src/Visual Studio/ipch/
 !*ruby*
-=======
 */ipch/
 *.LinkFileList
->>>>>>> googlecode/master
+._*
 
 # Xcode
 *.perspective

@@ -8,9 +8,9 @@
 
 #import "DriverMACOSX.hpp"
 
-ENO_NAMESPACE_BEGIN
+namespace eno {
     ENO_OS_NAMESPACE_BEGIN
-        ENO_CLASS_TYPE_BEGIN
+        
 /*
             void DriverMAXOSX::createWindow(const enoWindow& window)
             {
@@ -32,6 +32,6 @@ ENO_NAMESPACE_BEGIN
             {
             }
 */
-        ENO_CLASS_TYPE_END
+        
     ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+}

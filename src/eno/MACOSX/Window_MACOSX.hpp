@@ -10,20 +10,22 @@
 #import "enoWindow.hpp"
 #import <objc/objc.h>
 
-ENO_NAMESPACE_BEGIN
+namespace eno {
     ENO_OS_NAMESPACE_BEGIN
-        ENO_CLASS_TYPE_BEGIN
+        
 
             class Window_MACOSX : public enoWindow
             {
             public:
-                Window_MACOSX(void);
+                Window_MACOSX(const enoWindowProperty &);
                 /* virtual */ ~Window_MACOSX(void);
+                
+                /* virtual */ void eventLoop( void ) { }
             private:
                 id context; //OpenGL context
                 id delegate; //Window delegate
             };
 
-        ENO_CLASS_TYPE_END
+        
     ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+}

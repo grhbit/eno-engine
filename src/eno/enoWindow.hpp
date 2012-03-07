@@ -3,23 +3,25 @@
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 11. 3..
-//  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
 #pragma once
 #include "enoApplication.hpp"
 
-ENO_NAMESPACE_BEGIN
-    ENO_OS_NAMESPACE_BEGIN
-        ENO_INTERFACE_TYPE_BEGIN
+namespace eno {
 
-            interface enoWindow {
-            public:
-                virtual ~enoWindow(void) { }
-            public:
-                static enoWindow* BuildWindow( const enoWindowProperty& );
-            };
+interface enoWindow {
+    public:
+        virtual ~enoWindow(void) { }
 
-        ENO_INTERFACE_TYPE_END
-    ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+        virtual void eventLoop( void ) = 0;
+        // [Caution]
+        // Until Application quit, doesn't escape.
+
+        virtual void toggleFullScreen( void ) = 0;
+    public:
+        static enoWindow* BuildWindow( const enoWindowProperty& );
+};
+
+}
