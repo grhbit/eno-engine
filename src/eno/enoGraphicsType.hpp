@@ -85,11 +85,11 @@ namespace eno {
     {
     public:
         boolean mipmap;
-        CString filename;
+        CStdStringA filename;
         ColorFormat colorFormat;
 
     public:
-        TextureID(void) : mipmap(false), filename(_T("")), colorFormat(ColorFMT_RGBA8) {}
+        TextureID(void) : mipmap(false), filename(""), colorFormat(ColorFMT_RGBA8) {}
     };
 }
 

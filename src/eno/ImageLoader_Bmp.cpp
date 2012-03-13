@@ -72,7 +72,22 @@ namespace eno {
 
     void loadBitmapColorDepth1Bit(enoFile* file, enoImage* image, DIBHeader* info)
     {
+        u32 width = info->width;
+        u32 height = info->height;
 
+        u8* buffer = new u8[width*height*4];
+        u32*colorbuffer = 0;
+
+        image->bind(buffer);
+
+        for (u32 i = 0; i<width*height; i++)
+        {
+            colorbuffer = reinterpret_cast<u32*>(buffer);
+
+            buffer += 4;
+        }
+
+        image->setSize(core::size2d_template<u32>(width, height));
     }
 
     void loadBitmapColorDepth8Bits(enoFile* file, enoImage* image, DIBHeader* info)
@@ -84,6 +99,9 @@ namespace eno {
 
         for (s32 i = 0; i<256; i++) {
             file->getBytes(palette[i].v, sizeof(u32));
+            palette[i].r = palette[i].r ^ palette[i].b;
+            palette[i].b = palette[i].r ^ palette[i].b;
+            palette[i].r = palette[i].r ^ palette[i].b;
             palette[i].a = 255;
         }
 
@@ -98,6 +116,7 @@ namespace eno {
 
             u8 index = file->getByte();
             *colorbuffer = palette[index].color;
+            std::cout << i << " " << (s32)palette[index].r << std::endl;
 
             buffer += 4;
         }

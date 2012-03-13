@@ -10,12 +10,10 @@
 #include "enoOSUtil.hpp"
 
 namespace eno {
-    ENO_OS_NAMESPACE_BEGIN
     
     class OSUtil_MACOSX : public enoOSUtil
     {
     public:
     };
 
-    ENO_OS_NAMESPACE_END
 }

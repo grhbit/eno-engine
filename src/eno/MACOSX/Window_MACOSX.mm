@@ -160,8 +160,7 @@ static NSOpenGLContext* createOpenGLContext(OpenGLContextType type, s32 colorSiz
 #import "Window_MACOSX.hpp"
 
 namespace eno {
-    ENO_OS_NAMESPACE_BEGIN
-
+    
             Window_MACOSX::Window_MACOSX(const enoWindowProperty&):context(nil), delegate(nil)
             {
                 NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
@@ -192,6 +191,15 @@ namespace eno {
                 
                 [Pool release];
             }
+    
+    void loopfunc(void)
+    {
+        
+    }
+    
+    void Window_MACOSX::eventLoop()
+    {
+        [[NSApplication sharedApplication] run];
+    }
 
-    ENO_OS_NAMESPACE_END
 }

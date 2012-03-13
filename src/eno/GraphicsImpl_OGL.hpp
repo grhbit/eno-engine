@@ -9,8 +9,13 @@
 
 #pragma once
 #include "GraphicsImpl.hpp"
+#if defined(ENO_MACOSX_PLATFORM)
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/GL.h>
 #include <GL/GLU.h>
+#endif
 
 namespace eno {
 

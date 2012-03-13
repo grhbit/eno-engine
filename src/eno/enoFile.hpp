@@ -24,10 +24,10 @@ namespace eno {
         };
 
         enoFile(void);
-        enoFile(const CString&, s32 Openmode);
+        enoFile(const CStdStringA&, s32 Openmode);
         ~enoFile(void);
 
-        void open(const CString&, s32 Openmode);
+        void open(const CStdStringA&, s32 Openmode);
         void close(void);
 
         boolean isOpen(void) const;
@@ -49,12 +49,12 @@ namespace eno {
         //---
 
         //--- TEXT & BINARY MODE
-        tchar get();
+        c8 get();
         void read(CString&, u64);
         CString read(u64 readcount);
 
-        void put(tchar);
-        void writeBytes(const tchar*, u64 size);
+        void put(c8);
+        void writeBytes(const c8*, u64 size);
         //---
 
         //--- ONLY BINARY MODE
@@ -72,16 +72,16 @@ namespace eno {
 
     private:
         u64 FillBuffer();
-        void WriteProcess(const tchar*, u64 size);
+        void WriteProcess(const c8*, u64 size);
         void RefreshFileSize(void);
 
         enum { BUFFER_SIZE = 1024, WRITE_BUFFER_SIZE = 256 };
 
         boolean autoflush;
         CString filename;
-        tchar buffer[BUFFER_SIZE];
-        tchar*offset;
-        tchar*end;
+        c8 buffer[BUFFER_SIZE];
+        c8*offset;
+        c8*end;
         CString writebuffer;
         s32 mode;
         u64 posg;  // for read, in

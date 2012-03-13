@@ -9,10 +9,8 @@
 #import "DriverMACOSX.hpp"
 
 namespace eno {
-    ENO_OS_NAMESPACE_BEGIN
-        
 /*
-            void DriverMAXOSX::createWindow(const enoWindow& window)
+            void //DriverMAXOSX:://createWindow(const enoWindow& window)
             {
                 NSApplication* application = [NSApplication sharedApplication];
                 
@@ -28,10 +26,8 @@ namespace eno {
                 [application release];
             }
 
-            void DriverMAXOSX::destroyWindow(void)
+            void //DriverMAXOSX:://destroyWindow(void)
             {
             }
-*/
-        
-    ENO_OS_NAMESPACE_END
+//*/
 }

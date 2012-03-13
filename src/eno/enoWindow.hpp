@@ -19,7 +19,7 @@ interface enoWindow {
         // [Caution]
         // Until Application quit, doesn't escape.
 
-        virtual void toggleFullScreen( void ) = 0;
+        virtual void toggleFullScreen( void ) {};
     public:
         static enoWindow* BuildWindow( const enoWindowProperty& );
 };

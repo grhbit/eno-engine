@@ -70,11 +70,12 @@ typedef wchar_t tchar;
 #define __long_aligned __attribute__((aligned((sizeof(long)))))
 #define _T(Str) L##Str
 #define ENO_UNICODE
+#define ENO_UNICODE_MACOSX
 typedef unsigned short tchar;
 // }
 #endif
 
-#if !defined(ENO_UNICODE)
+#if !defined(ENO_UNICODE)&&!defined (ENO_UNICODE_MACOSX)
 typedef char tchar;
 #endif
 

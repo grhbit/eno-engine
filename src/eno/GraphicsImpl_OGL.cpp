@@ -68,6 +68,14 @@ HGLRC GraphicsOGLHelper_Windows::hRC = NULL;
 #define OpenGLArchInit(mode) GraphicsOGLHelper_Windows::init(mode)
 #define OpenGLArchClose GraphicsOGLHelper_Windows::close()
 
+#elif defined(ENO_MACOSX_PLATFORM)
+
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+
+#define OpenGLArchInit(mode)
+#define OpenGLArchClose
+
 #endif
 
 namespace eno {

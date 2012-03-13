@@ -22,7 +22,14 @@ using namespace eno;
 enoImageLoader* imageloader;
 enoImage* image;
 
-#include <GL/GL.h>
+#if defined(ENO_MACOSX_PLATFORM)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#elif defined(ENO_WINDOWS_PLATFORM)
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 GLuint tex;
 
 void Draw(ftype)
@@ -33,9 +40,9 @@ void Draw(ftype)
     glBindTexture(GL_TEXTURE_2D, tex);  
     glBegin(GL_QUADS);  
     glTexCoord2f(0,0);glVertex3f(0,0, 0);  
-    glTexCoord2f(0,1);glVertex3f(0, 60, 0);  
-    glTexCoord2f(1,1);glVertex3f( 420, 60, 0);  
-    glTexCoord2f(1,0);glVertex3f( 420,0, 0);  
+    glTexCoord2f(0,1);glVertex3f(0, 10, 0);  
+    glTexCoord2f(1,1);glVertex3f( 90, 10, 0);  
+    glTexCoord2f(1,0);glVertex3f( 90,0, 0);  
     glEnd();  
     glFlush();  
     glDisable(GL_TEXTURE_2D); 
@@ -47,13 +54,14 @@ eno::boolean Update(ftype)
 }
 
 int main(int, char *[])
-{    
+{
+    chdir("/Volumes/Windows 7/OpenSource/eno/src/Visual Studio/");
     imageloader = new ImageLoader_BMP;
     TextureID ID;
-    ID.filename = _T("dummy256.bmp");
+    ID.filename = "dummy24.bmp";
     image = imageloader->loadImage(ID);
 
-    enoWindowProperty property(800, 600, _T("eno10.0"), false, Update, Draw);
+    enoWindowProperty property(300, 100, _T("eno10.0"), false, Update, Draw);
 
     APP->initialize(property);
 

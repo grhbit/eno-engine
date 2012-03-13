@@ -11,35 +11,13 @@
 
 using namespace std;
 
-#if defined(ENO_UNICODE)
-#if !defined(_tcschr)
-#define _tcschr wcschr
-#endif
-#if !defined(_tcsstr)
-#define _tcsstr wcsstr
-#endif
-#if !defined(_tfopen_s)
-#define _tfopen_s _wfopen_s
-#endif
-#else
-#if !defined(_tcschr)
-#define _tcschr strchr
-#endif
-#if !defined(_tcsstr)
-#define _tcsstr strstr
-#endif
-#if !defined(_tfopen_s)
-#define _tfopen_s fopen_s
-#endif
-#endif
-
 namespace eno {
 
     enoFile::enoFile(void) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
     {
     }
 
-    enoFile::enoFile(const CString& path, s32 mode) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
+    enoFile::enoFile(const CStdStringA& path, s32 mode) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
     {
         open(path, mode);
     }
@@ -50,7 +28,7 @@ namespace eno {
             close();
     }
 
-    void enoFile::open( const CString& path, s32 mode_ )
+    void enoFile::open( const CStdString& path, s32 mode_ )
     {
         memset(buffer, 0, sizeof(buffer));
         end = &buffer[BUFFER_SIZE];
@@ -59,21 +37,21 @@ namespace eno {
         if(filename.IsEmpty() != true)
             close();
 
-        CString openmode_ = _T("");
+        CStdStringA openmode_ = "";
 
         if (mode_ & READ)
-            openmode_ += _T("r+");
+            openmode_ += "r+";
 
         if (mode_ & TRUNC)
-            openmode_ = _T("w");
+            openmode_ = "w";
 // 
 //         if (mode_ & WRITE)
-//             openmode_ += _T("w+");
+//             openmode_ += "w+";
 
         if (mode_ & BINARY)
-            openmode_ += _T("b");
+            openmode_ += "b";
 
-        _tfopen_s(&file, path.c_str(), openmode_);
+        file = fopen(path.c_str(), openmode_);
         enoFile::RefreshFileSize();
 
         if(isOpen()) {
@@ -112,7 +90,7 @@ namespace eno {
     void enoFile::setReadSeek(u64 pos)
     {
         if ((mode&READ) && isOpen()) {
-            fseek(file, pos, FILE_BEGIN);
+            fseek(file, pos, SEEK_SET);
             posg = pos;
         }
     }
@@ -128,7 +106,7 @@ namespace eno {
     void enoFile::setWriteSeek(u64 pos)
     {
         if ((mode&WRITE) && isOpen()) {
-            fseek(file, pos, FILE_BEGIN);
+            fseek(file, pos, SEEK_SET);
             posp = pos;
         }
     }
@@ -153,7 +131,7 @@ namespace eno {
                 if(FillBuffer() == 0) // EOF
                     break;
 
-            tchar* pos = _tcsstr(offset, delimeter.c_str());
+            c8* pos = strstr(offset, delimeter.c_str());
             if(pos == 0) {
                 sRet.append(offset, end - offset);
                 offset = end;
@@ -183,19 +161,19 @@ namespace eno {
         enoFile::RefreshFileSize();
     }
 
-    tchar enoFile::get()
+    c8 enoFile::get()
     {
         if (offset == end)
             if(FillBuffer() == 0)
                 return 0;
 
-        tchar ret = *offset;
+        c8 ret = *offset;
         offset++;
 
         return ret;
     }
 
-    void enoFile::put(tchar ch)
+    void enoFile::put(c8 ch)
     {
         enoFile::WriteProcess(&ch, 1);
     }
@@ -240,7 +218,7 @@ namespace eno {
 
     void enoFile::getBytes(u8* buff, u64 size)
     {
-        memcpy_s(buff, size, readBytes(size), size);
+        memcpy(buff, readBytes(size), size);
     }
 
     void enoFile::readBytes(CStdStringA& str, u64 size)
@@ -253,7 +231,7 @@ namespace eno {
         return (read(size));
     }
 
-    void enoFile::writeBytes(const tchar* buffer_, u64 size)
+    void enoFile::writeBytes(const c8* buffer_, u64 size)
     {
         enoFile::WriteProcess(buffer_, size);
     }
@@ -267,7 +245,7 @@ namespace eno {
             if (FillBuffer() == 0)
                 return 0;
 
-        tchar tch = *offset;
+        c8 tch = *offset;
         offset++;
         
         return static_cast<c8>(tch);
@@ -277,7 +255,7 @@ namespace eno {
     {
         if (mode&BINARY)
         {
-            enoFile::WriteProcess((const tchar*)&ch, 1);
+            enoFile::WriteProcess((const char*)&ch, 1);
         }
     }
 
@@ -286,7 +264,7 @@ namespace eno {
         if(writebuffer.empty())
             return;
 
-        fwrite(writebuffer.c_str(), writebuffer.size()*sizeof(tchar), writebuffer.size(), file);
+        fwrite(writebuffer.c_str(), writebuffer.size()*sizeof(c8), writebuffer.size(), file);
         writebuffer.clear();
         fflush(file);
     }
@@ -306,19 +284,7 @@ namespace eno {
         memset(buffer, 0, sizeof(buffer));
         u64 readcount = 0;
 
-#if defined(ENO_UNICODE)
-        u8 tmpBuf[BUFFER_SIZE];
-#else
-#define tmpBuf buffer
-#endif
-        readcount = fread_s(tmpBuf, sizeof(tmpBuf), sizeof(u8), BUFFER_SIZE, file);
-        
-#if defined(ENO_UNICODE)
-        for (u64 i = 0; i<readcount; ++i)
-            buffer[i] = tmpBuf[i];
-#else
-#undef tmpBuf
-#endif
+        readcount = fread(buffer, sizeof(c8), BUFFER_SIZE, file);
         
         if(readcount != BUFFER_SIZE)
             end = buffer + readcount;
@@ -326,7 +292,7 @@ namespace eno {
         return readcount;
     }
 
-    void enoFile::WriteProcess(const tchar* str, u64 size)
+    void enoFile::WriteProcess(const char* str, u64 size)
     {
         if ((!isOpen()) && (mode&WRITE))
             return;
@@ -345,14 +311,14 @@ namespace eno {
             return;
 
         u64 begin, end;
-        fseek(file, 0, FILE_BEGIN);
+        fseek(file, 0, SEEK_SET);
         begin = ftell(file);
-        fseek(file, 0, FILE_END);
+        fseek(file, 0, SEEK_END);
         end = ftell(file);
 
         filesize = end-begin;
 
-        fseek(file, posg, FILE_BEGIN);
+        fseek(file, posg, SEEK_SET);
     }
 
 }
