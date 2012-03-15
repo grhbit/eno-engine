@@ -15,7 +15,7 @@ namespace eno {
     class ImageLoader_BMP : public enoImageLoader
     {
     private:
-        /* virtual */ CString getLoaderType() { return _T("BMP"); }
+        /* virtual */ CString getLoaderType() { return "BMP"; }
 
         /* virtual */ enoImage* loadImage(const TextureID&);
     };

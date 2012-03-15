@@ -52,35 +52,137 @@ extern const unsigned int revision;
 
 #include "StdString.h"
 
-namespace eno { typedef CStdString CString; }
+namespace eno {
+    typedef CStdString CString;
+    
+    // Raw String
+    typedef CStdStr<char> RString;
+}
 
 #if defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 // {
 #define ENO_ALIGNED(n) __declspec(align(n))
-#include <tchar.h>
+//*/
+namespace eno {
+    
+class UTF8String
+{
+    char* utf8string;
+    
+public:
+    UTF8String(const wchar_t* unicodedata) : utf8string(0)
+    {
+        size_t size = wcslen(unicodedata);
+
+        size_t count = 0;
+        for (size_t i = 0; i < size; i++)
+        {
+            if (unicodedata[i] < 0x80)
+                count += 1;
+            else if (unicodedata[i] < 0x800)
+                count += 2;
+            else if (unicodedata[i] < 0x10000)
+                count += 3;
+        }
+
+        utf8string = new char[count];
+        count = 0;
+
+        for (size_t i = 0; i < size; i++)
+        {
+            if (unicodedata[i] < 0x80)
+                utf8string[count++] = unicodedata[i];
+            else if (unicodedata[i] < 0x800)
+            {
+                utf8string[count++] = (unicodedata[i]&0x07C0)>>0x6 | 0x0C0;
+                utf8string[count++] = (unicodedata[i]&0x003F)      | 0x080;
+            }
+            else if (unicodedata[i] < 0x10000)
+            {
+                utf8string[count++] = (unicodedata[i]&0xF000)>>0xC | 0x0E0;
+                utf8string[count++] = (unicodedata[i]&0x0FC0)>>0x6 | 0x080;
+                utf8string[count++] = (unicodedata[i]&0x003F)      | 0x080;
+            }
+        }       
+        
+    }
+    
+    ~UTF8String(void)
+    {
+        if (utf8string != 0)
+            delete utf8string;
+    }
+    
+    operator RString () { return utf8string; }
+    
+    operator char* () { return utf8string; }
+    
+    operator const char* const () { return utf8string; }
+    
+    operator const RString const () { return utf8string; }
+};
+
+}
+
+#define UNISTRING(X) L##X
+#define UTF8(X) UTF8String(L##X)
+
 #if defined (UNICODE)
 #define ENO_UNICODE
-typedef wchar_t tchar;
 #endif
+//*/
 #define ENO_CLASS_NAME _T("eno")
 // }
 #elif defined(ENO_COMPILED_FROM_GNUC)
 // {
 #define ENO_ALIGNED(n) __attribute__ ((aligned(n)))
 #define __long_aligned __attribute__((aligned((sizeof(long)))))
-#define _T(Str) L##Str
+//*/
+
+namespace eno {
+
+class UTF8String 
+{
+public:
+    UTF8String(const wchar_t* unicodedata) : utf8string(0)
+    {
+        size_t size = wcslen(unicodedata);
+        
+        utf8string = new char[size];
+        
+        for (size_t i = 0; i < size; i++)
+            utf8string[i] = unicodedata[i];
+    }
+    
+    ~UTF8String(void)
+    {
+        if (utf8string != 0)
+            delete utf8string;
+    }
+    
+    operator RString () { return utf8string; }
+    
+    operator char* () { return utf8string; }
+    
+    operator const char* const () { return utf8string; }
+    
+    operator const RString const () { return utf8string; }
+    
+private:
+    char* utf8string;
+};
+
+}
+
+#define UNISTRING(X) L##X
+#define UTF8(X) UTF8String(L##X)
 #define ENO_UNICODE
-#define ENO_UNICODE_MACOSX
-typedef unsigned short tchar;
+//*/
 // }
 #endif
 
-#if !defined(ENO_UNICODE)&&!defined (ENO_UNICODE_MACOSX)
-typedef char tchar;
-#endif
-
 #if !defined(interface)
-#define interface struct
+#define interface class
 #endif
 
 #if defined(ENO_COMPILED_FROM_GNUC) && \

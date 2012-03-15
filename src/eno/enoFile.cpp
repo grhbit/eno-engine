@@ -17,7 +17,7 @@ namespace eno {
     {
     }
 
-    enoFile::enoFile(const CStdStringA& path, s32 mode) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
+    enoFile::enoFile(const RString& path, s32 mode) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
     {
         open(path, mode);
     }
@@ -28,7 +28,7 @@ namespace eno {
             close();
     }
 
-    void enoFile::open( const CStdString& path, s32 mode_ )
+    void enoFile::open( const RString& path, s32 mode_ )
     {
         memset(buffer, 0, sizeof(buffer));
         end = &buffer[BUFFER_SIZE];
@@ -37,7 +37,7 @@ namespace eno {
         if(filename.IsEmpty() != true)
             close();
 
-        CStdStringA openmode_ = "";
+        RString openmode_ = "";
 
         if (mode_ & READ)
             openmode_ += "r+";
@@ -117,13 +117,12 @@ namespace eno {
         return filesize;
     }
 
-    CString enoFile::getLine( const CString delimeter, boolean joinDelimeter )
+    CString enoFile::getLine( const RString delimeter, boolean joinDelimeter )
     {
         if(mode&BINARY)
-            return _T("");
+            return "";
 
-        u64 readcount = 0;
-        CString sRet;
+        RString sRet;
 
         while(true)
         {
@@ -148,7 +147,7 @@ namespace eno {
         return sRet;
     }
 
-    void enoFile::writeLine(const CString str)
+    void enoFile::writeLine( const RString str )
     {
         if((!isOpen()) && (mode&WRITE))
             return;
@@ -156,7 +155,7 @@ namespace eno {
         if (mode&BINARY)
             return;
 
-        enoFile::WriteProcess(str+_T("\n"), str.size()+1);
+        enoFile::WriteProcess(str+"\n", str.size()+1);
 
         enoFile::RefreshFileSize();
     }
@@ -185,7 +184,7 @@ namespace eno {
 
     CString enoFile::read(u64 readcount)
     {
-        CString sRet = _T("");
+        RString sRet = "";
 
         while(true)
         {
@@ -193,8 +192,7 @@ namespace eno {
                 if(FillBuffer() == 0)
                     return sRet;
 
-            u64 cor = end-offset;
-            if (readcount >= (end-offset))
+            if (readcount >= (end - offset))
             {
                 sRet.append(offset, end - offset);
                 readcount -= (end - offset);
@@ -221,12 +219,12 @@ namespace eno {
         memcpy(buff, readBytes(size), size);
     }
 
-    void enoFile::readBytes(CStdStringA& str, u64 size)
+    void enoFile::readBytes(RString& str, u64 size)
     {
         str = readBytes(size);
     }
 
-    CStdStringA enoFile::readBytes(u64 size)
+    RString enoFile::readBytes(u64 size)
     {
         return (read(size));
     }

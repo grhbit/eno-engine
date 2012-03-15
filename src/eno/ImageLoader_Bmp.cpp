@@ -76,15 +76,11 @@ namespace eno {
         u32 height = info->height;
 
         u8* buffer = new u8[width*height*4];
-        u32*colorbuffer = 0;
 
         image->bind(buffer);
 
         for (u32 i = 0; i<width*height; i++)
         {
-            colorbuffer = reinterpret_cast<u32*>(buffer);
-
-            buffer += 4;
         }
 
         image->setSize(core::size2d_template<u32>(width, height));

@@ -49,4 +49,8 @@ src/Visual Studio/ipch/
 *.hmap
 *.dat
 *.tmp
-
+*.bmp
+*.jpg
+*.png
+*.bak
+*.txt

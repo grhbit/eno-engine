@@ -34,7 +34,7 @@ public:
 public:
     enoWindowProperty( void ) : 
       Width(800), Height(600),
-          Title(_T("")), Fullscreen(false), Alternate(nullptr),
+          Title(""), Fullscreen(false), Alternate(nullptr),
           UpdateFunc(nullptr), DrawFunc(nullptr) { }
 
       enoWindowProperty( s16 width, s16 height,
