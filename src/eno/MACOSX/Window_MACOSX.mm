@@ -165,7 +165,7 @@ namespace eno {
             {
                 NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
                 
-                [NSApplication sharedApplication];
+//                [NSApplication sharedApplication];
                 
                 delegate = [[AppDelegate alloc] init];
                 [delegate performSelectorOnMainThread:@selector(initWindow) withObject:nil waitUntilDone:YES];

@@ -55,8 +55,7 @@ eno::boolean Update(ftype)
 
 using namespace std;
 int main(int, char *[])
-{
-    /*
+{    
     chdir("/Volumes/Windows 7/OpenSource/eno/src/Visual Studio/");
     imageloader = new ImageLoader_BMP;
     TextureID ID;
@@ -82,6 +81,5 @@ int main(int, char *[])
     delete image;
     delete imageloader;
 
-     */
     return UnitTest::RunAllTests();
 }

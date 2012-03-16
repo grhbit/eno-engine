@@ -13,11 +13,11 @@ using namespace std;
 
 namespace eno {
 
-    enoFile::enoFile(void) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
+    enoFile::enoFile(void) : file(0), mode(0), seekpos(0), filesize(0), autoflush(false), offset(0), end(0)
     {
     }
 
-    enoFile::enoFile(const RString& path, s32 mode) : file(0), mode(0), posg(0), posp(0), filesize(0), autoflush(false), offset(0), end(0)
+    enoFile::enoFile(const RString& path, s32 mode) : file(0), mode(0), seekpos(0), filesize(0), autoflush(false), offset(0), end(0)
     {
         open(path, mode);
     }
@@ -58,7 +58,7 @@ namespace eno {
             filename = path;
             mode = mode_;
             if(mode_&READ)
-                setReadSeek(0);
+                seek(0);
         }
     }
 
@@ -79,7 +79,7 @@ namespace eno {
         return feof(file);
     }
 
-    s64 enoFile::getReadTell(void)
+    s64 enoFile::tell(void)
     {
         if ((mode&READ) && isOpen())
             return ftell(file);
@@ -87,27 +87,11 @@ namespace eno {
         return -1;
     }
 
-    void enoFile::setReadSeek(u64 pos)
+    void enoFile::seek(u64 pos)
     {
         if ((mode&READ) && isOpen()) {
             fseek(file, pos, SEEK_SET);
-            posg = pos;
-        }
-    }
-
-    s64 enoFile::getWriteTell(void)
-    {
-        if ((mode&WRITE) && isOpen())
-            return ftell(file);
-
-        return -1;
-    }
-
-    void enoFile::setWriteSeek(u64 pos)
-    {
-        if ((mode&WRITE) && isOpen()) {
-            fseek(file, pos, SEEK_SET);
-            posp = pos;
+            seekpos = pos;
         }
     }
 
@@ -316,7 +300,7 @@ namespace eno {
 
         filesize = end-begin;
 
-        fseek(file, posg, SEEK_SET);
+        fseek(file, seekpos, SEEK_SET);
     }
 
 }

@@ -33,11 +33,8 @@ namespace eno {
         boolean isOpen(void) const;
         boolean isEOF(void) const;
 
-        s64 getReadTell(void);
-        void setReadSeek(u64);
-
-        s64 getWriteTell(void);
-        void setWriteSeek(u64);
+        s64 tell(void);
+        void seek(u64);
 
         u64 getFileSize(void);
 
@@ -84,8 +81,7 @@ namespace eno {
         c8*end;
         RString writebuffer;
         s32 mode;
-        u64 posg;  // for read, in
-        u64 posp;  // for write, out
+        u64 seekpos;
         u64 filesize;
         FILE* file;
     };

@@ -303,7 +303,7 @@ namespace eno {
     {
         enoFile file;
         file.open(ID.filename, enoFile::READ|enoFile::BINARY);
-        file.setReadSeek(0);
+        file.seek(0);
 
         BMPMagicNumber magicnumber;
         magicnumber.magicnumber[0] = file.getByte();

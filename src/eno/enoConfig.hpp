@@ -64,7 +64,7 @@ namespace eno {
 #define ENO_ALIGNED(n) __declspec(align(n))
 //*/
 namespace eno {
-    
+
 class UTF8String
 {
     char* utf8string;
@@ -123,8 +123,8 @@ public:
 };
 
 }
-
-#define UNISTRING(X) L##X
+ 
+#define UNISTRING(X) UTF8(X)
 #define UTF8(X) UTF8String(L##X)
 
 #if defined (UNICODE)
@@ -140,7 +140,7 @@ public:
 //*/
 
 namespace eno {
-
+/*
 class UTF8String 
 {
 public:
@@ -171,11 +171,12 @@ public:
 private:
     char* utf8string;
 };
-
+*/
 }
 
 #define UNISTRING(X) L##X
-#define UTF8(X) UTF8String(L##X)
+#define UTF8String(X) L##X
+#define UTF8(X) L##X
 #define ENO_UNICODE
 //*/
 // }
