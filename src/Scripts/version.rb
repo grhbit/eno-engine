@@ -36,9 +36,9 @@ major, minor, revision = 0, 0, 0
 if isWindows?
 	localtime = time.localtime.to_s + "\"\n// mswin-Visual Studio\n"
 elsif isMac?
-	localtime = `date` + "\"\n// darwin-Xcode\n"
+	localtime = `date`.chomp + "\"\n// darwin-Xcode\n"
 elsif isLinux?
-	localtime = `date` + "\"\n// linux\n"
+	localtime = `date`.chomp + "\"\n// linux\n"
 end
 
 localtime.strip!
