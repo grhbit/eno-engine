@@ -44,6 +44,8 @@ namespace eno {
 
         core::colorTypeF getPixel(core::position2d_template<u32>);
 
+        void setColorFormat(ColorFormat format) { colorformat = format; }
+        
         ColorFormat getColorFormat( void ) const;
 
     private:

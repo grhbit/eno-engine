@@ -55,11 +55,11 @@ eno::boolean Update(ftype)
 
 using namespace std;
 int main(int, char *[])
-{    
+{
     chdir("/Volumes/Windows 7/OpenSource/eno/src/Visual Studio/");
     imageloader = new ImageLoader_BMP;
     TextureID ID;
-    ID.filename = "dummy24.bmp";
+    ID.filename = "rgba8.bmp";
     image = imageloader->loadImage(ID);
 
     enoWindowProperty property(300, 100, "eno10.0", false, Update, Draw);

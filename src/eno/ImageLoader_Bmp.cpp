@@ -118,6 +118,7 @@ namespace eno {
         }
         
         image->setSize(core::size2d_template<u32>(width, height));
+        image->setColorFormat(ColorFMT_RGBA8);
     }
 
     u32 getBitsLength(u32 bits)
@@ -208,15 +209,13 @@ namespace eno {
                     u8 r;
                     u8 g;
                     u8 b;
-                    u8 a;
                 };
 
-                u8 buffer[4];
-                u32 color;
+                u8 buffer[3];
             };
         } bits;
 
-        u8* buffer = new u8[width * height * 4];
+        u8* buffer = new u8[width * height * 3];
         u32*colorbuffer = 0;
 
         image->bind(buffer);
@@ -231,19 +230,18 @@ namespace eno {
 
                 file->getBytes(bits.buffer, sizeof(u8)*3);
 
-                bits.color = bits.color;
                 bits.r = bits.r^bits.b;
                 bits.b = bits.r^bits.b;
                 bits.r = bits.r^bits.b;
-                bits.a = 255;
 
-                *colorbuffer = bits.color;
+                memcpy(colorbuffer, bits.buffer, sizeof(u8)*3);
 
-                buffer += 4;
+                buffer += 3;
             }
         }
 
         image->setSize(core::size2d_template<u32>(width, height));
+        image->setColorFormat(ColorFMT_RGB8);
 
         std::cout << timer.touch() << std::endl;
     }
@@ -295,6 +293,7 @@ namespace eno {
         }
 
         image->setSize(core::size2d_template<u32>(width, height));
+        image->setColorFormat(ColorFMT_RGBA8);
 
         std::cout << timer.touch() << std::endl;        
     }

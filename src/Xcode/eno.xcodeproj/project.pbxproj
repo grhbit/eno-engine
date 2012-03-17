@@ -70,6 +70,7 @@
 		3F74475415082EF60003DD67 /* enoImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoImage.cpp; path = ../eno/enoImage.cpp; sourceTree = "<group>"; };
 		3F74475715082F650003DD67 /* enoFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoFile.cpp; path = ../eno/enoFile.cpp; sourceTree = "<group>"; };
 		3F74475815082F650003DD67 /* enoFile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoFile.hpp; path = ../eno/enoFile.hpp; sourceTree = "<group>"; };
+		3F859E1B151397BA00479FA6 /* enoGraphicsType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoGraphicsType.hpp; path = ../eno/enoGraphicsType.hpp; sourceTree = "<group>"; };
 		3FF9D10014DABE2900494EBB /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = version.cpp; path = ../Scripts/version.cpp; sourceTree = "<group>"; };
 		3FF9D10114DAC10800494EBB /* enoGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoGraphics.cpp; path = ../eno/enoGraphics.cpp; sourceTree = "<group>"; };
 		3FF9D10214DAC10800494EBB /* enoGraphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = enoGraphics.hpp; path = ../eno/enoGraphics.hpp; sourceTree = "<group>"; };
@@ -410,6 +411,7 @@
 			children = (
 				3FF9D10114DAC10800494EBB /* enoGraphics.cpp */,
 				3FF9D10214DAC10800494EBB /* enoGraphics.hpp */,
+				3F859E1B151397BA00479FA6 /* enoGraphicsType.hpp */,
 				D9764E2B12EE13F30028EE15 /* color */,
 				D993F81212E839C3001B4CFA /* renderer */,
 				D993F81112E839BA001B4CFA /* Image */,

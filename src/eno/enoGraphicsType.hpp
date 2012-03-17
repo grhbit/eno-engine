@@ -23,15 +23,18 @@ namespace eno {
     };
 
     enum ColorFormat {
-        ColorFMT_B1, //
-        ColorFMT_P4,
-        ColorFMT_P8,
+        // --- No alpha channel
         ColorFMT_RGB5,
-        ColorFMT_R5G6B5,
+        ColorFMT_X1RGB5,
         ColorFMT_RGB8,
+        ColorFMT_BGR8,
+        
+        // --- Alpha channel
+        ColorFMT_RGBA4,
+        ColorFMT_RGB5A1,
+        ColorFMT_A1BGR5,
         ColorFMT_RGBA8,
-        ColorFMT_RGBA16,
-        ColorFMT_RGBA32F,
+        ColorFMT_BGRA8,
         ColorFormat_Count,
     };
 
@@ -85,11 +88,10 @@ namespace eno {
     {
     public:
         boolean mipmap;
-        CStdStringA filename;
-        ColorFormat colorFormat;
+        RString filename;
 
     public:
-        TextureID(void) : mipmap(false), filename(""), colorFormat(ColorFMT_RGBA8) {}
+        TextureID(void) : mipmap(false), filename("") {}
     };
 }
 
