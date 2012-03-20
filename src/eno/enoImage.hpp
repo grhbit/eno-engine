@@ -20,9 +20,9 @@ namespace eno {
     {
     public:
 
-        enoImage( void );
+//      enoImage( void );
 
-        enoImage( u8*, ColorFormat, core::size2d_template<u32> );
+        enoImage( ColorFormat, core::size2d_template<u32> );
 
         ~enoImage( void );
 

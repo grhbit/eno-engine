@@ -13,19 +13,21 @@
 namespace eno {
     namespace core {
 
-template<typename _Ty>
-class size2d_template : public Vector2d<_Ty> {
-public:
-    size2d_template( void ) { }
-    explicit size2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
-    size2d_template( _Ty width, _Ty height ) { this->x = width; this->y = height; }
-    size2d_template( const size2d_template& size ) { this->x = size.x; this->y = size.y; }
+        template<typename _Ty>
+        class size2d_template : public Vector2d<_Ty> {
+        public:
+            size2d_template( void ) { }
+            explicit size2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
+            size2d_template( _Ty width, _Ty height ) { this->x = width; this->y = height; }
+            size2d_template( const size2d_template& size ) { this->x = size.x; this->y = size.y; }
 
-    _Ty getWidth( void ) const { return this->x; }
-    _Ty getHeight( void ) const { return this->y; }
-};
+            _Ty getWidth( void ) const { return this->x; }
+            _Ty getHeight( void ) const { return this->y; }
 
-typedef size2d_template<ftype> size2d;
+            _Ty getArea( void ) const { return x*y; }
+        };
 
-}
+        typedef size2d_template<ftype> size2d;
+
     }
+}

@@ -119,7 +119,7 @@ public:
     
     operator const char* const () { return utf8string; }
     
-    operator const RString const () { return utf8string; }
+    operator const RString () { return utf8string; }
 };
 
 }

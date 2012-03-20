@@ -48,7 +48,7 @@ namespace eno {
         //--- TEXT & BINARY MODE
         c8 get();
         void read(CString&, u64);
-        CString read(u64 readcount);
+        RString read(u64 readcount);
 
         void put(c8);
         void writeBytes(const c8*, u64 size);

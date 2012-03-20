@@ -70,23 +70,23 @@ namespace eno {
         };
     };
 
-    void loadBitmapColorDepth1Bit(enoFile* file, enoImage* image, DIBHeader* info)
+    void loadBitmapColorDepth1Bit(enoFile* file, enoImage** image, DIBHeader* info)
     {
         u32 width = info->width;
         u32 height = info->height;
 
-        u8* buffer = new u8[width*height*4];
-
-        image->bind(buffer);
+        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width,height));
+        u8*buffer = (*image)->lock();
 
         for (u32 i = 0; i<width*height; i++)
         {
         }
 
-        image->setSize(core::size2d_template<u32>(width, height));
+        (*image)->unlock();
+
     }
 
-    void loadBitmapColorDepth8Bits(enoFile* file, enoImage* image, DIBHeader* info)
+    void loadBitmapColorDepth8Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
         u32 width = info->width;
         u32 height = info->height;
@@ -101,10 +101,10 @@ namespace eno {
             palette[i].a = 255;
         }
 
-        u8* buffer = new u8[width*height*4];
-        u32*colorbuffer = 0;
+        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
 
-        image->bind(buffer);
+        u8* buffer = (*image)->lock();
+        u32*colorbuffer = 0;
 
         for (u32 i = 0; i<(width*height); i++)
         {
@@ -116,9 +116,8 @@ namespace eno {
 
             buffer += 4;
         }
-        
-        image->setSize(core::size2d_template<u32>(width, height));
-        image->setColorFormat(ColorFMT_RGBA8);
+
+        (*image)->unlock();
     }
 
     u32 getBitsLength(u32 bits)
@@ -141,7 +140,7 @@ namespace eno {
         return ret;
     }
 
-    void loadBitmapColorDepth16Bits(enoFile* file, enoImage* image, DIBHeader* info)
+    void loadBitmapColorDepth16Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
         u32 width = info->width;
         u32 height = info->height;
@@ -154,7 +153,9 @@ namespace eno {
             };
         } bits;
 
-        u8* buffer = new u8[width * height * 4];
+        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
+
+        u8* buffer = (*image)->lock();
         u32*colorbuffer = 0;
 
         u32 redShift = getShiftCount(info->redbitmask);
@@ -168,8 +169,6 @@ namespace eno {
         u32 blueShift = getShiftCount(info->bluebitmask);
         u32 blueMask = info->bluebitmask >> blueShift;
         u32 blueLength = getBitsLength(blueMask);
-
-        image->bind(buffer);
 
         enoTimer timer;
         core::colorTypeI color;
@@ -193,109 +192,47 @@ namespace eno {
             }
         }
 
-        image->setSize(core::size2d_template<u32>(width, height));
+        (*image)->unlock();
 
         std::cout << timer.touch() << std::endl;
     }
 
-    void loadBitmapColorDepth24Bits(enoFile* file, enoImage* image, DIBHeader* info)
+    void loadBitmapColorDepth24Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
         u32 width = info->width;
         u32 height = info->height;
 
-        struct {
-            union {
-                struct {
-                    u8 r;
-                    u8 g;
-                    u8 b;
-                };
+        (*image) = new enoImage(ColorFMT_RGB8, core::size2d_template<u32>(width, height));
 
-                u8 buffer[3];
-            };
-        } bits;
+        u8* buffer = (*image)->lock();
+        u32 Pitch = width * 3;
 
-        u8* buffer = new u8[width * height * 3];
-        u32*colorbuffer = 0;
-
-        image->bind(buffer);
-
-        enoTimer timer;
-
-        for (u32 y = 0; y < height; y++)
+        for (u32 i = 0;i < height; i++)
         {
-            for (u32 x = 0; x < width; x++)
-            {
-                colorbuffer = reinterpret_cast<u32*>(buffer);
-
-                file->getBytes(bits.buffer, sizeof(u8)*3);
-
-                bits.r = bits.r^bits.b;
-                bits.b = bits.r^bits.b;
-                bits.r = bits.r^bits.b;
-
-                memcpy(colorbuffer, bits.buffer, sizeof(u8)*3);
-
-                buffer += 3;
-            }
+            memcpy(buffer, file->readBytes(Pitch), sizeof(u8) * Pitch);
+            buffer += Pitch;
         }
-
-        image->setSize(core::size2d_template<u32>(width, height));
-        image->setColorFormat(ColorFMT_RGB8);
-
-        std::cout << timer.touch() << std::endl;
+        
+        (*image)->unlock();
     }
 
-    void loadBitmapColorDepth32Bits(enoFile* file, enoImage* image, DIBHeader* info)
+    void loadBitmapColorDepth32Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
         u32 width = info->width;
         u32 height = info->height;
 
-        struct {
-            union {
-                struct {
-                    u8 r;
-                    u8 g;
-                    u8 b;
-                    u8 a;
-                };
+        u32 Pitch = width * 4;
 
-                u8 buffer[4];
-                u32 color;
-            };
-        } bits;
+        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
+        u8* buffer = (*image)->lock();
 
-        u8* buffer = new u8[width * height * 4];
-        u32*colorbuffer = 0;
-
-        image->bind(buffer);
-
-        enoTimer timer;
-
-        for (u32 y = 0; y < height; y++)
+        for (u32 i = 0; i < height; i++)
         {
-            for (u32 x = 0; x < width; x++)
-            {
-                colorbuffer = reinterpret_cast<u32*>(buffer);
-
-                file->getBytes(bits.buffer, sizeof(u32));
-
-                bits.color = bits.color>>8;
-                bits.r = bits.r^bits.b;
-                bits.b = bits.r^bits.b;
-                bits.r = bits.r^bits.b;
-                bits.a = 255;
-
-                *colorbuffer = bits.color;
-
-                buffer += 4;
-            }
+            memcpy(buffer, file->readBytes(Pitch), sizeof(u8) * Pitch);
+            buffer += Pitch;
         }
 
-        image->setSize(core::size2d_template<u32>(width, height));
-        image->setColorFormat(ColorFMT_RGBA8);
-
-        std::cout << timer.touch() << std::endl;        
+        (*image)->unlock();
     }
 
     enoImage* ImageLoader_BMP::loadImage( const TextureID& ID )
@@ -315,24 +252,24 @@ namespace eno {
         file.getBytes(info.buffer, sizeof(info.headersize));
         file.getBytes(info.buffer+4, info.headersize-sizeof(info.headersize));
 
-        enoImage* image = new enoImage;
+        enoImage* image = nullptr;
 
         switch(info.colordepth)
         {
         case 1:
-            loadBitmapColorDepth1Bit(&file, image, &info);
+            loadBitmapColorDepth1Bit(&file, &image, &info);
             break;
         case 8:
-            loadBitmapColorDepth8Bits(&file, image, &info);
+            loadBitmapColorDepth8Bits(&file, &image, &info);
             break;
         case 16:
-            loadBitmapColorDepth16Bits(&file, image, &info);
+            loadBitmapColorDepth16Bits(&file, &image, &info);
             break;
         case 24:
-            loadBitmapColorDepth24Bits(&file, image, &info);
+            loadBitmapColorDepth24Bits(&file, &image, &info);
             break;
         case 32:
-            loadBitmapColorDepth32Bits(&file, image, &info);
+            loadBitmapColorDepth32Bits(&file, &image, &info);
             break;
         };
 

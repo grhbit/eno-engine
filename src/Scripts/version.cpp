@@ -3,7 +3,7 @@
 
 const unsigned int eno_major = 0;
 const unsigned int eno_minor = 0;
-const unsigned int revision = 680;
-const char *const date = "Sat Mar 17 08:54:44 UTC 2012";
-//          local time = "Sat Mar 17 17:54:44 JST 2012"
-// darwin-Xcode
+const unsigned int revision = 733;
+const char *const date = "2012-03-20 05:19:06 UTC";
+//          local time = "2012-03-20 14:19:06 +0900"
+// mswin-Visual Studio

@@ -10,15 +10,33 @@
 #include "enoImage.hpp"
 
 namespace eno {
-
+/*
     enoImage::enoImage(void) : data(nullptr), colorformat(ColorFormat_Count), size(0, 0)
     {
     }
+*/
 
-    enoImage::enoImage(u8* buffer, ColorFormat colorFMT, core::size2d_template<u32> size_)
-        : data(buffer), colorformat(colorFMT), size(size_) 
+    enoImage::enoImage(ColorFormat colorFMT, core::size2d_template<u32> size_)
+        : data(nullptr), colorformat(colorFMT), size(size_) 
     {
-
+        if((colorformat == ColorFMT_A1BGR5)||
+           (colorformat == ColorFMT_RGB5A1)||
+           (colorformat == ColorFMT_RGBA4) ||
+           (colorformat == ColorFMT_X1RGB5)||
+           (colorformat == ColorFMT_RGB5))
+        {
+            data = new u8[size.getArea() * sizeof(u8) * 2];
+        }
+        else if
+          ((colorformat == ColorFMT_BGR8) ||
+           (colorformat == ColorFMT_RGB8))
+        {
+            data = new u8[size.getArea() * sizeof(u8) * 3];
+        }
+        else
+        {
+            data = new u8[size.getArea() * sizeof(u8) * 4];
+        }
     }
 
     enoImage::~enoImage(void)

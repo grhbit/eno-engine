@@ -166,7 +166,7 @@ namespace eno {
         str = read(readcount);
     }
 
-    CString enoFile::read(u64 readcount)
+    RString enoFile::read(u64 readcount)
     {
         RString sRet = "";
 
