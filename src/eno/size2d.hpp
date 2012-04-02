@@ -24,7 +24,7 @@ namespace eno {
             _Ty getWidth( void ) const { return this->x; }
             _Ty getHeight( void ) const { return this->y; }
 
-            _Ty getArea( void ) const { return x*y; }
+            _Ty getArea( void ) const { return this->x*this->y; }
         };
 
         typedef size2d_template<ftype> size2d;

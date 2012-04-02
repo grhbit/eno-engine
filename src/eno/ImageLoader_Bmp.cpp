@@ -240,6 +240,9 @@ namespace eno {
         enoFile file;
         file.open(ID.filename, enoFile::READ|enoFile::BINARY);
         file.seek(0);
+        
+        if(file.isOpen()!=true)
+            return nullptr;
 
         BMPMagicNumber magicnumber;
         magicnumber.magicnumber[0] = file.getByte();

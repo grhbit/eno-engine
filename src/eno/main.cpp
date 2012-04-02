@@ -54,9 +54,9 @@ eno::boolean Update(ftype)
 }
 
 using namespace std;
-int main(int, char *[])
+int main(int, char *argv[])
 {
-//    chdir("/Volumes/Windows 7/OpenSource/eno/src/Visual Studio/");
+    chdir("../Visual Studio/");
     imageloader = new ImageLoader_BMP;
     TextureID ID;
     ID.filename = "dummy24.bmp";

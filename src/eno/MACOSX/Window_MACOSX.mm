@@ -19,6 +19,7 @@
 -(void) windowDidResignKey:(NSNotification *)aNotification;
 -(void) windowWillClose:(NSNotification *)aNotification;
 -(void) windowDidResize:(NSNotification *)aNotification;
+-(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender;
 
 -(void) initWindow;
 -(void) closeWindow;
@@ -49,10 +50,21 @@ core::size2d_template<s32> windowSize;
 -(void) windowDidResize:(NSNotification *)aNotification
 {
     id resizedWindow = static_cast<NSWindow*>([aNotification object]);
-    NSSize size = [NSWindow contentRectForFrameRect:[resizedWindow frame] styleMask:NSTitledWindowMask|NSClosableWindowMask|NSResizableWindowMask|NSMiniaturizableWindowMask].size;
+    NSSize size = 
+        [NSWindow contentRectForFrameRect:[resizedWindow frame]
+                                styleMask:
+                        NSTitledWindowMask|
+                      NSClosableWindowMask|
+                     NSResizableWindowMask|
+                NSMiniaturizableWindowMask].size;
     
     windowSize = core::size2d_template<s32>(size.width, size.height);
     //TODO : inform resize
+}
+
+-(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return YES;
 }
 
 -(void) initWindow
@@ -165,7 +177,7 @@ namespace eno {
             {
                 NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
                 
-//                [NSApplication sharedApplication];
+                [NSApplication sharedApplication];
                 
                 delegate = [[AppDelegate alloc] init];
                 [delegate performSelectorOnMainThread:@selector(initWindow) withObject:nil waitUntilDone:YES];

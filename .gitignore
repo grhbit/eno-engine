@@ -17,32 +17,16 @@
 *.log
 *.opensdf
 *.dep
-*/Release/
-*/Debug/
+Release
+Debug
+ipch
 *.LinkFileList
-src/Visual Studio/Debug/
-src/Visual Studio/Release/
-src/Visual Studio/ipch/
 !*ruby*
-*/ipch/
 *.LinkFileList
 ._*
 
 # Xcode
-*.perspective
-*.perspectivev3
-*.pbxuser
-*/*.xcworkspacedata
-*/*.xcworkspace/
-*.pbxbtree
-*.pbxsymbols
-*/strings.pbxstrings/control
-*.app
-*.o
-*/build/
-*.mode1
-*.mode1v3
-*xcodeproj/
+xcuserdata
 
 # etc
 *.header
