@@ -24,12 +24,12 @@ public:
 
     union {
         struct {
-            _Ty x, y;
+            _Ty x_, y_;
         };
 
-        _Ty v[2];
+        _Ty v_[2];
 
-        u8 buffer[sizeof(_Ty) * 2];
+        u8 buffer_[sizeof(_Ty) * 2];
     };
 };
 
@@ -41,9 +41,9 @@ template<typename _Ty>
 class vector2d_template : public Vector2d<_Ty> {
 public:
     vector2d_template( void ) { }
-    explicit vector2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
-    vector2d_template( _Ty _x, _Ty _y ) { this->x = _x; this->y = _y; }
-    vector2d_template( const vector2d_template& vec ) { this->x = vec.x; this->y = vec.y; }
+    explicit vector2d_template( _Ty* src ) { memcpy( this->v_, src, sizeof(this->v_) ); }
+    vector2d_template( _Ty x, _Ty y ) { this->x_ = x; this->y_ = y; }
+    vector2d_template( const vector2d_template& vec ) { this->x_ = vec.x_; this->y_ = vec.y_; }
 
     inline vector2d_template& add( const vector2d_template& rhs )
     {
@@ -74,9 +74,9 @@ public:
 
     static inline void Add( vector2d_template& vec2, const vector2d_template& lhs, const vector2d_template& rhs )
     {
-        vec2.x = lhs.x + rhs.x;
-        vec2.y = lhs.y + rhs.y;
-        vec2.z = lhs.z + rhs.z;
+        vec2.x_ = lhs.x_ + rhs.x_;
+        vec2.y_ = lhs.y_ + rhs.y_;
+        vec2.z_ = lhs.z_ + rhs.z_;
     }
 
     static inline vector2d_template Add( const vector2d_template& lhs, const vector2d_template& rhs )
@@ -88,9 +88,9 @@ public:
 
     static inline void Subtract( vector2d_template& vec2, const vector2d_template& lhs, const vector2d_template& rhs )
     {
-        vec2.x = lhs.x - rhs.x;
-        vec2.y = lhs.y - rhs.y;
-        vec2.z = lhs.z - rhs.z;
+        vec2.x_ = lhs.x_ - rhs.x_;
+        vec2.y_ = lhs.y_ - rhs.y_;
+        vec2.z_ = lhs.z_ - rhs.z_;
     }
 
     static inline vector2d_template Subtract( const vector2d_template& lhs, const vector2d_template& rhs )

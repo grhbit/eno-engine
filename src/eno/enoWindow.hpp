@@ -21,7 +21,11 @@ interface enoWindow {
 
         virtual void toggleFullScreen( void ) {};
     public:
+        static enoWindow* getInstance();
+        static void release();
         static enoWindow* BuildWindow( const enoWindowProperty& );
+
+        static enoWindow* instance;
 };
 
 }

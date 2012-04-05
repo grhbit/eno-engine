@@ -29,12 +29,12 @@ namespace eno {
 
             union {
                 struct {
-                    _Ty x, y, z, w;
+                    _Ty x_, y_, z_, w_;
                 };
 
-                _Ty v[4];
+                _Ty v_[4];
 
-                u8 buffer[sizeof(_Ty) * 4];
+                u8 buffer_[sizeof(_Ty) * 4];
             };
         }
 #ifdef ENO_COMPILED_FROM_GNUC
@@ -47,9 +47,9 @@ namespace eno {
         class vector4d_template : public Vector4d<_Ty> {
         public:
             vector4d_template() { }
-            explicit vector4d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
-            vector4d_template( _Ty _x, _Ty _y, _Ty _z, _Ty _w ) { this->x = _x; this->y = _y; this->z = _z; this->w = _w; }
-            vector4d_template( const vector4d_template& vec ) { this->x = vec.x; this->y = vec.y; this->z = vec.z; this->w = vec.w; }
+            explicit vector4d_template( _Ty* src ) { memcpy( this->v_, src, sizeof(this->v_) ); }
+            vector4d_template( _Ty x, _Ty y, _Ty z, _Ty w ) { this->x_ = x; this->y_ = y; this->z_ = z; this->w_ = w; }
+            vector4d_template( const vector4d_template& vec ) { this->x_ = vec.x_; this->y_ = vec.y_; this->z_ = vec.z_; this->w_ = vec.w_; }
 
             inline vector4d_template& add( const vector4d_template& rhs )
             {
@@ -85,10 +85,10 @@ namespace eno {
 
             static inline void Add( vector4d_template& vec4, const vector4d_template& lhs, const vector4d_template& rhs )
             {
-                vec4.x = lhs.x + rhs.x;
-                vec4.y = lhs.y + rhs.y;
-                vec4.z = lhs.z + rhs.z;
-                vec4.w = lhs.w + rhs.w;
+                vec4.x_ = lhs.x_ + rhs.x_;
+                vec4.y_ = lhs.y_ + rhs.y_;
+                vec4.z_ = lhs.z_ + rhs.z_;
+                vec4.w_ = lhs.w_ + rhs.w_;
             }
 
             static inline vector4d_template Add( const vector4d_template& lhs, const vector4d_template& rhs )
@@ -100,10 +100,10 @@ namespace eno {
 
             static inline void Subtract( vector4d_template& vec4, const vector4d_template& lhs, const vector4d_template& rhs )
             {					
-                vec4.x = lhs.x - rhs.x;
-                vec4.y = lhs.y - rhs.y;
-                vec4.z = lhs.z - rhs.z;
-                vec4.w = lhs.w - rhs.w;
+                vec4.x_ = lhs.x_ - rhs.x_;
+                vec4.y_ = lhs.y_ - rhs.y_;
+                vec4.z_ = lhs.z_ - rhs.z_;
+                vec4.w_ = lhs.w_ - rhs.w_;
             }
 
             static inline vector4d_template Subtract( const vector4d_template& lhs, const vector4d_template& rhs )
@@ -115,18 +115,18 @@ namespace eno {
 
             static inline void Cross( vector4d_template& vec4, const vector4d_template& u, const vector4d_template& v, const vector4d_template& w )
             {
-                _Ty a = (v.x * w.y) - (v.y * w.x);
-                _Ty b = (v.x * w.z) - (v.z * w.x);
-                _Ty c = (v.x * w.w) - (v.w * w.x);
-                _Ty d = (v.y * w.z) - (v.z * w.y);
-                _Ty e = (v.y * w.w) - (v.w * w.y);
-                _Ty f = (v.z * w.w) - (v.w * w.z);
+                _Ty a = (v.x_ * w.y_) - (v.y_ * w.x_);
+                _Ty b = (v.x_ * w.z_) - (v.z_ * w.x_);
+                _Ty c = (v.x_ * w.w_) - (v.w_ * w.x_);
+                _Ty d = (v.y_ * w.z_) - (v.z_ * w.y_);
+                _Ty e = (v.y_ * w.w_) - (v.w_ * w.y_);
+                _Ty f = (v.z_ * w.w_) - (v.w_ * w.z_);
 
                 vec4 = vector4d_template(
-                    (f * u.y) - (e * u.z) + (d * u.w),
-                    -((f * u.x) - (c * u.z) + (b * u.w)),
-                    (e * u.x) - (c * u.y) + (a * u.w),
-                    -((d * u.x) - (b * u.y) + (a * u.z)));
+                    (f * u.y_) - (e * u.z_) + (d * u.w_),
+                    -((f * u.x_) - (c * u.z_) + (b * u.w_)),
+                    (e * u.x_) - (c * u.y_) + (a * u.w_),
+                    -((d * u.x_) - (b * u.y_) + (a * u.z_)));
             }
 
             static inline vector4d_template Cross( const vector4d_template& u, const vector4d_template& v, const vector4d_template& w )

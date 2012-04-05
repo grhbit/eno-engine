@@ -8,12 +8,10 @@
  */
 #pragma once
 
-extern const unsigned int eno_major;
-extern const unsigned int eno_minor;
 extern const unsigned int revision;
 
-#define ENO_MAJOR eno_major
-#define ENO_MINOR eno_minor
+#define ENO_MAJOR 0
+#define ENO_MINOR 0
 
 #include <iostream>
 
@@ -51,6 +49,10 @@ extern const unsigned int revision;
 #endif
 
 #include "StdString.h"
+
+#ifndef UNUSED
+#define UNUSED(x) (void)x
+#endif
 
 namespace eno {
     typedef CStdString CString;

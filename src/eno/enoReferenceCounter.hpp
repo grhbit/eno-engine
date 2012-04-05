@@ -27,23 +27,23 @@ protected:
 interface enoReferenceCounter
 {
 protected:
-    enoReferenceCounter(void):ref_count(0) { retain(); }
+    enoReferenceCounter(void):refCount_(0) { retain(); }
 
     virtual ~enoReferenceCounter(void) { release(); }
 
-    enoReferenceCounter(const enoReferenceCounter& rhs) : ref_count(rhs.retain()) { }
+    enoReferenceCounter(const enoReferenceCounter& rhs) : refCount_(rhs.retain()) { }
 
-    enoReferenceCounter& operator = (const enoReferenceCounter& rhs) { this->ref_count = rhs.retain(); return *this; }
+    enoReferenceCounter& operator = (const enoReferenceCounter& rhs) { this->refCount_ = rhs.retain(); return *this; }
 
 public:
-    virtual s32 retain( void ) const { return ++ref_count; }
+    virtual s32 retain( void ) const { return ++refCount_; }
 
-    virtual s32 release( void ) const { return --ref_count; }
+    virtual s32 release( void ) const { return --refCount_; }
 
-    inline s32 refCount( void ) const { return ref_count; }
+    inline s32 refCount( void ) const { return refCount_; }
 
 private:
-    mutable s32 ref_count;
+    mutable s32 refCount_;
 };
 
 template <typename _Ty>

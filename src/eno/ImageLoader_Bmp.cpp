@@ -77,6 +77,7 @@ namespace eno {
 
         (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width,height));
         u8*buffer = (*image)->lock();
+        UNUSED(buffer);
 
         for (u32 i = 0; i<width*height; i++)
         {

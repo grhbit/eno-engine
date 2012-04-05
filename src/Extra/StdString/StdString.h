@@ -648,7 +648,7 @@ inline const Type& SSMAX(const Type& arg1, const Type& arg2)
 	#endif // #ifdef SS_ANSI
 
 	#ifndef UNUSED
-		#define UNUSED(x) x
+        #define UNUSED(x) (void)x
 	#endif
 
 #endif // #ifndef W32BASE_H
@@ -1312,7 +1312,7 @@ inline void	ssasn(std::string& sDst, const std::wstring& sSrc)
 #endif
 
 		sDst.resize(nDst+1);
-		PCSTR szCvt = StdCodeCvt(const_cast<SS_PTRTYPE>(sDst.data()), nDst,
+		__attribute__((unused)) PCSTR szCvt = StdCodeCvt(const_cast<SS_PTRTYPE>(sDst.data()), nDst,
 			sSrc.c_str(), static_cast<int>(sSrc.size()));
 
 		// In MBCS builds, we don't know how long the destination string will be.
@@ -1320,7 +1320,7 @@ inline void	ssasn(std::string& sDst, const std::wstring& sSrc)
 #ifdef SS_MBCS
 		sDst.resize(sslen(szCvt));
 #else
-		szCvt;
+		UNUSED(szCvt);
 		sDst.resize(sSrc.size());
 #endif
 	}
@@ -1350,7 +1350,7 @@ inline void	ssasn(std::string& sDst, PCWSTR pW)
 		sDst.resize(sslen(szCvt));
 #else
 		sDst.resize(nDst);
-		szCvt;
+		UNUSED(szCvt);
 #endif
 	}
 	else
@@ -1470,7 +1470,7 @@ inline void	ssadd(std::string& sDst, const std::wstring& sSrc)
 		sDst.resize(nDst + sslen(szCvt));
 #else
 		sDst.resize(nDst + nAdd);
-		szCvt;
+		UNUSED(szCvt);
 #endif
 	}
 }
@@ -1498,7 +1498,7 @@ inline void	ssadd(std::string& sDst, PCWSTR pW)
 		sDst.resize(nDst + sslen(szCvt));
 #else
 		sDst.resize(nDst + nSrc);
-		szCvt;
+		UNUSED(szCvt);
 #endif
 	}
 }
@@ -1543,7 +1543,7 @@ inline void	ssadd(std::wstring& sDst, const std::string& sSrc)
 		sDst.resize(nDst + sslen(szCvt));
 #else
 		sDst.resize(nDst + nSrc);
-		szCvt;
+		UNUSED(szCvt);
 #endif
 	}
 }
@@ -1563,7 +1563,7 @@ inline void	ssadd(std::wstring& sDst, PCSTR pA)
 		sDst.resize(nDst + sslen(szCvt));
 #else
 		sDst.resize(nDst + nSrc);
-		szCvt;
+		UNUSED(szCvt);
 #endif
 	}
 }

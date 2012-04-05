@@ -19,9 +19,15 @@ namespace eno {
                 /* virtual */ ~Window_MACOSX(void);
                 
                 /* virtual */ void eventLoop( void );
+                void Loop();
             private:
+                void PollEvents();
+                void UpdateWindows();
+                void Idle();
+                
                 id context; //OpenGL context
                 id delegate; //Window delegate
+                boolean isIdle_;
             };
 
 }

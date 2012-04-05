@@ -579,9 +579,9 @@ public:
     inline static void MakeScale( matrix4x4_template & mat, const vector3d_template<_Ty> & vec3 )
     {
         matrix4x4_template::Identity(mat);
-        mat.m11 = vec3.x;
-        mat.m22 = vec3.y;
-        mat.m33 = vec3.z;
+        mat.m11 = vec3.x_;
+        mat.m22 = vec3.y_;
+        mat.m33 = vec3.z_;
     }
 
     inline static matrix4x4_template MakeScale( const vector3d_template<_Ty> & vec3 )
@@ -594,12 +594,12 @@ public:
     //Z * Y * X
     inline static void MakeRotate( matrix4x4_template & mat, const vector3d_template<ftype> & vec3 )
     {
-        const ftype xCos = cos(vec3.x);
-        const ftype xSin = sin(vec3.x);
-        const ftype yCos = cos(vec3.y);
-        const ftype ySin = sin(vec3.y);
-        const ftype zCos = cos(vec3.z);
-        const ftype zSin = sin(vec3.z);
+        const ftype xCos = cos(vec3.x_);
+        const ftype xSin = sin(vec3.x_);
+        const ftype yCos = cos(vec3.y_);
+        const ftype ySin = sin(vec3.y_);
+        const ftype zCos = cos(vec3.z_);
+        const ftype zSin = sin(vec3.z_);
 
         mat.m11 = yCos * zCos;
         mat.m12 = (xCos * zSin) + (xSin * ySin * zCos);
@@ -682,12 +682,12 @@ public:
 
     inline static void MakeRotateYawPitchRoll( matrix4x4_template & mat, const vector3d_template<ftype> & vec3 )
     {
-        const ftype yCos = cos(vec3.y);
-        const ftype ySin = sin(vec3.y);
-        const ftype xCos = cos(vec3.x);
-        const ftype xSin = sin(vec3.x);
-        const ftype zCos = cos(vec3.z);
-        const ftype zSin = sin(vec3.z);
+        const ftype yCos = cos(vec3.y_);
+        const ftype ySin = sin(vec3.y_);
+        const ftype xCos = cos(vec3.x_);
+        const ftype xSin = sin(vec3.x_);
+        const ftype zCos = cos(vec3.z_);
+        const ftype zSin = sin(vec3.z_);
 
         mat.m11 = (yCos * zCos) + (ySin * xSin * zSin);
         mat.m12 = (xCos * zSin);
@@ -723,22 +723,22 @@ public:
         const ftype s = sin(value);
         const ftype t = 1.0 - c;
 
-        mat.m11 = c + (vec3.x * vec3.x * t);
-        mat.m22 = c + (vec3.y * vec3.y * t);
-        mat.m33 = c + (vec3.z * vec3.z * t);
+        mat.m11 = c + (vec3.x_ * vec3.x_ * t);
+        mat.m22 = c + (vec3.y_ * vec3.y_ * t);
+        mat.m33 = c + (vec3.z_ * vec3.z_ * t);
 
-        ftype tmp1 = (vec3.x * vec3.y * t);
-        ftype tmp2 = (vec3.z * s);
+        ftype tmp1 = (vec3.x_ * vec3.y_ * t);
+        ftype tmp2 = (vec3.z_ * s);
         mat.m12 = tmp1 + tmp2;
         mat.m21 = tmp1 - tmp2;
 
-        tmp1 = (vec3.x * vec3.z * t);
-        tmp2 = (vec3.y * s);
+        tmp1 = (vec3.x_ * vec3.z_ * t);
+        tmp2 = (vec3.y_ * s);
         mat.m13 = tmp1 + tmp2;
         mat.m31 = tmp1 - tmp2;
 
-        tmp1 = (vec3.y * vec3.z * t);
-        tmp2 = (vec3.x * s);
+        tmp1 = (vec3.y_ * vec3.z_ * t);
+        tmp2 = (vec3.x_ * s);
         mat.m23 = tmp1 + tmp2;
         mat.m32 = tmp1 - tmp2;
     }
@@ -752,15 +752,15 @@ public:
 
     inline static void MakeRotateQuaternion( matrix4x4_template & mat, const quaternion_template<_Ty> & quat )
     {
-        _Ty xx = quat.x * quat.x;
-        _Ty yy = quat.y * quat.y;
-        _Ty zz = quat.z * quat.z;
-        _Ty xy = quat.x * quat.y;
-        _Ty xz = quat.x * quat.z;
-        _Ty xw = quat.x * quat.w;
-        _Ty yz = quat.y * quat.z;
-        _Ty yw = quat.y * quat.w;
-        _Ty zw = quat.z * quat.w;
+        _Ty xx = quat.x_ * quat.x_;
+        _Ty yy = quat.y_ * quat.y_;
+        _Ty zz = quat.z_ * quat.z_;
+        _Ty xy = quat.x_ * quat.y_;
+        _Ty xz = quat.x_ * quat.z_;
+        _Ty xw = quat.x_ * quat.w_;
+        _Ty yz = quat.y_ * quat.z_;
+        _Ty yw = quat.y_ * quat.w_;
+        _Ty zw = quat.z_ * quat.w_;
 
         mat.m11 = 1 - (2 * (yy + zz));
         mat.m12 = (2 * xy) + (2 * zw);
@@ -790,9 +790,9 @@ public:
     inline static void MakeTranslate( matrix4x4_template & mat, const vector3d_template<_Ty> & vec3 )
     {
         matrix4x4_template::Identity(mat);
-        mat.m41 = vec3.x;
-        mat.m42 = vec3.y;
-        mat.m43 = vec3.z;
+        mat.m41 = vec3.x_;
+        mat.m42 = vec3.y_;
+        mat.m43 = vec3.z_;
     }
 
     inline static matrix4x4_template MakeTranslate( const vector3d_template<_Ty> & vec3 )

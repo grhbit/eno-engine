@@ -29,6 +29,7 @@ ipch
 xcuserdata
 
 # etc
+version.cpp
 *.header
 *.hmap
 *.dat

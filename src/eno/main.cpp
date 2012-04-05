@@ -17,6 +17,7 @@
 #include "enoFile.hpp"
 #include "enoImageLoader.hpp"
 #include "ImageLoader_BMP.hpp"
+#include "quaternion.hpp"
 using namespace eno;
 
 enoImageLoader* imageloader;
@@ -56,16 +57,17 @@ eno::boolean Update(ftype)
 using namespace std;
 int main(int, char *argv[])
 {
+    /*
     chdir("../Visual Studio/");
     imageloader = new ImageLoader_BMP;
     TextureID ID;
     ID.filename = "dummy24.bmp";
     image = imageloader->loadImage(ID);
-
+*/
     enoWindowProperty property(900, 100, "eno10.0", false, Update, Draw);
 
     APP->initialize(property);
-
+/*
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);  
@@ -74,12 +76,12 @@ int main(int, char *argv[])
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, image->lock());
     image->unlock();
-
+*/
     APP->mainLoop();
-
+/*
     glDeleteTextures(1, &tex);
     delete image;
     delete imageloader;
-
+*/
     return UnitTest::RunAllTests();
 }

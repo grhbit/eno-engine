@@ -28,12 +28,12 @@ public:
 
     union {
         struct {
-            _Ty x, y, z, w;
+            _Ty x_, y_, z_, w_;
         };
 
-        _Ty q[4];
+        _Ty v_[4];
 
-        u8 buffer[sizeof(_Ty) * 4];
+        u8 buffer_[sizeof(_Ty) * 4];
     };
 }
 #ifdef ENO_COMPILED_FROM_GNUC
@@ -45,9 +45,9 @@ ENO_ALIGNED(16)
 template<typename _Ty>
 class quaternion_template : public Quaternion<_Ty> {
 public:
-    explicit quaternion_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
-    quaternion_template( _Ty _x, _Ty _y, _Ty _z, _Ty _w ) { this->x = _x; this->y = _y; this->z = _z; this->w = _w; }
-    quaternion_template( const quaternion_template& quat ) { this->x = quat.x; this->y = quat.y; this->z = quat.z; this->w = quat.w; }
+    explicit quaternion_template( _Ty* src ) { memcpy(this->v_, src, sizeof(this->v_)); }
+    quaternion_template( _Ty x, _Ty y, _Ty z, _Ty w ) { this->x_ = x; this->y_ = y; this->z_ = z; this->w_ = w; }
+    quaternion_template( const quaternion_template& quat ) { this->x_ = quat.x_; this->y_ = quat.y_; this->z_ = quat.z_; this->w_ = quat.w_; }
 
 
     //public static

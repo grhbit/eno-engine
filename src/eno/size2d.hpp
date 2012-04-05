@@ -17,14 +17,14 @@ namespace eno {
         class size2d_template : public Vector2d<_Ty> {
         public:
             size2d_template( void ) { }
-            explicit size2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v) ); }
-            size2d_template( _Ty width, _Ty height ) { this->x = width; this->y = height; }
-            size2d_template( const size2d_template& size ) { this->x = size.x; this->y = size.y; }
+            explicit size2d_template( _Ty* src ) { memcpy( this->v, src, sizeof(this->v_) ); }
+            size2d_template( _Ty width, _Ty height ) { this->x_ = width; this->y_ = height; }
+            size2d_template( const size2d_template& size ) { this->x_ = size.x_; this->y_ = size.y_; }
 
-            _Ty getWidth( void ) const { return this->x; }
-            _Ty getHeight( void ) const { return this->y; }
+            _Ty getWidth( void ) const { return this->x_; }
+            _Ty getHeight( void ) const { return this->y_; }
 
-            _Ty getArea( void ) const { return this->x*this->y; }
+            _Ty getArea( void ) const { return this->x_*this->y_; }
         };
 
         typedef size2d_template<ftype> size2d;

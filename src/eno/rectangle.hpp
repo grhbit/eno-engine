@@ -28,10 +28,10 @@ namespace eno {
                 };
 
                 struct {
-                    _Ty left, top, right, bottom;
+                    _Ty left_, top_, right_, bottom_;
                 };
 
-                _Ty r[4];
+                _Ty v_[4];
             };
         };
 
@@ -42,12 +42,12 @@ namespace eno {
 
             explicit rectangle_template( const _Ty* src )
             {
-                memcpy(this->r, src, sizeof(this->r));
+                memcpy(this->v_, src, sizeof(this->v_));
             }
 
-            _Ty getWidth( void ) const { return this->right - this->left; }
+            _Ty getWidth( void ) const { return this->right_ - this->left_; }
 
-            _Ty getHeight( void ) const { return this->bottom - this->top; }
+            _Ty getHeight( void ) const { return this->bottom_ - this->top_; }
 
             _Ty getArea( void ) const { return getWidth() * getHeight(); }
 

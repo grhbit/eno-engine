@@ -16,11 +16,28 @@
 
 namespace eno {
     
+    enoWindow* enoWindow::instance = nullptr;
+    
+    enoWindow* enoWindow::getInstance()
+    {
+        return instance;
+    }
+    
+    void enoWindow::release()
+    {
+        if (instance) {
+            delete instance;
+            instance = nullptr;
+        }
+    }
 
-enoWindow* enoWindow::BuildWindow( const enoWindowProperty& property )
-{
-    return new Window(property);
-}
-
+    enoWindow* enoWindow::BuildWindow( const enoWindowProperty& property )
+    {
+        if(instance)
+            delete instance;
+    
+        instance = new Window(property);
+        return enoWindow::getInstance();
+    }
 
 }
