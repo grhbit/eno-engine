@@ -15,13 +15,13 @@ namespace eno {
     class enoTimer
     {
     public:
-        static u64 GetTime(void);
+        static f64 GetTime(void);
         enoTimer(void);
 
-        ftype touch(void);
-        ftype delta(void) const;
+        f64 touch(void);
+        f64 delta(void) const;
     private:
-        u64 time;
+        f64 time;
         static void SetupTimer(void);
     };
 

@@ -16,11 +16,12 @@ namespace eno {
     class enoFile
     {
     public:
-        enum OpenMode {
+        enum OpenMode : unsigned int {
             READ = 0x01,
             WRITE = 0x02,
             BINARY = 0x04,
-            TRUNC = 0x08
+            TRUNC = 0x08,
+            APPEND = 0x18,
         };
 
         enoFile(void);
@@ -85,5 +86,7 @@ namespace eno {
         u64 filesize;
         FILE* file;
     };
+    
+    using OpenMode = enoFile::OpenMode;
 
 }

@@ -21,8 +21,8 @@ public:
     typedef void    (*CallbackDraw)(f32);
 
 public:
-    s16 Width;
-    s16 Height;
+    f64 Width;
+    f64 Height;
 
     CString Title;
     boolean Fullscreen;
@@ -37,7 +37,7 @@ public:
           Title(""), Fullscreen(false), Alternate(nullptr),
           UpdateFunc(nullptr), DrawFunc(nullptr) { }
 
-      enoWindowProperty( s16 width, s16 height,
+      enoWindowProperty( f64 width, f64 height,
           CString title, boolean fullscreen,
           CallbackUpdate updatefunc, CallbackDraw drawfunc,
           enoWindowProperty* alternate = nullptr ) :

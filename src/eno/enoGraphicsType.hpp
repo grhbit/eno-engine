@@ -73,15 +73,26 @@ namespace eno {
     {
     public:
         spriteVertex( void )
-            : p(0, 0, 0), n(0, 0, 0), c(1, 1, 1, 1), t(0, 0) { }
+            : p(0, 0, 0), c(1, 1, 1, 1), t(0, 0) { }
 
-        spriteVertex(core::vector3d position, core::vector3d normal, core::colorTypeF color, core::vector2d texture)
-            : p(position), n(normal), c(color), t(texture) { }
+        spriteVertex(core::vector3d position, core::colorTypeF color, core::vector2d texture)
+            : p(position), c(color), t(texture) { }
 
         core::vector3d p; // position
-        core::vector3d n; // normal
         core::colorTypeF c; // diffuse color
         core::vector2d t; // texture coordinates
+    };
+    
+    class modelVertex : public spriteVertex
+    {
+    public:
+        modelVertex(core::vector3d position, core::colorTypeF color, core::vector2d texture, core::vector4d normal)
+        : spriteVertex(position, color, texture), n(normal) { }
+
+        modelVertex( void )
+            : n(0, 0, 0, 0) { }
+        
+        core::vector4d n;
     };
     
     struct TextureID

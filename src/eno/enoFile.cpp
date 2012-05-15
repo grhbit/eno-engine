@@ -17,7 +17,7 @@ namespace eno {
     {
     }
 
-    enoFile::enoFile(const RString& path, s32 mode) : file(0), mode(0), seekpos(0), filesize(0), autoflush(false), offset(0), end(0)
+    enoFile::enoFile(const RString& path, s32 mode) : enoFile()
     {
         open(path, mode);
     }
@@ -37,28 +37,24 @@ namespace eno {
         if(filename.IsEmpty() != true)
             close();
 
-        RString openmode_ = "";
-
-        if (mode_ & READ)
-            openmode_ += "r+";
-
-        if (mode_ & TRUNC)
-            openmode_ = "w";
-// 
-//         if (mode_ & WRITE)
-//             openmode_ += "w+";
-
-        if (mode_ & BINARY)
+        RString openmode_;
+        
+        if(mode_ & APPEND)
+            openmode_ = "a+";
+        else if(mode_ & TRUNC)
+            openmode_ = "w+";
+        else
+            openmode_ = "r+";
+        
+        if(mode_ & BINARY)
             openmode_ += "b";
 
-        file = fopen(path.c_str(), openmode_);
+        file = fopen(path.c_str(), openmode_.c_str());
         enoFile::RefreshFileSize();
 
         if(isOpen()) {
             filename = path;
             mode = mode_;
-            if(mode_&READ)
-                seek(0);
         }
     }
 
@@ -67,6 +63,7 @@ namespace eno {
         enoFile::flush();
         filename.clear();
         fclose(file);
+        file = nullptr;
     }
 
     boolean enoFile::isOpen(void) const
@@ -114,7 +111,7 @@ namespace eno {
                 if(FillBuffer() == 0) // EOF
                     break;
 
-            c8* pos = strstr(offset, delimeter.c_str());
+            c8* pos = strnstr(offset, delimeter.c_str(),end-offset);
             if(pos == 0) {
                 sRet.append(offset, end - offset);
                 offset = end;
@@ -263,7 +260,6 @@ namespace eno {
             return 0;
 
         offset = buffer;
-        memset(buffer, 0, sizeof(buffer));
         u64 readcount = 0;
 
         readcount = fread(buffer, sizeof(c8), BUFFER_SIZE, file);

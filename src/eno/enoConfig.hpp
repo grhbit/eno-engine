@@ -13,7 +13,13 @@ extern const unsigned int revision;
 #define ENO_MAJOR 0
 #define ENO_MINOR 0
 
+// Compiler must be supported C++11 standard.
+// Xcode 4.3.2
+// Visual Studio 11 Beta
+
 #include <iostream>
+#include <regex>
+#include <tuple>
 
 #if defined (WIN32) | defined (_WIN32) | defined (WIN64) | defined (_WIN64)
 #define ENO_WINDOWS_PLATFORM
@@ -38,6 +44,9 @@ extern const unsigned int revision;
 #if defined (_MSC_VER)
 #define ENO_COMPILED_FROM_VISUAL_STUDIO
 
+#elif defined (__llvm__)
+#define ENO_COMPILED_FROM_LLVM
+
 #elif defined (__GNUC__)
 #define ENO_COMPILED_FROM_GNUC
 
@@ -61,73 +70,13 @@ namespace eno {
     typedef CStdStr<char> RString;
 }
 
+#define UNISTRING(X) UTF8(X)
+#define UTF8String(X) u8##X
+#define UTF8(X) u8##X
+
 #if defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 // {
 #define ENO_ALIGNED(n) __declspec(align(n))
-//*/
-namespace eno {
-
-class UTF8String
-{
-    char* utf8string;
-    
-public:
-    UTF8String(const wchar_t* unicodedata) : utf8string(0)
-    {
-        size_t size = wcslen(unicodedata);
-
-        size_t count = 0;
-        for (size_t i = 0; i < size; i++)
-        {
-            if (unicodedata[i] < 0x80)
-                count += 1;
-            else if (unicodedata[i] < 0x800)
-                count += 2;
-            else if (unicodedata[i] < 0x10000)
-                count += 3;
-        }
-
-        utf8string = new char[count];
-        count = 0;
-
-        for (size_t i = 0; i < size; i++)
-        {
-            if (unicodedata[i] < 0x80)
-                utf8string[count++] = unicodedata[i];
-            else if (unicodedata[i] < 0x800)
-            {
-                utf8string[count++] = (unicodedata[i]&0x07C0)>>0x6 | 0x0C0;
-                utf8string[count++] = (unicodedata[i]&0x003F)      | 0x080;
-            }
-            else if (unicodedata[i] < 0x10000)
-            {
-                utf8string[count++] = (unicodedata[i]&0xF000)>>0xC | 0x0E0;
-                utf8string[count++] = (unicodedata[i]&0x0FC0)>>0x6 | 0x080;
-                utf8string[count++] = (unicodedata[i]&0x003F)      | 0x080;
-            }
-        }       
-        
-    }
-    
-    ~UTF8String(void)
-    {
-        if (utf8string != 0)
-            delete utf8string;
-    }
-    
-    operator RString () { return utf8string; }
-    
-    operator char* () { return utf8string; }
-    
-    operator const char* const () { return utf8string; }
-    
-    operator const RString () { return utf8string; }
-};
-
-}
- 
-#define UNISTRING(X) UTF8(X)
-#define UTF8(X) UTF8String(L##X)
 
 #if defined (UNICODE)
 #define ENO_UNICODE
@@ -139,48 +88,8 @@ public:
 // {
 #define ENO_ALIGNED(n) __attribute__ ((aligned(n)))
 #define __long_aligned __attribute__((aligned((sizeof(long)))))
-//*/
 
-namespace eno {
-/*
-class UTF8String 
-{
-public:
-    UTF8String(const wchar_t* unicodedata) : utf8string(0)
-    {
-        size_t size = wcslen(unicodedata);
-        
-        utf8string = new char[size];
-        
-        for (size_t i = 0; i < size; i++)
-            utf8string[i] = unicodedata[i];
-    }
-    
-    ~UTF8String(void)
-    {
-        if (utf8string != 0)
-            delete utf8string;
-    }
-    
-    operator RString () { return utf8string; }
-    
-    operator char* () { return utf8string; }
-    
-    operator const char* const () { return utf8string; }
-    
-    operator const RString const () { return utf8string; }
-    
-private:
-    char* utf8string;
-};
-*/
-}
-
-#define UNISTRING(X) L##X
-#define UTF8String(X) L##X
-#define UTF8(X) L##X
 #define ENO_UNICODE
-//*/
 // }
 #endif
 
@@ -192,7 +101,7 @@ private:
 	(__GNUC_LIBSTD__ <= 4 && __GNUC_LIBSTD_MINOR__ < 3) || \
 	defined(ENO_COMPILED_FROM_VISUAL_STUDIO) && \
 	(_MSC_VER < 1600)
-
+/*
 const class {
 public:
     template <class T>
@@ -211,7 +120,7 @@ private:
     void operator&() const;
 	
 } nullptr = {};
-
+*/
 #endif
 
 // [skop 8:47 Friday. 8.13. 2010. Created.]

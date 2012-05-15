@@ -3,20 +3,17 @@
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 12. 10..
-//  Copyright (c) 2011년 g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
 #pragma once
 #include "enoOSUtil.hpp"
 
-ENO_NAMESPACE_BEGIN
-    ENO_OS_NAMESPACE_BEGIN
-        ENO_CLASS_TYPE_BEGIN
+namespace eno {
+    
+    class OSUtil_MACOSX : public enoOSUtil
+    {
+    public:
+    };
 
-            class OSUtil_MACOSX : public enoOSUtil
-            {
-            };
-
-        ENO_CLASS_TYPE_END
-    ENO_OS_NAMESPACE_END
-ENO_NAMESPACE_END
+}

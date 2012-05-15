@@ -34,7 +34,7 @@ public:
 protected:
     virtual void Init( core::size2d size, u8* data ) = 0;
 
-    virtual u8*	Lock( u32 index ) = 0;
+    virtual u8* Lock( u32 index ) = 0;
 
     virtual void Unlock( u32 index ) = 0;
 

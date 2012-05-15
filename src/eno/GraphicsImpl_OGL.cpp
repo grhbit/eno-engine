@@ -104,19 +104,31 @@ namespace eno {
     {
         OpenGLArchInit(mode);
 
-        glMatrixMode(GL_VIEWPORT);
         glViewport(0, 0, mode.width, mode.height); 
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
 //      gluPerspective(45.0f,(GLfloat)Property.Width/(GLfloat)Property.Height,0.1f,100.0f);
-        glOrtho(0, mode.width, 0, mode.height, 0, 100);
+        glOrtho(-1, 1, -1, 1, 0, 100);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
         glShadeModel(GL_SMOOTH);
-        glEnable(GL_DEPTH_TEST);  
-        glDepthFunc(GL_LEQUAL);   
+        
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+        
+        glEnable(GL_POINT_SMOOTH);
+        glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+        
+        glEnable(GL_LINE_SMOOTH);
+        glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+        
+        glEnable(GL_POLYGON_SMOOTH);
+        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LEQUAL);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
         glClearColor(0.0, 0.3f, 0.5f, 0.5f);
@@ -126,5 +138,64 @@ namespace eno {
     void GraphicsImpl_OGL::destroy(void)
     {
         OpenGLArchClose;
+    }
+    
+    void GraphicsImpl_OGL::drawPoints(const spriteVertex v[], f32 size, s32 count)
+    {
+        glEnable(GL_POINT_SMOOTH);
+        glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+        
+        glEnable(GL_LINE_SMOOTH);
+        glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+        
+        glPointSize(size);
+        glVertexPointer(3, GL_FLOAT, sizeof(spriteVertex), &v->p);
+        glColorPointer(4, GL_FLOAT, sizeof(spriteVertex), &v->c);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        {
+            glDrawArrays(GL_POINTS, 0, count);
+        }
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_COLOR_ARRAY);
+    }
+    
+    void GraphicsImpl_OGL::drawLines(const spriteVertex v[], f32 width, s32 numVerts)
+    {
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+
+        glLineWidth(width);
+        glVertexPointer(3, GL_FLOAT, sizeof(spriteVertex), &v->p);
+        glColorPointer(4, GL_FLOAT, sizeof(spriteVertex), &v->c);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        {
+            glDrawArrays(GL_LINES, 0, numVerts);
+        }
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_COLOR_ARRAY);
+    }
+    
+    void GraphicsImpl_OGL::drawPolygons(const modelVertex v[], s32 numPolygons)
+    {
+        glVertexPointer(3, GL_FLOAT, sizeof(modelVertex), &v->p);
+        glColorPointer(4, GL_FLOAT, sizeof(modelVertex), &v->c);
+        glTexCoordPointer(2, GL_FLOAT, sizeof(modelVertex), &v->t);
+        
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        {
+            glDrawArrays(GL_TRIANGLES, 0, numPolygons);
+        }
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_COLOR_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    }
+    
+    void GraphicsImpl_OGL::drawQuad(const spriteVertex[])
+    {
+        
     }
 }

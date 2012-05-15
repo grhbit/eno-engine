@@ -15,7 +15,7 @@
 namespace eno {
     namespace core {
 
-#pragma warning(disable : 4201)	//warning: nonstandard extension used : nameless struct/union
+#pragma warning(disable : 4201) //warning: nonstandard extension used : nameless struct/union
 
         template<typename _Ty>
         struct
@@ -99,7 +99,7 @@ namespace eno {
             }
 
             static inline void Subtract( vector4d_template& vec4, const vector4d_template& lhs, const vector4d_template& rhs )
-            {					
+            {
                 vec4.x_ = lhs.x_ - rhs.x_;
                 vec4.y_ = lhs.y_ - rhs.y_;
                 vec4.z_ = lhs.z_ - rhs.z_;
@@ -138,7 +138,7 @@ namespace eno {
 
         };
 
-        typedef vector4d_template<ftype> vector4d;
+        typedef vector4d_template<f32> vector4d;
 
     }
 }

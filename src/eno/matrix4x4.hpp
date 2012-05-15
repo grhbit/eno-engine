@@ -16,17 +16,17 @@
 namespace eno {
     namespace core {
 
-#pragma warning(disable : 4201)	//warning: nonstandard extension used : nameless struct/union
+#pragma warning(disable : 4201) //warning: nonstandard extension used : nameless struct/union
 
     template<typename _Ty>
 struct
 #ifdef ENO_COMPILED_FROM_VISUAL_STUDIO
-    ENO_ALIGNED(16)	//__declspec(align(16)) struct Matrix4x4
+    ENO_ALIGNED(16) //__declspec(align(16)) struct Matrix4x4
 #endif
     Matrix4x4 {
 public:
-    typedef _Ty element_type;
-    typedef _Ty*pointer;
+    using element_type = _Ty;
+    using pointer = _Ty*;
 
     union {
         struct {
@@ -89,43 +89,44 @@ public:
         memcpy(this->M, src, sizeof(this->M));
     }
 
-    inline matrix4x4_template(	_Ty _11, _Ty _12, _Ty _13, _Ty _14,
+    inline matrix4x4_template(
+        _Ty _11, _Ty _12, _Ty _13, _Ty _14,
         _Ty _21, _Ty _22, _Ty _23, _Ty _24,
         _Ty _31, _Ty _32, _Ty _33, _Ty _34,
         _Ty _41, _Ty _42, _Ty _43, _Ty _44 )
     {
-        this->m11 = _11;	this->m12 = _12;
-        this->m21 = _21;	this->m22 = _22;
-        this->m31 = _31;	this->m32 = _32;
-        this->m41 = _41;	this->m42 = _42;
+        this->m11 = _11;    this->m12 = _12;
+        this->m21 = _21;    this->m22 = _22;
+        this->m31 = _31;    this->m32 = _32;
+        this->m41 = _41;    this->m42 = _42;
 
-        this->m13 = _13;	this->m14 = _14;
-        this->m23 = _23;	this->m24 = _24;
-        this->m33 = _33;	this->m34 = _34;
-        this->m43 = _43;	this->m44 = _44;
+        this->m13 = _13;    this->m14 = _14;
+        this->m23 = _23;    this->m24 = _24;
+        this->m33 = _33;    this->m34 = _34;
+        this->m43 = _43;    this->m44 = _44;
     }
 
     inline matrix4x4_template( const matrix4x4_template & rhs )
     {
-        this->m11 = rhs.m11;	this->m12 = rhs.m12;
-        this->m21 = rhs.m21;	this->m22 = rhs.m22;
-        this->m31 = rhs.m31;	this->m32 = rhs.m32;
-        this->m41 = rhs.m41;	this->m42 = rhs.m42;
+        this->m11 = rhs.m11;    this->m12 = rhs.m12;
+        this->m21 = rhs.m21;    this->m22 = rhs.m22;
+        this->m31 = rhs.m31;    this->m32 = rhs.m32;
+        this->m41 = rhs.m41;    this->m42 = rhs.m42;
 
-        this->m13 = rhs.m13;	this->m14 = rhs.m14;
-        this->m23 = rhs.m23;	this->m24 = rhs.m24;
-        this->m33 = rhs.m33;	this->m34 = rhs.m34;
-        this->m43 = rhs.m43;	this->m44 = rhs.m44;
+        this->m13 = rhs.m13;    this->m14 = rhs.m14;
+        this->m23 = rhs.m23;    this->m24 = rhs.m24;
+        this->m33 = rhs.m33;    this->m34 = rhs.m34;
+        this->m43 = rhs.m43;    this->m44 = rhs.m44;
     }
 
     inline matrix4x4_template( InitializeFlag initFlag = INIT_IDENTITY, _Ty fillValue = 0 );
 
-    _Ty&	operator () ( u8 row, u8 col )
+    _Ty& operator () ( u8 row, u8 col )
     {
         return this->m[row][col];
     }
 
-    _Ty		operator () ( u8 row, u8 col ) const
+    _Ty operator () ( u8 row, u8 col ) const
     {
         return this->m[row][col];
     }
@@ -399,44 +400,44 @@ public:
         return *this;
     }
 
-    inline matrix4x4_template& makeRotate( ftype x, ftype y, ftype z ) { return makeRotate(vector3d_template<ftype>(x, y, z)); }
+    inline matrix4x4_template& makeRotate( f32 x, f32 y, f32 z ) { return makeRotate(vector3d_template<f32>(x, y, z)); }
 
-    inline matrix4x4_template& makeRotate( const vector3d_template<ftype> & vec3 )
+    inline matrix4x4_template& makeRotate( const vector3d_template<f32> & vec3 )
     {
         matrix4x4_template::MakeRotate(*this, vec3);
         return *this;
     }
 
-    inline matrix4x4_template& makeRotateX( ftype value )
+    inline matrix4x4_template& makeRotateX( f32 value )
     {
         matrix4x4_template::MakeRotateX(*this, value);
         return *this;
     }
 
-    inline matrix4x4_template& makeRotateY( ftype value )
+    inline matrix4x4_template& makeRotateY( f32 value )
     {
         matrix4x4_template::MakeRotateY(*this, value);
         return *this;
     }
 
-    inline matrix4x4_template& makeRotateZ( ftype value )
+    inline matrix4x4_template& makeRotateZ( f32 value )
     {
         matrix4x4_template::MakeRotateZ(*this, value);
         return *this;
     }
 
-    inline matrix4x4_template& makeRotateYawPitchRoll( ftype yaw, ftype pitch, ftype roll )
+    inline matrix4x4_template& makeRotateYawPitchRoll( f32 yaw, f32 pitch, f32 roll )
     {
-        return makeRotateYawPitchRoll(vector3d_template<ftype>(pitch, yaw, roll));
+        return makeRotateYawPitchRoll(vector3d_template<f32>(pitch, yaw, roll));
     }
 
-    inline matrix4x4_template& makeRotateYawPitchRoll( const vector3d_template<ftype> & vec3 )
+    inline matrix4x4_template& makeRotateYawPitchRoll( const vector3d_template<f32> & vec3 )
     {
         matrix4x4_template::MakeRotateYawPitchRoll(*this, vec3);
         return *this;
     }
 
-    inline matrix4x4_template& makeRotateAxis( const vector3d_template<ftype> & vec3, const _Ty value )
+    inline matrix4x4_template& makeRotateAxis( const vector3d_template<f32> & vec3, const _Ty value )
     {
         matrix4x4_template::MakeRotateAxis(*this, vec3, value);
         return *this;
@@ -483,10 +484,10 @@ public:
 
     inline static void Identity( matrix4x4_template & mat )
     {
-        mat.m11 = 1;	mat.m12 = 0;	mat.m13 = 0;	mat.m14 = 0;
-        mat.m21 = 0;	mat.m22 = 1;	mat.m23 = 0;	mat.m24 = 0;
-        mat.m31 = 0;	mat.m32 = 0;	mat.m33 = 1;	mat.m34 = 0;
-        mat.m41 = 0;	mat.m42 = 0;	mat.m43 = 0;	mat.m44 = 1;
+        mat.m11 = 1;    mat.m12 = 0;    mat.m13 = 0;    mat.m14 = 0;
+        mat.m21 = 0;    mat.m22 = 1;    mat.m23 = 0;    mat.m24 = 0;
+        mat.m31 = 0;    mat.m32 = 0;    mat.m33 = 1;    mat.m34 = 0;
+        mat.m41 = 0;    mat.m42 = 0;    mat.m43 = 0;    mat.m44 = 1;
     }
 
     inline static matrix4x4_template Identity( void )
@@ -498,7 +499,8 @@ public:
 
     inline static bool IsIdentity( const matrix4x4_template & mat )
     {
-        return	mat.m11 == 1 && mat.m12 == 0 && mat.m13 == 0 && mat.m14 == 0 &&
+        return
+            mat.m11 == 1 && mat.m12 == 0 && mat.m13 == 0 && mat.m14 == 0 &&
             mat.m21 == 0 && mat.m22 == 1 && mat.m23 == 0 && mat.m24 == 0 &&
             mat.m31 == 0 && mat.m32 == 0 && mat.m33 == 1 && mat.m34 == 0 &&
             mat.m41 == 0 && mat.m42 == 0 && mat.m43 == 0 && mat.m44 == 1;
@@ -592,14 +594,14 @@ public:
     }
 
     //Z * Y * X
-    inline static void MakeRotate( matrix4x4_template & mat, const vector3d_template<ftype> & vec3 )
+    inline static void MakeRotate( matrix4x4_template & mat, const vector3d_template<f32> & vec3 )
     {
-        const ftype xCos = cos(vec3.x_);
-        const ftype xSin = sin(vec3.x_);
-        const ftype yCos = cos(vec3.y_);
-        const ftype ySin = sin(vec3.y_);
-        const ftype zCos = cos(vec3.z_);
-        const ftype zSin = sin(vec3.z_);
+        const f32 xCos = cos(vec3.x_);
+        const f32 xSin = sin(vec3.x_);
+        const f32 yCos = cos(vec3.y_);
+        const f32 ySin = sin(vec3.y_);
+        const f32 zCos = cos(vec3.z_);
+        const f32 zSin = sin(vec3.z_);
 
         mat.m11 = yCos * zCos;
         mat.m12 = (xCos * zSin) + (xSin * ySin * zCos);
@@ -622,14 +624,14 @@ public:
         mat.m44 = 1;
     }
 
-    inline static matrix4x4_template MakeRotate( const vector3d_template<ftype> & vec3 )
+    inline static matrix4x4_template MakeRotate( const vector3d_template<f32> & vec3 )
     {
         matrix4x4_template tmp(INIT_NOTHING);
         matrix4x4_template::MakeRotate(tmp, vec3);
         return tmp;
     }
 
-    inline static void MakeRotateX( matrix4x4_template & mat, ftype value )
+    inline static void MakeRotateX( matrix4x4_template & mat, f32 value )
     {
         matrix4x4_template::Identity(mat);
         mat.m22 = cos(value);
@@ -639,14 +641,14 @@ public:
         mat.m32 = -mat.m23;
     }
 
-    inline static matrix4x4_template MakeRotateX( ftype value )
+    inline static matrix4x4_template MakeRotateX( f32 value )
     {
         matrix4x4_template tmp(INIT_NOTHING);
         matrix4x4_template::MakeRotateX(tmp, value);
         return tmp;
     }
 
-    inline static void MakeRotateY( matrix4x4_template & mat, ftype value )
+    inline static void MakeRotateY( matrix4x4_template & mat, f32 value )
     {
         matrix4x4_template::Identity(mat);
         mat.m11 = cos(value);
@@ -656,14 +658,14 @@ public:
         mat.m13 = -mat.m31;
     }
 
-    inline static matrix4x4_template MakeRotateY( ftype value )
+    inline static matrix4x4_template MakeRotateY( f32 value )
     {
         matrix4x4_template tmp(INIT_NOTHING);
         matrix4x4_template::MakeRotateY(tmp, value);
         return tmp;
     }
 
-    inline static void MakeRotateZ( matrix4x4_template & mat, ftype value )
+    inline static void MakeRotateZ( matrix4x4_template & mat, f32 value )
     {
         matrix4x4_template::Identity(mat);
         mat.m11 = cos(value);
@@ -673,21 +675,21 @@ public:
         mat.m21 = -mat.m12;
     }
 
-    inline static matrix4x4_template MakeRotateZ( ftype value )
+    inline static matrix4x4_template MakeRotateZ( f32 value )
     {
         matrix4x4_template tmp(INIT_NOTHING);
         matrix4x4_template::MakeRotateZ(tmp, value);
         return tmp;
     }
 
-    inline static void MakeRotateYawPitchRoll( matrix4x4_template & mat, const vector3d_template<ftype> & vec3 )
+    inline static void MakeRotateYawPitchRoll( matrix4x4_template & mat, const vector3d_template<f32> & vec3 )
     {
-        const ftype yCos = cos(vec3.y_);
-        const ftype ySin = sin(vec3.y_);
-        const ftype xCos = cos(vec3.x_);
-        const ftype xSin = sin(vec3.x_);
-        const ftype zCos = cos(vec3.z_);
-        const ftype zSin = sin(vec3.z_);
+        const f32 yCos = cos(vec3.y_);
+        const f32 ySin = sin(vec3.y_);
+        const f32 xCos = cos(vec3.x_);
+        const f32 xSin = sin(vec3.x_);
+        const f32 zCos = cos(vec3.z_);
+        const f32 zSin = sin(vec3.z_);
 
         mat.m11 = (yCos * zCos) + (ySin * xSin * zSin);
         mat.m12 = (xCos * zSin);
@@ -710,25 +712,25 @@ public:
         mat.m44 = 1;
     }
 
-    inline static matrix4x4_template MakeRotateYawPitchRoll( const vector3d_template<ftype> & vec3 )
+    inline static matrix4x4_template MakeRotateYawPitchRoll( const vector3d_template<f32> & vec3 )
     {
         matrix4x4_template tmp(INIT_NOTHING);
         matrix4x4_template::MakeRotateYawPitchRoll(tmp, vec3);
         return tmp;
     }
 
-    inline static void MakeRotateAxis( matrix4x4_template & mat, const vector3d_template<ftype> & vec3, const _Ty value )
+    inline static void MakeRotateAxis( matrix4x4_template & mat, const vector3d_template<f32> & vec3, const _Ty value )
     {
-        const ftype c = cos(value);
-        const ftype s = sin(value);
-        const ftype t = 1.0 - c;
+        const f32 c = cos(value);
+        const f32 s = sin(value);
+        const f32 t = 1.0 - c;
 
         mat.m11 = c + (vec3.x_ * vec3.x_ * t);
         mat.m22 = c + (vec3.y_ * vec3.y_ * t);
         mat.m33 = c + (vec3.z_ * vec3.z_ * t);
 
-        ftype tmp1 = (vec3.x_ * vec3.y_ * t);
-        ftype tmp2 = (vec3.z_ * s);
+        f32 tmp1 = (vec3.x_ * vec3.y_ * t);
+        f32 tmp2 = (vec3.z_ * s);
         mat.m12 = tmp1 + tmp2;
         mat.m21 = tmp1 - tmp2;
 
@@ -743,7 +745,7 @@ public:
         mat.m32 = tmp1 - tmp2;
     }
 
-    inline static matrix4x4_template MakeRotateAxis( const vector3d_template<ftype> & vec3, const _Ty value )
+    inline static matrix4x4_template MakeRotateAxis( const vector3d_template<f32> & vec3, const _Ty value )
     {
         matrix4x4_template tmp(INIT_NOTHING);
         matrix4x4_template::MakeRotateAxis( tmp, vec3, value );
@@ -946,7 +948,7 @@ void matrix4x4_template<_Ty>::Transpose( matrix4x4_template & out, const matrix4
     out = tmp;
 }
 
-typedef matrix4x4_template<ftype> matrix4x4;
+typedef matrix4x4_template<f32> matrix4x4;
 typedef matrix4x4_template<f32> matrix4x4_f32;
 
 template<typename _Ty>
@@ -991,7 +993,7 @@ inline void subMatrix( matrix4x4_template<_Ty>& out,
     const matrix4x4_template<_Ty>& a,
     const matrix4x4_template<_Ty>& b )
 {
-    out = matrix4x4_template<_Ty>(	
+    out = matrix4x4_template<_Ty>(
         a.m11 - b.m11, a.m12 - b.m12, a.m13 - b.m13, a.m14 - b.m14,
         a.m21 - b.m21, a.m22 - b.m22, a.m23 - b.m23, a.m24 - b.m24,
         a.m31 - b.m31, a.m32 - b.m32, a.m33 - b.m33, a.m34 - b.m34,
@@ -1003,7 +1005,8 @@ inline void addValueMatrix( matrix4x4_template<_Ty>& out,
     const matrix4x4_template<_Ty>& a,
     const _Ty value )
 {
-    out = matrix4x4_template<_Ty>(	a.m11 + value, a.m12 + value, a.m13 + value, a.m14 + value,
+    out = matrix4x4_template<_Ty>(
+        a.m11 + value, a.m12 + value, a.m13 + value, a.m14 + value,
         a.m21 + value, a.m22 + value, a.m23 + value, a.m24 + value,
         a.m31 + value, a.m32 + value, a.m33 + value, a.m34 + value,
         a.m41 + value, a.m42 + value, a.m43 + value, a.m44 + value );
@@ -1014,7 +1017,8 @@ inline void subtractValueMatrix( matrix4x4_template<_Ty>& out,
     const matrix4x4_template<_Ty>& a,
     const _Ty value )
 {
-    out = matrix4x4_template<_Ty>(	a.m11 - value, a.m12 - value, a.m13 - value, a.m14 - value,
+    out = matrix4x4_template<_Ty>(
+        a.m11 - value, a.m12 - value, a.m13 - value, a.m14 - value,
         a.m21 - value, a.m22 - value, a.m23 - value, a.m24 - value,
         a.m31 - value, a.m32 - value, a.m33 - value, a.m34 - value,
         a.m41 - value, a.m42 - value, a.m43 - value, a.m44 - value );
@@ -1025,7 +1029,8 @@ inline void multiplyValueMatrix( matrix4x4_template<_Ty>& out,
     const matrix4x4_template<_Ty>& a,
     const _Ty value )
 {
-    out = matrix4x4_template<_Ty>(	a.m11 * value, a.m12 * value, a.m13 * value, a.m14 * value,
+    out = matrix4x4_template<_Ty>(
+        a.m11 * value, a.m12 * value, a.m13 * value, a.m14 * value,
         a.m21 * value, a.m22 * value, a.m23 * value, a.m24 * value,
         a.m31 * value, a.m32 * value, a.m33 * value, a.m34 * value,
         a.m41 * value, a.m42 * value, a.m43 * value, a.m44 * value );
@@ -1037,7 +1042,8 @@ inline void devideValueMatrix( matrix4x4_template<_Ty>& out,
     const _Ty value )
 {
     _Ty inv = 1.0/value;
-    out = matrix4x4_template<_Ty>(	a.m11 * inv, a.m12 * inv, a.m13 * inv, a.m14 * inv,
+    out = matrix4x4_template<_Ty>(
+        a.m11 * inv, a.m12 * inv, a.m13 * inv, a.m14 * inv,
         a.m21 * inv, a.m22 * inv, a.m23 * inv, a.m24 * inv,
         a.m31 * inv, a.m32 * inv, a.m33 * inv, a.m34 * inv,
         a.m41 * inv, a.m42 * inv, a.m43 * inv, a.m44 * inv );
@@ -1125,96 +1131,96 @@ inline void multiplyMatrixSSE( matrix4x4_template<f32>& out,
     f32 * dst = out.M;
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhs = const_cast<f32*>(b.M);
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
     asm __volatile__(
-        "movaps (%%ecx)  ,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx),	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx),	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx),	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movss	(%%edx)	  ,	%%xmm7\n\t"		// xmm7 = src2[00, xx, xx, xx]
-        "movss	4(%%edx)  ,	%%xmm4\n\t"		// xmm4 = src2[01, xx, xx, xx]
-        "movss	8(%%edx)  ,	%%xmm5\n\t"		// xmm5 = src2[02, xx, xx, xx]
-        "movss	0xc(%%edx),	%%xmm6\n\t"		// xmm6 = src2[03, xx, xx, xx]
+        "movss  (%%edx), %%xmm7\n\t"    // xmm7 = src2[00, xx, xx, xx]
+        "movss  4(%%edx), %%xmm4\n\t"   // xmm4 = src2[01, xx, xx, xx]
+        "movss  8(%%edx), %%xmm5\n\t"   // xmm5 = src2[02, xx, xx, xx]
+        "movss  0xc(%%edx), %%xmm6\n\t" // xmm6 = src2[03, xx, xx, xx]
 
-        "shufps $0x0, %%xmm7,  %%xmm7\n\t"		// xmm7 = src2[00, 00, 00, 00]
-        "shufps $0x0, %%xmm4,	%%xmm4\n\t"		// xmm4 = src2[01, 01, 01, 01]
-        "shufps $0x0, %%xmm5,	%%xmm5\n\t"		// xmm5 = src2[02, 02, 02, 02]
-        "shufps $0x0, %%xmm6,	%%xmm6\n\t"		// xmm6 = src2[03, 03, 03, 03]
+        "shufps $0x0, %%xmm7, %%xmm7\n\t"   // xmm7 = src2[00, 00, 00, 00]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[01, 01, 01, 01]
+        "shufps $0x0, %%xmm5, %%xmm5\n\t"   // xmm5 = src2[02, 02, 02, 02]
+        "shufps $0x0, %%xmm6, %%xmm6\n\t"   // xmm6 = src2[03, 03, 03, 03]
 
-        "mulps	%%xmm0,	%%xmm7\n\t"			// xmm7 *= xmm0
-        "mulps	%%xmm1,	%%xmm4\n\t"			// xmm4 *= xmm1
-        "mulps	%%xmm2,	%%xmm5\n\t"			// xmm5 *= xmm2
-        "mulps	%%xmm3,	%%xmm6\n\t"			// xmm6 *= xmm3
+        "mulps  %%xmm0, %%xmm7\n\t" // xmm7 *= xmm0
+        "mulps  %%xmm1, %%xmm4\n\t" // xmm4 *= xmm1
+        "mulps  %%xmm2, %%xmm5\n\t" // xmm5 *= xmm2
+        "mulps  %%xmm3, %%xmm6\n\t" // xmm6 *= xmm3
 
-        "addps	%%xmm4,	%%xmm7\n\t"			// xmm7 += xmm4
-        "addps	%%xmm5,	%%xmm7\n\t"			// xmm7 += xmm5
-        "addps	%%xmm6,	%%xmm7\n\t"			// xmm7 += xmm6
+        "addps  %%xmm4, %%xmm7\n\t" // xmm7 += xmm4
+        "addps  %%xmm5, %%xmm7\n\t" // xmm7 += xmm5
+        "addps  %%xmm6, %%xmm7\n\t" // xmm7 += xmm6
 
-        "movaps %%xmm7, (%%eax)\n\t"		// eax = xmm7
+        "movaps %%xmm7, (%%eax)\n\t"    // eax = xmm7
 
-        "movss	0x10(%%edx),	%%xmm7\n\t"	// xmm7 = src2[04, xx, xx, xx]
-        "movss	0x14(%%edx),	%%xmm4\n\t"	// xmm4 = src2[05, xx, xx, xx]
-        "movss	0x18(%%edx),	%%xmm5\n\t"	// xmm5 = src2[06, xx, xx, xx]
-        "movss	0x1c(%%edx),	%%xmm6\n\t"	// xmm6 = src2[07, xx, xx, xx]
+        "movss  0x10(%%edx), %%xmm7\n\t"    // xmm7 = src2[04, xx, xx, xx]
+        "movss  0x14(%%edx), %%xmm4\n\t"    // xmm4 = src2[05, xx, xx, xx]
+        "movss  0x18(%%edx), %%xmm5\n\t"    // xmm5 = src2[06, xx, xx, xx]
+        "movss  0x1c(%%edx), %%xmm6\n\t"    // xmm6 = src2[07, xx, xx, xx]
 
-        "shufps $0x0, 	%%xmm7,	%%xmm7\n\t"		// xmm7 = src2[04, 04, 04, 04]
-        "shufps $0x0, 	%%xmm4,	%%xmm4\n\t"		// xmm4 = src2[05, 05, 05, 05]
-        "shufps $0x0, 	%%xmm5,	%%xmm5\n\t"		// xmm5 = src2[06, 06, 06, 06]
-        "shufps $0x0, 	%%xmm6,	%%xmm6\n\t"		// xmm6 = src2[07, 07, 07, 07]
+        "shufps $0x0, %%xmm7, %%xmm7\n\t"   // xmm7 = src2[04, 04, 04, 04]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[05, 05, 05, 05]
+        "shufps $0x0, %%xmm5, %%xmm5\n\t"   // xmm5 = src2[06, 06, 06, 06]
+        "shufps $0x0, %%xmm6, %%xmm6\n\t"   // xmm6 = src2[07, 07, 07, 07]
 
-        "mulps	%%xmm0,	%%xmm7\n\t"			// xmm7 *= xmm0
-        "mulps	%%xmm1,	%%xmm4\n\t"			// xmm4 *= xmm1
-        "mulps	%%xmm2,	%%xmm5\n\t"			// xmm5 *= xmm2
-        "mulps	%%xmm3,	%%xmm6\n\t"			// xmm6 *= xmm3
+        "mulps  %%xmm0, %%xmm7\n\t" // xmm7 *= xmm0
+        "mulps  %%xmm1, %%xmm4\n\t" // xmm4 *= xmm1
+        "mulps  %%xmm2, %%xmm5\n\t" // xmm5 *= xmm2
+        "mulps  %%xmm3, %%xmm6\n\t" // xmm6 *= xmm3
 
-        "addps	%%xmm4,	%%xmm7\n\t"			// xmm7 += xmm4
-        "addps	%%xmm5,	%%xmm7\n\t"			// xmm7 += xmm5
-        "addps	%%xmm6,	%%xmm7\n\t"			// xmm7 += xmm6
+        "addps  %%xmm4, %%xmm7\n\t" // xmm7 += xmm4
+        "addps  %%xmm5, %%xmm7\n\t" // xmm7 += xmm5
+        "addps  %%xmm6, %%xmm7\n\t" // xmm7 += xmm6
 
-        "movaps %%xmm7, 0x10(%%eax)\n\t"	// eax = xmm7
+        "movaps %%xmm7, 0x10(%%eax)\n\t"    // eax = xmm7
 
-        "movss	0x20(%%edx),	%%xmm7\n\t"	// xmm7 = src2[08, xx, xx, xx]
-        "movss	0x24(%%edx),	%%xmm4\n\t"	// xmm4 = src2[09, xx, xx, xx]
-        "movss	0x28(%%edx),	%%xmm5\n\t"	// xmm5 = src2[10, xx, xx, xx]
-        "movss	0x2c(%%edx),	%%xmm6\n\t"	// xmm6 = src2[11, xx, xx, xx]
+        "movss  0x20(%%edx), %%xmm7\n\t"    // xmm7 = src2[08, xx, xx, xx]
+        "movss  0x24(%%edx), %%xmm4\n\t"    // xmm4 = src2[09, xx, xx, xx]
+        "movss  0x28(%%edx), %%xmm5\n\t"    // xmm5 = src2[10, xx, xx, xx]
+        "movss  0x2c(%%edx), %%xmm6\n\t"    // xmm6 = src2[11, xx, xx, xx]
 
-        "shufps $0x0,	%%xmm7,	%%xmm7\n\t"		// xmm7 = src2[08, 08, 08, 08]
-        "shufps $0x0, 	%%xmm4,	%%xmm4\n\t"		// xmm4 = src2[09, 09, 09, 09]
-        "shufps $0x0, 	%%xmm5,	%%xmm5\n\t"		// xmm5 = src2[10, 10, 10, 10]
-        "shufps $0x0, 	%%xmm6,	%%xmm6\n\t"		// xmm6 = src2[11, 11, 11, 11]
+        "shufps $0x0, %%xmm7, %%xmm7\n\t"   // xmm7 = src2[08, 08, 08, 08]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[09, 09, 09, 09]
+        "shufps $0x0, %%xmm5, %%xmm5\n\t"   // xmm5 = src2[10, 10, 10, 10]
+        "shufps $0x0, %%xmm6, %%xmm6\n\t"   // xmm6 = src2[11, 11, 11, 11]
 
-        "mulps	%%xmm0,	%%xmm7\n\t"			// xmm7 *= xmm0
-        "mulps	%%xmm1,	%%xmm4\n\t"			// xmm4 *= xmm1
-        "mulps	%%xmm2,	%%xmm5\n\t"			// xmm5 *= xmm2
-        "mulps	%%xmm3,	%%xmm6\n\t"			// xmm6 *= xmm3
+        "mulps  %%xmm0, %%xmm7\n\t" // xmm7 *= xmm0
+        "mulps  %%xmm1, %%xmm4\n\t" // xmm4 *= xmm1
+        "mulps  %%xmm2, %%xmm5\n\t" // xmm5 *= xmm2
+        "mulps  %%xmm3, %%xmm6\n\t" // xmm6 *= xmm3
 
-        "addps	%%xmm4,	%%xmm7\n\t"			// xmm7 += xmm4
-        "addps	%%xmm5,	%%xmm7\n\t"			// xmm7 += xmm5
-        "addps	%%xmm6,	%%xmm7\n\t"			// xmm7 += xmm6
+        "addps  %%xmm4, %%xmm7\n\t" // xmm7 += xmm4
+        "addps  %%xmm5, %%xmm7\n\t" // xmm7 += xmm5
+        "addps  %%xmm6, %%xmm7\n\t" // xmm7 += xmm6
 
-        "movaps %%xmm7, 0x20(%%eax)\n\t"	// eax = xmm7									 
+        "movaps %%xmm7, 0x20(%%eax)\n\t"    // eax = xmm7 
 
-        "movss	0x30(%%edx),	%%xmm7\n\t"	// xmm7 = src2[12, xx, xx, xx]
-        "movss	0x34(%%edx),	%%xmm4\n\t"	// xmm4 = src2[13, xx, xx, xx]
-        "movss	0x38(%%edx),	%%xmm5\n\t"	// xmm5 = src2[14, xx, xx, xx]
-        "movss	0x3c(%%edx),	%%xmm6\n\t"	// xmm6 = src2[15, xx, xx, xx]
+        "movss  0x30(%%edx), %%xmm7\n\t"    // xmm7 = src2[12, xx, xx, xx]
+        "movss  0x34(%%edx), %%xmm4\n\t"    // xmm4 = src2[13, xx, xx, xx]
+        "movss  0x38(%%edx), %%xmm5\n\t"    // xmm5 = src2[14, xx, xx, xx]
+        "movss  0x3c(%%edx), %%xmm6\n\t"    // xmm6 = src2[15, xx, xx, xx]
 
-        "shufps $0x0, 	%%xmm7,	%%xmm7\n\t"		// xmm7 = src2[12, 12, 12, 12]
-        "shufps $0x0, 	%%xmm4,	%%xmm4\n\t"		// xmm4 = src2[13, 13, 13, 13]
-        "shufps $0x0, 	%%xmm5,	%%xmm5\n\t"		// xmm5 = src2[14, 14, 14, 14]
-        "shufps $0x0, 	%%xmm6,	%%xmm6\n\t"		// xmm6 = src2[15, 15, 15, 15]
+        "shufps $0x0, %%xmm7, %%xmm7\n\t"   // xmm7 = src2[12, 12, 12, 12]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[13, 13, 13, 13]
+        "shufps $0x0, %%xmm5, %%xmm5\n\t"   // xmm5 = src2[14, 14, 14, 14]
+        "shufps $0x0, %%xmm6, %%xmm6\n\t"   // xmm6 = src2[15, 15, 15, 15]
 
-        "mulps	%%xmm0,	%%xmm7\n\t"			// xmm7 *= xmm0
-        "mulps	%%xmm1,	%%xmm4\n\t"			// xmm4 *= xmm1
-        "mulps	%%xmm2,	%%xmm5\n\t"			// xmm5 *= xmm2
-        "mulps	%%xmm3,	%%xmm6\n\t"			// xmm6 *= xmm3
+        "mulps  %%xmm0, %%xmm7\n\t" // xmm7 *= xmm0
+        "mulps  %%xmm1, %%xmm4\n\t" // xmm4 *= xmm1
+        "mulps  %%xmm2, %%xmm5\n\t" // xmm5 *= xmm2
+        "mulps  %%xmm3, %%xmm6\n\t" // xmm6 *= xmm3
 
-        "addps	%%xmm4,	%%xmm7\n\t"			// xmm7 += xmm4
-        "addps	%%xmm5,	%%xmm7\n\t"			// xmm7 += xmm5
-        "addps	%%xmm6,	%%xmm7\n\t"			// xmm7 += xmm6
+        "addps  %%xmm4, %%xmm7\n\t" // xmm7 += xmm4
+        "addps  %%xmm5, %%xmm7\n\t" // xmm7 += xmm5
+        "addps  %%xmm6, %%xmm7\n\t" // xmm7 += xmm6
 
-        "movaps %%xmm7, 0x30(%%eax)"		// eax = xmm7
+        "movaps %%xmm7, 0x30(%%eax)"    // eax = xmm7
         :
         : "a"(dst), "c"(lhs), "d"(rhs)
         : "memory"
@@ -1222,98 +1228,98 @@ inline void multiplyMatrixSSE( matrix4x4_template<f32>& out,
 #elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
     __asm
     {
-        mov     eax,    dst     // dst
-        mov     ecx,    lhs     // src1
-        mov     edx,    rhs     // src2
+        mov     eax, dst    // dst
+        mov     ecx, lhs    // src1
+        mov     edx, rhs    // src2
 
-        movaps	xmm0,	xmmword ptr [ecx]           // xmm0 = src1[00, 01, 02, 03]
-        movaps  xmm1,   xmmword ptr [ecx + 0x10]    // xmm1 = src1[04, 05, 06, 07]
-        movaps  xmm2,   xmmword ptr [ecx + 0x20]    // xmm2 = src1[08, 09, 10, 11]
-        movaps  xmm3,   xmmword ptr [ecx + 0x30]    // xmm3 = src1[12, 13, 14, 15]
+        movaps  xmm0, xmmword ptr[ecx]          // xmm0 = src1[00, 01, 02, 03]
+        movaps  xmm1, xmmword ptr[ecx + 0x10]   // xmm1 = src1[04, 05, 06, 07]
+        movaps  xmm2, xmmword ptr[ecx + 0x20]   // xmm2 = src1[08, 09, 10, 11]
+        movaps  xmm3, xmmword ptr[ecx + 0x30]   // xmm3 = src1[12, 13, 14, 15]
 
-        movss   xmm7,   dword ptr [edx]             // xmm7 = src2[00, xx, xx, xx]
-        movss   xmm4,   dword ptr [edx + 0x4]	    // xmm4 = src2[01, xx, xx, xx]
-        movss   xmm5,   dword ptr [edx + 0x8]	    // xmm5 = src2[02, xx, xx, xx]
-        movss   xmm6,   dword ptr [edx + 0xc]       // xmm6 = src2[03, xx, xx, xx]
+        movss   xmm7, dword ptr[edx]        // xmm7 = src2[00, xx, xx, xx]
+        movss   xmm4, dword ptr[edx + 0x4]  // xmm4 = src2[01, xx, xx, xx]
+        movss   xmm5, dword ptr[edx + 0x8]  // xmm5 = src2[02, xx, xx, xx]
+        movss   xmm6, dword ptr[edx + 0xc]  // xmm6 = src2[03, xx, xx, xx]
 
-        shufps  xmm7,   xmm7, 0x0       // xmm7 = src2[00, 00, 00, 00]
-        shufps  xmm4,   xmm4, 0x0       // xmm4 = src2[01, 01, 01, 01]
-        shufps  xmm5,   xmm5, 0x0       // xmm5 = src2[02, 02, 02, 02]
-        shufps  xmm6,   xmm6, 0x0       // xmm6 = src2[03, 03, 03, 03]
+        shufps  xmm7, xmm7, 0x0 // xmm7 = src2[00, 00, 00, 00]
+        shufps  xmm4, xmm4, 0x0 // xmm4 = src2[01, 01, 01, 01]
+        shufps  xmm5, xmm5, 0x0 // xmm5 = src2[02, 02, 02, 02]
+        shufps  xmm6, xmm6, 0x0 // xmm6 = src2[03, 03, 03, 03]
 
-        mulps   xmm7,   xmm0            // xmm7 *= xmm0
-        mulps   xmm4,   xmm1            // xmm4 *= xmm1
-        mulps   xmm5,   xmm2            // xmm5 *= xmm2
-        mulps   xmm6,   xmm3            // xmm6 *= xmm3
+        mulps   xmm7, xmm0  // xmm7 *= xmm0
+        mulps   xmm4, xmm1  // xmm4 *= xmm1
+        mulps   xmm5, xmm2  // xmm5 *= xmm2
+        mulps   xmm6, xmm3  // xmm6 *= xmm3
 
-        addps   xmm7,   xmm4            // xmm7 += xmm4
-        addps   xmm7,   xmm5            // xmm7 += xmm5
-        addps   xmm7,   xmm6            // xmm7 += xmm6
+        addps   xmm7, xmm4  // xmm7 += xmm4
+        addps   xmm7, xmm5  // xmm7 += xmm5
+        addps   xmm7, xmm6  // xmm7 += xmm6
 
-        movaps  xmmword ptr [eax], xmm7	// eax = xmm7
+        movaps  xmmword ptr[eax], xmm7  // eax = xmm7
 
-        movss   xmm7,	dword ptr [edx + 0x10]	// xmm7 = src2[04, xx, xx, xx]
-        movss   xmm4,   dword ptr [edx + 0x14]	// xmm4 = src2[05, xx, xx, xx]
-        movss   xmm5,   dword ptr [edx + 0x18]	// xmm5 = src2[06, xx, xx, xx]
-        movss   xmm6,   dword ptr [edx + 0x1c]	// xmm6 = src2[07, xx, xx, xx]
+        movss   xmm7, dword ptr[edx + 0x10] // xmm7 = src2[04, xx, xx, xx]
+        movss   xmm4, dword ptr[edx + 0x14] // xmm4 = src2[05, xx, xx, xx]
+        movss   xmm5, dword ptr[edx + 0x18] // xmm5 = src2[06, xx, xx, xx]
+        movss   xmm6, dword ptr[edx + 0x1c] // xmm6 = src2[07, xx, xx, xx]
 
-        shufps  xmm7,   xmm7, 0x0       // xmm7 = src2[04, 04, 04, 04]
-        shufps  xmm4,   xmm4, 0x0       // xmm4 = src2[05, 05, 05, 05]
-        shufps  xmm5,   xmm5, 0x0       // xmm5 = src2[06, 06, 06, 06]
-        shufps  xmm6,   xmm6, 0x0       // xmm6 = src2[07, 07, 07, 07]
+        shufps  xmm7, xmm7, 0x0 // xmm7 = src2[04, 04, 04, 04]
+        shufps  xmm4, xmm4, 0x0 // xmm4 = src2[05, 05, 05, 05]
+        shufps  xmm5, xmm5, 0x0 // xmm5 = src2[06, 06, 06, 06]
+        shufps  xmm6, xmm6, 0x0 // xmm6 = src2[07, 07, 07, 07]
 
-        mulps   xmm7,   xmm0            // xmm7 *= xmm0
-        mulps   xmm4,   xmm1            // xmm4 *= xmm1
-        mulps   xmm5,   xmm2            // xmm5 *= xmm2
-        mulps   xmm6,   xmm3            // xmm6 *= xmm3
+        mulps   xmm7, xmm0  // xmm7 *= xmm0
+        mulps   xmm4, xmm1  // xmm4 *= xmm1
+        mulps   xmm5, xmm2  // xmm5 *= xmm2
+        mulps   xmm6, xmm3  // xmm6 *= xmm3
 
-        addps   xmm7,   xmm4            // xmm7 += xmm4
-        addps   xmm7,   xmm5            // xmm7 += xmm5
-        addps   xmm7,   xmm6            // xmm7 += xmm6
+        addps   xmm7, xmm4  // xmm7 += xmm4
+        addps   xmm7, xmm5  // xmm7 += xmm5
+        addps   xmm7, xmm6  // xmm7 += xmm6
 
-        movaps	xmmword ptr [eax + 0x10], xmm7	// eax = xmm7
+        movaps  xmmword ptr[eax + 0x10], xmm7   // eax = xmm7
 
-        movss	xmm7,	dword ptr [edx + 0x20]	// xmm7 = src2[08, xx, xx, xx]
-        movss	xmm4,   dword ptr [edx + 0x24]	// xmm4 = src2[09, xx, xx, xx]
-        movss	xmm5,   dword ptr [edx + 0x28]	// xmm5 = src2[10, xx, xx, xx]
-        movss	xmm6,   dword ptr [edx + 0x2c]	// xmm6 = src2[11, xx, xx, xx]
+        movss   xmm7, dword ptr[edx + 0x20] // xmm7 = src2[08, xx, xx, xx]
+        movss   xmm4, dword ptr[edx + 0x24] // xmm4 = src2[09, xx, xx, xx]
+        movss   xmm5, dword ptr[edx + 0x28] // xmm5 = src2[10, xx, xx, xx]
+        movss   xmm6, dword ptr[edx + 0x2c] // xmm6 = src2[11, xx, xx, xx]
 
-        shufps	xmm7,   xmm7, 0x0		// xmm7 = src2[08, 08, 08, 08]
-        shufps	xmm4,   xmm4, 0x0		// xmm4 = src2[09, 09, 09, 09]
-        shufps	xmm5,   xmm5, 0x0		// xmm5 = src2[10, 10, 10, 10]
-        shufps	xmm6,   xmm6, 0x0		// xmm6 = src2[11, 11, 11, 11]
+        shufps  xmm7, xmm7, 0x0 // xmm7 = src2[08, 08, 08, 08]
+        shufps  xmm4, xmm4, 0x0 // xmm4 = src2[09, 09, 09, 09]
+        shufps  xmm5, xmm5, 0x0 // xmm5 = src2[10, 10, 10, 10]
+        shufps  xmm6, xmm6, 0x0 // xmm6 = src2[11, 11, 11, 11]
 
-        mulps	xmm7,   xmm0			// xmm7 *= xmm0
-        mulps	xmm4,   xmm1			// xmm4 *= xmm1
-        mulps	xmm5,   xmm2			// xmm5 *= xmm2
-        mulps	xmm6,   xmm3			// xmm6 *= xmm3
+        mulps   xmm7, xmm0  // xmm7 *= xmm0
+        mulps   xmm4, xmm1  // xmm4 *= xmm1
+        mulps   xmm5, xmm2  // xmm5 *= xmm2
+        mulps   xmm6, xmm3  // xmm6 *= xmm3
 
-        addps	xmm7,   xmm4			// xmm7 += xmm4
-        addps	xmm7,   xmm5			// xmm7 += xmm5
-        addps	xmm7,   xmm6			// xmm7 += xmm6
+        addps   xmm7, xmm4  // xmm7 += xmm4
+        addps   xmm7, xmm5  // xmm7 += xmm5
+        addps   xmm7, xmm6  // xmm7 += xmm6
 
-        movaps	xmmword ptr [eax + 0x20], xmm7	// eax = xmm7
+        movaps  xmmword ptr [eax + 0x20], xmm7  // eax = xmm7
 
-        movss	xmm7,   dword ptr [edx + 0x30]  // xmm7 = src2[12, xx, xx, xx]
-        movss	xmm4,   dword ptr [edx + 0x34]  // xmm4 = src2[13, xx, xx, xx]
-        movss	xmm5,   dword ptr [edx + 0x38]  // xmm5 = src2[14, xx, xx, xx]
-        movss	xmm6,   dword ptr [edx + 0x3c]  // xmm6 = src2[15, xx, xx, xx]
+        movss   xmm7, dword ptr[edx + 0x30] // xmm7 = src2[12, xx, xx, xx]
+        movss   xmm4, dword ptr[edx + 0x34] // xmm4 = src2[13, xx, xx, xx]
+        movss   xmm5, dword ptr[edx + 0x38] // xmm5 = src2[14, xx, xx, xx]
+        movss   xmm6, dword ptr[edx + 0x3c] // xmm6 = src2[15, xx, xx, xx]
 
-        shufps	xmm7,   xmm7, 0x0       // xmm7 = src2[12, 12, 12, 12]
-        shufps	xmm4,   xmm4, 0x0       // xmm4 = src2[13, 13, 13, 13]
-        shufps	xmm5,   xmm5, 0x0       // xmm5 = src2[14, 14, 14, 14]
-        shufps	xmm6,   xmm6, 0x0       // xmm6 = src2[15, 15, 15, 15]
+        shufps  xmm7, xmm7, 0x0 // xmm7 = src2[12, 12, 12, 12]
+        shufps  xmm4, xmm4, 0x0 // xmm4 = src2[13, 13, 13, 13]
+        shufps  xmm5, xmm5, 0x0 // xmm5 = src2[14, 14, 14, 14]
+        shufps  xmm6, xmm6, 0x0 // xmm6 = src2[15, 15, 15, 15]
 
-        mulps	xmm7,   xmm0            // xmm7 *= xmm0
-        mulps	xmm4,   xmm1            // xmm4 *= xmm1
-        mulps	xmm5,   xmm2            // xmm5 *= xmm2
-        mulps	xmm6,   xmm3            // xmm6 *= xmm3
+        mulps   xmm7, xmm0  // xmm7 *= xmm0
+        mulps   xmm4, xmm1  // xmm4 *= xmm1
+        mulps   xmm5, xmm2  // xmm5 *= xmm2
+        mulps   xmm6, xmm3  // xmm6 *= xmm3
 
-        addps	xmm7,	xmm4			// xmm7 += xmm4
-        addps	xmm7,	xmm5			// xmm7 += xmm5
-        addps	xmm7,	xmm6			// xmm7 += xmm6
+        addps   xmm7, xmm4  // xmm7 += xmm4
+        addps   xmm7, xmm5  // xmm7 += xmm5
+        addps   xmm7, xmm6  // xmm7 += xmm6
 
-        movaps	xmmword ptr [eax + 0x30], xmm7	// eax = xmm7
+        movaps  xmmword ptr[eax + 0x30], xmm7   // eax = xmm7
     }
 #endif
 }
@@ -1343,28 +1349,28 @@ inline void addMatrixSSE( matrix4x4_template<f32>& out,
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhs = const_cast<f32*>(b.M);
 
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
 
     asm __volatile__ (
-        "movaps (%%ecx)	,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx)	,	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx)	,	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx) ,	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movaps (%%edx)	,	%%xmm4\n\t"	// xmm4 = src2[00, 01, 02, 03]
-        "movaps 10(%%edx)	,	%%xmm5\n\t"	// xmm5 = src2[04, 05, 06, 07]
-        "movaps 20(%%edx)	,	%%xmm6\n\t"	// xmm6 = src2[08, 09, 10, 11]
-        "movaps 30(%%edx)	,	%%xmm7\n\t"	// xmm7 = src2[12, 13, 14, 15]
+        "movaps (%%edx), %%xmm4\n\t"    // xmm4 = src2[00, 01, 02, 03]
+        "movaps 10(%%edx), %%xmm5\n\t"  // xmm5 = src2[04, 05, 06, 07]
+        "movaps 20(%%edx), %%xmm6\n\t"  // xmm6 = src2[08, 09, 10, 11]
+        "movaps 30(%%edx), %%xmm7\n\t"  // xmm7 = src2[12, 13, 14, 15]
 
-        "addps %%xmm0		,	%%xmm4\n\t"	// xmm4 += xmm0
-        "addps %%xmm1		,	%%xmm5\n\t"	// xmm5 += xmm1
-        "addps %%xmm2		,	%%xmm6\n\t"	// xmm6 += xmm2
-        "addps %%xmm3		,	%%xmm7\n\t"	// xmm7 += xmm3
+        "addps %%xmm0, %%xmm4\n\t"  // xmm4 += xmm0
+        "addps %%xmm1, %%xmm5\n\t"  // xmm5 += xmm1
+        "addps %%xmm2, %%xmm6\n\t"  // xmm6 += xmm2
+        "addps %%xmm3, %%xmm7\n\t"  // xmm7 += xmm3
 
-        "movaps %%xmm4	,	(%%eax)\n\t"	// eax = xmm4
-        "movaps %%xmm5	,	10(%%eax)\n\t"	// eax = xmm5
-        "movaps %%xmm6	,	20(%%eax)\n\t"	// eax = xmm6
-        "movaps %%xmm7	,	30(%%eax)\n\t"	// eax = xmm7
+        "movaps %%xmm4, (%%eax)\n\t"    // eax = xmm4
+        "movaps %%xmm5, 10(%%eax)\n\t"  // eax = xmm5
+        "movaps %%xmm6, 20(%%eax)\n\t"  // eax = xmm6
+        "movaps %%xmm7, 30(%%eax)\n\t"  // eax = xmm7
         :
         :"a"(dst), "c"(lhs), "d"(rhs)
         :"memory");
@@ -1377,27 +1383,27 @@ inline void addMatrixSSE( matrix4x4_template<f32>& out,
         mov     ecx, lhs
         mov     edx, rhs
 
-        movaps	xmm0, xmmword ptr [ecx]		 // xmm0 = src1[00, 01, 02, 03]
-        movaps	xmm1, xmmword ptr [ecx + 0x10] // xmm1 = src1[04, 05, 06, 07]
-        movaps	xmm2, xmmword ptr [ecx + 0x20] // xmm2 = src1[08, 09, 10, 11]
-        movaps	xmm3, xmmword ptr [ecx + 0x30] // xmm3 = src1[12, 13, 14, 15]
+        movaps  xmm0, xmmword ptr [ecx]         // xmm0 = src1[00, 01, 02, 03]
+        movaps  xmm1, xmmword ptr [ecx + 0x10]  // xmm1 = src1[04, 05, 06, 07]
+        movaps  xmm2, xmmword ptr [ecx + 0x20]  // xmm2 = src1[08, 09, 10, 11]
+        movaps  xmm3, xmmword ptr [ecx + 0x30]  // xmm3 = src1[12, 13, 14, 15]
 
-        movaps	xmm4, xmmword ptr [edx]		 // xmm4 = src2[00, 01, 02, 03]
-        movaps	xmm5, xmmword ptr [edx + 0x10] // xmm5 = src2[04, 05, 06, 07]
-        movaps	xmm6, xmmword ptr [edx + 0x20] // xmm6 = src2[08, 09, 10, 11]
-        movaps	xmm7, xmmword ptr [edx + 0x30] // xmm7 = src2[12, 13, 14, 15]
+        movaps  xmm4, xmmword ptr [edx]         // xmm4 = src2[00, 01, 02, 03]
+        movaps  xmm5, xmmword ptr [edx + 0x10]  // xmm5 = src2[04, 05, 06, 07]
+        movaps  xmm6, xmmword ptr [edx + 0x20]  // xmm6 = src2[08, 09, 10, 11]
+        movaps  xmm7, xmmword ptr [edx + 0x30]  // xmm7 = src2[12, 13, 14, 15]
 
-        addps	xmm4, xmm0 // xmm4 += xmm0
-        addps	xmm5, xmm1 // xmm5 += xmm1
-        addps	xmm6, xmm2 // xmm6 += xmm2
-        addps	xmm7, xmm3 // xmm7 += xmm3
+        addps   xmm4, xmm0 // xmm4 += xmm0
+        addps   xmm5, xmm1 // xmm5 += xmm1
+        addps   xmm6, xmm2 // xmm6 += xmm2
+        addps   xmm7, xmm3 // xmm7 += xmm3
 
-        movaps	xmmword ptr [eax]       , xmm4 // eax = xmm4
-        movaps	xmmword ptr [eax + 0x10], xmm5 // eax = xmm5
-        movaps	xmmword ptr [eax + 0x20], xmm6 // eax = xmm6
-        movaps	xmmword ptr [eax + 0x30], xmm7 // eax = xmm7
+        movaps  xmmword ptr [eax]       , xmm4 // eax = xmm4
+        movaps  xmmword ptr [eax + 0x10], xmm5 // eax = xmm5
+        movaps  xmmword ptr [eax + 0x20], xmm6 // eax = xmm6
+        movaps  xmmword ptr [eax + 0x30], xmm7 // eax = xmm7
     }
-#endif				
+#endif
 }
 
 template<typename _Ty>
@@ -1417,27 +1423,27 @@ inline void subMatrixSSE( matrix4x4_template<f32>& out,
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhs = const_cast<f32*>(b.M);
 
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
     asm __volatile__ (
-        "movaps (%%ecx)		,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx)	,	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx)	,	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx)	,	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movaps (%%edx)		,	%%xmm4\n\t"	// xmm4 = src2[00, 01, 02, 03]
-        "movaps 10(%%edx)	,	%%xmm5\n\t"	// xmm5 = src2[04, 05, 06, 07]
-        "movaps 20(%%edx)	,	%%xmm6\n\t"	// xmm6 = src2[08, 09, 10, 11]
-        "movaps 30(%%edx)	,	%%xmm7\n\t"	// xmm7 = src2[12, 13, 14, 15]
+        "movaps (%%edx), %%xmm4\n\t"    // xmm4 = src2[00, 01, 02, 03]
+        "movaps 10(%%edx), %%xmm5\n\t"  // xmm5 = src2[04, 05, 06, 07]
+        "movaps 20(%%edx), %%xmm6\n\t"  // xmm6 = src2[08, 09, 10, 11]
+        "movaps 30(%%edx), %%xmm7\n\t"  // xmm7 = src2[12, 13, 14, 15]
 
-        "subps %%xmm0		,	%%xmm4\n\t"	// xmm4 -= xmm0
-        "subps %%xmm1		,	%%xmm5\n\t"	// xmm5 -= xmm1
-        "subps %%xmm2		,	%%xmm6\n\t"	// xmm6 -= xmm2
-        "subps %%xmm3		,	%%xmm7\n\t"	// xmm7 -= xmm3
+        "subps %%xmm0, %%xmm4\n\t"  // xmm4 -= xmm0
+        "subps %%xmm1, %%xmm5\n\t"  // xmm5 -= xmm1
+        "subps %%xmm2, %%xmm6\n\t"  // xmm6 -= xmm2
+        "subps %%xmm3, %%xmm7\n\t"  // xmm7 -= xmm3
 
-        "movaps %%xmm4	,	(%%eax)\n\t"	// eax = xmm4
-        "movaps %%xmm5	,	10(%%eax)\n\t"	// eax = xmm5
-        "movaps %%xmm6	,	20(%%eax)\n\t"	// eax = xmm6
-        "movaps %%xmm7	,	30(%%eax)\n\t"	// eax = xmm7
+        "movaps %%xmm4, (%%eax)\n\t"    // eax = xmm4
+        "movaps %%xmm5, 10(%%eax)\n\t"  // eax = xmm5
+        "movaps %%xmm6, 20(%%eax)\n\t"  // eax = xmm6
+        "movaps %%xmm7, 30(%%eax)\n\t"  // eax = xmm7
         :
         :"a"(dst), "c"(lhs), "d"(rhs)
         :"memory");
@@ -1445,29 +1451,29 @@ inline void subMatrixSSE( matrix4x4_template<f32>& out,
 
     __asm
     {
-        mov eax, dst
-        mov ecx, lhs
-        mov edx, rhs
+        mov     eax, dst
+        mov     ecx, lhs
+        mov     edx, rhs
 
-        movaps xmm0, xmmword ptr [ecx]			// xmm0 = src1[00, 01, 02, 03]
-        movaps xmm1, xmmword ptr [ecx + 0x10]	// xmm1 = src1[04, 05, 06, 07]
-        movaps xmm2, xmmword ptr [ecx + 0x20]	// xmm2 = src1[08, 09, 10, 11]
-        movaps xmm3, xmmword ptr [ecx + 0x30]	// xmm3 = src1[12, 13, 14, 15]
+        movaps  xmm0, xmmword ptr[ecx]           // xmm0 = src1[00, 01, 02, 03]
+        movaps  xmm1, xmmword ptr[ecx + 0x10]    // xmm1 = src1[04, 05, 06, 07]
+        movaps  xmm2, xmmword ptr[ecx + 0x20]    // xmm2 = src1[08, 09, 10, 11]
+        movaps  xmm3, xmmword ptr[ecx + 0x30]    // xmm3 = src1[12, 13, 14, 15]
 
-        movaps xmm4, xmmword ptr [edx]			// xmm4 = src2[00, 01, 02, 03]
-        movaps xmm5, xmmword ptr [edx + 0x10]	// xmm5 = src2[04, 05, 06, 07]
-        movaps xmm6, xmmword ptr [edx + 0x20]	// xmm6 = src2[08, 09, 10, 11]
-        movaps xmm7, xmmword ptr [edx + 0x30]	// xmm7 = src2[12, 13, 14, 15]
+        movaps  xmm4, xmmword ptr[edx]           // xmm4 = src2[00, 01, 02, 03]
+        movaps  xmm5, xmmword ptr[edx + 0x10]    // xmm5 = src2[04, 05, 06, 07]
+        movaps  xmm6, xmmword ptr[edx + 0x20]    // xmm6 = src2[08, 09, 10, 11]
+        movaps  xmm7, xmmword ptr[edx + 0x30]    // xmm7 = src2[12, 13, 14, 15]
 
-        subps xmm0, xmm4						// xmm4 -= xmm0
-        subps xmm1, xmm5						// xmm5 -= xmm1
-        subps xmm2, xmm6						// xmm6 -= xmm2
-        subps xmm3, xmm7						// xmm7 -= xmm3
+        subps   xmm0, xmm4  // xmm4 -= xmm0
+        subps   xmm1, xmm5  // xmm5 -= xmm1
+        subps   xmm2, xmm6  // xmm6 -= xmm2
+        subps   xmm3, xmm7  // xmm7 -= xmm3
 
-        movaps xmmword ptr [eax]		, xmm0	// eax = xmm4
-        movaps xmmword ptr [eax + 0x10]	, xmm1	// eax = xmm5
-        movaps xmmword ptr [eax + 0x20]	, xmm2	// eax = xmm6
-        movaps xmmword ptr [eax + 0x30]	, xmm3	// eax = xmm7
+        movaps  xmmword ptr[eax], xmm0          // eax = xmm4
+        movaps  xmmword ptr[eax + 0x10], xmm1   // eax = xmm5
+        movaps  xmmword ptr[eax + 0x20], xmm2   // eax = xmm6
+        movaps  xmmword ptr[eax + 0x30], xmm3   // eax = xmm7
     }
 #endif
 }
@@ -1489,53 +1495,54 @@ inline void addValueMatrixSSE( matrix4x4_template<f32>& out,
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhv = const_cast<f32*>(&value);
 
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
     asm __volatile__(
-        "movaps (%%ecx)  ,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx),	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx),	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx),	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movss	(%%edx)	 ,	%%xmm4\n\t"		// xmm4 = src2[00, xx, xx, xx]
-        "shufps $0x0, %%xmm4, %%xmm4\n\t"	// xmm4 = src2[00, 00, 00, 00]
+        "movss  (%%edx), %%xmm4\n\t"        // xmm4 = src2[00, xx, xx, xx]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[00, 00, 00, 00]
 
-        "addps %%xmm4	 ,	%%xmm0\n\t"
-        "addps %%xmm4	 ,	%%xmm1\n\t"
-        "addps %%xmm4	 ,	%%xmm2\n\t"
-        "addps %%xmm4	 ,	%%xmm3\n\t"
+        "addps  %%xmm4, %%xmm0\n\t"
+        "addps  %%xmm4, %%xmm1\n\t"
+        "addps  %%xmm4, %%xmm2\n\t"
+        "addps  %%xmm4, %%xmm3\n\t"
 
-        "movaps %%xmm0	 ,	(%%eax)\n\t"
-        "movaps %%xmm1	 ,	10(%%eax)\n\t"
-        "movaps %%xmm2	 ,	20(%%eax)\n\t"
-        "movaps %%xmm3	 ,	30(%%eax)\n\t"
+        "movaps %%xmm0, (%%eax)\n\t"
+        "movaps %%xmm1, 10(%%eax)\n\t"
+        "movaps %%xmm2, 20(%%eax)\n\t"
+        "movaps %%xmm3, 30(%%eax)\n\t"
         :
         :"a"(dst), "c"(lhs), "d"(rhv)
         :"memory");
 
 #elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 
-    __asm {
-        mov eax, dst	// eax = dst
-        mov ecx, lhs	// ecx = lhs
-        mov edx, rhv	// edx = rhv
+    __asm
+    {
+        mov     eax, dst    // eax = dst
+        mov     ecx, lhs    // ecx = lhs
+        mov     edx, rhv    // edx = rhv
 
-        movaps xmm0, xmmword ptr [ecx]
-        movaps xmm1, xmmword ptr [ecx + 0x10]
-        movaps xmm2, xmmword ptr [ecx + 0x20]
-        movaps xmm3, xmmword ptr [ecx + 0x30]
+        movaps  xmm0, xmmword ptr[ecx]
+        movaps  xmm1, xmmword ptr[ecx + 0x10]
+        movaps  xmm2, xmmword ptr[ecx + 0x20]
+        movaps  xmm3, xmmword ptr[ecx + 0x30]
 
-        movss xmm4, dword ptr [edx]
-        shufps xmm4, xmm4, 0x0
+        movss   xmm4, dword ptr [edx]
+        shufps  xmm4, xmm4, 0x0
 
-        addps xmm0, xmm4
-        addps xmm1, xmm4
-        addps xmm2, xmm4
-        addps xmm3, xmm4
+        addps   xmm0, xmm4
+        addps   xmm1, xmm4
+        addps   xmm2, xmm4
+        addps   xmm3, xmm4
 
-        movaps xmmword ptr [eax]       , xmm0
-        movaps xmmword ptr [eax + 0x10], xmm1
-        movaps xmmword ptr [eax + 0x20], xmm2
-        movaps xmmword ptr [eax + 0x30], xmm3
+        movaps  xmmword ptr[eax], xmm0
+        movaps  xmmword ptr[eax + 0x10], xmm1
+        movaps  xmmword ptr[eax + 0x20], xmm2
+        movaps  xmmword ptr[eax + 0x30], xmm3
     }
 #endif
 }
@@ -1557,35 +1564,36 @@ inline void subtractValueMatrixSSE( matrix4x4_template<f32>& out,
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhv = const_cast<f32*>(&value);
 
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
     asm __volatile__(
-        "movaps (%%ecx)  ,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx),	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx),	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx),	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movss	(%%edx)	 ,	%%xmm4\n\t"		// xmm4 = src2[00, xx, xx, xx]
-        "shufps $0x0, %%xmm4, %%xmm4\n\t"	// xmm4 = src2[00, 00, 00, 00]
+        "movss  (%%edx), %%xmm4\n\t"        // xmm4 = src2[00, xx, xx, xx]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[00, 00, 00, 00]
 
-        "subps %%xmm4	 ,	%%xmm0\n\t"
-        "subps %%xmm4	 ,	%%xmm1\n\t"
-        "subps %%xmm4	 ,	%%xmm2\n\t"
-        "subps %%xmm4	 ,	%%xmm3\n\t"
+        "subps  %%xmm4, %%xmm0\n\t"
+        "subps  %%xmm4, %%xmm1\n\t"
+        "subps  %%xmm4, %%xmm2\n\t"
+        "subps  %%xmm4, %%xmm3\n\t"
 
-        "movaps %%xmm0	 ,	(%%eax)\n\t"
-        "movaps %%xmm1	 ,	10(%%eax)\n\t"
-        "movaps %%xmm2	 ,	20(%%eax)\n\t"
-        "movaps %%xmm3	 ,	30(%%eax)\n\t"
+        "movaps %%xmm0, (%%eax)\n\t"
+        "movaps %%xmm1, 10(%%eax)\n\t"
+        "movaps %%xmm2, 20(%%eax)\n\t"
+        "movaps %%xmm3, 30(%%eax)\n\t"
         :
         :"a"(dst), "c"(lhs), "d"(rhv)
         :"memory");
 
 #elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 
-    __asm {
-        mov eax, dst	// eax = dst
-        mov ecx, lhs	// ecx = lhs
-        mov edx, rhv	// edx = rhv
+    __asm
+    {
+        mov     eax, dst    // eax = dst
+        mov     ecx, lhs    // ecx = lhs
+        mov     edx, rhv    // edx = rhv
 
         movaps xmm0,    xmmword ptr [ecx]
         movaps xmm1,    xmmword ptr [ecx + 0x10]
@@ -1625,53 +1633,54 @@ inline void multiplyValueMatrixSSE( matrix4x4_template<f32>& out,
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhv = const_cast<f32*>(&value);
 
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
     asm __volatile__(
-        "movaps (%%ecx)  ,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx),	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx),	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx),	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movss	(%%edx)	 ,	%%xmm4\n\t"		// xmm4 = src2[00, xx, xx, xx]
-        "shufps $0x0, %%xmm4, %%xmm4\n\t"	// xmm4 = src2[00, 00, 00, 00]
+        "movss  (%%edx), %%xmm4\n\t"        // xmm4 = src2[00, xx, xx, xx]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[00, 00, 00, 00]
 
-        "mulps %%xmm4	 ,	%%xmm0\n\t"
-        "mulps %%xmm4	 ,	%%xmm1\n\t"
-        "mulps %%xmm4	 ,	%%xmm2\n\t"
-        "mulps %%xmm4	 ,	%%xmm3\n\t"
+        "mulps  %%xmm4, %%xmm0\n\t"
+        "mulps  %%xmm4, %%xmm1\n\t"
+        "mulps  %%xmm4, %%xmm2\n\t"
+        "mulps  %%xmm4, %%xmm3\n\t"
 
-        "movaps %%xmm0	 ,	(%%eax)\n\t"
-        "movaps %%xmm1	 ,	10(%%eax)\n\t"
-        "movaps %%xmm2	 ,	20(%%eax)\n\t"
-        "movaps %%xmm3	 ,	30(%%eax)\n\t"
+        "movaps %%xmm0, (%%eax)\n\t"
+        "movaps %%xmm1, 10(%%eax)\n\t"
+        "movaps %%xmm2, 20(%%eax)\n\t"
+        "movaps %%xmm3, 30(%%eax)\n\t"
         :
         :"a"(dst), "c"(lhs), "d"(rhv)
         :"memory");
 
 #elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 
-    __asm {
-        mov eax, dst	// eax = dst
-        mov ecx, lhs	// ecx = lhs
-        mov edx, rhv	// edx = rhv
+    __asm
+    {
+        mov     eax, dst    // eax = dst
+        mov     ecx, lhs    // ecx = lhs
+        mov     edx, rhv    // edx = rhv
 
-        movaps xmm0,	xmmword ptr [ecx]
-        movaps xmm1,	xmmword ptr [ecx + 0x10]
-        movaps xmm2,	xmmword ptr [ecx + 0x20]
-        movaps xmm3,	xmmword ptr [ecx + 0x30]
+        movaps  xmm0, xmmword ptr[ecx]
+        movaps  xmm1, xmmword ptr[ecx + 0x10]
+        movaps  xmm2, xmmword ptr[ecx + 0x20]
+        movaps  xmm3, xmmword ptr[ecx + 0x30]
 
-        movss xmm4,		dword ptr [edx]
-        shufps xmm4, xmm4, 0x0
+        movss   xmm4, dword ptr [edx]
+        shufps  xmm4, xmm4, 0x0
 
-        mulps xmm0, xmm4
-        mulps xmm1, xmm4
-        mulps xmm2, xmm4
-        mulps xmm3, xmm4
+        mulps   xmm0, xmm4
+        mulps   xmm1, xmm4
+        mulps   xmm2, xmm4
+        mulps   xmm3, xmm4
 
-        movaps xmmword ptr [eax]		,	xmm0
-        movaps xmmword ptr [eax + 0x10]	,	xmm1
-        movaps xmmword ptr [eax + 0x20]	,	xmm2
-        movaps xmmword ptr [eax + 0x30]	,	xmm3
+        movaps  xmmword ptr[eax], xmm0
+        movaps  xmmword ptr[eax + 0x10], xmm1
+        movaps  xmmword ptr[eax + 0x20], xmm2
+        movaps  xmmword ptr[eax + 0x30], xmm3
     }
 #endif
 }
@@ -1693,53 +1702,54 @@ inline void devideValueMatrixSSE( matrix4x4_template<f32>& out,
     f32 * lhs = const_cast<f32*>(a.M);
     f32 * rhv = const_cast<f32*>(&value);
 
-#if defined (ENO_COMPILED_FROM_GNUC)
+#if defined (ENO_COMPILED_FROM_GNUC) | defined (ENO_COMPILED_FROM_LLVM)
     asm __volatile__(
-        "movaps (%%ecx)  ,	%%xmm0\n\t"	// xmm0 = src1[00, 01, 02, 03]
-        "movaps 10(%%ecx),	%%xmm1\n\t"	// xmm1 = src1[04, 05, 06, 07]
-        "movaps 20(%%ecx),	%%xmm2\n\t"	// xmm2 = src1[08, 09, 10, 11]
-        "movaps 30(%%ecx),	%%xmm3\n\t"	// xmm3 = src1[12, 13, 14, 15]
+        "movaps (%%ecx), %%xmm0\n\t"    // xmm0 = src1[00, 01, 02, 03]
+        "movaps 10(%%ecx), %%xmm1\n\t"  // xmm1 = src1[04, 05, 06, 07]
+        "movaps 20(%%ecx), %%xmm2\n\t"  // xmm2 = src1[08, 09, 10, 11]
+        "movaps 30(%%ecx), %%xmm3\n\t"  // xmm3 = src1[12, 13, 14, 15]
 
-        "movss	(%%edx)	 ,	%%xmm4\n\t"		// xmm4 = src2[00, xx, xx, xx]
-        "shufps $0x0, %%xmm4, %%xmm4\n\t"	// xmm4 = src2[00, 00, 00, 00]
+        "movss  (%%edx), %%xmm4\n\t"        // xmm4 = src2[00, xx, xx, xx]
+        "shufps $0x0, %%xmm4, %%xmm4\n\t"   // xmm4 = src2[00, 00, 00, 00]
 
-        "divps %%xmm4	 ,	%%xmm0\n\t"
-        "divps %%xmm4	 ,	%%xmm1\n\t"
-        "divps %%xmm4	 ,	%%xmm2\n\t"
-        "divps %%xmm4	 ,	%%xmm3\n\t"
+        "divps  %%xmm4, %%xmm0\n\t"
+        "divps  %%xmm4, %%xmm1\n\t"
+        "divps  %%xmm4, %%xmm2\n\t"
+        "divps  %%xmm4, %%xmm3\n\t"
 
-        "movaps %%xmm0	 ,	(%%eax)\n\t"
-        "movaps %%xmm1	 ,	10(%%eax)\n\t"
-        "movaps %%xmm2	 ,	20(%%eax)\n\t"
-        "movaps %%xmm3	 ,	30(%%eax)\n\t"
+        "movaps %%xmm0, (%%eax)\n\t"
+        "movaps %%xmm1, 10(%%eax)\n\t"
+        "movaps %%xmm2, 20(%%eax)\n\t"
+        "movaps %%xmm3, 30(%%eax)\n\t"
         :
         :"a"(dst), "c"(lhs), "d"(rhv)
         :"memory");
 
 #elif defined (ENO_COMPILED_FROM_VISUAL_STUDIO)
 
-    __asm {
-        mov eax, dst	// eax = dst
-            mov ecx, lhs	// ecx = lhs
-            mov edx, rhv	// edx = rhv
+    __asm
+    {
+        mov     eax, dst    // eax = dst
+        mov     ecx, lhs    // ecx = lhs
+        mov     edx, rhv    // edx = rhv
 
-            movaps xmm0,	xmmword ptr [ecx]
-        movaps xmm1,	xmmword ptr [ecx + 0x10]
-        movaps xmm2,	xmmword ptr [ecx + 0x20]
-        movaps xmm3,	xmmword ptr [ecx + 0x30]
+        movaps  xmm0, xmmword ptr[ecx]
+        movaps  xmm1, xmmword ptr[ecx + 0x10]
+        movaps  xmm2, xmmword ptr[ecx + 0x20]
+        movaps  xmm3, xmmword ptr[ecx + 0x30]
 
-        movss xmm4,		dword ptr [edx]
-        shufps xmm4, xmm4, 0x0
+        movss   xmm4, dword ptr[edx]
+        shufps  xmm4, xmm4, 0x0
 
-            divps xmm0, xmm4
-            divps xmm1, xmm4
-            divps xmm2, xmm4
-            divps xmm3, xmm4
+        divps   xmm0, xmm4
+        divps   xmm1, xmm4
+        divps   xmm2, xmm4
+        divps   xmm3, xmm4
 
-            movaps xmmword ptr [eax]		,	xmm0
-            movaps xmmword ptr [eax + 0x10]	,	xmm1
-            movaps xmmword ptr [eax + 0x20]	,	xmm2
-            movaps xmmword ptr [eax + 0x30]	,	xmm3
+        movaps  xmmword ptr[eax], xmm0
+        movaps  xmmword ptr[eax + 0x10], xmm1
+        movaps  xmmword ptr[eax + 0x20], xmm2
+        movaps  xmmword ptr[eax + 0x30], xmm3
     }
 #endif
 }
@@ -1787,7 +1797,7 @@ void matrix4x4_template<_Ty>::Devide( matrix4x4_template & mat, const matrix4x4_
 }
 
 }
-    }
+}
 
     // 12 :46 Friday 13 8 2010.
 

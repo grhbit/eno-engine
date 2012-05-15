@@ -16,6 +16,13 @@ namespace eno {
     struct BMPMagicNumber
     {
         u8 magicnumber[2];
+        
+        boolean check(void)
+        {
+            return 
+            (magicnumber[0]=='B') &&
+            (magicnumber[1]=='M');
+        }
     };
 
     struct BMPHeader
@@ -222,15 +229,15 @@ namespace eno {
         u32 width = info->width;
         u32 height = info->height;
 
-        u32 Pitch = width * 4;
+        u32 Pitch = width*4;
 
         (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
         u8* buffer = (*image)->lock();
-
-        for (u32 i = 0; i < height; i++)
+        
+        for (u32 i = 0; i < height; ++i)
         {
-            memcpy(buffer, file->readBytes(Pitch), sizeof(u8) * Pitch);
-            buffer += Pitch;
+                memcpy(buffer, file->readBytes(Pitch), Pitch);
+                buffer += Pitch;
         }
 
         (*image)->unlock();
@@ -240,14 +247,18 @@ namespace eno {
     {
         enoFile file;
         file.open(ID.filename, enoFile::READ|enoFile::BINARY);
-        file.seek(0);
         
-        if(file.isOpen()!=true)
+        if(!file.isOpen()) {
             return nullptr;
+        }
 
         BMPMagicNumber magicnumber;
         magicnumber.magicnumber[0] = file.getByte();
         magicnumber.magicnumber[1] = file.getByte();
+
+        if (!magicnumber.check()) {
+            return nullptr;
+        }
 
         BMPHeader header;
         file.getBytes(header.buffer, sizeof(BMPHeader));
@@ -257,7 +268,7 @@ namespace eno {
         file.getBytes(info.buffer+4, info.headersize-sizeof(info.headersize));
 
         enoImage* image = nullptr;
-
+        
         switch(info.colordepth)
         {
         case 1:

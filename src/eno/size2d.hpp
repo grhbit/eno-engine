@@ -27,7 +27,7 @@ namespace eno {
             _Ty getArea( void ) const { return this->x_*this->y_; }
         };
 
-        typedef size2d_template<ftype> size2d;
+        typedef size2d_template<f32> size2d;
 
     }
 }

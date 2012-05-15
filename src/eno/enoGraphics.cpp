@@ -18,6 +18,7 @@ namespace eno {
     {
         unit = new GraphicsImpl_OGL;
     }
+    
     enoGraphics::~enoGraphics( void )
     {
         delete unit;
@@ -68,4 +69,50 @@ namespace eno {
         unit->destroy();
     }
 
+    void enoGraphics::drawPoint(const spriteVertex& pos, f32 size)
+    {
+        if (size>0) {
+            this->drawPoints(&pos, size, 1);
+        }
+    }
+    
+    void enoGraphics::drawPoints(const spriteVertex v[], f32 size, s32 count)
+    {
+        if (size>0 && count>0) {
+            unit->drawPoints(v, size, count);
+        }
+    }
+    
+    void enoGraphics::drawLine(const spriteVertex& start, const spriteVertex& end, f32 width)
+    {
+        if (width>0) {
+            this->drawLines((spriteVertex[]){start, end}, width, 2);
+        }
+    }
+    
+    void enoGraphics::drawLines(const spriteVertex v[], f32 width, s32 numVerts)
+    {
+        if (width>0 && numVerts>=2) {
+            unit->drawLines(v, width, numVerts);
+        }
+    }
+    
+    void enoGraphics::drawPolygon(const modelVertex v[])
+    {
+        drawPolygons(v, 3);
+    }
+    
+    void enoGraphics::drawPolygons(const modelVertex v[], s32 numPolygons)
+    {
+        if (numPolygons%3 != 0) {
+            return;
+        }
+        unit->drawPolygons(v, numPolygons);
+    }
+    
+    void enoGraphics::drawQuad(const spriteVertex v[])
+    {
+        unit->drawQuad(v);
+    }
+    
 }

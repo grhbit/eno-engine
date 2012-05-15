@@ -55,9 +55,9 @@ tempfile = File.new(tempfilename, 'w')
 tempfile.write 	"// Version Info\n" +
 				"#include \"enoType.hpp\"\n" +
 				"\n" +
-				"const u32 revision = " + revision.to_s + ";\n" +
-				"const c8* const date = \"" + time.gmtime.to_s + "\";\n" +
-				"//        local time = \"" + localtime.to_s
+				"const eno::u32 revision = " + revision.to_s + ";\n" +
+				"const eno::c8* const date = \"" + time.gmtime.to_s + "\";\n" +
+				"//             local time = \"" + localtime.to_s
 tempfile.close
 
 File.rename(tempfilename, destfilename)

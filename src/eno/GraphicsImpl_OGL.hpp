@@ -23,13 +23,15 @@ namespace eno {
     {
     private:
         /* virtual */ void setCullMode(CullMode);
-
         /* virtual */ void setLighting(boolean);
 
         /* virtual */ void create(GraphicsMode);
-
         /* virtual */ void destroy(void);
 
+        /* virtual */ void drawPoints(const spriteVertex[], f32, s32);
+        /* virtual */ void drawLines(const spriteVertex[], f32, s32);
+        /* virtual */ void drawPolygons(const modelVertex[], s32);
+        /* virtual */ void drawQuad(const spriteVertex[]);
     };
 
 }

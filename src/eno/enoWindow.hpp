@@ -15,9 +15,9 @@ interface enoWindow {
     public:
         virtual ~enoWindow(void) { }
 
-        virtual void eventLoop( void ) = 0;
         // [Caution]
         // Until Application quit, doesn't escape.
+        virtual void eventLoop( void ) = 0;
 
         virtual void toggleFullScreen( void ) {};
     public:

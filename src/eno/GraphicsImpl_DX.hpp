@@ -16,6 +16,9 @@ namespace eno {
     {
     public:
     private:
+        /* virtual */ void create(GraphicsMode);
+
+        /* virtual */ void destroy();
     };
 
 }

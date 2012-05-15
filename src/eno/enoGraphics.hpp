@@ -46,6 +46,16 @@ namespace eno {
 
         void create(GraphicsMode mode);
         void destroy(void);
+        
+        void drawPoint(const spriteVertex& pos, f32 size);
+        void drawPoints(const spriteVertex v[], f32 size, s32 count);
+        void drawLine(const spriteVertex& start, const spriteVertex& end, f32 width);
+        void drawLines(const spriteVertex v[], f32 width, s32 numVerts);
+        void drawPolygon(const modelVertex v[]);
+        void drawPolygons(const modelVertex v[], s32 numPolygons);
+        void drawQuad(const spriteVertex v[]);
+        void drawQuad(const core::rectangle&);
+        void drawQuads(const spriteVertex v[], s32 numQuads);
     public:
         static enoGraphics* getInstance( void );
         static void release( void );

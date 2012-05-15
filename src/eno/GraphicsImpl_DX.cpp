@@ -8,3 +8,15 @@
 */
 
 #include "GraphicsImpl_DX.hpp"
+#include "D3DHelper_DX9.hpp"
+
+namespace eno
+{
+#define D3DHelper(n) D3DHelper_DX##n
+
+    void GraphicsImpl_DX::create(GraphicsMode mode)
+    {
+        D3DHelper(9) helper;
+    }
+
+}

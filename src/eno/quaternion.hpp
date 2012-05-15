@@ -54,7 +54,7 @@ public:
 public:
 };
 
-typedef quaternion_template<ftype> quaternion;
+typedef quaternion_template<f32> quaternion;
 
 }
     }

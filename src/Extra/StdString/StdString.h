@@ -1312,7 +1312,7 @@ inline void	ssasn(std::string& sDst, const std::wstring& sSrc)
 #endif
 
 		sDst.resize(nDst+1);
-		__attribute__((unused)) PCSTR szCvt = StdCodeCvt(const_cast<SS_PTRTYPE>(sDst.data()), nDst,
+		PCSTR szCvt = StdCodeCvt(const_cast<SS_PTRTYPE>(sDst.data()), nDst,
 			sSrc.c_str(), static_cast<int>(sSrc.size()));
 
 		// In MBCS builds, we don't know how long the destination string will be.

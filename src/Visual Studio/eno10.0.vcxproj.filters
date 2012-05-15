@@ -332,5 +332,8 @@
     <ClCompile Include="..\eno\enoImage.cpp">
       <Filter>Source\eno\display</Filter>
     </ClCompile>
+    <ClCompile Include="..\eno\enoIOTest.cpp">
+      <Filter>Source\Test</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

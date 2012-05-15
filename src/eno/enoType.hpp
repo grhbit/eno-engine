@@ -13,39 +13,32 @@
 namespace eno {
 
 //1-Byte
-typedef unsigned char u8;
+    using u8 = unsigned char;
 
-typedef char c8;
+    using c8 = char;
 
-typedef char s8;
+    using s8 = char;
 
 //2-Byte
-typedef unsigned short u16;
+    using u16 = unsigned short;
 
-typedef short s16;
+    using s16 = short;
 
 //4-Byte
-typedef unsigned int u32;
+    using u32 = unsigned int;
 
-typedef int s32;
+    using s32 = int;
 
-typedef float f32;
+    using f32 = float;
 
 //8-Byte
-typedef unsigned long long u64;
+    using u64 = unsigned long long;
 
-typedef long long s64;
+    using s64 = long long;
 
-typedef double f64;
-
-//In case template, decide type!
-
-typedef f32 ftype;	//recommend type : f32
+    using f64 = double;
 
 //Boolean type
-
-typedef u8 boolean;
+    using boolean = u8;
 
 }
-
-

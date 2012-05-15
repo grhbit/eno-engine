@@ -18,21 +18,21 @@ namespace eno {
         public:
             union {
                 struct {
-                    ftype a; // alpha
-                    ftype r; // red
-                    ftype g; // green
-                    ftype b; // blue
+                    f32 r; // red
+                    f32 g; // green
+                    f32 b; // blue
+                    f32 a; // alpha
                 };
 
-                ftype v[4];
+                f32 v[4];
             };
 
             ColorTypeF( void ) : a(1), r(0), g(0), b(0) { }
 
-            ColorTypeF(ftype alpha, ftype red, ftype green, ftype blue)
-                : a(alpha), r(red), g(green), b(blue) { }
+            ColorTypeF(f32 red, f32 green, f32 blue, f32 alpha)
+                : r(red), g(green), b(blue), a(alpha) { }
 
-            ColorTypeF(ftype* value)
+            ColorTypeF(f32* value)
             {
                 memcpy(v, value, sizeof(v));
             }
@@ -43,15 +43,15 @@ namespace eno {
         public:
             colorTypeF( void ) : ColorTypeF() { }
 
-            colorTypeF(ftype alpha, ftype red, ftype green, ftype blue)
-                : ColorTypeF(alpha, red, green, blue) { }
+            colorTypeF(f32 red, f32 green, f32 blue, f32 alpha)
+                : ColorTypeF(red, green, blue, alpha) { }
 
-            colorTypeF(ftype* value) : ColorTypeF(value) { }
+            colorTypeF(f32* value) : ColorTypeF(value) { }
 
-            ftype getAlpha() const { return a; }
-            ftype getRed() const { return r; }
-            ftype getGreen() const { return g; }
-            ftype getBlue() const { return b; }
+            f32 getAlpha() const { return a; }
+            f32 getRed() const { return r; }
+            f32 getGreen() const { return g; }
+            f32 getBlue() const { return b; }
 
             u32 getColorCode() const
             {
@@ -67,7 +67,7 @@ namespace eno {
             * saturation : [0, 1]
             *  lightness : [0, 1]
             */
-            void setHSL(ftype& h, ftype& s, ftype& l)
+            void setHSL(f32& h, f32& s, f32& l)
             {
                 while(h>2.0*PI) h -= 2.0*PI;
                 while(h<0.0) h += 2.0*PI;
@@ -76,10 +76,10 @@ namespace eno {
                 while(l>1.0) l -= 1.0;
                 while(l<0.0) l += 1.0;
 
-                ftype chroma = (1 - abs(2.0*l - 1)) * s;
-                ftype h_prime = h*(3/PI);
-                ftype X = chroma*(1 - abs(fmodf(h_prime, 2) - 1));
-                ftype m = l - chroma*0.5;
+                f32 chroma = (1 - abs(2.f*l - 1)) * s;
+                f32 h_prime = h*(3/PI);
+                f32 X = chroma*(1 - abs(fmodf(h_prime, 2) - 1));
+                f32 m = l - chroma*0.5f;
 
                 switch(static_cast<s32>(h_prime))
                 {
@@ -109,7 +109,7 @@ namespace eno {
             }
 
         public:
-            static colorTypeF GetHSL(ftype hue, ftype saturation, ftype lightness)
+            static colorTypeF GetHSL(f32 hue, f32 saturation, f32 lightness)
             {
                 colorTypeF tmp;
                 tmp.setHSL(hue, saturation, lightness);

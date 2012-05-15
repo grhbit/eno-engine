@@ -101,7 +101,7 @@ public:
     }
 };
 
-typedef vector2d_template<ftype> vector2d;
+typedef vector2d_template<f32> vector2d;
 
 #define position2d_template vector2d_template
 #define position2d vector2d

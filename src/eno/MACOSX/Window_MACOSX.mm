@@ -3,7 +3,7 @@
 //  eno
 //
 //  Created by SEONG GWANG GWON on 11. 11. 30..
-//  Copyright (c) 2011??g.passcode@gmail.com . All rights reserved.
+//  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -20,18 +20,18 @@
 -(void) windowWillClose:(NSNotification *)aNotification;
 -(void) windowDidResize:(NSNotification *)aNotification;
 -(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender;
--(void) applicationDidFinishLaunching:(NSNotification *)notification;
 -(void) sendEvent:(NSEvent *)theEvent;
+-(void) run;
 
 -(void) initWindow;
 -(void) closeWindow;
--(void) setParams;
+-(void) setParams:(NSData *)data;
+-(void) buildApplicationMenu;
 @end
 
 #import "Window_MACOSX.hpp"
-#import "size2d.hpp"
-
-eno::core::size2d_template<eno::s32> windowSize;
+#import "enoTimer.hpp"
+#import <OpenGL/GL.h>
 
 @implementation enoNSApplication
 
@@ -59,9 +59,19 @@ eno::core::size2d_template<eno::s32> windowSize;
                       NSClosableWindowMask|
                      NSResizableWindowMask|
                 NSMiniaturizableWindowMask].size;
+
+    glViewport(0, 0, size.width, size.height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-1, 1, -1, 1, 0, 100);
+
+    [resizedWindow setContentSize:size];
     
-    windowSize = eno::core::size2d_template<eno::s32>(size.width, size.height);
     //TODO : inform resize
+    eno::Window_MACOSX* window_ = static_cast<eno::Window_MACOSX *>(eno::enoWindow::getInstance());
+    if (window_) {
+        window_->ResizedWindow(size.width, size.height);
+    }
 }
 
 -(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
@@ -69,31 +79,31 @@ eno::core::size2d_template<eno::s32> windowSize;
     return YES;
 }
 
--(void) applicationDidFinishLaunching:(NSNotification *)notification
-{
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    NSEvent* event = [NSEvent otherEventWithType: NSApplicationDefined
-                                        location: NSMakePoint(0,0)
-                                   modifierFlags: 0
-                                       timestamp: 0.0
-                                    windowNumber: 0
-                                         context: nil
-                                         subtype: 0
-                                           data1: 0
-                                           data2: 0];
-    [NSApp postEvent: event atStart: YES];
-    [pool release];
-}
-
 -(void) sendEvent:(NSEvent *)theEvent
 {
-    if( [theEvent type] == NSApplicationDefined)
-    {
-        dynamic_cast<eno::Window_MACOSX*>(eno::enoWindow::getInstance())->Loop();
-        NSLog(@"enoNSApplication: sendEvent %@",theEvent);
-    }
-    
     [super sendEvent:theEvent];
+}
+
+-(void) run
+{
+    [self finishLaunching];
+    _running = YES;
+    
+    eno::Window_MACOSX* app = static_cast<eno::Window_MACOSX*>(eno::enoWindow::getInstance());
+    NSEvent* event;
+    do
+    {
+        event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+        
+        if (event == nil) {
+            app->Loop();
+        } else {
+            [NSApp sendEvent:event];
+        }
+
+    } while ([NSApp isRunning]);
+    
+    [self terminate:self];
 }
 
 -(void) initWindow
@@ -114,13 +124,17 @@ eno::core::size2d_template<eno::s32> windowSize;
     [window release];
 }
 
-- (void) setParams
+- (void) setParams:(NSData *)data
 {
     NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
-	NSRect contentRect = { { 0, 0 }, { 800, 600 } };
     
+    eno::enoWindowProperty property;
+    memcpy(&property, [data bytes], [data length]);
+    
+	NSRect contentRect = { { 0, 0 }, { property.Width, property.Height } };
+
 	[window setContentSize:contentRect.size];
-	[window setTitle:[NSString stringWithUTF8String:"Title"]];		
+	[window setTitle:[NSString stringWithUTF8String:property.Title]];		
 	[window center];
     @try
     {
@@ -134,6 +148,59 @@ eno::core::size2d_template<eno::s32> windowSize;
     [Pool release];
 }
 
+- (void) buildApplicationMenu
+{
+    NSMenu* mainMenu = [[NSMenu alloc] initWithTitle:@""];
+    NSMenu* appleMenu = [[NSMenu alloc] initWithTitle:@""];
+    NSMenu* windowMenu;
+    NSString* title;
+    NSString* appName = @"eno";
+    
+    NSMenuItem* menuItem;
+    
+    title = [@"About " stringByAppendingString:appName];
+    [appleMenu addItemWithTitle:title action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
+    
+    [appleMenu addItem:[NSMenuItem separatorItem]];
+
+    title = [@"Hide " stringByAppendingString:appName];
+    [appleMenu addItemWithTitle:title action:@selector(hide:) keyEquivalent:@"h"];
+    
+    menuItem = [appleMenu addItemWithTitle:@"Hide Others" action:@selector(hideOtherApplications:) keyEquivalent:@"h"];
+    [menuItem setKeyEquivalentModifierMask:(NSAlternateKeyMask|NSCommandKeyMask)];
+    
+    [appleMenu addItemWithTitle:@"Show All" action:@selector(unhideAllApplications:) keyEquivalent:@""];
+    
+    [appleMenu addItem:[NSMenuItem separatorItem]];
+    
+    title = [@"Quit " stringByAppendingString:appName];
+    [appleMenu addItemWithTitle:title action:@selector(terminate:) keyEquivalent:@"q"];
+    
+    menuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+    [menuItem setSubmenu:appleMenu];
+
+    [mainMenu addItem:menuItem];
+    [NSApp setMainMenu:mainMenu];
+    [NSApp setMenu:mainMenu];
+    [menuItem release];
+    
+    windowMenu = [[NSMenu alloc] initWithTitle:@"Window"];
+    
+    menuItem = [[NSMenuItem alloc] initWithTitle:@"Minimize" action:@selector(performMiniaturize:) keyEquivalent:@"m"];
+    [windowMenu addItem:menuItem];
+    [menuItem release];
+    
+    menuItem = [[NSMenuItem alloc] initWithTitle:@"Window" action:nil keyEquivalent:@""];
+    [menuItem setSubmenu:windowMenu];
+    [[NSApp mainMenu] addItem:menuItem];
+    [menuItem release];
+    
+    [NSApp setWindowsMenu:windowMenu];
+    
+    [windowMenu release];
+    [appleMenu release];
+    [mainMenu release];
+}
 
 @end
 
@@ -198,86 +265,83 @@ static NSOpenGLContext* createOpenGLContext(OpenGLContextType type, eno::s32 col
     return context;
 }
 
-namespace eno {
-    
-            Window_MACOSX::Window_MACOSX(const enoWindowProperty&):context(nil), delegate(nil), isIdle_(true)
-            {
-                NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
-                
-                delegate = [enoNSApplication sharedApplication];
-                [delegate performSelectorOnMainThread:@selector(initWindow) withObject:nil waitUntilDone:YES];
-                
-                NSOpenGLContext* context = createOpenGLContext(Window, 16, 1, 16, nil);
+namespace eno
+{    
+    Window_MACOSX::Window_MACOSX(const enoWindowProperty& property):context_(nil), delegate(nil), isIdle_(true), property_(property)
+    {
+        NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
+        
+        delegate = [enoNSApplication sharedApplication];
+        [delegate performSelectorOnMainThread:@selector(initWindow) withObject:nil waitUntilDone:YES];
+        [delegate performSelectorOnMainThread:@selector(buildApplicationMenu) withObject:nil waitUntilDone:YES];
+        
+        NSOpenGLContext* context = createOpenGLContext(Window, 32, 1, 16, nil);        
+        context_ = context;
 
-                [delegate performSelectorOnMainThread:@selector(setParams) withObject:nil waitUntilDone:YES];
+        NSData* data = [NSData dataWithBytes:&property length:sizeof(enoWindowProperty)];
+        [delegate performSelectorOnMainThread:@selector(setParams:) withObject:data waitUntilDone:YES];
 
-                [context setView:[static_cast<enoNSApplication*>(delegate)->window contentView]];
-                [context update];
-                [context makeCurrentContext];
-                
-                [delegate setDelegate:delegate];
-                
-                [Pool release];
-            }
+        [context setView:[static_cast<enoNSApplication*>(delegate)->window contentView]];
+        [context update];
+        [context makeCurrentContext];
+        
+        [delegate setDelegate:delegate];
+        
+        [Pool release];
+    }
 
-            Window_MACOSX::~Window_MACOSX(void)
-            {
-                NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
-                
-                [context release];
-                [delegate performSelectorOnMainThread:@selector(closeWindow) withObject:nil waitUntilDone:YES];
-                [delegate release];
-                
-                [Pool release];
-            }
+    Window_MACOSX::~Window_MACOSX(void)
+    {
+        NSAutoreleasePool* Pool = [[NSAutoreleasePool alloc] init];
+        
+        [context_ release];
+        [delegate performSelectorOnMainThread:@selector(closeWindow) withObject:nil waitUntilDone:YES];
+        [delegate release];
+        
+        [Pool release];
+    }
     
     void Window_MACOSX::eventLoop()
     {
         NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-        NSEvent* event = [NSEvent otherEventWithType: NSApplicationDefined
-                                            location: NSMakePoint(0,0)
-                                       modifierFlags: 0
-                                           timestamp: 0.0
-                                        windowNumber: 0
-                                             context: nil
-                                             subtype: 0
-                                               data1: 0
-                                               data2: 0];
-        UNUSED(event);
-        [[NSApplication sharedApplication] run];
+
+        [NSApp run];
+        
         [pool release];
     }
     
     void Window_MACOSX::Loop()
     {
-        PollEvents();
-        UpdateWindows();
-        Idle();
-    }
-    
-    void Window_MACOSX::PollEvents()
-    {
-        NSEvent* event;
-        
-        do
+        while (PollEvents())
         {
-            event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
-            
-            [NSApp sendEvent:event];
-        } while (event != nil);
+            UpdateWindows();
+        }
+    }
+     
+    void Window_MACOSX::ResizedWindow(f32 width, f32 height)
+    {
+        if(context_ != nil)
+            [static_cast<NSOpenGLContext *>(context_) update];
     }
     
     void Window_MACOSX::UpdateWindows()
     {
-        
+        static enoTimer timer;
+        f32 elapse = timer.touch();
+        property_.DrawFunc(elapse);
+        property_.UpdateFunc(elapse);
+        [(NSOpenGLContext*)context_ flushBuffer];
     }
     
-    void Window_MACOSX::Idle()
+    boolean Window_MACOSX::PollEvents()
     {
-        isIdle_ = true;
-        NSEvent* event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantFuture] inMode:NSDefaultRunLoopMode dequeue:NO];
-        UNUSED(event);
-        isIdle_ = false;
+        NSEvent* event;
+        do
+        {
+            event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+            [NSApp sendEvent:event];
+        } while (event != nil);
+        
+        return [NSApp isRunning];
     }
-
 }

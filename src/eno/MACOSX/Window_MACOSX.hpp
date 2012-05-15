@@ -10,24 +10,27 @@
 #import "enoWindow.hpp"
 #import <objc/objc.h>
 
-namespace eno {        
+namespace eno
+{
 
-            class Window_MACOSX : public enoWindow
-            {
-            public:
-                Window_MACOSX(const enoWindowProperty &);
-                /* virtual */ ~Window_MACOSX(void);
-                
-                /* virtual */ void eventLoop( void );
-                void Loop();
-            private:
-                void PollEvents();
-                void UpdateWindows();
-                void Idle();
-                
-                id context; //OpenGL context
-                id delegate; //Window delegate
-                boolean isIdle_;
-            };
+    class Window_MACOSX : public enoWindow
+    {
+    public:
+        Window_MACOSX(const enoWindowProperty &);
+        /* virtual */ ~Window_MACOSX(void);
+        
+        /* virtual */ void eventLoop( void );
+        void Loop();
+        void ResizedWindow(f32 width, f32 height);
+    private:
+        void UpdateWindows();
+        boolean PollEvents();
+        
+        id context_; //OpenGL context
+        id delegate; //Window delegate
+        boolean isIdle_;
+    public:
+        enoWindowProperty property_;
+    };
 
 }

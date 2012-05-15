@@ -7,63 +7,32 @@
 //
 
 #include "enoTimer.hpp"
-
-#if defined (ENO_MACOSX_PLATFORM)
-#include <mach/mach_time.h>
-#define CONV_SEC 0.000000001   //  1e-9
-#elif defined (ENO_WINDOWS_PLATFORM)
-#include <Windows.h>
-eno::ftype CONV_SEC = 1.0;    // void enoTimer::SetupTimer(void);
-
-inline eno::s64 getQueryPerformanceCounter(void)
-{
-    LARGE_INTEGER li;
-    QueryPerformanceCounter(&li);
-
-    return static_cast<eno::s64>(li.QuadPart);
-}
-
-#endif
+#include <chrono>
 
 namespace eno {
-    
 
-u64 enoTimer::GetTime(void)
+f64 enoTimer::GetTime(void)
 {
-#if defined (ENO_MACOSX_PLATFORM)
-    return mach_absolute_time();
-#elif defined (ENO_WINDOWS_PLATFORM)
-    return getQueryPerformanceCounter();
-#endif
+    return
+        std::chrono::duration<f64>
+        (std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 }
 
 enoTimer::enoTimer(void)
 {
-    SetupTimer();
-    this->time = enoTimer::GetTime();
+    time = enoTimer::GetTime();
 }
 
-ftype enoTimer::touch()
+f64 enoTimer::touch()
 {
-    u64 ret = enoTimer::GetTime() - time;
-    time = ret + time;
-    return ret*CONV_SEC;
+    f64 ret = enoTimer::GetTime() - time;
+    time += ret;
+    return ret;
 }
 
-ftype enoTimer::delta() const
+f64 enoTimer::delta() const
 {
-    return (enoTimer::GetTime() - time)*CONV_SEC;
+    return enoTimer::GetTime() - time;
 }
 
-void enoTimer::SetupTimer(void)
-{
-#if defined (ENO_WINDOWS_PLATFORM)
-    LARGE_INTEGER li;
-    QueryPerformanceFrequency(&li);
-
-    CONV_SEC = 1.0/static_cast<eno::ftype>(li.QuadPart);
-#endif
 }
-
-
-    }

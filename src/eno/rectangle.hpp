@@ -54,7 +54,7 @@ namespace eno {
             position2d_template<_Ty> getDimension2d( void ) const { return position2d_template<_Ty>(getWidth(), getHeight()); }
         };
 
-        typedef rectangle_template<ftype> rectangle;
+        typedef rectangle_template<f32> rectangle;
 
     }
 }

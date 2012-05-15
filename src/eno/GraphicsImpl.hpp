@@ -16,17 +16,22 @@ namespace eno {
     {
         friend class enoGraphics;
     public:
-
+        
     protected:
         GraphicsImpl(void) { }
+        
+        virtual ~GraphicsImpl(void) { }
 
         virtual void setCullMode(CullMode) = 0;
-
         virtual void setLighting(boolean) = 0;
 
         virtual void create(GraphicsMode) = 0;
-
         virtual void destroy(void) = 0;
+        
+        virtual void drawPoints(const spriteVertex[], f32, s32) = 0;
+        virtual void drawLines(const spriteVertex[], f32, s32) = 0;
+        virtual void drawPolygons(const modelVertex[], s32) = 0;
+        virtual void drawQuad(const spriteVertex[]) = 0;
     };
 
 }

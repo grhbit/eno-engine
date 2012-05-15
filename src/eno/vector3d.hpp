@@ -23,6 +23,12 @@ public:
 
     union {
         struct {
+            _Ty x, y, z;
+        };
+
+        _Ty v[3];
+
+        struct {
             _Ty x_, y_, z_;
         };
 
@@ -30,6 +36,8 @@ public:
 
         u8 buffer[sizeof(_Ty) * 3];
     };
+    
+    Vector3d(_Ty x, _Ty y, _Ty z):x_(x), y_(y), z_(z) {}
 };
 #pragma warning(default : 4201)
 
@@ -42,14 +50,14 @@ class matrix4x4_template;
 template<typename _Ty>
 class vector3d_template : public Vector3d<_Ty> {
 public:
-    explicit vector3d_template( _Ty* src ) { memcpy( this->v_, src, sizeof(this->v) ); }
-    vector3d_template( _Ty x, _Ty y, _Ty z ) { this->x_ = x; this->y_ = y; this->z_ = z; }
-    vector3d_template( const vector3d_template& vec ) { this->x_ = vec.x_; this->y_ = vec.y_; this->z_ = vec.z_; }
+    explicit vector3d_template( _Ty* src ) { memcpy( this->v_, src, sizeof(this->v_) ); }
+    vector3d_template( _Ty x, _Ty y, _Ty z ):Vector3d<_Ty>(x,y,z) { }
+    vector3d_template( const vector3d_template& vec ):vector3d_template(vec.x_, vec.y_, vec.z_) { }
 
     _Ty& operator () ( u8 index ) { return this->v_[index]; }
     _Ty	operator () ( u8 index ) const { return this->v_[index]; }
 
-    operator _Ty* ()	{ return &this->v_[0]; }
+    operator _Ty* () { return &this->v_[0]; }
     operator const _Ty* () const { return &this->v_[0]; }
 
     inline vector3d_template operator + ( const vector3d_template& rhs )
@@ -198,13 +206,13 @@ public:
         return vector3d_template::Length(*this);
     }
 
-    inline vector3d_template& lerp( const vector3d_template& rhs, ftype percent )
+    inline vector3d_template& lerp( const vector3d_template& rhs, f32 percent )
     {
         vector3d_template::Lerp(*this, *this, rhs, percent);
         return *this;
     }
 
-    inline vector3d_template& lerp( const vector3d_template& lhs, const vector3d_template& rhs, ftype percent )
+    inline vector3d_template& lerp( const vector3d_template& lhs, const vector3d_template& rhs, f32 percent )
     {
         vector3d_template::lerp(*this, lhs, rhs, percent);
         return *this;
@@ -292,10 +300,11 @@ public:
         const vector3d_template& v4, _Ty s )
     {
         static matrix4x4_template<_Ty>
-            fac(	0,	 1,	  0,   0,
-            -0.5,	 0,	0.5,   0,
-            1,-2.5,	  2,-0.5,
-            -0.5, 1.5,-1.5, 0.5 );
+            fac(
+                0,   1,   0,   0,
+             -0.5,   0, 0.5,   0,
+                1,-2.5,	  2,-0.5,
+             -0.5, 1.5,-1.5, 0.5);
 
         vector4d_template<_Ty> sV( 1, s, s*s, s*s*s );
 
@@ -359,12 +368,12 @@ public:
         return (vec3.x_ * vec3.x_) + (vec3.y_ * vec3.y_) + (vec3.z_ * vec3.z_);
     }
 
-    static inline void Lerp( vector3d_template& vec3, const vector3d_template& lhs, const vector3d_template& rhs, ftype percent )
+    static inline void Lerp( vector3d_template& vec3, const vector3d_template& lhs, const vector3d_template& rhs, f32 percent )
     {
         vec3 = lhs + (percent * (rhs - lhs));
     }
 
-    static inline vector3d_template Lerp( const vector3d_template& lhs, const vector3d_template& rhs, ftype percent )
+    static inline vector3d_template Lerp( const vector3d_template& lhs, const vector3d_template& rhs, f32 percent )
     {
         vector3d_template tmp;
         vector3d_template::Lerp(tmp, lhs, rhs, percent);
@@ -431,7 +440,7 @@ public:
     }
 };
 
-typedef vector3d_template<ftype> vector3d;
+typedef vector3d_template<f32> vector3d;
 
 }
 }
