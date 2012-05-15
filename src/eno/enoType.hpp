@@ -11,7 +11,36 @@
 #include "enoConfig.hpp"
 
 namespace eno {
+	//1-Byte
+	typedef unsigned char u8;
 
+	typedef char c8;
+
+	typedef char s8;
+
+	//2-Byte
+	typedef unsigned short u16;
+
+	typedef short s16;
+
+	//4-Byte
+	typedef unsigned int u32;
+
+	typedef int s32;
+
+	typedef float f32;
+
+	//8-Byte
+	typedef unsigned long long u64;
+
+	typedef long long s64;
+
+	typedef double f64;
+
+	//Boolean type
+	typedef bool boolean;
+
+/*
 //1-Byte
     using u8 = unsigned char;
 
@@ -40,5 +69,5 @@ namespace eno {
 
 //Boolean type
     using boolean = u8;
-
+	*/
 }

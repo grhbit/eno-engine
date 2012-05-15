@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{9a18c8bb-463d-4efa-b09b-d083a40df3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Test">
+      <UniqueIdentifier>{16e403d4-ece4-43e8-ad47-674751330091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno">
+      <UniqueIdentifier>{b5707ab3-bc89-4855-8f3a-1bd8e452b362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\core">
+      <UniqueIdentifier>{4a7a1aa4-c1ae-40f5-8325-7c32137ec4f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\display">
+      <UniqueIdentifier>{8fdf7463-532e-4ae9-8ab8-333ce9f12553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\game">
+      <UniqueIdentifier>{5f7af7c0-fed6-4b86-bd6e-73d6dc584fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\os">
+      <UniqueIdentifier>{7f479f2a-926b-40cf-a360-f61a2d9dbda5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unittest++">
+      <UniqueIdentifier>{0c5155ad-3c07-400e-b368-ab1c910bc814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\os\Windows">
+      <UniqueIdentifier>{76bb64b7-d646-45e3-949a-79254f4ce481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\display\Device">
+      <UniqueIdentifier>{d6737cae-9a2e-457f-b8bc-70eeae873f8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\display\Texture">
+      <UniqueIdentifier>{9ac4ded1-3bb9-4e56-86f2-8f75c5885958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\display\ImageLoader">
+      <UniqueIdentifier>{667b93c6-31d9-4777-89bf-b899ccbc0370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eno\os\File">
+      <UniqueIdentifier>{f33a9050-d0ea-4f20-851d-be9e3552ce7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Extra\Unittest++\Win32\TimeHelpers.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\AssertException.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\CheckMacros.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\Checks.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\Config.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\CurrentTest.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\DeferredTestReporter.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\DeferredTestResult.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\ExecuteTest.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\MemoryOutStream.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\ReportAssert.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\Test.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestDetails.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestList.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestMacros.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestReporter.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestReporterStdout.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestResults.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestRunner.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TestSuite.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TimeConstraint.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\TimeHelpers.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\UnitTest++.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extra\Unittest++\XmlTestReporter.h">
+      <Filter>Unittest++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\eno.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoConfig.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoMath.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoReferenceCounter.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoType.hpp">
+      <Filter>Source\eno</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoImage.hpp">
+      <Filter>Source\eno\display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\quaternion.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\rectangle.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\size2d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector2d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector3d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\vector4d.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\matrix4x4.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoApplication.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoDriver.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoOSConfig.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoOSUtil.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoRenderTarget.hpp">
+      <Filter>Source\eno\display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoTimer.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoTypeTest.h">
+      <Filter>Source\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoUnitTest.h">
+      <Filter>Source\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoWindow.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\Windows\OSUtil_Windows.hpp">
+      <Filter>Source\eno\os\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\Windows\Window_Windows.hpp">
+      <Filter>Source\eno\os\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoLoger.hpp">
+      <Filter>Source\eno\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\colorType.hpp">
+      <Filter>Source\eno\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoGraphics.hpp">
+      <Filter>Source\eno\display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\GraphicsImpl.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\GraphicsImpl_OGL.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoGraphicsType.hpp">
+      <Filter>Source\eno\display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\GraphicsImpl_DX.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\D3DHelper_DX9.hpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoTexture.hpp">
+      <Filter>Source\eno\display\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\Texture_OGL.hpp">
+      <Filter>Source\eno\display\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoImageLoader.hpp">
+      <Filter>Source\eno\display\ImageLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\ImageLoader_BMP.hpp">
+      <Filter>Source\eno\display\ImageLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\eno\enoFile.hpp">
+      <Filter>Source\eno\os\File</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\eno\main.cpp">
+      <Filter>Source\eno</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\Win32\TimeHelpers.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\AssertException.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\Checks.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\CurrentTest.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\DeferredTestReporter.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\DeferredTestResult.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\MemoryOutStream.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\ReportAssert.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\Test.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TestDetails.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TestList.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TestReporter.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TestReporterStdout.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TestResults.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TestRunner.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\TimeConstraint.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extra\Unittest++\XmlTestReporter.cpp">
+      <Filter>Unittest++</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\eno.cpp">
+      <Filter>Source\eno</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Scripts\version.cpp">
+      <Filter>Source\eno</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoApplication.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoDriver.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoOSUtil.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoTimer.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoWindow.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\Windows\Window_Windows.cpp">
+      <Filter>Source\eno\os\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoLoger.cpp">
+      <Filter>Source\eno\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoGraphics.cpp">
+      <Filter>Source\eno\display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\GraphicsImpl_OGL.cpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\GraphicsImpl_DX.cpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\D3DHelper_DX9.cpp">
+      <Filter>Source\eno\display\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\Texture_OGL.cpp">
+      <Filter>Source\eno\display\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\ImageLoader_BMP.cpp">
+      <Filter>Source\eno\display\ImageLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoFile.cpp">
+      <Filter>Source\eno\os\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoImage.cpp">
+      <Filter>Source\eno\display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\eno\enoIOTest.cpp">
+      <Filter>Source\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

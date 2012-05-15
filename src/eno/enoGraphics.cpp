@@ -85,8 +85,11 @@ namespace eno {
     
     void enoGraphics::drawLine(const spriteVertex& start, const spriteVertex& end, f32 width)
     {
+		static spriteVertex v[2];
         if (width>0) {
-            this->drawLines((spriteVertex[]){start, end}, width, 2);
+			v[0] = start;
+			v[1] = end;
+            this->drawLines(v, width, 2);
         }
     }
     

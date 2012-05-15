@@ -14,7 +14,7 @@ namespace eno {
 
     class GraphicsImpl
     {
-        friend class enoGraphics;
+        friend interface enoGraphics;
     public:
         
     protected:

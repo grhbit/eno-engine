@@ -193,7 +193,7 @@ void AppDelegate::eventLoop( void )
         }
         else
         {
-            ftype elapseTime = elapseTimer.touch();
+            f32 elapseTime = elapseTimer.touch();
 
             if(Property.UpdateFunc)
                 Property.UpdateFunc(elapseTime);

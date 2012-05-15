@@ -52,7 +52,7 @@ class vector3d_template : public Vector3d<_Ty> {
 public:
     explicit vector3d_template( _Ty* src ) { memcpy( this->v_, src, sizeof(this->v_) ); }
     vector3d_template( _Ty x, _Ty y, _Ty z ):Vector3d<_Ty>(x,y,z) { }
-    vector3d_template( const vector3d_template& vec ):vector3d_template(vec.x_, vec.y_, vec.z_) { }
+    vector3d_template( const vector3d_template& vec ):Vector3d<_Ty>(vec.x_, vec.y_, vec.z_) { }
 
     _Ty& operator () ( u8 index ) { return this->v_[index]; }
     _Ty	operator () ( u8 index ) const { return this->v_[index]; }

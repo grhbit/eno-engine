@@ -8,8 +8,37 @@
 */
 
 #include "enoFile.hpp"
+#include <string.h>
 
 using namespace std;
+
+eno::c8* stringInString(eno::c8* str, eno::c8* substr, eno::s64 length);
+const eno::c8* stringInString(const eno::c8* str, const eno::c8* substr, eno::s64 length);
+
+eno::c8* stringInString(eno::c8* str, eno::c8* substr, eno::s64 length)
+{
+	return const_cast<eno::c8*>(stringInString((const eno::c8*)(str), (eno::c8*)(substr), length));
+}
+
+const eno::c8* stringInString(const eno::c8* str, const eno::c8* substr, eno::s64 length)
+{
+	if (*str == 0)
+        return nullptr;
+
+    eno::s32 subLength = strlen(substr);
+
+    for (eno::s32 k, j, i = 0; i < length && (str[i] != 0); i++)
+    {
+        for (k = i, j = 0; str[k] == str[j]; k++, j++);
+
+        if (j == subLength)
+        {
+            return str+i;
+        }
+    }
+
+	return nullptr;
+}
 
 namespace eno {
 
@@ -17,7 +46,7 @@ namespace eno {
     {
     }
 
-    enoFile::enoFile(const RString& path, s32 mode) : enoFile()
+    enoFile::enoFile(const RString& path, s32 mode) : file(0), mode(0), seekpos(0), filesize(0), autoflush(false), offset(0), end(0)
     {
         open(path, mode);
     }
@@ -73,7 +102,7 @@ namespace eno {
 
     boolean enoFile::isEOF(void) const
     {
-        return feof(file);
+        return feof(file) != 0;
     }
 
     s64 enoFile::tell(void)
@@ -111,7 +140,7 @@ namespace eno {
                 if(FillBuffer() == 0) // EOF
                     break;
 
-            c8* pos = strnstr(offset, delimeter.c_str(),end-offset);
+			c8* pos = const_cast<c8*>(::stringInString(offset, delimeter.c_str(),end-offset));
             if(pos == 0) {
                 sRet.append(offset, end - offset);
                 offset = end;

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\eno\colorType.hpp" />
+    <ClInclude Include="..\eno\D3DHelper_DX9.hpp" />
+    <ClInclude Include="..\eno\eno.hpp" />
+    <ClInclude Include="..\eno\enoApplication.hpp" />
+    <ClInclude Include="..\eno\enoConfig.hpp" />
+    <ClInclude Include="..\eno\enoDriver.hpp" />
+    <ClInclude Include="..\eno\enoFile.hpp" />
+    <ClInclude Include="..\eno\enoGraphics.hpp" />
+    <ClInclude Include="..\eno\enoGraphicsType.hpp" />
+    <ClInclude Include="..\eno\enoImage.hpp" />
+    <ClInclude Include="..\eno\enoImageLoader.hpp" />
+    <ClInclude Include="..\eno\enoLoger.hpp" />
+    <ClInclude Include="..\eno\enoMath.hpp" />
+    <ClInclude Include="..\eno\enoOSConfig.hpp" />
+    <ClInclude Include="..\eno\enoOSUtil.hpp" />
+    <ClInclude Include="..\eno\enoReferenceCounter.hpp" />
+    <ClInclude Include="..\eno\enoRenderTarget.hpp" />
+    <ClInclude Include="..\eno\enoTexture.hpp" />
+    <ClInclude Include="..\eno\enoTimer.hpp" />
+    <ClInclude Include="..\eno\enoType.hpp" />
+    <ClInclude Include="..\eno\enoTypeTest.h" />
+    <ClInclude Include="..\eno\enoUnitTest.h" />
+    <ClInclude Include="..\eno\enoWindow.hpp" />
+    <ClInclude Include="..\eno\GraphicsImpl.hpp" />
+    <ClInclude Include="..\eno\GraphicsImpl_DX.hpp" />
+    <ClInclude Include="..\eno\GraphicsImpl_OGL.hpp" />
+    <ClInclude Include="..\eno\ImageLoader_BMP.hpp" />
+    <ClInclude Include="..\eno\matrix4x4.hpp" />
+    <ClInclude Include="..\eno\quaternion.hpp" />
+    <ClInclude Include="..\eno\rectangle.hpp" />
+    <ClInclude Include="..\eno\size2d.hpp" />
+    <ClInclude Include="..\eno\Texture_OGL.hpp" />
+    <ClInclude Include="..\eno\vector2d.hpp" />
+    <ClInclude Include="..\eno\vector3d.hpp" />
+    <ClInclude Include="..\eno\vector4d.hpp" />
+    <ClInclude Include="..\eno\Windows\OSUtil_Windows.hpp" />
+    <ClInclude Include="..\eno\Windows\Window_Windows.hpp" />
+    <ClInclude Include="..\Extra\Unittest++\AssertException.h" />
+    <ClInclude Include="..\Extra\Unittest++\CheckMacros.h" />
+    <ClInclude Include="..\Extra\Unittest++\Checks.h" />
+    <ClInclude Include="..\Extra\Unittest++\Config.h" />
+    <ClInclude Include="..\Extra\Unittest++\CurrentTest.h" />
+    <ClInclude Include="..\Extra\Unittest++\DeferredTestReporter.h" />
+    <ClInclude Include="..\Extra\Unittest++\DeferredTestResult.h" />
+    <ClInclude Include="..\Extra\Unittest++\ExecuteTest.h" />
+    <ClInclude Include="..\Extra\Unittest++\MemoryOutStream.h" />
+    <ClInclude Include="..\Extra\Unittest++\ReportAssert.h" />
+    <ClInclude Include="..\Extra\Unittest++\Test.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestDetails.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestList.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestMacros.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestReporter.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestReporterStdout.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestResults.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestRunner.h" />
+    <ClInclude Include="..\Extra\Unittest++\TestSuite.h" />
+    <ClInclude Include="..\Extra\Unittest++\TimeConstraint.h" />
+    <ClInclude Include="..\Extra\Unittest++\TimeHelpers.h" />
+    <ClInclude Include="..\Extra\Unittest++\UnitTest++.h" />
+    <ClInclude Include="..\Extra\Unittest++\Win32\TimeHelpers.h" />
+    <ClInclude Include="..\Extra\Unittest++\XmlTestReporter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\eno\D3DHelper_DX9.cpp" />
+    <ClCompile Include="..\eno\eno.cpp" />
+    <ClCompile Include="..\eno\enoApplication.cpp" />
+    <ClCompile Include="..\eno\enoDriver.cpp" />
+    <ClCompile Include="..\eno\enoFile.cpp" />
+    <ClCompile Include="..\eno\enoGraphics.cpp" />
+    <ClCompile Include="..\eno\enoImage.cpp" />
+    <ClCompile Include="..\eno\enoIOTest.cpp" />
+    <ClCompile Include="..\eno\enoLoger.cpp" />
+    <ClCompile Include="..\eno\enoOSUtil.cpp" />
+    <ClCompile Include="..\eno\enoTimer.cpp" />
+    <ClCompile Include="..\eno\enoWindow.cpp" />
+    <ClCompile Include="..\eno\GraphicsImpl_DX.cpp" />
+    <ClCompile Include="..\eno\GraphicsImpl_OGL.cpp" />
+    <ClCompile Include="..\eno\ImageLoader_BMP.cpp" />
+    <ClCompile Include="..\eno\main.cpp" />
+    <ClCompile Include="..\eno\Texture_OGL.cpp" />
+    <ClCompile Include="..\eno\Windows\Window_Windows.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\AssertException.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\Checks.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\CurrentTest.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\DeferredTestReporter.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\DeferredTestResult.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\MemoryOutStream.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\ReportAssert.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\Test.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestDetails.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestList.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestReporter.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestReporterStdout.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestResults.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TestRunner.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\TimeConstraint.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\Win32\TimeHelpers.cpp" />
+    <ClCompile Include="..\Extra\Unittest++\XmlTestReporter.cpp" />
+    <ClCompile Include="..\Scripts\version.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4BB49626-AFCC-4737-9F0A-694A2F0D5AC0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>eno100</RootNamespace>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+    <ProjectName>eno11.0</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(ProjectDir)..\Extra\StdString;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(DXSDK_DIR)Include;$(ProjectDir)..\Extra\Unittest++;$(ProjectDir)..\eno;$(ProjectDir)..\Extra\StdString;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\eno;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;4100;4201;4244;4805;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>ruby.exe -w ..\Scripts\version.rb</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>ruby version control script</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819;4100;4201;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

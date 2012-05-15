@@ -25,8 +25,12 @@ struct
 #endif
     Matrix4x4 {
 public:
+	typedef _Ty element_type;
+	typedef _Ty* pointer;
+	/*
     using element_type = _Ty;
     using pointer = _Ty*;
+	*/
 
     union {
         struct {

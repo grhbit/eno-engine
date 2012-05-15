@@ -5,6 +5,7 @@
 # operation system file
 .DS_Store
 .Thumbs.db
+Thumbs.db
 *.exe
 *.lib
 *.dll

@@ -26,6 +26,7 @@ enoImage* image;
 #if defined(ENO_MACOSX_PLATFORM)
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
+#include <unistd.h>
 #elif defined(ENO_WINDOWS_PLATFORM)
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -70,7 +71,6 @@ eno::boolean Update(f32)
     return true;
 }
 
-#include <unistd.h>
 
 using namespace std;
 int main(int, char *argv[])
@@ -83,7 +83,7 @@ int main(int, char *argv[])
 
     imageloader = new ImageLoader_BMP;
     TextureID ID;
-    ID.filename = "dummy32.bmp";
+    ID.filename = "dummy24.bmp";
     image = imageloader->loadImage(ID);
 //* /
     enoWindowProperty property(800, 600, "eno10.0", false, Update, Draw);
@@ -96,7 +96,7 @@ int main(int, char *argv[])
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);  
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);  
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->getWidth(), image->getHeight(), 0, GL_ABGR_EXT, GL_UNSIGNED_BYTE, image->lock());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->getWidth(), image->getHeight(), 0, GL_RGB8, GL_UNSIGNED_BYTE, image->lock());
     image->unlock();
     //* /
     APP->mainLoop();

@@ -87,6 +87,7 @@ namespace eno {
         FILE* file;
     };
     
+	/*
     using OpenMode = enoFile::OpenMode;
-
+	*/
 }
