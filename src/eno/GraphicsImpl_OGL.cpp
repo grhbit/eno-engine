@@ -112,7 +112,7 @@ namespace eno {
         glOrtho(-1, 1, -1, 1, 0, 100);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-
+/*
         glShadeModel(GL_SMOOTH);
         
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -130,7 +130,7 @@ namespace eno {
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LEQUAL);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
+*/
         glClearColor(0.0, 0.3f, 0.5f, 0.5f);
         glClearDepth(1.0f);
     }

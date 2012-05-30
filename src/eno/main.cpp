@@ -59,10 +59,10 @@ void Draw(f32 delta)
     glTexCoord2f(1,0);glColor4f(1, 1, 1, 1);glVertex3f( 1,-1, 0);  
     glEnd();
     glDisable(GL_TEXTURE_2D);
-    
+/*    
     GRAPHICS->drawPoint(spriteVertex(core::vector3d(sin(sinv),-cos(sinv),0), core::colorTypeF(cos(sinv)*cos(sinv)*0.5,cos(sinv)*cos(sinv)*0.5,1,1), core::vector2d(0,0)), 1000);
     GRAPHICS->drawLine(spriteVertex(core::vector3d(-1,-1,0),core::colorTypeF(cos(sinv)*cos(sinv),0,cos(sinv)*cos(sinv),1), core::vector2d(0,0)),spriteVertex(core::vector3d(1,1,0),core::colorTypeF(1,cos(sinv)*cos(sinv),cos(sinv)*cos(sinv),1), core::vector2d(0,0)), 10);
-    glFlush();
+  */  glFlush();
     // */
 }
 
@@ -83,7 +83,7 @@ int main(int, char *argv[])
 
     imageloader = new ImageLoader_BMP;
     TextureID ID;
-    ID.filename = "dummy24.bmp";
+    ID.filename = "dummy32.bmp";
     image = imageloader->loadImage(ID);
 //* /
     enoWindowProperty property(800, 600, "eno10.0", false, Update, Draw);
@@ -96,7 +96,7 @@ int main(int, char *argv[])
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);  
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);  
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->getWidth(), image->getHeight(), 0, GL_RGB8, GL_UNSIGNED_BYTE, image->lock());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->getWidth(), image->getHeight(), 0, GL_BGR, GL_UNSIGNED_BYTE, image->lock());
     image->unlock();
     //* /
     APP->mainLoop();

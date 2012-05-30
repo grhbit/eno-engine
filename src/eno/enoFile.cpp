@@ -244,7 +244,7 @@ namespace eno {
         enoFile::WriteProcess(buffer_, size);
     }
 
-    c8 enoFile::getch()
+    s32 enoFile::getch()
     {
         if (!(mode&BINARY))
             return 0;
@@ -253,10 +253,10 @@ namespace eno {
             if (FillBuffer() == 0)
                 return 0;
 
-        c8 tch = *offset;
+        s32 tch = *offset;
         offset++;
         
-        return static_cast<c8>(tch);
+        return tch;
     }
 
     void enoFile::putch(c8 ch)

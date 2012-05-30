@@ -56,7 +56,7 @@ namespace eno {
         //---
 
         //--- ONLY BINARY MODE
-        c8 getch();
+        s32 getch();
         u8 getByte();
         void getBytes(u8*, u64);
         void readBytes(RString&, u64);

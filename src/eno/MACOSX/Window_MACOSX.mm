@@ -131,7 +131,7 @@
     eno::enoWindowProperty property;
     memcpy(&property, [data bytes], [data length]);
     
-	NSRect contentRect = { { 0, 0 }, { property.Width, property.Height } };
+	NSRect contentRect = { { 0, 0 }, { static_cast<CGFloat>(property.Width), static_cast<CGFloat>(property.Height) } };
 
 	[window setContentSize:contentRect.size];
 	[window setTitle:[NSString stringWithUTF8String:property.Title]];		
