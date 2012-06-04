@@ -2,7 +2,7 @@
 *  enoDisplayType.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 9. 10..
+*  Created by seonggwang.gwon on 10. 9. 10..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -98,7 +98,7 @@ namespace eno {
     struct TextureID
     {
     public:
-        boolean mipmap;
+        bool mipmap;
         RString filename;
 
     public:

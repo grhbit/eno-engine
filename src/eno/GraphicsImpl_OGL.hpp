@@ -2,7 +2,7 @@
 *  GraphicsImpl_OGL.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 12. 2. 3..
+*  Created by seonggwang.gwon on 12. 2. 3..
 *  Copyright 2012 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -23,7 +23,7 @@ namespace eno {
     {
     private:
         /* virtual */ void setCullMode(CullMode);
-        /* virtual */ void setLighting(boolean);
+        /* virtual */ void setLighting(bool);
 
         /* virtual */ void create(GraphicsMode);
         /* virtual */ void destroy(void);

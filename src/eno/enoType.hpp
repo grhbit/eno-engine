@@ -2,7 +2,7 @@
 *  enoType.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 8. 13..
+*  Created by seonggwang.gwon on 10. 8. 13..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -37,9 +37,6 @@ namespace eno {
 
 	typedef double f64;
 
-	//Boolean type
-	typedef bool boolean;
-
 /*
 //1-Byte
     using u8 = unsigned char;
@@ -66,8 +63,5 @@ namespace eno {
     using s64 = long long;
 
     using f64 = double;
-
-//Boolean type
-    using boolean = u8;
 	*/
 }

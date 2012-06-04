@@ -2,7 +2,7 @@
 *  enoReferenceCounter.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 9. 23..
+*  Created by seonggwang.gwon on 10. 9. 23..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -59,7 +59,7 @@ public:
         return refCount();
     }
 public:
-    enoAutoPtr( boolean delayCreation )
+    enoAutoPtr( bool delayCreation )
         :instance(nullptr)
     {
         if (!delayCreation) {
@@ -84,7 +84,7 @@ public:
         return refCount();
     }
 public:
-    enoAutoPtr_( boolean delayCreation, _Ty* (*createFunction)(void), void (*destroyFunction)(void) )
+    enoAutoPtr_( bool delayCreation, _Ty* (*createFunction)(void), void (*destroyFunction)(void) )
         :instance(nullptr), create(createFunction), destroy(destroyFunction)
     {
         if (!delayCreation) {

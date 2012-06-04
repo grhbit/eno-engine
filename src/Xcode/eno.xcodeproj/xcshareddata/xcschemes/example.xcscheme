@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3FBD92941575A7CD0052B482"
-               BuildableName = "example"
+               BlueprintIdentifier = "3F7524EA157B63D100F6DA63"
+               BuildableName = "example.app"
                BlueprintName = "example"
                ReferencedContainer = "container:eno.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3FBD92941575A7CD0052B482"
-            BuildableName = "example"
+            BlueprintIdentifier = "3F7524EA157B63D100F6DA63"
+            BuildableName = "example.app"
             BlueprintName = "example"
             ReferencedContainer = "container:eno.xcodeproj">
          </BuildableReference>
@@ -52,8 +52,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3FBD92941575A7CD0052B482"
-            BuildableName = "example"
+            BlueprintIdentifier = "3F7524EA157B63D100F6DA63"
+            BuildableName = "example.app"
             BlueprintName = "example"
             ReferencedContainer = "container:eno.xcodeproj">
          </BuildableReference>
@@ -70,8 +70,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3FBD92941575A7CD0052B482"
-            BuildableName = "example"
+            BlueprintIdentifier = "3F7524EA157B63D100F6DA63"
+            BuildableName = "example.app"
             BlueprintName = "example"
             ReferencedContainer = "container:eno.xcodeproj">
          </BuildableReference>

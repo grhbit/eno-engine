@@ -2,7 +2,7 @@
 //  enoIOTest.cpp
 //  eno
 //
-//  Created by GWON SEONG GWANG on 12. 4. 13..
+//  Created by seonggwang.gwon on 12. 4. 13..
 //  Copyright (c) 2012 g.passcode@gmail.com. All rights reserved.
 //
 
@@ -13,28 +13,45 @@ namespace  {
     TEST(FileIOTest)
     {
         eno::RString filename = "FileIOTest.tmp";
-        eno::CString testLine = "eno::enoFile FileIOTest";
+        eno::RString testLine = "eno::enoFile FileIOTest";
         
         eno::enoFile file;
-        file.open(filename, eno::enoFile::WRITE);
-        CHECK(file.isOpen());
+        file.open(filename, eno::enoFile::WRITE|eno::enoFile::TRUNC);
+        CHECK(file.is_open());
         
-        if(file.isOpen())
+        if(file.is_open())
         {
             file.writeLine(testLine);
+            file.writeLine(testLine);
+            file.writeLine(testLine, "|");
+            file.writeLine(testLine, "|");
             file.close();
             
-            CHECK(!file.isOpen());
+            CHECK(!file.is_open());
         }
         
-        if (!file.isOpen()) {
+        if (!file.is_open()) {
             file.open(filename, eno::enoFile::READ);
-            CHECK(file.isOpen());
+            CHECK(file.is_open());
             
-            CHECK_EQUAL(testLine, file.getLine());
+            if (file.is_open() == false) {
+                return;
+            }
             
+            eno::RString line;
+            file.readLine(line);
+            CHECK_EQUAL(testLine, line);
+            file.readLine(line, "ile", true);            
+            CHECK(line.Equals("eno::enoFile"));
+            file.readLine(line, "\n", false);
+            CHECK_EQUAL(line, " FileIOTest");
+            file.readLine(line, "|", false);
+            CHECK_EQUAL(testLine, line);
+            file.readLine(line, "|", true);
+            CHECK_EQUAL(testLine+"|", line);
+
             file.close();
-            CHECK(!file.isOpen());
+            CHECK(!file.is_open());
         }
     }
 }

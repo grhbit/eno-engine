@@ -2,7 +2,7 @@
 *  enoGraphics.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 8. 23..
+*  Created by seonggwang.gwon on 10. 8. 23..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -20,15 +20,15 @@ namespace eno {
         GraphicsMode( void ): 
           width(0), height(0), bpp(0), windowed(false), vsync(false) {}
 
-        GraphicsMode( s16 Width, s16 Height, s16 Bpp, boolean Windowed, boolean Vsync ):
+        GraphicsMode( s16 Width, s16 Height, s16 Bpp, bool Windowed, bool Vsync ):
           width(Width), height(Height), bpp(Bpp), windowed(Windowed), vsync(Vsync) {}
 
     public:
         s16 width;
         s16 height;
         u16 bpp;
-        boolean windowed;
-        boolean vsync;
+        bool windowed;
+        bool vsync;
     };
 
     class GraphicsImpl;
@@ -40,7 +40,7 @@ namespace eno {
         ~enoGraphics( void );
 
         void setCullMode(CullMode cullmode);
-        void setLighting(boolean);
+        void setLighting(bool);
 
         void reset(GraphicsMode mode);
 

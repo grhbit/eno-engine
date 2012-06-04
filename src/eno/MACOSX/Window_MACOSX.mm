@@ -2,7 +2,7 @@
 //  Window_MACOSX.mm
 //  eno
 //
-//  Created by SEONG GWANG GWON on 11. 11. 30..
+//  Created by seonggwang.gwon on 11. 11. 30..
 //  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 -(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender;
 -(void) sendEvent:(NSEvent *)theEvent;
 -(void) run;
+-(void) terminate:(id)sender;
 
 -(void) initWindow;
 -(void) closeWindow;
@@ -93,17 +94,20 @@
     NSEvent* event;
     do
     {
-        event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+        event = [self nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
         
         if (event == nil) {
             app->Loop();
         } else {
-            [NSApp sendEvent:event];
+            [self sendEvent:event];
         }
 
-    } while ([NSApp isRunning]);
-    
-    [self terminate:self];
+    } while ([self isRunning]);
+}
+
+-(void) terminate:(id)sender
+{
+    _running = NO;
 }
 
 -(void) initWindow
@@ -305,17 +309,14 @@ namespace eno
     {
         NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-        [NSApp run];
+        [[enoNSApplication sharedApplication] run];
         
         [pool release];
     }
     
     void Window_MACOSX::Loop()
     {
-        while (PollEvents())
-        {
-            UpdateWindows();
-        }
+        UpdateWindows();
     }
      
     void Window_MACOSX::ResizedWindow(f32 width, f32 height)
@@ -331,17 +332,5 @@ namespace eno
         property_.DrawFunc(elapse);
         property_.UpdateFunc(elapse);
         [(NSOpenGLContext*)context_ flushBuffer];
-    }
-    
-    boolean Window_MACOSX::PollEvents()
-    {
-        NSEvent* event;
-        do
-        {
-            event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
-            [NSApp sendEvent:event];
-        } while (event != nil);
-        
-        return [NSApp isRunning];
     }
 }

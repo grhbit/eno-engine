@@ -2,7 +2,7 @@
 *  enoTexture.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 8. 27..
+*  Created by seonggwang.gwon on 10. 8. 27..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */

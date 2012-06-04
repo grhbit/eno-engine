@@ -2,7 +2,7 @@
 *  GraphicsImpl_OGL.cpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 12. 2. 3..
+*  Created by seonggwang.gwon on 12. 2. 3..
 *  Copyright 2012 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -91,7 +91,7 @@ namespace eno {
         }        
     }
 
-    void GraphicsImpl_OGL::setLighting(boolean b)
+    void GraphicsImpl_OGL::setLighting(bool b)
     {
         if (b)
             glEnable(GL_LIGHTING);

@@ -2,7 +2,7 @@
 *  vector3d.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 8. 14..
+*  Created by seonggwang.gwon on 10. 8. 14..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */

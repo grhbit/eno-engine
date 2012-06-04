@@ -2,7 +2,7 @@
 *  enoImageLoader.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 10. 11. 23..
+*  Created by seonggwang.gwon on 10. 11. 23..
 *  Copyright 2012 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -18,7 +18,7 @@ namespace eno {
     public:
         virtual ~enoImageLoader( void ) { }
 
-        virtual CString getLoaderType(void) = 0;
+        virtual RString getLoaderType(void) = 0;
 
         virtual enoImage* loadImage(const TextureID&) = 0;
     };

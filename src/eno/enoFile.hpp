@@ -2,7 +2,7 @@
 *  enoFile.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 12. 2. 27..
+*  Created by seonggwang.gwon on 12. 2. 27..
 *  Copyright 2012 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -19,71 +19,53 @@ namespace eno {
         enum OpenMode : unsigned int {
             READ = 0x01,
             WRITE = 0x02,
-            BINARY = 0x04,
-            TRUNC = 0x08,
-            APPEND = 0x18,
+            TRUNC = 0x04,
+            APPEND = 0x08|TRUNC,
         };
 
-        enoFile(void);
-        enoFile(const RString&, s32 Openmode);
-        ~enoFile(void);
+        enoFile();
+        enoFile(const RString&, u32 Openmode);
+        ~enoFile();
+        
+        bool open(const RString&, u32 Openmode);
+        bool close();
+        bool is_open() const { return file != nullptr; }
+        
+        bool readByte(void*);
+        u64 readBytes(void*, u64);
+        u64 readLine(RString&, const c8* delim = "\n", bool joinDelim = false);
+        
+        bool writeByte(c8);
+        u64 writeBytes(c8*, u64);
+        u64 writeLine(RString&, const c8* delim = "\n");
 
-        void open(const RString&, s32 Openmode);
-        void close(void);
-
-        boolean isOpen(void) const;
-        boolean isEOF(void) const;
-
-        s64 tell(void);
-        void seek(u64);
-
-        u64 getFileSize(void);
-
-        //--- ONLY TEXT MODE
-        CString getLine(const RString delimeter = "\n", boolean joinDelimeter = false);
-
-        void write(CString, u64 count = 0);
-        void writeLine(const RString str);
-        //---
-
-        //--- TEXT & BINARY MODE
-        c8 get();
-        void read(CString&, u64);
-        RString read(u64 readcount);
-
-        void put(c8);
-        void writeBytes(const c8*, u64 size);
-        //---
-
-        //--- ONLY BINARY MODE
-        s32 getch();
-        u8 getByte();
-        void getBytes(u8*, u64);
-        void readBytes(RString&, u64);
-        RString readBytes(u64 size);
-
-        void putch(c8);
-        //---
-
-        void flush(void);
-        void flush(boolean autoflush);
-
+        bool flush(void);
+        bool flush(bool auto_flush) { autoflush = auto_flush; return flush(); } 
+        
+        s64 seekpos(s64 offset);
+        s64 seekcur(s64 offset);
+        
     private:
         u64 FillBuffer();
-        void WriteProcess(const c8*, u64 size);
-        void RefreshFileSize(void);
+        u64 WriteProcess();
+        u64 RefreshFileSize();
 
         enum { BUFFER_SIZE = 1024, WRITE_BUFFER_SIZE = 256 };
 
-        boolean autoflush;
+        bool autoflush;
         RString filename;
+
         c8 buffer[BUFFER_SIZE];
         c8*offset;
         c8*end;
-        RString writebuffer;
-        s32 mode;
-        u64 seekpos;
-        u64 filesize;
+        
+        c8 writebuffer[WRITE_BUFFER_SIZE];
+        c8*write_end;
+        
+        u32 mode;
+        s64 pos;
+        s64 size;
+        
         FILE* file;
     };
     

@@ -2,7 +2,7 @@
 //  enoOSUtil.hpp
 //  eno
 //
-//  Created by SEONG GWANG GWON on 11. 12. 10..
+//  Created by seonggwang.gwon on 11. 12. 10..
 //  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 

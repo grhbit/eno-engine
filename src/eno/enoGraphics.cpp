@@ -2,7 +2,7 @@
 //  enoGraphics.cpp
 //  eno
 //
-//  Created by SEONG GWANG GWON on 12. 1. 18..
+//  Created by seonggwang.gwon on 12. 1. 18..
 //  Copyright (c) 2012 g.passcode@gmail.com . All rights reserved.
 //
 
@@ -48,7 +48,7 @@ namespace eno {
             unit->setCullMode(cullmode);
     }
 
-    void enoGraphics::setLighting(boolean b)
+    void enoGraphics::setLighting(bool b)
     {
         unit->setLighting(b);
     }

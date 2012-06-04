@@ -2,7 +2,7 @@
  *  ImageLoader_Bmp.cpp
  *  eno
  *
- *  Created by Gwon Seong-gwang on 11. 1. 26..
+ *  Created by seonggwang.gwon on 11. 1. 26..
  *  Copyright 2011 g.passcode@gmail.com . All rights reserved.
  *
  */
@@ -17,7 +17,7 @@ namespace eno {
     {
         u8 magicnumber[2];
         
-        boolean check(void)
+        bool check(void)
         {
             return 
             (magicnumber[0]=='B') &&
@@ -57,8 +57,8 @@ namespace eno {
             struct  
             {
                 u32 headersize;
-                u32 width;
-                u32 height;
+                s32 width;
+                s32 height;
                 u16 colorplane; // = 1
                 u16 colordepth;
                 u32 compressmethod;
@@ -79,8 +79,8 @@ namespace eno {
 
     void loadBitmapColorDepth1Bit(enoFile* file, enoImage** image, DIBHeader* info)
     {
-        u32 width = info->width;
-        u32 height = info->height;
+        s32 width = info->width;
+        s32 height = info->height;
 
         (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width,height));
         u8*buffer = (*image)->lock();
@@ -96,13 +96,13 @@ namespace eno {
 
     void loadBitmapColorDepth8Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
-        u32 width = info->width;
-        u32 height = info->height;
+        s32 width = info->width;
+        s32 height = info->height;
 
         core::colorTypeI palette[256];
 
         for (s32 i = 0; i<256; i++) {
-            file->getBytes(palette[i].v, sizeof(u32));
+            file->readBytes(palette[i].v, sizeof(u32));
             palette[i].r = palette[i].r ^ palette[i].b;
             palette[i].b = palette[i].r ^ palette[i].b;
             palette[i].r = palette[i].r ^ palette[i].b;
@@ -118,7 +118,8 @@ namespace eno {
         {
             colorbuffer = reinterpret_cast<u32*>(buffer);
 
-            u8 index = file->getByte();
+            u8 index;
+            file->readByte(&index);
             *colorbuffer = palette[index].color;
             std::cout << i << " " << (s32)palette[index].r << std::endl;
 
@@ -150,8 +151,8 @@ namespace eno {
 
     void loadBitmapColorDepth16Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
-        u32 width = info->width;
-        u32 height = info->height;
+        s32 width = info->width;
+        s32 height = info->height;
 
         struct {
             union {
@@ -186,8 +187,7 @@ namespace eno {
             for (u32 x = 0; x < width; x++)
             {
                 colorbuffer = reinterpret_cast<u32*>(buffer);
-
-                file->getBytes(bits.buffer, sizeof(u8)*2);
+                file->readBytes(bits.buffer, sizeof(u8)*2);
 
                 color.r = ((bits.color>>redShift)&redMask)<<(8-redLength);
                 color.g = ((bits.color>>greenShift)&greenMask)<<(8-greenLength);
@@ -207,17 +207,17 @@ namespace eno {
 
     void loadBitmapColorDepth24Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
-        u32 width = info->width;
-        u32 height = info->height;
+        s32 width = info->width;
+        s32 height = info->height;
 
         (*image) = new enoImage(ColorFMT_RGB8, core::size2d_template<u32>(width, height));
 
         u8* buffer = (*image)->lock();
-        u32 Pitch = width * 3;
+        u64 Pitch = width * 3;
 
         for (u32 i = 0;i < height; i++)
         {
-            memcpy(buffer, file->readBytes(Pitch), sizeof(u8) * Pitch);
+            file->readBytes(buffer, Pitch);
             buffer += Pitch;
         }
         
@@ -226,18 +226,24 @@ namespace eno {
 
     void loadBitmapColorDepth32Bits(enoFile* file, enoImage** image, DIBHeader* info)
     {
-        u32 width = info->width;
-        u32 height = info->height;
+        s32 width = info->width;
+        s32 height = info->height;
 
-        u32 Pitch = width*4;
-
-        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
+        s64 Pitch = width*4;
+        
+        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, abs(height)));
         u8* buffer = (*image)->lock();
         
+        if (height<0) {
+            height = -height;
+            buffer+= (height-1)*Pitch;
+            Pitch  = -Pitch;
+        }
+
         for (u32 i = 0; i < height; ++i)
         {
-                memcpy(buffer, file->readBytes(Pitch), Pitch);
-                buffer += Pitch;
+            file->readBytes(buffer, abs(Pitch));
+            buffer += Pitch;
         }
 
         (*image)->unlock();
@@ -246,26 +252,27 @@ namespace eno {
     enoImage* ImageLoader_BMP::loadImage( const TextureID& ID )
     {
         enoFile file;
-        file.open(ID.filename, enoFile::READ|enoFile::BINARY);
+        file.open(ID.filename, enoFile::READ|enoFile::WRITE);
         
-        if(!file.isOpen()) {
+        if(!file.is_open()) {
             return nullptr;
         }
 
         BMPMagicNumber magicnumber;
-        magicnumber.magicnumber[0] = file.getByte();
-        magicnumber.magicnumber[1] = file.getByte();
+        file.readByte(magicnumber.magicnumber+0);
+        file.readByte(magicnumber.magicnumber+1);
 
         if (!magicnumber.check()) {
             return nullptr;
         }
 
         BMPHeader header;
-        file.getBytes(header.buffer, sizeof(BMPHeader));
+        file.readBytes(header.buffer, sizeof(header));
 
         DIBHeader info;
-        file.getBytes(info.buffer, sizeof(info.headersize));
-        file.getBytes(info.buffer+4, info.headersize-sizeof(info.headersize));
+        file.readBytes(info.buffer, sizeof(info.headersize));
+        file.readBytes(info.buffer+sizeof(info.headersize),
+                       info.headersize-sizeof(info.headersize));
 
         enoImage* image = nullptr;
         

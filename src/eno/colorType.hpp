@@ -2,7 +2,7 @@
 //  colorTypeF.cpp
 //  eno
 //
-//  Created by SEONG GWANG GWON on 12. 1. 20..
+//  Created by seonggwang.gwon on 12. 1. 20..
 //  Copyright (c) 2012 g.passcode@gmail.com . All rights reserved.
 //
 

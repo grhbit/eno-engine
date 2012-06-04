@@ -1909,7 +1909,7 @@ png_fixed(png_structp png_ptr, double fp, png_const_charp text)
 /* This API takes signed arguments and rounds the result to the nearest
  * integer (or, for a fixed point number - the standard argument - to
  * the nearest .00001).  Overflow and divide by zero are signalled in
- * the result, a boolean - true on success, false on overflow.
+ * the result, a bool - true on success, false on overflow.
  */
 int
 png_muldiv(png_fixed_point_p res, png_fixed_point a, png_int_32 times,

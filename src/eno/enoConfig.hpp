@@ -2,7 +2,7 @@
  *  enoConfig.hpp
  *  eno
  *
- *  Created by Gwon Seong-gwang on 10. 8. 12..
+ *  Created by seonggwang.gwon on 10. 8. 12..
  *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
  *
  */
@@ -63,9 +63,7 @@ extern const unsigned int revision;
 #define UNUSED(x) (void)x
 #endif
 
-namespace eno {
-    typedef CStdString CString;
-    
+namespace eno {    
     // Raw String
     typedef CStdStr<char> RString;
 }

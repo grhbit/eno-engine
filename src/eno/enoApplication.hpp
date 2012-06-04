@@ -17,15 +17,15 @@ interface enoWindow;
 struct enoWindowProperty
 {
 public:
-    typedef boolean (*CallbackUpdate)(f32);
-    typedef void    (*CallbackDraw)(f32);
+    typedef bool (*CallbackUpdate)(f32);
+    typedef void (*CallbackDraw)(f32);
 
 public:
     f64 Width;
     f64 Height;
 
-    CString Title;
-    boolean Fullscreen;
+    RString Title;
+    bool Fullscreen;
     enoWindowProperty* Alternate;
 
     CallbackUpdate UpdateFunc;
@@ -38,7 +38,7 @@ public:
           UpdateFunc(nullptr), DrawFunc(nullptr) { }
 
       enoWindowProperty( f64 width, f64 height,
-          CString title, boolean fullscreen,
+          RString title, bool fullscreen,
           CallbackUpdate updatefunc, CallbackDraw drawfunc,
           enoWindowProperty* alternate = nullptr ) :
       Width(width), Height(height),
@@ -53,7 +53,7 @@ public:
     static void release();
 public:
 
-    boolean initialize(const enoWindowProperty&);
+    bool initialize(const enoWindowProperty&);
 
     s32 mainLoop(void); 
     // [Caution]

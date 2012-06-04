@@ -2,7 +2,7 @@
 *  enoImage.cpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 12. 3. 3..
+*  Created by seonggwang.gwon on 12. 3. 3..
 *  Copyright 2012 g.passcode@gmail.com . All rights reserved.
 *
 */

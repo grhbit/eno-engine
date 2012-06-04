@@ -2,7 +2,7 @@
 //  enoTimer.hpp
 //  eno
 //
-//  Created by SEONG GWANG GWON on 11. 11. 20..
+//  Created by seonggwang.gwon on 11. 11. 20..
 //  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  enoApplication.cpp
 //  eno
 //
-//  Created by SEONG GWANG GWON on 11. 11. 19..
+//  Created by seonggwang.gwon on 11. 11. 19..
 //  Copyright (c) 2011 g.passcode@gmail.com . All rights reserved.
 //
 
@@ -32,7 +32,7 @@ void enoApplication::release()
 
 enoApplication::enoApplication(void) : window(nullptr) { }
 
-boolean enoApplication::initialize( const enoWindowProperty& property )
+bool enoApplication::initialize( const enoWindowProperty& property )
 {
     window = enoWindow::BuildWindow(property);
 

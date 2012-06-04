@@ -2,7 +2,7 @@
  *  enoTypeTest.cpp
  *  eno
  *
- *  Created by Gwon Seong-gwang on 11. 1. 19..
+ *  Created by seonggwang.gwon on 11. 1. 19..
  *  Copyright 2011 g.passcode@gmail.com . All rights reserved.
  *
  */
