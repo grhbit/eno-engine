@@ -12,7 +12,7 @@
 namespace  {
     TEST(FileIOTest)
     {
-        eno::RString filename = "FileIOTest.tmp";
+        eno::RString filename = "FileIOTest.tmp.txt";
         eno::RString testLine = "eno::enoFile FileIOTest";
         
         eno::enoFile file;

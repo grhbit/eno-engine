@@ -35,9 +35,9 @@ namespace eno {
         u64 readBytes(void*, u64);
         u64 readLine(RString&, const c8* delim = "\n", bool joinDelim = false);
         
-        bool writeByte(c8);
-        u64 writeBytes(c8*, u64);
-        u64 writeLine(RString&, const c8* delim = "\n");
+        bool writeByte(u8);
+        u64 writeBytes(const void*, u64);
+        u64 writeLine(const RString&, const c8* delim = "\n");
 
         bool flush(void);
         bool flush(bool auto_flush) { autoflush = auto_flush; return flush(); } 
@@ -45,10 +45,10 @@ namespace eno {
         s64 seekpos(s64 offset);
         s64 seekcur(s64 offset);
         
+        s64 filesize();
     private:
         u64 FillBuffer();
         u64 WriteProcess();
-        u64 RefreshFileSize();
 
         enum { BUFFER_SIZE = 1024, WRITE_BUFFER_SIZE = 256 };
 
@@ -60,12 +60,10 @@ namespace eno {
         c8*end;
         
         c8 writebuffer[WRITE_BUFFER_SIZE];
-        c8*write_end;
+        c8*write_offset;
+  const c8*write_end;
         
-        u32 mode;
-        s64 pos;
-        s64 size;
-        
+        u32 mode;        
         FILE* file;
     };
     

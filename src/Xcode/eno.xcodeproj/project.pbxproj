@@ -22,7 +22,6 @@
 		3F7524E11578B12600F6DA63 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F7524D31578B12600F6DA63 /* trees.c */; };
 		3F7524E21578B12600F6DA63 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F7524D41578B12600F6DA63 /* uncompr.c */; };
 		3F7524E41578B14100F6DA63 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F7524E31578B14100F6DA63 /* zutil.c */; };
-		3F7524EE157B63D100F6DA63 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7524ED157B63D100F6DA63 /* Cocoa.framework */; };
 		3F752507157B643200F6DA63 /* enoIOTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F15BFDC1537D7D000030DD5 /* enoIOTest.cpp */; };
 		3F752508157B643200F6DA63 /* enoTypeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C631C412E6484200013457 /* enoTypeTest.cpp */; };
 		3F75250A157B643200F6DA63 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C630E612E6342100013457 /* main.cpp */; };
@@ -76,6 +75,11 @@
 		3FBD92C21575AA3D0052B482 /* DriverMACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D983A67014645D5700CAC4EF /* DriverMACOSX.mm */; };
 		3FBD92C31575AA3D0052B482 /* Window_MACOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = D9FB4FB01486C5BB005564DD /* Window_MACOSX.mm */; };
 		3FBD92C51575ADC50052B482 /* ImageLoader_Png.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD92C41575ADC50052B482 /* ImageLoader_Png.cpp */; };
+		3FC90FE7157CC9A10081118F /* Unittest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3FC90FE6157CC9A10081118F /* Unittest.mm */; };
+		3FC90FEF157CF5B90081118F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC90FED157CF48B0081118F /* SenTestingKit.framework */; };
+		3FC90FF2157CF5F00081118F /* enolibrary-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD926E1575A53A0052B482 /* enolibrary-static.a */; };
+		3FC90FF9157CF92F0081118F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AA1575A9D70052B482 /* Cocoa.framework */; };
+		3FC90FFA157CF9430081118F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AA1575A9D70052B482 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,12 +97,17 @@
 			remoteGlobalIDString = D941190814A4CF6700273551;
 			remoteInfo = version;
 		};
+		3FC90FF0157CF5EB0081118F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FBD926D1575A53A0052B482;
+			remoteInfo = "library-static";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eno_Prefix.pch; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		3F15BFDC1537D7D000030DD5 /* enoIOTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = enoIOTest.cpp; path = ../eno/enoIOTest.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -125,7 +134,6 @@
 		3F7524D41578B12600F6DA63 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uncompr.c; path = ../Extra/zlib/uncompr.c; sourceTree = "<group>"; };
 		3F7524E31578B14100F6DA63 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zutil.c; path = ../Extra/zlib/zutil.c; sourceTree = "<group>"; };
 		3F7524EB157B63D100F6DA63 /* example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F7524ED157B63D100F6DA63 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3F859E1B151397BA00479FA6 /* enoGraphicsType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 2; name = enoGraphicsType.hpp; path = ../eno/enoGraphicsType.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		3FBD924915759BB20052B482 /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = png.c; path = ../Extra/libpng/png.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		3FBD924A15759BB20052B482 /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngerror.c; path = ../Extra/libpng/pngerror.c; sourceTree = "<group>"; };
@@ -147,6 +155,9 @@
 		3FBD92AC1575A9E00052B482 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		3FBD92C41575ADC50052B482 /* ImageLoader_Png.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = ImageLoader_Png.cpp; path = ../eno/ImageLoader_Png.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		3FBD92C61575ADDE0052B482 /* ImageLoader_Png.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = ImageLoader_Png.hpp; path = ../eno/ImageLoader_Png.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		3FC90FDB157CC9A10081118F /* Unittest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Unittest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FC90FE6157CC9A10081118F /* Unittest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Unittest.mm; sourceTree = "<group>"; };
+		3FC90FED157CF48B0081118F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3FF9D10014DABE2900494EBB /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = version.cpp; path = ../Scripts/version.cpp; sourceTree = "<group>"; };
 		3FF9D10114DAC10800494EBB /* enoGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = enoGraphics.cpp; path = ../eno/enoGraphics.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		3FF9D10214DAC10800494EBB /* enoGraphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoGraphics.hpp; path = ../eno/enoGraphics.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -157,7 +168,6 @@
 		53CC3A92121630F600B2D092 /* eno.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = eno.hpp; path = ../eno/eno.hpp; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		53CC3A93121630F600B2D092 /* enoConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoConfig.hpp; path = ../eno/enoConfig.hpp; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		53CC3A96121630F600B2D092 /* enoType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoType.hpp; path = ../eno/enoType.hpp; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		8D1107310486CEB800E47090 /* eno-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eno-Info.plist"; sourceTree = "<group>"; };
 		D9040C0A14621B5B0028A25E /* enoWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoWindow.hpp; path = ../eno/enoWindow.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		D9040C0D14621B5B0028A25E /* size2d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = size2d.hpp; path = ../eno/size2d.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		D9040C0F14621D020028A25E /* enoDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoDriver.hpp; path = ../eno/enoDriver.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -244,7 +254,7 @@
 			files = (
 				3F75251E157B653500F6DA63 /* enolibrary-static.a in Frameworks */,
 				3F75251D157B646000F6DA63 /* OpenGL.framework in Frameworks */,
-				3F7524EE157B63D100F6DA63 /* Cocoa.framework in Frameworks */,
+				3FC90FF9157CF92F0081118F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +262,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FC90FD7157CC9A10081118F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC90FF2157CF5F00081118F /* enolibrary-static.a in Frameworks */,
+				3FC90FEF157CF5B90081118F /* SenTestingKit.framework in Frameworks */,
+				3FC90FFA157CF9430081118F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +290,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FC90FED157CF48B0081118F /* SenTestingKit.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -282,6 +303,7 @@
 			children = (
 				3FBD926E1575A53A0052B482 /* enolibrary-static.a */,
 				3F7524EB157B63D100F6DA63 /* example.app */,
+				3FC90FDB157CC9A10081118F /* Unittest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,7 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				D9C630E512E6340B00013457 /* Source */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
+				3FC90FDF157CC9A10081118F /* Unittest */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -311,27 +333,16 @@
 				D9F6513012F57E98008270C7 /* enoReferenceCounter.hpp */,
 				D9F651AB12F580F0008270C7 /* enoMath.hpp */,
 				53CC3A96121630F600B2D092 /* enoType.hpp */,
-				256AC3F00F4B6AF500CF3369 /* eno_Prefix.pch */,
 				D926B25B1477E806000619BA /* enoApplication.hpp */,
 				D926B25D1477ED79000619BA /* enoApplication.cpp */,
 			);
 			name = eno;
 			sourceTree = "<group>";
 		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8D1107310486CEB800E47090 /* eno-Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				3F7524ED157B63D100F6DA63 /* Cocoa.framework */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -422,6 +433,14 @@
 				3FBD925815759BB20052B482 /* pngwutil.c */,
 			);
 			name = libpng;
+			sourceTree = "<group>";
+		};
+		3FC90FDF157CC9A10081118F /* Unittest */ = {
+			isa = PBXGroup;
+			children = (
+				3FC90FE6157CC9A10081118F /* Unittest.mm */,
+			);
+			path = Unittest;
 			sourceTree = "<group>";
 		};
 		D9040C0E14621CEA0028A25E /* Driver */ = {
@@ -735,6 +754,25 @@
 			productReference = 3FBD926E1575A53A0052B482 /* enolibrary-static.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		3FC90FDA157CC9A10081118F /* Unittest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FC90FEB157CC9A10081118F /* Build configuration list for PBXNativeTarget "Unittest" */;
+			buildPhases = (
+				3FC90FD6157CC9A10081118F /* Sources */,
+				3FC90FD7157CC9A10081118F /* Frameworks */,
+				3FC90FD8157CC9A10081118F /* Resources */,
+				3FC90FD9157CC9A10081118F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FC90FF1157CF5EB0081118F /* PBXTargetDependency */,
+			);
+			name = Unittest;
+			productName = Unittest;
+			productReference = 3FC90FDB157CC9A10081118F /* Unittest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -761,6 +799,7 @@
 				3FBD926D1575A53A0052B482 /* library-static */,
 				D941190814A4CF6700273551 /* version */,
 				3F7524EA157B63D100F6DA63 /* example */,
+				3FC90FDA157CC9A10081118F /* Unittest */,
 			);
 		};
 /* End PBXProject section */
@@ -773,7 +812,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3FC90FD8157CC9A10081118F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3FC90FD9157CC9A10081118F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F7524E7157B63D100F6DA63 /* Sources */ = {
@@ -856,6 +918,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3FC90FD6157CC9A10081118F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC90FE7157CC9A10081118F /* Unittest.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -869,18 +939,12 @@
 			target = D941190814A4CF6700273551 /* version */;
 			targetProxy = 3FBD92A21575A9610052B482 /* PBXContainerItemProxy */;
 		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
+		3FC90FF1157CF5EB0081118F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3FBD926D1575A53A0052B482 /* library-static */;
+			targetProxy = 3FC90FF0157CF5EB0081118F /* PBXContainerItemProxy */;
 		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3F752502157B63D200F6DA63 /* Debug */ = {
@@ -968,6 +1032,51 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+			};
+			name = Release;
+		};
+		3FC90FE9157CC9A10081118F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3FC90FEA157CC9A10081118F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1067,6 +1176,7 @@
 				3F752503157B63D200F6DA63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		3FBD926F1575A53A0052B482 /* Build configuration list for PBXNativeTarget "library-static" */ = {
 			isa = XCConfigurationList;
@@ -1076,6 +1186,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
+		};
+		3FC90FEB157CC9A10081118F /* Build configuration list for PBXNativeTarget "Unittest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FC90FE9157CC9A10081118F /* Debug */,
+				3FC90FEA157CC9A10081118F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "eno" */ = {
 			isa = XCConfigurationList;
