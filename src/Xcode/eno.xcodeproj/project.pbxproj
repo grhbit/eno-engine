@@ -60,6 +60,7 @@
 		3FC90FF9157CF92F0081118F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AA1575A9D70052B482 /* Cocoa.framework */; };
 		3FC90FFA157CF9430081118F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AA1575A9D70052B482 /* Cocoa.framework */; };
 		3FC91003157DB51D0081118F /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC91004157DB51D0081118F /* gzlib.c */; settings = {COMPILER_FLAGS = "-ansi"; }; };
+		3FC9100C157DCA890081118F /* enoTweener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9100B157DCA890081118F /* enoTweener.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,8 @@
 		3FC90FE6157CC9A10081118F /* Unittest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Unittest.mm; sourceTree = "<group>"; };
 		3FC90FED157CF48B0081118F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3FC91004157DB51D0081118F /* gzlib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = gzlib.c; path = ../Extra/zlib/gzlib.c; sourceTree = "<group>"; };
+		3FC9100B157DCA890081118F /* enoTweener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoTweener.cpp; path = ../eno/enoTweener.cpp; sourceTree = "<group>"; };
+		3FC9100D157DCAA10081118F /* enoTweener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = enoTweener.hpp; path = ../eno/enoTweener.hpp; sourceTree = "<group>"; };
 		3FF9D10014DABE2900494EBB /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = version.cpp; path = ../Scripts/version.cpp; sourceTree = "<group>"; };
 		3FF9D10114DAC10800494EBB /* enoGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = enoGraphics.cpp; path = ../eno/enoGraphics.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		3FF9D10214DAC10800494EBB /* enoGraphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoGraphics.hpp; path = ../eno/enoGraphics.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -323,7 +326,7 @@
 		3F7524E5157985A600F6DA63 /* scene */ = {
 			isa = PBXGroup;
 			children = (
-				3F7524E6157AFF0B00F6DA63 /* sprite */,
+				3FC91009157DCA470081118F /* tween */,
 			);
 			name = scene;
 			sourceTree = "<group>";
@@ -373,6 +376,16 @@
 				3FC90FE6157CC9A10081118F /* Unittest.mm */,
 			);
 			path = Unittest;
+			sourceTree = "<group>";
+		};
+		3FC91009157DCA470081118F /* tween */ = {
+			isa = PBXGroup;
+			children = (
+				3FC9100D157DCAA10081118F /* enoTweener.hpp */,
+				3FC9100B157DCA890081118F /* enoTweener.cpp */,
+				3F7524E6157AFF0B00F6DA63 /* sprite */,
+			);
+			name = tween;
 			sourceTree = "<group>";
 		};
 		D9040C0E14621CEA0028A25E /* Driver */ = {
@@ -748,6 +761,7 @@
 				3F7524E11578B12600F6DA63 /* trees.c in Sources */,
 				3F7524E21578B12600F6DA63 /* uncompr.c in Sources */,
 				3F7524E41578B14100F6DA63 /* zutil.c in Sources */,
+				3FC9100C157DCA890081118F /* enoTweener.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
