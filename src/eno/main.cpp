@@ -7,9 +7,17 @@
  *
  */
 
-#include "Unittest++.h"
-#include "enoUnitTest.h"
 #include "eno.hpp"
+
+#if defined(ENO_MACOSX_PLATFORM)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <unistd.h>
+#elif defined(ENO_WINDOWS_PLATFORM)
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include "enoApplication.hpp"
 #include "enoMath.hpp"
 #include "enoWindow.hpp"
@@ -24,15 +32,6 @@ using namespace eno;
 
 enoImageLoader* imageloader;
 enoImage* image;
-
-#if defined(ENO_MACOSX_PLATFORM)
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <unistd.h>
-#elif defined(ENO_WINDOWS_PLATFORM)
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
 
 GLuint tex;
 
@@ -77,7 +76,7 @@ bool Update(f32)
 using namespace std;
 int main(int, char *argv[])
 {
-/*
+//*
     //temporary code
 #if defined(ENO_MACOSX_PLATFORM)
     chdir("../Visual Studio/");
@@ -107,5 +106,5 @@ int main(int, char *argv[])
     delete image;
     delete imageloader;
 //*/
-    return UnitTest::RunAllTests();
+    return 0;
 }

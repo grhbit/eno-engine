@@ -12,6 +12,8 @@
 
 namespace eno {
     
+    enoAutoPtr_<enoGraphics> GRAPHICS(false, enoGraphics::getInstance, enoGraphics::release);
+    
     enoGraphics* enoGraphics::instance = nullptr;
 
     enoGraphics::enoGraphics( void )

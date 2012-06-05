@@ -66,6 +66,6 @@ namespace eno {
 
     };
 
-    static enoAutoPtr_<enoGraphics> GRAPHICS(false, enoGraphics::getInstance, enoGraphics::release);
+    extern enoAutoPtr_<enoGraphics> GRAPHICS;
 
 }

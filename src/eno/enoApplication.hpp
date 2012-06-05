@@ -32,7 +32,7 @@ public:
     CallbackDraw DrawFunc;
 
 public:
-    enoWindowProperty( void ) : 
+    enoWindowProperty( void ) :
       Width(800), Height(600),
           Title(""), Fullscreen(false), Alternate(nullptr),
           UpdateFunc(nullptr), DrawFunc(nullptr) { }
@@ -69,6 +69,6 @@ private:
     ~enoApplication(void);
 };
 
-static enoAutoPtr_<enoApplication> APP(false, enoApplication::sharedApplication, enoApplication::release);
+extern enoAutoPtr_<enoApplication> APP;
 
 }

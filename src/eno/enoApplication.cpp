@@ -11,6 +11,8 @@
 
 namespace eno {
 
+enoAutoPtr_<enoApplication> APP(false, enoApplication::sharedApplication, enoApplication::release);
+
 enoApplication* enoApplication::instance = nullptr;
 
 enoApplication* enoApplication::sharedApplication(void)
