@@ -8,7 +8,9 @@
 */
 
 #pragma once
+#include <tuple>
 #include <list>
+
 #include "enoType.hpp"
 #include "vector2d.hpp"
 #include "vector3d.hpp"
@@ -19,36 +21,46 @@ namespace eno {
 
 #define ENUM_INVALID_CHECK(Enum, value) ((Enum##_Count>value)&&(value>=0))
     
-    enum BlendMode {
-    };
-
-    enum ColorFormat {
-        // --- No alpha channel
-        ColorFMT_RGB5,
-        ColorFMT_X1RGB5,
-        ColorFMT_RGB8,
-        ColorFMT_BGR8,
-        
-        // --- Alpha channel
-        ColorFMT_RGBA4,
-        ColorFMT_RGB5A1,
-        ColorFMT_A1BGR5,
-        ColorFMT_RGBA8,
-        ColorFMT_BGRA8,
-        ColorFormat_Count,
-    };
-
-    enum CullMode {
-        CULL_NONE,
-        CULL_BACK,
-        CULL_FRONT,
-        CullMode_Count,
-    };
-
-    enum TextureMode
+    static const struct GraphicsEnum
     {
-        TextureMode_Count,
-    };
+    public:
+        enum BlendMode {
+        };
+
+        enum CullMode {
+            CULL_NONE = 0,
+            CULL_BACK = 1,
+            CULL_FRONT = 2,
+            CullMode_Count = 3
+        };
+
+        enum ColorFormat {
+            // --- No alpha channel
+            ColorFMT_RGB5 = 0,
+            ColorFMT_RGB8,
+            ColorFMT_BGR8,
+            ColorFMT_BGRX8,
+            
+            // --- Alpha channel
+            ColorFMT_RGBA4,
+            ColorFMT_RGB5A1,
+            ColorFMT_A1BGR5,
+            ColorFMT_RGBA8,
+            ColorFMT_BGRA8,
+            ColorFormat_Count
+        };
+
+        enum { DEPTH, ALPHA };
+
+        typedef std::tuple<int, bool> COLORFORMAT_INFO;
+        COLORFORMAT_INFO ColorFormatInfo[ColorFormat_Count];
+
+        enum TextureMode {
+            TextureMode_Count
+        };
+            
+        GraphicsEnum();
+    } Graphics;
 
     class matrixStack
     {

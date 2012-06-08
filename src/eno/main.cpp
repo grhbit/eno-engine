@@ -27,11 +27,13 @@
 #include "enoImageLoader.hpp"
 #include "ImageLoader_BMP.hpp"
 #include "ImageLoader_PNG.hpp"
+#include "Texture_OGL.hpp"
 #include "quaternion.hpp"
 using namespace eno;
 
 enoImageLoader* imageloader;
 enoImage* image;
+enoTexture* texture;
 
 GLuint tex;
 
@@ -52,7 +54,7 @@ void Draw(f32 delta)
     glEnable(GL_TEXTURE_2D);  
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
     glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glBindTexture(GL_TEXTURE_2D, tex);  
+    glBindTexture(GL_TEXTURE_2D, texture->getTexture());  
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);glColor4f(1, 1, 1, 1);glVertex3f(-1,-1, 0);
     glTexCoord2f(0,1);glColor4f(1, 1, 1, 1);glVertex3f(-1, 1, 0);  
@@ -72,37 +74,39 @@ bool Update(f32)
     return true;
 }
 
-
 using namespace std;
 int main(int, char *argv[])
 {
-//*
+//
     //temporary code
 #if defined(ENO_MACOSX_PLATFORM)
     chdir("../Visual Studio/");
 #endif
 
-    imageloader = new ImageLoader_PNG;
+    imageloader = new ImageLoader_BMP;
     TextureID ID;
-    ID.filename = "dummy.png";
+    ID.filename = "dummy.bmp";
     image = imageloader->loadImage(ID);
 // /
     enoWindowProperty property(800, 600, "eno10.0", false, Update, Draw);
 
     APP->initialize(property);
-//
+/*
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);  
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);  
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);  
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_BGRA, GL_UNSIGNED_BYTE, image->lock());
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->getWidth(), image->getHeight(), 0, GL_BGRA, GL_UNSIGNED_SHORT_1_5_5_5_REV, image->lock());
+    */
+    texture = new Texture_OGL;
+    texture->init(image->getSize(), image->getColorFormat(), image->lock());
     image->unlock();
     // /
     APP->mainLoop();
 //
-    glDeleteTextures(1, &tex);
+    delete texture;
     delete image;
     delete imageloader;
 //*/

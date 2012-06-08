@@ -11,9 +11,12 @@
 #include "enoReferenceCounter.hpp"
 #include "enoType.hpp"
 #include "enoGraphicsType.hpp"
+#include "enoTexture.hpp"
 
 namespace eno {
 
+    interface enoTexture;
+    
     struct GraphicsMode
     {
     public:
@@ -39,13 +42,15 @@ namespace eno {
         enoGraphics( void );
         ~enoGraphics( void );
 
-        void setCullMode(CullMode cullmode);
+        void setCullMode(GraphicsEnum::CullMode cullmode);
         void setLighting(bool);
 
         void reset(GraphicsMode mode);
 
         void create(GraphicsMode mode);
         void destroy(void);
+        
+        void setTexture(const enoTexture*, u32 index=0);
         
         void drawPoint(const spriteVertex& pos, f32 size);
         void drawPoints(const spriteVertex v[], f32 size, s32 count);

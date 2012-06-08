@@ -22,11 +22,13 @@ namespace eno {
         
         virtual ~GraphicsImpl(void) { }
 
-        virtual void setCullMode(CullMode) = 0;
+        virtual void setCullMode(GraphicsEnum::CullMode) = 0;
         virtual void setLighting(bool) = 0;
 
         virtual void create(GraphicsMode) = 0;
         virtual void destroy(void) = 0;
+        
+        virtual void setTexture(const enoTexture*, u32) = 0;
         
         virtual void drawPoints(const spriteVertex[], f32, s32) = 0;
         virtual void drawLines(const spriteVertex[], f32, s32) = 0;

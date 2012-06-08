@@ -95,10 +95,10 @@ namespace eno {
         u32 pitch = 0;
         
         if (color_type ==PNG_COLOR_TYPE_RGB_ALPHA) {
-            image = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
+            image = new enoImage(GraphicsEnum::ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
             pitch = 4*width;
         } else {
-            image = new enoImage(ColorFMT_RGB8, core::size2d_template<u32>(width, height));
+            image = new enoImage(GraphicsEnum::ColorFMT_RGB8, core::size2d_template<u32>(width, height));
             pitch = 3*width;
         }
         

@@ -22,7 +22,7 @@ namespace eno {
 
 //      enoImage( void );
 
-        enoImage( ColorFormat, core::size2d_template<u32> );
+        enoImage( GraphicsEnum::ColorFormat, core::size2d_template<u32> );
 
         ~enoImage( void );
 
@@ -44,13 +44,13 @@ namespace eno {
 
         core::colorTypeF getPixel(core::position2d_template<u32>);
 
-        void setColorFormat(ColorFormat format) { colorformat = format; }
+        void setColorFormat(GraphicsEnum::ColorFormat format) { colorformat = format; }
         
-        ColorFormat getColorFormat( void ) const;
+        GraphicsEnum::ColorFormat getColorFormat( void ) const;
 
     private:
         u8* data;
-        ColorFormat colorformat;
+        GraphicsEnum::ColorFormat colorformat;
         core::size2d_template<u32> size;
     };
 

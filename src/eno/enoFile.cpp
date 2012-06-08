@@ -254,12 +254,14 @@ namespace eno {
     
     s64 enoFile::seekpos(s64 offset)
     {
-        return fseek(file, offset, SEEK_SET);
+        fseek(file, offset, SEEK_SET);
+        return ftell(file);
     }
     
     s64 enoFile::seekcur(s64 offset)
     {
-        return fseek(file, offset, SEEK_CUR);
+        fseek(file, offset, SEEK_CUR);
+        return ftell(file);
     }
     
     s64 enoFile::filesize()

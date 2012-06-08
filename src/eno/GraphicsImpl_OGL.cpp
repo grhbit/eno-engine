@@ -79,15 +79,47 @@ HGLRC GraphicsOGLHelper_Windows::hRC = NULL;
 #endif
 
 namespace eno {
-
-    void GraphicsImpl_OGL::setCullMode(CullMode cullmode)
+    
+    OpenGLEnum::OpenGLEnum()
     {
-        if (cullmode == CULL_NONE)
+        // --- No alpha channel
+        TextureInfo[GraphicsEnum::ColorFMT_RGB5] = 
+        TEXTUREINFO(GL_RGB5, GL_RGB, GL_UNSIGNED_SHORT_5_5_5_1);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_RGB8] = 
+        TEXTUREINFO(GL_RGB8, GL_RGB, GL_UNSIGNED_BYTE);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_BGR8] = 
+        TEXTUREINFO(GL_RGB8, GL_BGR, GL_UNSIGNED_BYTE);
+
+        TextureInfo[GraphicsEnum::ColorFMT_BGRX8] = 
+        TEXTUREINFO(GL_RGB, GL_BGRA, GL_UNSIGNED_BYTE);
+
+        // --- Alpha channel
+        TextureInfo[GraphicsEnum::ColorFMT_RGBA4] =
+        TEXTUREINFO(GL_RGBA4, GL_RGBA, GL_UNSIGNED_SHORT_4_4_4_4);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_RGB5A1] = 
+        TEXTUREINFO(GL_RGB5_A1, GL_RGBA, GL_UNSIGNED_SHORT_5_5_5_1);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_A1BGR5] = 
+        TEXTUREINFO(GL_RGB5_A1, GL_ABGR_EXT, GL_UNSIGNED_SHORT_1_5_5_5_REV);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_RGBA8] = 
+        TEXTUREINFO(GL_RGBA8, GL_RGBA, GL_UNSIGNED_BYTE);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_BGRA8] = 
+        TEXTUREINFO(GL_RGBA8, GL_BGRA, GL_UNSIGNED_BYTE);
+    }
+
+    void GraphicsImpl_OGL::setCullMode(GraphicsEnum::CullMode cullmode)
+    {
+        if (cullmode == GraphicsEnum::CULL_NONE)
             glDisable(GL_CULL_FACE);
         else
         {
             glEnable(GL_CULL_FACE);
-            glCullFace((cullmode == CULL_BACK)? GL_BACK:GL_FRONT);
+            glCullFace((cullmode == GraphicsEnum::CULL_BACK)? GL_BACK:GL_FRONT);
         }        
     }
 
@@ -138,6 +170,16 @@ namespace eno {
     void GraphicsImpl_OGL::destroy(void)
     {
         OpenGLArchClose;
+    }
+    
+    void GraphicsImpl_OGL::setTexture(const eno::enoTexture *texture, u32 index)
+    {
+        GLuint tex = 0;
+        if (texture != nullptr) {
+            tex = texture->getTexture();
+        }
+        
+        glBindTexture(GL_TEXTURE_2D, tex);
     }
     
     void GraphicsImpl_OGL::drawPoints(const spriteVertex v[], f32 size, s32 count)
