@@ -212,9 +212,8 @@ namespace eno {
         file.readBytes(info.buffer, sizeof(info.headersize));
         file.readBytes(info.buffer+sizeof(info.headersize),
                        info.headersize-sizeof(info.headersize));
-
-        std::cout << file.seekcur(0) << std::endl <<
-        file.seekpos(1024) << std::endl;
+        
+        file.seekpos(header.offset);
 
         enoImage* image = nullptr;
         

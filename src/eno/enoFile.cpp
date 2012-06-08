@@ -16,12 +16,12 @@ const eno::c8* mystrnstr(const eno::c8* str,
 namespace eno {
 
     enoFile::enoFile(void) : file(0), mode(0),
-                            autoflush(false), offset(0), end(0),
-                            write_end(&writebuffer[WRITE_BUFFER_SIZE]) { }
+                            autoflush(false), read_offset(0), read_end(0),
+                            write_end(&write_buffer[WRITE_BUFFER_SIZE]), pos(0){ }
 
     enoFile::enoFile(const RString& path, u32 openmode) : file(0), mode(0),
-                autoflush(false), offset(0), end(0),
-                write_end(&writebuffer[WRITE_BUFFER_SIZE])
+                autoflush(false), read_offset(0), read_end(0),
+                write_end(&write_buffer[WRITE_BUFFER_SIZE]), pos(0)
     {
         open(path, openmode);
     }
@@ -64,8 +64,8 @@ namespace eno {
             filename = path;
             mode = openmode;
             
-            offset = end = buffer;
-            write_offset = writebuffer;
+            read_offset = read_end = read_buffer;
+            write_offset = write_buffer;
             
             return true;
         }
@@ -92,13 +92,13 @@ namespace eno {
     
     bool enoFile::readByte(void *ch)
     {
-        if (offset == end) {
+        if (read_offset == read_end) {
             if(FillBuffer() == 0) {
                 return false;
             }
         }
         
-        memcpy(ch, offset++, 1);
+        memcpy(ch, read_offset++, 1);
 
         return true;
     }
@@ -110,7 +110,7 @@ namespace eno {
         u64 availBufSize;
         
         while (count != 0) {
-            availBufSize = end-offset;
+            availBufSize = read_end-read_offset;
             
             if (availBufSize == 0) {
                 if (FillBuffer() == 0) {
@@ -120,13 +120,13 @@ namespace eno {
             }
             
             if (availBufSize <= count) {
-                memcpy(dest_offset, offset, availBufSize);
+                memcpy(dest_offset, read_offset, availBufSize);
                 count -= availBufSize;
                 dest_offset += availBufSize;
-                offset += availBufSize;
+                read_offset += availBufSize;
             } else {
-                memcpy(dest_offset, offset, count);
-                offset += count;
+                memcpy(dest_offset, read_offset, count);
+                read_offset += count;
                 count = 0;
             }
         }
@@ -143,7 +143,7 @@ namespace eno {
         const s64 delimLength = strlen(delimiter);
         
         while (true) {
-            availBufSize = end-offset;
+            availBufSize = read_end-read_offset;
             
             if (availBufSize == 0) {
                 if (FillBuffer() == 0) {
@@ -152,7 +152,7 @@ namespace eno {
                 continue;
             }
             
-            out.append(offset, availBufSize);
+            out.append(read_offset, availBufSize);
 
             const c8 *delimoff = mystrnstr(out.c_str()+derimsearchoffset,
                           delimiter,
@@ -161,14 +161,14 @@ namespace eno {
             if (delimoff != nullptr) {
                 s64 noff = (delimoff-out.c_str());
                 noff+=delimLength-readCount;
-                offset += noff;
+                read_offset += noff;
                 readCount = (delimoff-out.c_str())+(joinDelimiter?delimLength:0);
                 break;
             }
             
             readCount += availBufSize;
             derimsearchoffset = readCount-delimLength;
-            offset = end;
+            read_offset = read_end;
         }
         
         if (readCount != 0) {
@@ -254,14 +254,29 @@ namespace eno {
     
     s64 enoFile::seekpos(s64 offset)
     {
-        fseek(file, offset, SEEK_SET);
-        return ftell(file);
+        return seekcur(offset-tell());
     }
     
     s64 enoFile::seekcur(s64 offset)
     {
+        WriteProcess();
+                        
         fseek(file, offset, SEEK_CUR);
-        return ftell(file);
+        s64 ret = tell();
+        
+        if ((read_buffer-read_offset) <= offset &&
+            (read_end-read_offset) > offset) {
+            read_offset += offset;
+        } else {
+            read_offset = read_end;
+        }
+
+        return ret;
+    }
+    
+    s64 enoFile::tell() const
+    {
+        return ftell(file)-((read_end-read_offset)-(write_offset-write_buffer));
     }
     
     s64 enoFile::filesize()
@@ -286,10 +301,10 @@ namespace eno {
         }
         
         u64 readCount;
-        readCount = fread(buffer, sizeof(c8), BUFFER_SIZE, file);
+        readCount = fread(read_buffer, sizeof(c8), READ_BUFFER_SIZE, file);
 
-        offset = buffer;
-        end = &buffer[readCount];
+        read_offset = read_buffer;
+        read_end = &read_buffer[readCount];
         
         return readCount;
     }
@@ -301,9 +316,9 @@ namespace eno {
         }
         
         u64 writeCount;
-        writeCount = fwrite(writebuffer, sizeof(c8), write_offset-writebuffer, file);
+        writeCount = fwrite(write_buffer, sizeof(c8), write_offset-write_buffer, file);
         
-        write_offset = writebuffer;
+        write_offset = write_buffer;
         
         return writeCount;
     }
