@@ -17,11 +17,11 @@ namespace eno {
 
     enoFile::enoFile(void) : file(0), mode(0),
                             autoflush(false), read_offset(0), read_end(0),
-                            write_end(&write_buffer[WRITE_BUFFER_SIZE]), pos(0){ }
+                            write_end(&write_buffer[WRITE_BUFFER_SIZE]){ }
 
     enoFile::enoFile(const RString& path, u32 openmode) : file(0), mode(0),
                 autoflush(false), read_offset(0), read_end(0),
-                write_end(&write_buffer[WRITE_BUFFER_SIZE]), pos(0)
+                write_end(&write_buffer[WRITE_BUFFER_SIZE])
     {
         open(path, openmode);
     }

@@ -52,21 +52,23 @@ namespace eno {
             colorpalettecount(0), importantcolorcount(0),
             redbitmask(0), greenbitmask(0), bluebitmask(0),
             alphabitmask(0) { }
+        
+        enum { BI_RGB, BI_RLE8, BI_RLE4, BI_BITFIELDS, BI_JPEG, BI_PNG };
 
         union {
-            struct  
+            struct
             {
                 u32 headersize;
                 s32 width;
                 s32 height;
                 u16 colorplane; // = 1
-                u16 colordepth;
+                u16 colordepth; // OS/2 V1 12-byte
                 u32 compressmethod;
                 u32 imagesize;
-                u32 width_pixelpermeter;
-                u32 height_pixelpermeter;
+                s32 width_pixelpermeter;
+                s32 height_pixelpermeter;
                 u32 colorpalettecount;
-                u32 importantcolorcount; // ignored
+                u32 importantcolorcount; // Windows V3 40-byte
                 u32 redbitmask;
                 u32 greenbitmask;
                 u32 bluebitmask;
@@ -122,7 +124,6 @@ namespace eno {
             u8 index;
             file->readByte(&index);
             *colorbuffer = palette[index].color;
-            std::cout << i << " " << (s32)palette[index].r << std::endl;
 
             buffer += 4;
         }
@@ -210,13 +211,13 @@ namespace eno {
 
         DIBHeader info;
         file.readBytes(info.buffer, sizeof(info.headersize));
-        file.readBytes(info.buffer+sizeof(info.headersize),
-                       info.headersize-sizeof(info.headersize));
+        file.seekcur(sizeof(info.headersize));
+        file.readBytes(info.buffer, sizeof(info));
         
         file.seekpos(header.offset);
 
         enoImage* image = nullptr;
-        
+                
         switch(info.colordepth)
         {
         case 1:

@@ -326,21 +326,6 @@
 			name = zlib;
 			sourceTree = "<group>";
 		};
-		3F7524E5157985A600F6DA63 /* scene */ = {
-			isa = PBXGroup;
-			children = (
-				3F7524E6157AFF0B00F6DA63 /* sprite */,
-			);
-			name = scene;
-			sourceTree = "<group>";
-		};
-		3F7524E6157AFF0B00F6DA63 /* sprite */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = sprite;
-			sourceTree = "<group>";
-		};
 		3FBD922F157599F20052B482 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,7 +519,6 @@
 		D9C631C012E646D300013457 /* game */ = {
 			isa = PBXGroup;
 			children = (
-				3F7524E5157985A600F6DA63 /* scene */,
 			);
 			name = game;
 			sourceTree = "<group>";

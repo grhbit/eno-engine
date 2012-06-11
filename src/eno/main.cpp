@@ -54,7 +54,7 @@ void Draw(f32 delta)
     glEnable(GL_TEXTURE_2D);  
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
     glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glBindTexture(GL_TEXTURE_2D, texture->getTexture());  
+    GRAPHICS->setTexture(texture);
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);glColor4f(1, 1, 1, 1);glVertex3f(-1,-1, 0);
     glTexCoord2f(0,1);glColor4f(1, 1, 1, 1);glVertex3f(-1, 1, 0);  
