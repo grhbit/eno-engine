@@ -14,8 +14,13 @@ namespace eno {
 
     class Texture_OGL : public enoTexture
     {
+    public:
+        Texture_OGL();
+        ~Texture_OGL();
+        
     private:
-        /* virtual */ void Init(  core::size2d size, u8* data );
+        /* virtual */ void Init( core::size2d_template<u32> size, GraphicsEnum::ColorFormat format,
+                                u8* data );
 
         /* virtual */ u8* Lock( u32 index );
 
@@ -23,8 +28,11 @@ namespace eno {
 
         /* virtual */ void Bind( u8* buffer, u32 index );
 
-        /* virtual */ enoImage* GetImage( u32 index );
+        /* virtual */ enoImage* GetImage( u32 index ) const;
+        
+        /* virtual */ u32 GetTexture() const;
 
+        enoImage* image;
         u32 tex;
     };
 

@@ -16,20 +16,25 @@ namespace eno {
     }
 */
 
-    enoImage::enoImage(ColorFormat colorFMT, core::size2d_template<u32> size_)
+    enoImage::enoImage(GraphicsEnum::ColorFormat colorFMT, core::size2d_template<u32> size_)
         : data(nullptr), colorformat(colorFMT), size(size_) 
     {
-        if((colorformat == ColorFMT_A1BGR5)||
-           (colorformat == ColorFMT_RGB5A1)||
-           (colorformat == ColorFMT_RGBA4) ||
-           (colorformat == ColorFMT_X1RGB5)||
-           (colorformat == ColorFMT_RGB5))
+        //*
+        if (ENUM_INVALID_CHECK(GraphicsEnum::ColorFormat, colorFMT)) {
+            data = new u8[size.getArea() * std::get<GraphicsEnum::DEPTH>(Graphics.ColorFormatInfo[colorFMT])/8];
+        }
+        //*/
+        /*
+        if((colorformat == GraphicsEnum::ColorFMT_A1BGR5)||
+           (colorformat == GraphicsEnum::ColorFMT_RGB5A1)||
+           (colorformat == GraphicsEnum::ColorFMT_RGBA4) ||
+           (colorformat == GraphicsEnum::ColorFMT_RGB5))
         {
             data = new u8[size.getArea() * sizeof(u8) * 2];
         }
         else if
-          ((colorformat == ColorFMT_BGR8) ||
-           (colorformat == ColorFMT_RGB8))
+          ((colorformat == GraphicsEnum::ColorFMT_BGR8) ||
+           (colorformat == GraphicsEnum::ColorFMT_RGB8))
         {
             data = new u8[size.getArea() * sizeof(u8) * 3];
         }
@@ -37,6 +42,7 @@ namespace eno {
         {
             data = new u8[size.getArea() * sizeof(u8) * 4];
         }
+         //*/
     }
 
     enoImage::~enoImage(void)
@@ -83,7 +89,7 @@ namespace eno {
         return core::colorTypeF();
     }
 
-    ColorFormat enoImage::getColorFormat(void) const
+    GraphicsEnum::ColorFormat enoImage::getColorFormat(void) const
     {
         return colorformat;
     }

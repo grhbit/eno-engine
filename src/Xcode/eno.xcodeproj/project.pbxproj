@@ -24,6 +24,7 @@
 		3F75250A157B643200F6DA63 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9C630E612E6342100013457 /* main.cpp */; };
 		3F75251D157B646000F6DA63 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AC1575A9E00052B482 /* OpenGL.framework */; };
 		3F75251E157B653500F6DA63 /* enolibrary-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD926E1575A53A0052B482 /* enolibrary-static.a */; };
+		3FAE730B15817AC700A61E2A /* enoGraphicsType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FAE730A15817AC700A61E2A /* enoGraphicsType.cpp */; };
 		3FBD92721575A5B90052B482 /* enoGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D10114DAC10800494EBB /* enoGraphics.cpp */; };
 		3FBD92731575A5B90052B482 /* GraphicsImpl_OGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F2F2A56150F67650060E22F /* GraphicsImpl_OGL.cpp */; };
 		3FBD92741575A5B90052B482 /* enoImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F74475415082EF60003DD67 /* enoImage.cpp */; };
@@ -60,7 +61,8 @@
 		3FC90FF9157CF92F0081118F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AA1575A9D70052B482 /* Cocoa.framework */; };
 		3FC90FFA157CF9430081118F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD92AA1575A9D70052B482 /* Cocoa.framework */; };
 		3FC91003157DB51D0081118F /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC91004157DB51D0081118F /* gzlib.c */; settings = {COMPILER_FLAGS = "-ansi"; }; };
-		3FC9100C157DCA890081118F /* enoTweener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9100B157DCA890081118F /* enoTweener.cpp */; };
+		3FC9101E157E0BCC0081118F /* Texture_OGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9101C157E0BCC0081118F /* Texture_OGL.cpp */; };
+		3FC9101F157E0BCC0081118F /* Texture_OGL.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FC9101D157E0BCC0081118F /* Texture_OGL.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,7 @@
 		3F7524E31578B14100F6DA63 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zutil.c; path = ../Extra/zlib/zutil.c; sourceTree = "<group>"; };
 		3F7524EB157B63D100F6DA63 /* example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F859E1B151397BA00479FA6 /* enoGraphicsType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 2; name = enoGraphicsType.hpp; path = ../eno/enoGraphicsType.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		3FAE730A15817AC700A61E2A /* enoGraphicsType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoGraphicsType.cpp; path = ../eno/enoGraphicsType.cpp; sourceTree = "<group>"; };
 		3FBD924915759BB20052B482 /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = png.c; path = ../Extra/libpng/png.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		3FBD924A15759BB20052B482 /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngerror.c; path = ../Extra/libpng/pngerror.c; sourceTree = "<group>"; };
 		3FBD924B15759BB20052B482 /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngget.c; path = ../Extra/libpng/pngget.c; sourceTree = "<group>"; };
@@ -138,8 +141,8 @@
 		3FC90FE6157CC9A10081118F /* Unittest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Unittest.mm; sourceTree = "<group>"; };
 		3FC90FED157CF48B0081118F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3FC91004157DB51D0081118F /* gzlib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = gzlib.c; path = ../Extra/zlib/gzlib.c; sourceTree = "<group>"; };
-		3FC9100B157DCA890081118F /* enoTweener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enoTweener.cpp; path = ../eno/enoTweener.cpp; sourceTree = "<group>"; };
-		3FC9100D157DCAA10081118F /* enoTweener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = enoTweener.hpp; path = ../eno/enoTweener.hpp; sourceTree = "<group>"; };
+		3FC9101C157E0BCC0081118F /* Texture_OGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture_OGL.cpp; path = ../eno/Texture_OGL.cpp; sourceTree = "<group>"; };
+		3FC9101D157E0BCC0081118F /* Texture_OGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Texture_OGL.hpp; path = ../eno/Texture_OGL.hpp; sourceTree = "<group>"; };
 		3FF9D10014DABE2900494EBB /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = version.cpp; path = ../Scripts/version.cpp; sourceTree = "<group>"; };
 		3FF9D10114DAC10800494EBB /* enoGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = enoGraphics.cpp; path = ../eno/enoGraphics.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		3FF9D10214DAC10800494EBB /* enoGraphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = enoGraphics.hpp; path = ../eno/enoGraphics.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -323,21 +326,6 @@
 			name = zlib;
 			sourceTree = "<group>";
 		};
-		3F7524E5157985A600F6DA63 /* scene */ = {
-			isa = PBXGroup;
-			children = (
-				3FC91009157DCA470081118F /* tween */,
-			);
-			name = scene;
-			sourceTree = "<group>";
-		};
-		3F7524E6157AFF0B00F6DA63 /* sprite */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = sprite;
-			sourceTree = "<group>";
-		};
 		3FBD922F157599F20052B482 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,14 +366,14 @@
 			path = Unittest;
 			sourceTree = "<group>";
 		};
-		3FC91009157DCA470081118F /* tween */ = {
+		3FC9101A157E0B380081118F /* Texture */ = {
 			isa = PBXGroup;
 			children = (
-				3FC9100D157DCAA10081118F /* enoTweener.hpp */,
-				3FC9100B157DCA890081118F /* enoTweener.cpp */,
-				3F7524E6157AFF0B00F6DA63 /* sprite */,
+				3FC9101C157E0BCC0081118F /* Texture_OGL.cpp */,
+				3FC9101D157E0BCC0081118F /* Texture_OGL.hpp */,
+				D9F6515B12F57F12008270C7 /* enoTexture.hpp */,
 			);
-			name = tween;
+			name = Texture;
 			sourceTree = "<group>";
 		};
 		D9040C0E14621CEA0028A25E /* Driver */ = {
@@ -463,11 +451,12 @@
 				3FF9D10114DAC10800494EBB /* enoGraphics.cpp */,
 				3FF9D10214DAC10800494EBB /* enoGraphics.hpp */,
 				3F859E1B151397BA00479FA6 /* enoGraphicsType.hpp */,
+				3FAE730A15817AC700A61E2A /* enoGraphicsType.cpp */,
 				D9764E2B12EE13F30028EE15 /* color */,
 				D993F81212E839C3001B4CFA /* renderer */,
+				3FC9101A157E0B380081118F /* Texture */,
 				D993F81112E839BA001B4CFA /* Image */,
 				D993F83012E85228001B4CFA /* ImageLoader */,
-				D9F6515B12F57F12008270C7 /* enoTexture.hpp */,
 				D904AF4E1489CC1B00DF5EA6 /* enoRenderTarget.hpp */,
 			);
 			name = display;
@@ -530,7 +519,6 @@
 		D9C631C012E646D300013457 /* game */ = {
 			isa = PBXGroup;
 			children = (
-				3F7524E5157985A600F6DA63 /* scene */,
 			);
 			name = game;
 			sourceTree = "<group>";
@@ -561,6 +549,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC9101F157E0BCC0081118F /* Texture_OGL.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,7 +750,8 @@
 				3F7524E11578B12600F6DA63 /* trees.c in Sources */,
 				3F7524E21578B12600F6DA63 /* uncompr.c in Sources */,
 				3F7524E41578B14100F6DA63 /* zutil.c in Sources */,
-				3FC9100C157DCA890081118F /* enoTweener.cpp in Sources */,
+				3FC9101E157E0BCC0081118F /* Texture_OGL.cpp in Sources */,
+				3FAE730B15817AC700A61E2A /* enoGraphicsType.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

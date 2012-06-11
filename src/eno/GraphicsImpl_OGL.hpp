@@ -8,6 +8,8 @@
 */
 
 #pragma once
+#include <tuple>
+
 #include "GraphicsImpl.hpp"
 #if defined(ENO_MACOSX_PLATFORM)
 #include <OpenGL/OpenGL.h>
@@ -18,15 +20,25 @@
 #endif
 
 namespace eno {
+    
+    static const struct OpenGLEnum {
+        enum { INTERNAL_FORMAT = 0, FORMAT, TYPE };
+        typedef std::tuple<GLint, GLenum, GLenum, int> TEXTUREINFO;
+        TEXTUREINFO TextureInfo[GraphicsEnum::ColorFormat_Count];
+        OpenGLEnum();
+    } OpenGL;
 
     class GraphicsImpl_OGL : public GraphicsImpl
     {
+    public:
     private:
-        /* virtual */ void setCullMode(CullMode);
+        /* virtual */ void setCullMode(GraphicsEnum::CullMode);
         /* virtual */ void setLighting(bool);
 
         /* virtual */ void create(GraphicsMode);
         /* virtual */ void destroy(void);
+        
+        /* virtual */ void setTexture(const enoTexture*, u32);
 
         /* virtual */ void drawPoints(const spriteVertex[], f32, s32);
         /* virtual */ void drawLines(const spriteVertex[], f32, s32);

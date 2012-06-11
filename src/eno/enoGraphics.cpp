@@ -7,6 +7,7 @@
 //
 
 #include "enoGraphics.hpp"
+
 #include "GraphicsImpl.hpp"
 #include "GraphicsImpl_OGL.hpp"
 
@@ -44,9 +45,9 @@ namespace eno {
         }
     }
 
-    void enoGraphics::setCullMode( CullMode cullmode )
+    void enoGraphics::setCullMode( GraphicsEnum::CullMode cullmode )
     {
-        if(ENUM_INVALID_CHECK(CullMode, cullmode))
+        if(ENUM_INVALID_CHECK(GraphicsEnum::CullMode, cullmode))
             unit->setCullMode(cullmode);
     }
 
@@ -69,6 +70,11 @@ namespace eno {
     void enoGraphics::destroy( void )
     {
         unit->destroy();
+    }
+    
+    void enoGraphics::setTexture(const eno::enoTexture *texture, u32 index)
+    {
+        unit->setTexture(texture, index);
     }
 
     void enoGraphics::drawPoint(const spriteVertex& pos, f32 size)

@@ -45,25 +45,27 @@ namespace eno {
         s64 seekpos(s64 offset);
         s64 seekcur(s64 offset);
         
+        s64 tell() const;
+        
         s64 filesize();
     private:
         u64 FillBuffer();
         u64 WriteProcess();
 
-        enum { BUFFER_SIZE = 1024, WRITE_BUFFER_SIZE = 256 };
+        enum { READ_BUFFER_SIZE = 1024, WRITE_BUFFER_SIZE = 256 };
 
         bool autoflush;
         RString filename;
 
-        c8 buffer[BUFFER_SIZE];
-        c8*offset;
-        c8*end;
+        c8 read_buffer[READ_BUFFER_SIZE];
+        c8*read_offset;
+        c8*read_end;
         
-        c8 writebuffer[WRITE_BUFFER_SIZE];
+        c8 write_buffer[WRITE_BUFFER_SIZE];
         c8*write_offset;
   const c8*write_end;
         
-        u32 mode;        
+        u32 mode;
         FILE* file;
     };
     

@@ -52,21 +52,23 @@ namespace eno {
             colorpalettecount(0), importantcolorcount(0),
             redbitmask(0), greenbitmask(0), bluebitmask(0),
             alphabitmask(0) { }
+        
+        enum { BI_RGB, BI_RLE8, BI_RLE4, BI_BITFIELDS, BI_JPEG, BI_PNG };
 
         union {
-            struct  
+            struct
             {
                 u32 headersize;
                 s32 width;
                 s32 height;
                 u16 colorplane; // = 1
-                u16 colordepth;
+                u16 colordepth; // OS/2 V1 12-byte
                 u32 compressmethod;
                 u32 imagesize;
-                u32 width_pixelpermeter;
-                u32 height_pixelpermeter;
+                s32 width_pixelpermeter;
+                s32 height_pixelpermeter;
                 u32 colorpalettecount;
-                u32 importantcolorcount; // ignored
+                u32 importantcolorcount; // Windows V3 40-byte
                 u32 redbitmask;
                 u32 greenbitmask;
                 u32 bluebitmask;
@@ -82,7 +84,7 @@ namespace eno {
         s32 width = info->width;
         s32 height = info->height;
 
-        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width,height));
+        (*image) = new enoImage(GraphicsEnum::ColorFMT_RGBA8, core::size2d_template<u32>(width,height));
         u8*buffer = (*image)->lock();
         UNUSED(buffer);
 
@@ -109,7 +111,8 @@ namespace eno {
             palette[i].a = 255;
         }
 
-        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
+        (*image) = new enoImage(GraphicsEnum::ColorFMT_RGBA8, 
+                                core::size2d_template<u32>(width, height));
 
         u8* buffer = (*image)->lock();
         u32*colorbuffer = 0;
@@ -121,7 +124,6 @@ namespace eno {
             u8 index;
             file->readByte(&index);
             *colorbuffer = palette[index].color;
-            std::cout << i << " " << (s32)palette[index].r << std::endl;
 
             buffer += 4;
         }
@@ -154,55 +156,11 @@ namespace eno {
         s32 width = info->width;
         s32 height = info->height;
 
-        struct {
-            union {
-
-                u8 buffer[2];
-                u16 color;
-            };
-        } bits;
-
-        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, height));
+        (*image) = new enoImage(GraphicsEnum::ColorFMT_RGB5, core::size2d_template<u32>(width, abs(height)));
 
         u8* buffer = (*image)->lock();
-        u32*colorbuffer = 0;
-
-        u32 redShift = getShiftCount(info->redbitmask);
-        u32 redMask = info->redbitmask >> redShift;
-        u32 redLength = getBitsLength(redMask);
-
-        u32 greenShift = getShiftCount(info->greenbitmask);
-        u32 greenMask = info->greenbitmask >> greenShift;
-        u32 greenLength = getBitsLength(greenMask);
-
-        u32 blueShift = getShiftCount(info->bluebitmask);
-        u32 blueMask = info->bluebitmask >> blueShift;
-        u32 blueLength = getBitsLength(blueMask);
-
-        enoTimer timer;
-        core::colorTypeI color;
-
-        for (u32 y = 0; y < height; y++)
-        {
-            for (u32 x = 0; x < width; x++)
-            {
-                colorbuffer = reinterpret_cast<u32*>(buffer);
-                file->readBytes(bits.buffer, sizeof(u8)*2);
-
-                color.r = ((bits.color>>redShift)&redMask)<<(8-redLength);
-                color.g = ((bits.color>>greenShift)&greenMask)<<(8-greenLength);
-                color.b = ((bits.color>>blueShift)&blueMask)<<(8-blueLength);
-                color.a = 255;
-
-                *colorbuffer = color.color;
-
-                buffer += 4;
-            }
-        }
-
+        file->readBytes(buffer, info->imagesize);
         (*image)->unlock();
-
-        std::cout << timer.touch() << std::endl;
     }
 
     void loadBitmapColorDepth24Bits(enoFile* file, enoImage** image, DIBHeader* info)
@@ -210,17 +168,11 @@ namespace eno {
         s32 width = info->width;
         s32 height = info->height;
 
-        (*image) = new enoImage(ColorFMT_RGB8, core::size2d_template<u32>(width, height));
+        (*image) = new enoImage(GraphicsEnum::ColorFMT_BGR8, core::size2d_template<u32>(width, abs(height)));
 
         u8* buffer = (*image)->lock();
-        u64 Pitch = width * 3;
 
-        for (u32 i = 0;i < height; i++)
-        {
-            file->readBytes(buffer, Pitch);
-            buffer += Pitch;
-        }
-        
+        file->readBytes(buffer, info->imagesize);        
         (*image)->unlock();
     }
 
@@ -229,23 +181,11 @@ namespace eno {
         s32 width = info->width;
         s32 height = info->height;
 
-        s64 Pitch = width*4;
-        
-        (*image) = new enoImage(ColorFMT_RGBA8, core::size2d_template<u32>(width, abs(height)));
+        height = abs(height);
+        (*image) = new enoImage(GraphicsEnum::ColorFMT_BGRX8, core::size2d_template<u32>(width, height));
+
         u8* buffer = (*image)->lock();
-        
-        if (height<0) {
-            height = -height;
-            buffer+= (height-1)*Pitch;
-            Pitch  = -Pitch;
-        }
-
-        for (u32 i = 0; i < height; ++i)
-        {
-            file->readBytes(buffer, abs(Pitch));
-            buffer += Pitch;
-        }
-
+        file->readBytes(buffer, width*height*4);
         (*image)->unlock();
     }
 
@@ -271,11 +211,13 @@ namespace eno {
 
         DIBHeader info;
         file.readBytes(info.buffer, sizeof(info.headersize));
-        file.readBytes(info.buffer+sizeof(info.headersize),
-                       info.headersize-sizeof(info.headersize));
+        file.seekcur(sizeof(info.headersize));
+        file.readBytes(info.buffer, sizeof(info));
+        
+        file.seekpos(header.offset);
 
         enoImage* image = nullptr;
-        
+                
         switch(info.colordepth)
         {
         case 1:
