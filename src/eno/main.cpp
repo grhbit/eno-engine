@@ -29,6 +29,7 @@
 #include "ImageLoader_PNG.hpp"
 #include "Texture_OGL.hpp"
 #include "quaternion.hpp"
+#include "GraphicsImpl_OGL.hpp"
 using namespace eno;
 
 enoImageLoader* imageloader;
@@ -48,12 +49,16 @@ void Draw(f32 delta)
     
     static f64 sinv = 0;
     sinv = PI64*sin(time);
-    
+    glShadeModel(GL_FLAT);
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
+//*
     glEnable(GL_TEXTURE_2D);  
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+//    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+//    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     GRAPHICS->setTexture(texture);
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);glColor4f(1, 1, 1, 1);glVertex3f(-1,-1, 0);
@@ -62,11 +67,14 @@ void Draw(f32 delta)
     glTexCoord2f(1,0);glColor4f(1, 1, 1, 1);glVertex3f( 1,-1, 0);  
     glEnd();
     glDisable(GL_TEXTURE_2D);
-//*    
+    //*/
+//    glRasterPos2f(-1,-1);
+//    glDrawPixels(image->getWidth(), image->getHeight(), std::get<OpenGLEnum::FORMAT>(OpenGL.TextureInfo[image->getColorFormat()]), std::get<OpenGLEnum::TYPE>(OpenGL.TextureInfo[image->getColorFormat()]), image->lock());
+
     GRAPHICS->drawPoint(spriteVertex(core::vector3d(sin(sinv),-cos(sinv),0), core::colorTypeF(cos(sinv)*cos(sinv)*0.5,cos(sinv)*cos(sinv)*0.5,1,1), core::vector2d(0,0)), 1000);
     GRAPHICS->drawLine(spriteVertex(core::vector3d(-1,-1,0),core::colorTypeF(cos(sinv)*cos(sinv),0,cos(sinv)*cos(sinv),1), core::vector2d(0,0)),spriteVertex(core::vector3d(1,1,0),core::colorTypeF(1,cos(sinv)*cos(sinv),cos(sinv)*cos(sinv),1), core::vector2d(0,0)), 10);
-  /**/  glFlush();
-    // */
+
+    glFlush();
 }
 
 bool Update(f32)
@@ -80,7 +88,7 @@ int main(int, char *argv[])
 //
     //temporary code
 #if defined(ENO_MACOSX_PLATFORM)
-    chdir("../Visual Studio/");
+    chdir("../Visual Studio");
 #endif
 
     imageloader = new ImageLoader_BMP;

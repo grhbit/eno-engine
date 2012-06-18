@@ -85,7 +85,8 @@ namespace eno {
         
         png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, 0, 0);
         
-        if (color_type == PNG_COLOR_TYPE_RGB_ALPHA) {
+        if (color_type == PNG_COLOR_TYPE_RGB_ALPHA ||
+            color_type == PNG_COLOR_TYPE_RGB) {
             png_set_bgr(png_ptr);
         }
         
@@ -99,7 +100,7 @@ namespace eno {
             pitch = 4*width;
         } else {
             image = new enoImage(GraphicsEnum::ColorFMT_BGR8, core::size2d_template<u32>(width, height));
-            pitch = 3*width;
+            pitch = ((24*width+31)&~31)>>3;
         }
         
         u8 **buffer = new png_bytep[height];

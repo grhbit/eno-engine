@@ -23,7 +23,7 @@ namespace eno {
     
     static const struct OpenGLEnum {
         enum { INTERNAL_FORMAT = 0, FORMAT, TYPE };
-        typedef std::tuple<GLint, GLenum, GLenum, int> TEXTUREINFO;
+        typedef std::tuple<GLint, GLenum, GLenum> TEXTUREINFO;
         TEXTUREINFO TextureInfo[GraphicsEnum::ColorFormat_Count];
         OpenGLEnum();
     } OpenGL;

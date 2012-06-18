@@ -36,9 +36,11 @@ namespace eno {
 
         enum ColorFormat {
             // --- No alpha channel
-            ColorFMT_RGB5 = 0,
+            ColorFMT_RGB5X1 = 0,
+            ColorFMT_X1BGR5,
             ColorFMT_RGB8,
             ColorFMT_BGR8,
+            ColorFMT_RGBX8,
             ColorFMT_BGRX8,
             
             // --- Alpha channel

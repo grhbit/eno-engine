@@ -83,17 +83,23 @@ namespace eno {
     OpenGLEnum::OpenGLEnum()
     {
         // --- No alpha channel
-        TextureInfo[GraphicsEnum::ColorFMT_RGB5] = 
-        TEXTUREINFO(GL_RGB5, GL_RGB, GL_UNSIGNED_SHORT_5_5_5_1);
+        TextureInfo[GraphicsEnum::ColorFMT_RGB5X1] = 
+        TEXTUREINFO(GL_RGB5, GL_BGRA, GL_UNSIGNED_SHORT_5_5_5_1);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_X1BGR5] = 
+        TEXTUREINFO(GL_RGB5, GL_BGRA, GL_UNSIGNED_SHORT_1_5_5_5_REV);
         
         TextureInfo[GraphicsEnum::ColorFMT_RGB8] = 
         TEXTUREINFO(GL_RGB8, GL_RGB, GL_UNSIGNED_BYTE);
         
         TextureInfo[GraphicsEnum::ColorFMT_BGR8] = 
         TEXTUREINFO(GL_RGB8, GL_BGR, GL_UNSIGNED_BYTE);
+        
+        TextureInfo[GraphicsEnum::ColorFMT_RGBX8] = 
+        TEXTUREINFO(GL_RGB8, GL_RGBA, GL_UNSIGNED_BYTE);
 
         TextureInfo[GraphicsEnum::ColorFMT_BGRX8] = 
-        TEXTUREINFO(GL_RGB, GL_BGRA, GL_UNSIGNED_BYTE);
+        TEXTUREINFO(GL_RGB8, GL_BGRA, GL_UNSIGNED_BYTE);
 
         // --- Alpha channel
         TextureInfo[GraphicsEnum::ColorFMT_RGBA4] =
