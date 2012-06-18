@@ -19,11 +19,11 @@ namespace eno {
     public:
         struct TweenInfo {
             enum TweenType : u32 {  // x = [0, 1], y = (-inf, inf)
-                TWEEN_NONE = 0, // y = floor(x), y = [x]
-                TWEEN_LINEAR,   // y = x, (d/dx)y = 1
+                TWEEN_NONE = 0,     // y = floor(x), y = [x]
+                TWEEN_LINEAR,       // y = x, (d/dx)y = 1
                 TWEEN_ACCELERLATED, // y = x^2, (d/dx)y = 2x
                 TWEEN_DEACCELERLATED,   // y = 1-(1-x)^2, (d/dx)y = 2x(1-x)
-                TWEEN_SPRING,   // y = 1-(1-t^2)(cos(pi*(n-1)x))
+                TWEEN_SPRING,       // y = 1-(1-t^2)(cos(pi*(n-1)x))
                 TweenType_Count,
             } type;
             spriteVertex vertex;

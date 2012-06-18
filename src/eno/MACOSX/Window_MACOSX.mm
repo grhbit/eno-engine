@@ -113,11 +113,17 @@
 -(void) initWindow
 {
     NSRect size = NSMakeRect(0, 0, 0, 0);
-    window = [[NSWindow alloc] initWithContentRect:size styleMask:NSTitledWindowMask|NSClosableWindowMask|NSResizableWindowMask|NSMiniaturizableWindowMask backing:NSBackingStoreBuffered defer:YES];
+    window = [[NSWindow alloc] initWithContentRect:size 
+                                         styleMask:NSTitledWindowMask|
+                                                 NSClosableWindowMask|
+                                                NSResizableWindowMask|
+                                           NSMiniaturizableWindowMask 
+                                           backing:NSBackingStoreBuffered 
+                                             defer:YES];
     
     [window useOptimizedDrawing:YES];
-    [window setExcludedFromWindowsMenu:YES];
-    [window setReleasedWhenClosed:NO];
+//    [window setExcludedFromWindowsMenu:YES];
+//    [window setReleasedWhenClosed:NO];
     [window setDelegate:self];
 }
 

@@ -133,7 +133,7 @@ namespace eno {
                 u32 color;
             };
 
-            ColorTypeI( void ) : a(0xFF), r(0), g(0), b(0) { }
+            ColorTypeI( void ) : a(0), r(0), g(0), b(0) { }
 
             ColorTypeI(u8 alpha, u8 red, u8 green, u8 blue)
                 : a(alpha), r(red), g(green), b(blue) { }

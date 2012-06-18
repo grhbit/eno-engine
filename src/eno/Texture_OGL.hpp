@@ -2,7 +2,7 @@
 *  Texture_OGL.hpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 11. 2. 24..
+*  Created by seonggwang.gwon on 11. 2. 24..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */

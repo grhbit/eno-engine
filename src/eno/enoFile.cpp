@@ -259,19 +259,18 @@ namespace eno {
     
     s64 enoFile::seekcur(s64 offset)
     {
+        int pos = tell();
         WriteProcess();
-                        
-        fseek(file, offset, SEEK_CUR);
-        s64 ret = tell();
-        
+
         if ((read_buffer-read_offset) <= offset &&
             (read_end-read_offset) > offset) {
             read_offset += offset;
         } else {
+            fseek(file, offset+pos, SEEK_SET);
             read_offset = read_end;
         }
 
-        return ret;
+        return tell();
     }
     
     s64 enoFile::tell() const

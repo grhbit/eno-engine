@@ -2,7 +2,7 @@
 *  Texture_OGL.cpp
 *  eno
 *
-*  Created by Gwon Seong-gwang on 11. 2. 24..
+*  Created by seonggwang.gwon on 11. 2. 24..
 *  Copyright 2010 g.passcode@gmail.com . All rights reserved.
 *
 */
@@ -23,9 +23,6 @@ namespace eno {
     {
         glGenTextures(1, &tex);
         glBindTexture(GL_TEXTURE_2D, tex);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         
         if (data != nullptr) {
             glTexImage2D(GL_TEXTURE_2D, 0,
